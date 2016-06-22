@@ -1,0 +1,11 @@
+mn: min mon ma me
+league: ligue
+pr: pour par
+qqch: quelque chose
+qqn: quelqu’un
+dc: de donc
+ll: il Il
+lc: le la lac
+ls: les le la
+ps: pas PS
+jc: je

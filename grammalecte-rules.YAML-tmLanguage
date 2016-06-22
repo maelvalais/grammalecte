@@ -1,0 +1,91 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Grammalecte
+scopeName: text.grammalecte_rules
+fileTypes: [grx]
+uuid: ecba06dc-1e5d-463e-bc16-4f9775a9f6f3
+
+patterns:
+- comment: comments
+  name: comment.line.sharp
+  match: ^#.*
+
+- comment: URL
+  name: string.other
+  match: \| ?https?://[\w./%?&=#+-]+
+
+- comment: escaped chars
+  name: constant.character.escape
+  match: \\(?:\d+|w|d|b|n|s|t)
+
+- comment: regex command
+  name: constant.character.other
+  match: '\?<?[:!=]'
+
+- comment: message
+  name: comment.line.sharp
+  match: " #[^|]+"
+
+- comment: groups
+  name: comment.line.percentage
+  match: " @@[0-9w,$*>:]+"
+
+- comment: string
+  name: string.quoted.double
+  match: \"[^\"]*\"
+
+- comment: string
+  name: string.quoted.single
+  match: \'[^\']*\'
+
+- comment: rules action
+  name: keyword.operator.assignment
+  match: -(\d*)>>|~(\d*)>>|=(\d*)>>|<<-
+  captures:
+    '1':  {name: constant.numeric} 
+
+- comment: mode
+  name: storage.modifier
+  match: ^TEST[:]
+
+- comment: options2
+  name: entity.name.tag
+  match: _nothing_
+
+- comment: special chars
+  name: keyword.other
+  match: \[|[](){}|@=*^?+]
+
+- comment: numbers
+  name: constant.numeric
+  match: \b-?\d+
+
+- comment: options
+  name: variable.parameter
+  match: ^__[]\[\w<>/]+__|</?js>
+
+- comment: definitions
+  name: variable.parameter
+  match: ^DEF[:]|^OPT[:]
+
+- comment: Functions
+  name: entity.name.function
+  match: \b(?:spell|morph|morphex|stem|textarea0?\w*|before0?\w*|after0?\w*|word|option|define|select|exclude|analysex?|apposition|is[A-Z]\w+|rewriteSubject|checkD\w+|getD\w+|sugg[A-Z]\w+|switch[A-Z]\w+|ceOrCet|formatN\w+)\b
+
+- comment: Functions
+  name: support.function
+  match: \b(?:replace|endswith|startswith|match|search|upper|lower|capitalize|strip|rstrip|is(?:upper|lower|digit|title))\b
+
+- comment: re
+  name: support.class
+  match: \bre\b
+
+- comment: Logical operators (Python)
+  name: support.type
+  match: \b(?:and|in|is|not|or)\b
+
+- comment: True False None
+  name: constant.language
+  match: \b(?:True|False|None)\b
+
+...

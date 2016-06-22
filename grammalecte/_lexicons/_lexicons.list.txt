@@ -1,0 +1,29 @@
+# LIST OF LEXICONS TO BUILD
+#
+# Syntax:
+# [filename] [command]
+# command: A or S
+# - S for stemming with suffix only
+# - A for stemming with prefix and suffix (slower, unuseful if your language doesn’t use many prefixes)
+# - N for no stemming
+
+asturian.lex S
+breton.lex A
+catalan.lex S
+danish.lex S
+dutch.lex A
+english.lex S
+french.lex S
+italian.lex S
+khmer.lex S
+malayalam.lex S
+romanian.lex S
+slovak.lex A
+spanish.lex S
+swedish.lex S
+tagalog.lex S
+german.lex A
+polish.lex A
+russian.lex S
+galician.lex S
+czech.lex A

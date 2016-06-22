@@ -1,0 +1,158 @@
+/* panel.css */
+
+@import url("common.css");
+
+header {
+    background-color: hsl(0, 0%, 96%);
+    border-bottom: 1px solid hsl(0, 0%, 90%);
+    padding: 10px 0;
+    font-family: "Verdana", sans-serif;
+}
+
+
+body {
+	background-color: hsl(0, 0%, 86%);
+	font-family: "Trebuchet MS", sans-serif;
+	overflow-x: hidden;
+}
+
+h1 {
+    font-size: 22px;
+    color: hsl(210, 30%, 40%);
+}
+
+p.underline {
+    padding: 5px 0;
+    background-color: hsl(210, 5%, 92%);
+}
+
+a.link {
+    color: hsl(210, 30%, 40%);
+    text-decoration: none;
+}
+a.link:hover {
+    color: hsl(210, 30%, 30%);
+    text-shadow: 0 0 3px hsl(210, 30%, 40%);
+}
+
+#dictionaries_info {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: hsl(0, 50%, 40%);
+    color: hsl(0, 10%, 96%);
+}
+.dict_section {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.dict_section label {
+    font-size: 16px;
+    line-height: 20px;
+    color: hsl(210, 20%, 50%);
+    font-weight: bold;
+}
+.dict_description {
+    padding: 5px 0 0 20px;
+}
+
+#help_section {
+    background-color: hsl(0, 0%, 98%);
+    padding: 10px;
+}
+
+#spelling_section {
+    display: none;
+    background-color: hsl(0, 0%, 98%);
+    padding: 10px;
+}
+
+#grammar_section {
+    display: none;
+    background-color: hsl(0, 0%, 98%);
+    padding: 10px;
+}
+
+.opt_subsection {
+    margin: 5px 0;
+    padding: 10px;
+    background-color: hsl(0, 0%, 92%);
+    border-radius: 3px;
+}
+
+.opt_subsection h2 {
+    color: hsl(210, 50%, 40%);
+    margin-bottom: 3px;
+}
+.opt_subsection p {
+    padding: 2px 3px;
+}
+.opt_subsection p:hover {
+    background-color: hsl(210, 10%, 86%);
+    border-radius: 2px;
+}
+.opt_subsection label {
+    display: inline-block;
+    width: 225px;
+}
+.opt_subsection input {
+    margin-top: 1px;
+    float: right;
+}
+
+
+#grammar_section a {
+    padding: 5px 10px;
+    background-color: hsl(210, 40%, 50%);
+    color: hsl(0, 0%, 96%);
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 16px;
+}
+#grammar_section a:hover {
+    background-color: hsl(210, 50%, 40%);
+    color: color: hsl(0, 10%, 98%);
+}
+
+a.bluebutton {
+    padding: 2px 5px;
+    background-color: hsl(210, 40%, 50%);
+    color: hsl(210, 0%, 96%);
+    text-decoration: none;
+    border-radius: 3px;
+}
+a.bluebutton:hover {
+    background-color: hsl(210, 50%, 55%);
+    color: hsl(210, 0%, 100%);
+}
+
+a.redbutton {
+    padding: 2px 5px;
+    background-color: hsl(0, 40%, 50%);
+    color: hsl(0, 0%, 96%);
+    text-decoration: none;
+    border-radius: 3px;
+}
+a.redbutton:hover {
+    background-color: hsl(0, 50%, 55%);
+    color: hsl(0, 0%, 100%);
+}
+
+
+footer#links {
+    background-color: hsl(0, 0%, 92%);
+    border-top: 1px solid hsl(0, 0%, 86%);
+    padding: 20px;
+}
+
+footer#thanks {
+    background-color: hsl(0, 0%, 86%);
+    border-top: 1px solid hsl(0, 0%, 80%);
+    padding: 15px 15px;
+}
+footer#thanks p {
+    margin: 3px 0;
+    font-size: 14px;
+}
+

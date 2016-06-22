@@ -1,0 +1,20 @@
+= Grammalecte =
+
+== How to create your own grammar checker ==
+
+Create a folder in lang with the code of your language: “en”, “fr”, “de”,
+“ru”, “es”, etc.
+
+Create the following text files:
+- config.ini
+- rules.grx
+- options.txt
+
+To generate your grammar checker, type: make.py language_code, i.e.
+make.py fr
+
+
+
+== Rule development ==
+
+Read doc/syntax.txt for more informations.

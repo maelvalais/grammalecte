@@ -1,0 +1,229 @@
+/* panel.css */
+
+@import url("common.css");
+
+header {
+    background-color: hsl(0, 0%, 96%);
+    padding: 10px 20px;
+    border-bottom: 1px solid hsl(0, 0%, 90%);
+    z-index: 99;
+}
+
+
+body {
+	background-color: hsl(0, 0%, 98%);
+	font-family: Tahoma, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+	overflow-x: hidden;
+}
+
+#messagebox {
+    position: absolute;
+    display: none;
+    left: 50%;
+    width: 250px;
+    margin-left: -125px;
+    top: 50px;
+    background-color: hsla(0, 50%, 20%, .8);
+    border: 2px solid hsla(0, 50%, 10%, .8);
+    border-radius: 5px;
+    text-align: center;
+    color: hsla(0, 0%, 100%, .9);
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 99;
+}
+#message {
+    padding: 10px 20px;
+}
+
+#errorlist {
+    padding: 60px 20px 30px 20px;
+}
+
+#errorlist p.message {
+    margin-top: 20px;
+    padding: 10px 10px;
+    background-color: hsla(240, 10%, 50%, 1);
+    font-size: 18px;
+    color: hsla(240, 0%, 96%, 1);
+    border-radius: 3px;
+    text-align: center;
+}
+#errorlist p.green {
+    background-color: hsla(120, 10%, 50%, 1);
+    color: hsla(120, 0%, 96%, 1);
+}
+
+.paragraph {
+    background-color: hsla(0, 0%, 90%, 1);
+    padding: 10px;
+    font-size: 14px;
+    font-family : "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    border-radius: 2px;
+}
+.softred {
+    background-color: hsla(0, 20%, 90%, 1);
+}
+.softgreen {
+    background-color: hsla(120, 20%, 90%, 1);
+}
+
+.paragraph a {
+    background-color: hsla(210, 50%, 50%, 1);
+    padding: 1px 5px;
+    border-radius: 2px;
+    color: hsla(210, 0%, 96%, 1);
+    cursor: pointer;
+    text-decoration: none;
+}
+.paragraph a:hover {
+    background-color: hsla(210, 60%, 40%, 1);
+    color: hsla(0, 0%, 100%, 1);
+    text-shadow: 0 0 3px hsl(210, 30%, 60%);
+}
+
+.paragraph a.sugg {
+    padding: 1px 6px;
+    background-color: hsla(150, 50%, 40%, 1);
+    color: hsla(150, 0%, 96%, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.paragraph a.sugg:hover {
+    background-color: hsla(150, 70%, 30%, 1);
+    color: hsla(0, 0%, 100%, 1);
+    text-shadow: 0 0 3px hsl(150, 30%, 60%);
+}
+
+.paragraph a.ignore {
+    padding: 0 2px;
+    background-color: hsla(30, 70%, 60%, 1);
+    color: hsla(30, 0%, 96%, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.paragraph a.ignore:hover {
+    background-color: hsla(30, 70%, 50%, 1);
+    color: hsla(0, 0%, 100%, 1);
+    text-shadow: 0 0 3px hsl(30, 30%, 60%);
+}
+
+.paragraph u.corrected,
+.paragraph u.ignored {
+    background-color: hsla(120, 50%, 70%, 1);
+    color: hsla(0, 0%, 4%, 1);
+    border-radius: 2px;
+    text-decoration: none;
+}
+.paragraph u.ignored {
+    background-color: hsla(30, 50%, 70%, 1);
+}
+
+.paragraph u.error {
+    position: relative;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+}
+.paragraph u.error:hover {
+    cursor: pointer;
+}
+
+.paragraph u.error .tooltip, .paragraph u.error .tooltip_on {
+    position: absolute;
+    background-color: hsla(210, 10%, 90%, 1);
+    font-family: Tahoma, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    top: 90%;
+    left: 0;
+    width: 250px;
+    font-size: 12px;
+    line-height: 18px;
+    color: hsla(0, 10%, 20%, 1);
+    cursor: default;
+    /*visibility: hidden;*/
+    display: none;
+    padding: 10px;
+    box-shadow: 0 0 6px hsla(0, 0%, 0%, 0.3);
+    z-index: 10;
+    border: 2px solid hsl(0, 0%, 0%);
+    border-radius: 3px;
+}
+.paragraph u.error .tooltip_on {
+    display: block;
+}
+
+.tooltip_on s {
+    color: hsla(0, 0%, 66%, 1);
+    font-weight: bold;
+    font-size: 8px;
+    line-height: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.debug {
+    float: right;
+    background-color: hsla(0, 5%, 35%, 1);
+    padding: 2px 5px;
+    margin-left: 5px;
+    border-radius: 2px;
+    color: hsla(0, 0%, 96%, 1);
+    font-size: 11px;
+    font-style: normal;
+}
+
+.data {
+    font-style: normal;
+}
+
+
+.actions {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.actions .button {
+    background-color: hsl(0, 0%, 50%);
+    text-align: center;
+    float: right;
+    margin-left: 2px;
+    padding: 1px 4px 3px 4px;
+    /*width: 18px;
+    height: 18px;*/
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: hsl(0, 0%, 96%);
+    border-radius: 2px;
+}
+.actions .button:hover {
+    background-color: hsl(0, 0%, 40%);
+    color: hsl(0, 0%, 100%);
+}
+
+.actions .green {
+    background-color: hsl(120, 30%, 50%);
+    color: hsl(0, 0%, 96%);
+}
+.actions .green:hover {
+    background-color: hsl(120, 50%, 40%);
+    color: hsl(0, 0%, 100%);
+}
+.actions .red {
+    background-color: hsl(0, 30%, 50%);
+    color: hsl(0, 0%, 96%);
+}
+.actions .red:hover {
+    background-color: hsl(0, 50%, 40%);
+    color: hsl(0, 0%, 100%);
+}
+.actions .orange {
+    background-color: hsl(30, 50%, 50%);
+    color: hsl(30, 0%, 96%);
+}
+.actions .orange:hover {
+    background-color: hsl(30, 70%, 40%);
+    color: hsl(30, 0%, 100%);
+}

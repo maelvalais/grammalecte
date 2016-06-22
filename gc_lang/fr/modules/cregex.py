@@ -83,7 +83,7 @@ NPe = re.compile(":(?:M[12P]|T):e")
 def getLemmaOfMorph (s):
     return Lemma.search(s).group(1)
 
-def checkAgreement (l1, l2, sReqMorph):
+def checkAgreement (l1, l2):
     # check number agreement
     if not mbInv(l1) and not mbInv(l2):
         if mbSg(l1) and not mbSg(l2):

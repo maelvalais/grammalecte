@@ -16,8 +16,9 @@
     <body class="panel">
         <div style="position: fixed; width: 100%">
             <div id="rightcorner">
-                <a class="rightcornerbutton1 red" id="close" href="#"><b>×</b></a>
-                <!--<a class="rightcornerbutton1 cyan" id="sidebar" href="#"><b>←</b></a>-->
+                <a class="rightcornerbutton red" id="close" href="#"><b>×</b></a>
+                <a class="rightcornerbutton cyan" id="expand_reduce" href="#"><b>−</b></a>
+                <a class="rightcornerbutton1 green" id="copy_to_clipboard" href="#" style="display: none;" onclick="return false;"><b id="clipboard_msg">∑</b></a>
             </div>
             <header>
                 <div id="waiticon" class="spinner">
@@ -27,6 +28,7 @@
                 <!--<div id="waiticon" class="fright" style="margin-right: 50px">
                     <img src="./img/spinner32.png" />
                 </div>-->
+
                 <h2>Grammalecte</h2>
             </header>
             <div id="messagebox"><a id="closemsg" class="rightcornerbutton1 red" href="#" onclick="return false;"><b>×</b></a><p id="message"></p></div>
@@ -40,10 +42,10 @@
         </div>
         
 
+        <div id="errorlist">
+            <!-- result comes here -->
+        </div>
 
-        <div id="errorlist"></div>
-
-        <div class="clearer"></div>
     </body>
 </html>
 

@@ -411,7 +411,7 @@ def pyRuleToJS (lRule):
     return lRuleJS
 
 
-def writeRulesToJSArray (lRules):
+def writeRulesToJSArray_old (lRules):
     s = "[\n"
     for lRule in lRules:
         # [sOption, sRegex, bCaseInsensitive, sRuleId, lActions, aGroups, aNegLookBehindRegex]
@@ -422,6 +422,23 @@ def writeRulesToJSArray (lRules):
         s += json.dumps(lRule[4], ensure_ascii=False) + ", "
         s += json.dumps(lRule[5], ensure_ascii=False) + ", "
         s += json.dumps(lRule[6], ensure_ascii=False) + "],\n"
+    s += "]"
+    return s
+
+
+def writeRulesToJSArray (lRules):
+    s = "[\n"
+    for sOption, aRuleGroup in lRules:
+        s += '  ["' + sOption + '", [\n'  if sOption  else  "  [false, [\n"
+        for lRule in aRuleGroup:
+            # [sRegex, bCaseInsensitive, sRuleId, lActions, aGroups, aNegLookBehindRegex]
+            s += '    [' + lRule[0] + ", "
+            s += "true, " if lRule[1]  else "false, "
+            s += '"' + lRule[2] + '", '
+            s += json.dumps(lRule[3], ensure_ascii=False) + ", "
+            s += json.dumps(lRule[4], ensure_ascii=False) + ", "
+            s += json.dumps(lRule[5], ensure_ascii=False) + "],\n"
+        s += "  ]],\n"
     s += "]"
     return s
 
@@ -441,6 +458,23 @@ def displayStats (lRules):
             for aAction in aRule[4]:
                 d[aAction[1]] = d[aAction[1]] + 1
         print("{:>2} {:>18} {:>18} {:>18} {:>18}".format(i, d['='], d['~'], d['-'], len(lRules[i])))
+
+
+def mergeRulesByOption (lRules):
+    "returns a list of tuples [option, list of rules] keeping the rules order"
+    lFinal = []
+    lTemp = []
+    sOption = None
+    for aRule in lRules:
+        if aRule[0] != sOption:
+            if sOption != None:
+                lFinal.append([sOption, lTemp])
+            # new tuple
+            sOption = aRule[0]
+            lTemp = []
+        lTemp.append(aRule[1:])
+    lFinal.append([sOption, lTemp])
+    return lFinal
 
 
 def make (lRules, sLang, bJavaScript):
@@ -473,7 +507,7 @@ def make (lRules, sLang, bJavaScript):
         else:
             lLine.append(sLine)
 
-    # tests
+    # generating test files
     with open("tests/"+sLang+"/gc_test.txt", "w", encoding="utf-8") as hDstPy, \
          open("gc_lang/"+sLang+"/modules-js/tests_data.js", "w", encoding="utf-8") as hDstJS:
         hDstPy.write("# TESTS FOR LANG ["+sLang+"]\n\n")
@@ -548,7 +582,7 @@ def make (lRules, sLang, bJavaScript):
 
     displayStats([lParagraphRules, lSentenceRules])
 
-    return { "paragraph_rules": lParagraphRules,
-             "sentence_rules": lSentenceRules,
-             "paragraph_rules_JS": writeRulesToJSArray(lParagraphRulesJS),
-             "sentence_rules_JS": writeRulesToJSArray(lSentenceRulesJS)  }
+    return { "paragraph_rules": mergeRulesByOption(lParagraphRules),
+             "sentence_rules": mergeRulesByOption(lSentenceRules),
+             "paragraph_rules_JS": writeRulesToJSArray(mergeRulesByOption(lParagraphRulesJS)),
+             "sentence_rules_JS": writeRulesToJSArray(mergeRulesByOption(lSentenceRulesJS))  }

@@ -1,10 +1,24 @@
 // JavaScript
 
+let bExpanded = true;
+
 // events
 
 document.getElementById('close').addEventListener("click", function (event) {
+    bExpanded = true; // size is reset in ui.js
     self.port.emit('closePanel');
 });
+
+document.getElementById('expand_reduce').addEventListener("click", function (event) {
+    if (bExpanded) {
+        self.port.emit("resize", "reduce", 10); // the number has no meaning here
+        bExpanded = false;
+    } else {
+        self.port.emit("resize", "expand", 10); // the number has no meaning here
+        bExpanded = true;
+    }
+});
+
 /*
 // Conjugueur
 document.getElementById('conjugueur').addEventListener("click", function (event) {

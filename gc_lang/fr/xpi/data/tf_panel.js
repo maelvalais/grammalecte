@@ -8,16 +8,14 @@ self.port.on("receiveTextToFormat", function (sText) {
     self.port.emit("applyFormattedText", applyOptions(sText));
 });
 
-self.port.on("setOptionsInPanel", function (sTFOptions) {
+self.port.on("start", function (sTFOptions) {
+    self.port.emit("setHeight", document.getElementById("actions").offsetTop + document.getElementById("actions").offsetHeight);
     if ((sTFOptions) !== "") {
         setOptionsInPanel(JSON.parse(sTFOptions));
     } else {
         reset();
     }
     resetProgressBar();
-});
-
-self.port.on('focus', function () {
     document.getElementById('apply').focus();
 });
 
@@ -32,10 +30,6 @@ document.getElementById('reset').addEventListener("click", function (event) {
 document.getElementById('apply').addEventListener("click", function (event) {
     saveOptions();
     self.port.emit("getTextToFormat");
-});
-
-self.port.on("calculateHeight", function () {
-    self.port.emit("setHeight", document.getElementById("actions").offsetTop + document.getElementById("actions").offsetHeight);
 });
 
 window.addEventListener(
@@ -87,6 +81,9 @@ function setOptionsInPanel (oOptions) {
             document.getElementById(sOptName).checked = oOptions[sOptName];
             if (sOptName.startsWith("o_group_")) {
                 switchGroup(sOptName);
+            } 
+            if (document.getElementById("res_"+sOptName) !== null) {
+                document.getElementById("res_"+sOptName).textContent = "";
             }
         }
     }

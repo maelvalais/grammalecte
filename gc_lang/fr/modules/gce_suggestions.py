@@ -302,7 +302,6 @@ def switchGender (sFlex, bPlur=None):
             elif ":m" in sMorph:
                 aSugg.add(suggFemPlur(sFlex))
     else:
-        
         for sMorph in _dAnalyses.get(sFlex, []):
             if ":f" in sMorph:
                 aSugg.add(suggMasSing(sFlex))
@@ -332,6 +331,7 @@ def hasSimil (sWord):
 
 def suggSimil (sWord, sPattern):
     "return list of words phonetically similar to sWord and whom POS is matching sPattern"
+    # we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     lSet = phonet.getSimil(sWord)
     if not lSet:
         return ""

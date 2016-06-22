@@ -8,7 +8,7 @@ def getParagraph (sText):
     iStart = 0
     iEnd = sText.find("\n", iStart)
     while iEnd != -1:
-        print(str(iStart) + ":" + str(iEnd))
+        #print(str(iStart) + ":" + str(iEnd))
         yield sText[iStart:iEnd]
         iStart = iEnd + 1
         iEnd = sText.find("\n", iStart)

@@ -30,7 +30,7 @@ String.prototype._isUpperCase = function () {
     return (this.search(/^[A-ZÀ-ÖØ-ß0-9-]+$/) !== -1);
 }
 String.prototype._isTitle = function () {
-    return (this.search(/^[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ0-9'’-]+$/) !== -1);
+    return (this.search(/^[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ'’-]+$/) !== -1);
 }
 String.prototype._toCapitalize = function () {
     return this.slice(0,1).toUpperCase() + this.slice(1).toLowerCase();
@@ -142,7 +142,9 @@ const _dTAGS = new Map ([
     [':1p', " 1ʳᵉ p. pl.,"],
     [':2p', " 2ᵉ p. pl.,"],
     [':3p', " 3ᵉ p. pl.,"],
-    [':3p!', " 3ᵉ p. pl.,"]
+    [':3p!', " 3ᵉ p. pl.,"],
+
+    [';S', " : symbole (unité de mesure)"]
 ]);
 
 const _dPFX = new Map ([
@@ -204,7 +206,7 @@ class Lexicographe {
         this.oDict = oDict;
         this._zElidedPrefix = new RegExp ("^([dljmtsncç]|quoiqu|lorsqu|jusqu|puisqu|qu)['’](.+)", "i");
         this._zCompoundWord = new RegExp ("([a-zA-Zà-ö0-9À-Öø-ÿØ-ßĀ-ʯ]+)-((?:les?|la)-(?:moi|toi|lui|[nv]ous|leur)|t-(?:il|elle|on)|y|en|[mts][’'](?:y|en)|les?|l[aà]|[mt]oi|leur|lui|je|tu|ils?|elles?|on|[nv]ous)$", "i");
-        this._zTag = new RegExp (":[a-zA-Zà-ö0-9À-Öø-ÿØ-ßĀ-ʯ][^:]*", "g");
+        this._zTag = new RegExp ("[:;][a-zA-Zà-ö0-9À-Öø-ÿØ-ßĀ-ʯ][^:;]*", "g");
     };
 
     analyzeText (sText) {

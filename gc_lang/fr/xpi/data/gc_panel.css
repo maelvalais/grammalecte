@@ -10,6 +10,7 @@ header {
 }
 
 
+
 body {
 	background-color: hsl(0, 0%, 98%);
 	font-family: Tahoma, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
@@ -98,14 +99,14 @@ body {
 
 .paragraph a.ignore {
     padding: 0 2px;
-    background-color: hsla(30, 70%, 60%, 1);
+    background-color: hsla(30, 20%, 60%, 1);
     color: hsla(30, 0%, 96%, 1);
     border-radius: 2px;
     cursor: pointer;
     text-decoration: none;
 }
 .paragraph a.ignore:hover {
-    background-color: hsla(30, 70%, 50%, 1);
+    background-color: hsla(30, 20%, 50%, 1);
     color: hsla(0, 0%, 100%, 1);
     text-shadow: 0 0 3px hsl(30, 30%, 60%);
 }
@@ -118,14 +119,14 @@ body {
     text-decoration: none;
 }
 .paragraph u.ignored {
-    background-color: hsla(30, 50%, 70%, 1);
+    background-color: hsla(30, 20%, 80%, 1);
 }
 
 .paragraph u.error {
     position: relative;
     cursor: pointer;
     border-radius: 2px;
-    text-decoration: none;
+    text-decoration: none; /* to remove for wavy underlines */
 }
 .paragraph u.error:hover {
     cursor: pointer;
@@ -149,6 +150,7 @@ body {
     z-index: 10;
     border: 2px solid hsl(0, 0%, 0%);
     border-radius: 3px;
+    text-decoration: none;
 }
 .paragraph u.error .tooltip_on {
     display: block;
@@ -226,4 +228,86 @@ body {
 .actions .orange:hover {
     background-color: hsl(30, 70%, 40%);
     color: hsl(30, 0%, 100%);
+}
+
+
+/*
+    ERRORS
+*/
+
+/* elems */
+.spell {
+    background-color: hsl(0, 50%, 50%);
+    color: hsl(0, 0%, 96%);
+    /*text-decoration: underline wavy hsl(0, 50%, 50%);*/
+}
+.spell:hover {
+    background-color: hsl(0, 60%, 40%);
+    color: hsl(0, 0%, 100%);
+}
+
+/* elems */
+.typo, .apos, .esp, .nbsp, .eif, .maj, .virg, .tu, .num, .unit, .nf, .liga, .mapos, .chim {
+    background-color: hsl(30, 70%, 50%);
+    color: hsl(30, 10%, 96%);
+    /*text-decoration: underline wavy hsl(30, 70%, 50%);*/
+}
+.typo:hover, .apos:hover, .esp:hover, .nbsp:hover, .eif:hover, .maj:hover, .virg:hover, .tu:hover, .num:hover, .unit:hover, .nf:hover, .liga:hover, .mapos:hover, .chim:hover {
+    background-color: hsl(30, 80%, 45%);
+    color: hsl(30, 10%, 96%);
+}
+
+/* elems */
+.apos {
+    background-color: hsl(40, 90%, 50%);
+    color: hsl(40, 10%, 96%);
+    /*text-decoration: underline wavy hsl(40, 70%, 45%);*/
+}
+.apos:hover {
+    background-color: hsl(40, 100%, 45%);
+    color: hsl(40, 10%, 96%);
+}
+
+/* elems */
+.gn, .sgpl {
+    background-color: hsl(210, 50%, 50%);
+    color: hsl(210, 10%, 96%);
+    /*text-decoration: underline wavy hsl(210, 50%, 50%);*/
+}
+.gn:hover, .sgpl:hover {
+    background-color: hsl(210, 60%, 40%);
+    color: hsl(210, 10%, 96%);
+}
+
+/* elems */
+.gv, .infi, .imp, .inte {
+    background-color: hsl(300, 40%, 40%);
+    color: hsl(300, 10%, 96%);
+    /*text-decoration: underline wavy hsl(300, 40%, 40%);*/
+}
+.gv:hover, .infi:hover, .imp:hover, .inte:hover {
+    background-color: hsl(300, 50%, 30%);
+    color: hsl(300, 10%, 96%);
+}
+
+/* elems */
+.conf, .ocr {
+    background-color: hsl(270, 40%, 30%);
+    color: hsl(270, 10%, 96%);
+    /*text-decoration: underline wavy hsl(270, 40%, 30%);*/
+}
+.conf:hover, .ocr:hover {
+    background-color: hsl(270, 50%, 20%);
+    color: hsl(270, 10%, 96%);
+}
+
+/* elems */
+.bs, .pleo, .neg, .redon1, .redon2, .mc, .date, .notype {
+    background-color: hsl(180, 50%, 40%);
+    color: hsl(180, 10%, 96%);
+    /*text-decoration: underline wavy hsl(180, 50%, 40%);*/
+}
+.bs:hover, .pleo:hover, .neg:hover, .redon1:hover, .redon2:hover, .mc:hover, .date:hover, .notype:hover {
+    background-color: hsl(180, 60%, 30%);
+    color: hsl(180, 10%, 96%);
 }

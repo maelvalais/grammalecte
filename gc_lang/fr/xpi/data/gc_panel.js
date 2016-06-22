@@ -1,14 +1,29 @@
 // JavaScript
 
 let nPanelWidth = 0;  // must be set at launch
-
+let bExpanded = true;
 
 /*
 	Events
 */
 
 document.getElementById('close').addEventListener("click", function (event) {
+	bExpanded = true; // size is reset in ui.js
 	self.port.emit('closePanel');
+});
+
+document.getElementById('expand_reduce').addEventListener("click", function (event) {
+	if (bExpanded) {
+		self.port.emit("resize", "reduce", 10); // the number has no meaning here
+		bExpanded = false;
+	} else {
+		self.port.emit("resize", "expand", 10); // the number has no meaning here
+		bExpanded = true;
+	}
+});
+
+document.getElementById('copy_to_clipboard').addEventListener("click", function (event) {
+	copyToClipboard();
 });
 
 document.getElementById('closemsg').addEventListener("click", function (event) {
@@ -41,12 +56,13 @@ self.port.on("clearErrors", function (sHtml) {
 	document.getElementById("errorlist").textContent = "";
 });
 
-self.port.on("startWaitIcon", function() {
+self.port.on("start", function() {
 	startWaitIcon();
 });
 
-self.port.on("stopWaitIcon", function() {
+self.port.on("end", function() {
 	stopWaitIcon();
+	document.getElementById("copy_to_clipboard").style.display = "block";
 });
 
 self.port.on("suggestionsFor", function (sWord, sSuggestions, sTooltipId) {
@@ -110,14 +126,18 @@ function closeMessageBox () {
 }
 
 function applySuggestion (sElemId) { // sugg
-	startWaitIcon();
-	let sIdErr = "err" + sElemId.slice(4, sElemId.indexOf("-"));
-	let sIdParagr = sElemId.slice(4, sElemId.indexOf("_"));
-	document.getElementById(sIdErr).textContent = document.getElementById(sElemId).textContent;
-	document.getElementById(sIdErr).className = "corrected";
-	document.getElementById(sIdErr).removeAttribute("style");
-	self.port.emit("correction", sIdParagr, getPurgedTextOfElem("paragr"+sIdParagr));
-	stopWaitIcon();
+	try {
+		let sIdParagr = sElemId.slice(4, sElemId.indexOf("_"));
+		startWaitIcon("paragr"+sIdParagr);
+		let sIdErr = "err" + sElemId.slice(4, sElemId.indexOf("-"));
+		document.getElementById(sIdErr).textContent = document.getElementById(sElemId).textContent;
+		document.getElementById(sIdErr).className = "corrected";
+		document.getElementById(sIdErr).removeAttribute("style");
+		self.port.emit("correction", sIdParagr, getPurgedTextOfElem("paragr"+sIdParagr));
+		stopWaitIcon("paragr"+sIdParagr);
+	} catch (e) {
+		console.log(e.message + e.lineNumber);
+	}
 }
 
 function ignoreError (sElemId) {  // ignore
@@ -138,7 +158,7 @@ function showTooltip (sElemId) {  // err
 	}
 	xTooltipElem.setAttribute("contenteditable", false);
 	xTooltipElem.className = 'tooltip_on';
-	if (document.getElementById(sElemId).className === "error red"  &&  xTooltipElem.textContent.endsWith(":")) {
+	if (document.getElementById(sElemId).className === "error spell"  &&  xTooltipElem.textContent.endsWith(":")) {
 		// spelling mistake
 		self.port.emit("getSuggestionsForTo", document.getElementById(sElemId).innerHTML.replace(/<span .*$/, "").trim(), sTooltipId);
 	}
@@ -207,10 +227,37 @@ function hideAllTooltips () {
 	}
 }
 
-function startWaitIcon () {
+function copyToClipboard () {
+	startWaitIcon();
+	try {
+		document.getElementById("clipboard_msg").textContent = "copie en cours…";
+		let sText = "";
+		for (let xNode of document.getElementById("errorlist").getElementsByClassName("paragraph")) {
+			sText += getPurgedTextOfElem(xNode.id);
+			sText += "\n";
+		}
+		self.port.emit('copyToClipboard', sText);
+		document.getElementById("clipboard_msg").textContent = "-> presse-papiers";
+		window.setTimeout(function() { document.getElementById("clipboard_msg").textContent = "∑"; } , 3000);
+	}
+	catch (e) {
+		console.log(e.lineNumber + ": " +e.message);
+	}
+	stopWaitIcon();
+}
+
+function startWaitIcon (sIdParagr=null) {
+	if (sIdParagr) {
+		document.getElementById(sIdParagr).disabled = true;
+		document.getElementById(sIdParagr).style.opacity = .3;
+	}
 	document.getElementById("waiticon").hidden = false;
 }
 
-function stopWaitIcon () {
+function stopWaitIcon (sIdParagr=null) {
+	if (sIdParagr) {
+		document.getElementById(sIdParagr).disabled = false;
+		document.getElementById(sIdParagr).style.opacity = 1;
+	}
 	document.getElementById("waiticon").hidden = true;
 }

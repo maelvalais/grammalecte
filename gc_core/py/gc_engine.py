@@ -15,6 +15,8 @@ __all__ = [ "lang", "locales", "pkg", "name", "version", "author", \
             "setOptions", "getOptions", "getOptionsLabels", "resetOptions", \
             "ignoreRule", "resetIgnoreRules" ]
 
+__version__ = u"${version}"
+
 
 lang = u"${lang}"
 locales = ${loc}
@@ -100,32 +102,34 @@ def _proofread (s, sx, nOffset, bParagraph, dDA, sCountry, dOptions, bDebug):
 
     bIdRule = option('idrule')
 
-    for sOption, zRegex, bUppercase, sRuleId, lActions in _getRules(bParagraph):
-        if (not sOption or dOptions.get(sOption, False)) and not sRuleId in _aIgnoredRules:
-            for m in zRegex.finditer(s):
-                for sFuncCond, cActionType, sWhat, *eAct in lActions:
-                # action in lActions: [ condition, action type, replacement/suggestion/action[, iGroup[, message, URL]] ]
-                    try:
-                        if not sFuncCond or _GLOBALS[sFuncCond](s, sx, m, dDA, sCountry):
-                            if cActionType == "-":
-                                # grammar error
-                                # (text, replacement, nOffset, m, iGroup, sId, bUppercase, sURL, bIdRule)
-                                aErrs.append(_createError(s, sWhat, nOffset, m, eAct[0], sRuleId, bUppercase, eAct[1], eAct[2], bIdRule, sOption))
-                            elif cActionType == "~":
-                                # text processor
-                                s = _rewrite(s, sWhat, eAct[0], m, bUppercase)
-                                bChange = True
-                                if bDebug:
-                                    echo(u"~ " + s + "  -- " + m.group(eAct[0]) + "  # " + sRuleId)
-                            elif cActionType == "=":
-                                # disambiguation
-                                _GLOBALS[sWhat](s, m, dDA)
-                                if bDebug:
-                                    echo(u"= " + m.group(0) + "  # " + sRuleId + "\nDA: " + str(dDA))
-                            else:
-                                echo("# error: unknown action at " + sRuleId)
-                    except Exception as e:
-                        raise Exception(str(e), sRuleId)
+    for sOption, lRuleGroup in _getRules(bParagraph):
+        if not sOption or dOptions.get(sOption, False):
+            for zRegex, bUppercase, sRuleId, lActions in lRuleGroup:
+                if sRuleId not in _aIgnoredRules:
+                    for m in zRegex.finditer(s):
+                        for sFuncCond, cActionType, sWhat, *eAct in lActions:
+                            # action in lActions: [ condition, action type, replacement/suggestion/action[, iGroup[, message, URL]] ]
+                            try:
+                                if not sFuncCond or _GLOBALS[sFuncCond](s, sx, m, dDA, sCountry):
+                                    if cActionType == "-":
+                                        # grammar error
+                                        # (text, replacement, nOffset, m, iGroup, sId, bUppercase, sURL, bIdRule)
+                                        aErrs.append(_createError(s, sWhat, nOffset, m, eAct[0], sRuleId, bUppercase, eAct[1], eAct[2], bIdRule, sOption))
+                                    elif cActionType == "~":
+                                        # text processor
+                                        s = _rewrite(s, sWhat, eAct[0], m, bUppercase)
+                                        bChange = True
+                                        if bDebug:
+                                            echo(u"~ " + s + "  -- " + m.group(eAct[0]) + "  # " + sRuleId)
+                                    elif cActionType == "=":
+                                        # disambiguation
+                                        _GLOBALS[sWhat](s, m, dDA)
+                                        if bDebug:
+                                            echo(u"= " + m.group(0) + "  # " + sRuleId + "\nDA: " + str(dDA))
+                                    else:
+                                        echo("# error: unknown action at " + sRuleId)
+                            except Exception as e:
+                                raise Exception(str(e), sRuleId)
     if bChange:
         return (s, aErrs)
     return (False, aErrs)
@@ -182,7 +186,7 @@ def _createDictError (s, sRepl, nOffset, m, iGroup, sId, bUppercase, sMsg, sURL,
     dErr["nStart"]          = nOffset + m.start(iGroup)
     dErr["nEnd"]            = nOffset + m.end(iGroup)
     dErr["sRuleId"]         = sId
-    dErr["sType"]           = sOption
+    dErr["sType"]           = sOption  if sOption  else "notype"
     # suggestions
     if sRepl[0:1] == "=":
         sugg = _GLOBALS[sRepl[1:]](s, m)
@@ -299,7 +303,7 @@ def _getRules (bParagraph):
     return _rules.lParagraphRules
 
 
-def _loadRules ():
+def _loadRules2 ():
     from itertools import chain
     from . import gc_rules
     global _rules
@@ -311,6 +315,21 @@ def _loadRules ():
         except:
             echo("Bad regular expression in # " + str(rule[3]))
             rule[1] = "(?i)<Grammalecte>"
+
+
+def _loadRules ():
+    from itertools import chain
+    from . import gc_rules
+    global _rules
+    _rules = gc_rules
+    # compile rules regex
+    for rulegroup in chain(_rules.lParagraphRules, _rules.lSentenceRules):
+        for rule in rulegroup[1]:
+            try:
+                rule[0] = re.compile(rule[0])
+            except:
+                echo("Bad regular expression in # " + str(rule[2]))
+                rule[0] = "(?i)<Grammalecte>"
 
 
 def _getPath ():

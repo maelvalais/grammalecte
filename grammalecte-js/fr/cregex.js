@@ -82,7 +82,7 @@ function getLemmaOfMorph (sMorph) {
     return zLemma.exec(sMorph)[1];
 }
 
-function checkAgreement (l1, l2, sReqMorph) {
+function checkAgreement (l1, l2) {
     // check number agreement
     if (!mbInv(l1) && !mbInv(l2)) {
         if (mbSg(l1) && !mbSg(l2)) {

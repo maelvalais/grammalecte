@@ -48,7 +48,7 @@ nf=French standards
 liga=Report typographical ligatures\nLigatures of fi, fl, ff, ffi, ffl, ft, st.
 mapos=Missing apostrophes after single letters [!]\nMissing apostrophes after l d s n c j m t ç. This option is mostly useful to detect defects of digitized texts and is not recommended for scientific texts.
 chim=Chemistry [!]\nTypography for molecules (H₂O, CO₂, etc.)
-ocr=OCR errors [!]
+ocr=OCR errors [!]\nWarning: many false positives.
 
 gramm=Agreement, plurals, confusions
 conf=Confusions, homonyms and false friends\nSeeks errors often due to homonymy (i.e. confusions between « faîte » et « faite »).
@@ -93,7 +93,7 @@ nf=Normes françaises
 liga=Signaler ligatures typographiques\nLigatures de fi, fl, ff, ffi, ffl, ft, st.
 mapos=Apostrophes manquantes après lettres isolées [!]\nApostrophes manquantes après les lettres l d s n c j m t ç. Cette option sert surtout à repérer les défauts de numérisation des textes et est déconseillée pour les textes scientifiques.
 chim=Chimie [!]\nTypographie des composés chimiques (H₂O, CO₂, etc.).
-ocr=Erreurs de ROC (OCR) [!]\nErreurs de reconnaissance optique des caractères.
+ocr=Erreurs de numérisation (OCR) [!]\nErreurs de reconnaissance optique des caractères. Beaucoup de faux positifs.
 
 gramm=Accords, pluriels et confusions
 conf=Confusions, homonymes et faux-amis\nCherche des erreurs souvent dues à l’homonymie (par exemple, les confusions entre « faîte » et « faite »).

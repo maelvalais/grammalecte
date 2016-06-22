@@ -2,7 +2,7 @@
   "name": "grammalecte-fr",
   "title": "Grammalecte [fr]",
   "id": "French-GC@grammalecte.net",
-  "version": "0.5.5",
+  "version": "0.5.7",
   "description": "Correcteur grammatical pour le français",
   "homepage": "http://www.dicollecte.org/grammalecte",
   "main": "ui.js",
@@ -16,6 +16,9 @@
     "firefox": ">=45.0"
   },
   "unpack": true,
+  "permissions": {
+    "multiprocess": true
+  },
 
   "preferences": [
     {

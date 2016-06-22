@@ -80,7 +80,7 @@ class TestPhonet (unittest.TestCase):
             ["dé", "dés", "dès", "dais", "des"],
             ["don", "dons", "dont"],
             ["été", "étais", "était", "étai", "étés", "étaient"],
-            ["faire", "faire", "fer", "fers", "ferre", "ferres", "ferrent"],
+            ["faire", "fer", "fers", "ferre", "ferres", "ferrent"],
             ["fois", "foi", "foie", "foies"],
             ["la", "là", "las"],
             ["mes", "mets", "met", "mai", "mais"],
@@ -90,14 +90,12 @@ class TestPhonet (unittest.TestCase):
             ["notre", "nôtre", "nôtres"],
             ["or", "ors", "hors"],
             ["ou", "où", "houx"],
-            ["pair", "pairs", "paire", "paires", "père", "pères"],
             ["peu", "peux", "peut"],
             ["ses", "ces", "sais", "sait"],
             ["son", "sons", "sont"],
             ["tes", "taie", "taies", "thé", "thés"],
             ["toi", "toit", "toits"],
-            ["ton", "tons", "thon", "thons"],
-            ["veau", "veaux", "vaux", "vaut"],
+            ["ton", "tons", "thon", "thons", "tond", "tonds"],
             ["voir", "voire"]
         ]
 

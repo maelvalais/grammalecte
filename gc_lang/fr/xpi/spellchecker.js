@@ -66,6 +66,7 @@ function setDictionary (sLocale) {
 		}
 	} else {
 		console.error("Warning. No dictionary for locale: " + sLocale);
+		console.error("Existing dictionaries: " + getDictionariesList().join(" | "));
 	}
 	return false;
 }
@@ -118,19 +119,18 @@ function removeDirectory (sFolder) {
 }
 
 
-function setExtensionDictFolder (sDictName, bActive) {
+function setExtensionDictFolder (sDictName, bActivate) {
 	try {
 		let sPath = "/data/dictionaries/" + sDictName
 		AddonManager.getAddonByID("French-GC@grammalecte.net", function(addon) {
 			let xURI = addon.getResourceURI(sPath);
 			//console.log("> " + xURI.path);
-			let sFolder = xURI.path.slice(1);
-			//console.log("> " + sFolder);
+			let sFolder = xURI.path;
 			if (system.platform === "winnt") {
-				sFolder = sFolder.replace(/\//g, "\\\\");
+				sFolder = sFolder.slice(1).replace(/\//g, "\\\\");
 			}
 			//console.log("> " + sFolder);
-			if (bActive) {
+			if (bActivate) {
 				addDirectory(sFolder);
 			} else {
 				removeDirectory(sFolder);

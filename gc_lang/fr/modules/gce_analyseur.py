@@ -55,7 +55,7 @@ def isAmbiguousAndWrong (sWord1, sWord2, sReqMorphNA, sReqMorphConj):
     a1 = _dAnalyses.get(sWord1, None)
     if not a1:
         return False
-    if cr.checkAgreement(a1, a2, sReqMorphNA) and (cr.mbAdj(a2) or cr.mbAdj(a1)):
+    if cr.checkAgreement(a1, a2) and (cr.mbAdj(a2) or cr.mbAdj(a1)):
         return False
     return True
 
@@ -72,7 +72,7 @@ def isVeryAmbiguousAndWrong (sWord1, sWord2, sReqMorphNA, sReqMorphConj, bLastHo
     a1 = _dAnalyses.get(sWord1, None)
     if not a1:
         return False
-    if cr.checkAgreement(a1, a2, sReqMorphNA) and (cr.mbAdj(a2) or cr.mbAdjNb(a1)):
+    if cr.checkAgreement(a1, a2) and (cr.mbAdj(a2) or cr.mbAdjNb(a1)):
         return False
     # now, we know there no agreement, and conjugation is also wrong
     if cr.isNomAdj(a1):
@@ -81,6 +81,17 @@ def isVeryAmbiguousAndWrong (sWord1, sWord2, sReqMorphNA, sReqMorphConj, bLastHo
     if bLastHopeCond:
         return True
     return False
+
+
+def checkAgreement (sWord1, sWord2):
+    # We don’t check if word exists in _dAnalyses, for it is assumed it has been done before
+    a2 = _dAnalyses.get(sWord2, None)
+    if not a2:
+        return True
+    a1 = _dAnalyses.get(sWord1, None)
+    if not a1:
+        return True
+    return cr.checkAgreement(a1, a2)
 
 
 _zUnitSpecial = re.compile(u"[µ/⁰¹²³⁴⁵⁶⁷⁸⁹Ωℓ·]")

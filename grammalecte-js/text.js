@@ -98,7 +98,7 @@ function tagParagraph (sParagraph, iParagraph, aGrammErr, aSpellErr, bDebug=fals
                 if (oErr['sType'] !== 'WORD') {
                     // Grammar Error
                     sParagraph = sParagraph.slice(0, nStart)
-                               + '<u id="err' + sErrId + '" class="error blue" href="#" onclick="return false;">'
+                               + '<u id="err' + sErrId + '" class="error '+oErr['sType']+'" href="#" onclick="return false;">'
                                + sParagraph.slice(nStart, nEnd)
                                + '<span id="tooltip' + sErrId + '" class="tooltip" contenteditable="false">'
                                + getGrammarErrorHTML(oErr, bDebug) + '</span>'
@@ -106,7 +106,7 @@ function tagParagraph (sParagraph, iParagraph, aGrammErr, aSpellErr, bDebug=fals
                 } else {
                     // Spelling error
                     sParagraph = sParagraph.slice(0, nStart)
-                               + '<u id="err' + sErrId + '" class="error red" href="#" onclick="return false;">'
+                               + '<u id="err' + sErrId + '" class="error spell" href="#" onclick="return false;">'
                                + sParagraph.slice(nStart, nEnd)
                                + '<span id="tooltip' + sErrId + '" class="tooltip" contenteditable="false">'
                                + getSpellingErrorHTML(oErr) + '</span>'

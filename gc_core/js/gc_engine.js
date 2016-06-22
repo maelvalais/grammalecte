@@ -122,48 +122,52 @@ function _proofread (s, sx, nOffset, bParagraph, dDA, sCountry, bDebug) {
     let bIdRule = option('idrule');
     let m;
 
-    for (let [sOption, zRegex, bUppercase, sRuleId, lActions, lGroups, lNegLookBefore] of _getRules(bParagraph)) {
-        if ((!sOption || option(sOption)) && !_aIgnoredRules.has(sRuleId)) {
-            while ((m = zRegex._exec2(s, lGroups, lNegLookBefore)) !== null) {
-                /*if (bDebug) {
-                    echo(">>>> Rule # " + sRuleId + " - Text: " + s + " opt: "+ sOption);
-                }*/
-                for (let [sFuncCond, cActionType, sWhat, ...eAct] of lActions) {
-                // action in lActions: [ condition, action type, replacement/suggestion/action[, iGroup[, message, URL]] ]
-                    try {
-                        //echo(oEvalFunc[sFuncCond]);
-                        if (!sFuncCond || oEvalFunc[sFuncCond](s, sx, m, dDA, sCountry)) {
-                            switch (cActionType) {
-                                case "-":
-                                    // grammar error
-                                    //echo("-> error detected in " + sRuleId + "\nzRegex: " + zRegex.source);
-                                    aErrs.push(_createError(s, sWhat, nOffset, m, eAct[0], sRuleId, bUppercase, eAct[1], eAct[2], bIdRule, sOption));
-                                    break;
-                                case "~":
-                                    // text processor
-                                    //echo("-> text processor by " + sRuleId + "\nzRegex: " + zRegex.source);
-                                    s = _rewrite(s, sWhat, eAct[0], m, bUppercase);
-                                    bChange = true;
-                                    if (bDebug) {
-                                        echo("~ " + s + "  -- " + m[eAct[0]] + "  # " + sRuleId);
+    for (let [sOption, lRuleGroup] of _getRules(bParagraph)) {
+        if (!sOption || option(sOption)) {
+            for (let [zRegex, bUppercase, sRuleId, lActions, lGroups, lNegLookBefore] of lRuleGroup) {
+                if (!_aIgnoredRules.has(sRuleId)) {
+                    while ((m = zRegex._exec2(s, lGroups, lNegLookBefore)) !== null) {
+                        /*if (bDebug) {
+                            echo(">>>> Rule # " + sRuleId + " - Text: " + s + " opt: "+ sOption);
+                        }*/
+                        for (let [sFuncCond, cActionType, sWhat, ...eAct] of lActions) {
+                        // action in lActions: [ condition, action type, replacement/suggestion/action[, iGroup[, message, URL]] ]
+                            try {
+                                //echo(oEvalFunc[sFuncCond]);
+                                if (!sFuncCond || oEvalFunc[sFuncCond](s, sx, m, dDA, sCountry)) {
+                                    switch (cActionType) {
+                                        case "-":
+                                            // grammar error
+                                            //echo("-> error detected in " + sRuleId + "\nzRegex: " + zRegex.source);
+                                            aErrs.push(_createError(s, sWhat, nOffset, m, eAct[0], sRuleId, bUppercase, eAct[1], eAct[2], bIdRule, sOption));
+                                            break;
+                                        case "~":
+                                            // text processor
+                                            //echo("-> text processor by " + sRuleId + "\nzRegex: " + zRegex.source);
+                                            s = _rewrite(s, sWhat, eAct[0], m, bUppercase);
+                                            bChange = true;
+                                            if (bDebug) {
+                                                echo("~ " + s + "  -- " + m[eAct[0]] + "  # " + sRuleId);
+                                            }
+                                            break;
+                                        case "=":
+                                            // disambiguation
+                                            //echo("-> disambiguation by " + sRuleId + "\nzRegex: " + zRegex.source);
+                                            oEvalFunc[sWhat](s, m, dDA);
+                                            if (bDebug) {
+                                                echo("= " + m[0] + "  # " + sRuleId + "\nDA: " + dDA._toString());
+                                            }
+                                            break;
+                                        default:
+                                            echo("# error: unknown action at " + sRuleId);
                                     }
-                                    break;
-                                case "=":
-                                    // disambiguation
-                                    //echo("-> disambiguation by " + sRuleId + "\nzRegex: " + zRegex.source);
-                                    oEvalFunc[sWhat](s, m, dDA);
-                                    if (bDebug) {
-                                        echo("= " + m[0] + "  # " + sRuleId + "\nDA: " + dDA._toString());
-                                    }
-                                    break;
-                                default:
-                                    echo("# error: unknown action at " + sRuleId);
+                                }
+                            }
+                            catch (e) {
+                                echo("# id-rule:" + sRuleId);
+                                helpers.logerror(e);
                             }
                         }
-                    }
-                    catch (e) {
-                        echo("# id-rule:" + sRuleId);
-                        helpers.logerror(e);
                     }
                 }
             }
@@ -180,7 +184,7 @@ function _createError (s, sRepl, nOffset, m, iGroup, sId, bUppercase, sMsg, sURL
     oErr["nStart"] = nOffset + m.start[iGroup];
     oErr["nEnd"] = nOffset + m.end[iGroup];
     oErr["sRuleId"] = sId;
-    oErr["sType"] = sOption;
+    oErr["sType"] = (sOption) ? sOption : "notype";
     // suggestions
     if (sRepl[0] === "=") {
         let sugg = oEvalFunc[sRepl.slice(1)](s, m);
@@ -410,7 +414,7 @@ function stem (sWord) {
 
 function nextword (s, iStart, n) {
     // get the nth word of the input string or empty string
-    let z = new RegExp("^( +[a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%-]+){" + (n-1).toString() + "} +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%-]+)", "i");
+    let z = new RegExp("^( +[a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%_-]+){" + (n-1).toString() + "} +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%_-]+)", "i");
     let m = z.exec(s.slice(iStart));
     if (!m) {
         return null;
@@ -420,7 +424,7 @@ function nextword (s, iStart, n) {
 
 function prevword (s, iEnd, n) {
     // get the (-)nth word of the input string or empty string
-    let z = new RegExp("([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%-]+) +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%-]+ +){" + (n-1).toString() + "}$", "i");
+    let z = new RegExp("([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%_-]+) +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%_-]+ +){" + (n-1).toString() + "}$", "i");
     let m = z.exec(s.slice(0, iEnd));
     if (!m) {
         return null;
@@ -428,8 +432,8 @@ function prevword (s, iEnd, n) {
     return [m.index, m[1]];
 }
 
-const _zNextWord = new RegExp ("^ +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ-]*)", "i");
-const _zPrevWord = new RegExp ("([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ-]*) +$", "i");
+const _zNextWord = new RegExp ("^ +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ_][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ_-]*)", "i");
+const _zPrevWord = new RegExp ("([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ_][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ_-]*) +$", "i");
 
 function nextword1 (s, iStart) {
     // get next word (optimization)

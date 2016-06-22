@@ -28,7 +28,7 @@ dStrings = {
         "nbsp3": u"Avant % ‰ € $ £ ¥ ˚C",
         "nbsp4": u"À l’intérieur des nombres",
         "nbsp5": u"Avant les unités de mesure",
-        "nnbsp": u"fines",
+        "nnbsp": u"fins",
         "nnbsp_help": u"sauf avec “:”",
 
         "delete": u"Su~ppressions",

@@ -114,14 +114,14 @@ function fullTests (sGCOptions="") {
         gce.setOptions(helpers.objectToMap(JSON.parse(sGCOptions)));
     }
     let tests = require("resource://grammalecte/tests.js");
-    const t0 = Date.now();
     let oTest = new tests.TestGrammarChecking(gce);
+    let sAllRes = "";
     for (let sRes of oTest.testParse()) {
         dump(sRes+"\n");
+        sAllRes += sRes+"<br/>";
     }
-    const t1 = Date.now();
     gce.setOptions(dMemoOptions);
-    return "Tests parse finished in " + ((t1-t0)/1000).toString() + " s";
+    return sAllRes;
 }
 
 

@@ -66,7 +66,7 @@ function isAmbiguousAndWrong (sWord1, sWord2, sReqMorphNA, sReqMorphConj) {
     if (!a1 || a1.length === 0) {
         return false;
     }
-    if (cr.checkAgreement(a1, a2, sReqMorphNA) && (cr.mbAdj(a2) || cr.mbAdj(a1))) {
+    if (cr.checkAgreement(a1, a2) && (cr.mbAdj(a2) || cr.mbAdj(a1))) {
         return false;
     }
     return true;
@@ -87,7 +87,7 @@ function isVeryAmbiguousAndWrong (sWord1, sWord2, sReqMorphNA, sReqMorphConj, bL
     if (!a1 || a1.length === 0) {
         return false;
     }
-    if (cr.checkAgreement(a1, a2, sReqMorphNA) && (cr.mbAdj(a2) || cr.mbAdjNb(a1))) {
+    if (cr.checkAgreement(a1, a2) && (cr.mbAdj(a2) || cr.mbAdjNb(a1))) {
         return false;
     }
     // now, we know there no agreement, and conjugation is also wrong
@@ -99,6 +99,19 @@ function isVeryAmbiguousAndWrong (sWord1, sWord2, sReqMorphNA, sReqMorphConj, bL
         return true;
     }
     return false;
+}
+
+function checkAgreement (sWord1, sWord2) {
+    // We don’t check if word exists in _dAnalyses, for it is assumed it has been done before
+    let a2 = _dAnalyses._get(sWord2, null)
+    if (!a2 || a2.length === 0) {
+        return true;
+    }
+    let a1 = _dAnalyses._get(sWord1, null);
+    if (!a1 || a1.length === 0) {
+        return true;
+    }
+    return cr.checkAgreement(a1, a2);
 }
 
 function mbUnit (s) {

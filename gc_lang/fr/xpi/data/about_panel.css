@@ -17,13 +17,19 @@ body {
 }
 
 h1 {
-    font-size: 22px;
+    font-size: 20px;
     color: hsl(210, 30%, 40%);
+    font-family: "Trebuchet MS", sans-serif;
 }
 
 p.underline {
     padding: 5px 0;
     background-color: hsl(210, 5%, 92%);
+    margin-bottom: 10px
+}
+
+#links {
+    margin: 20px 0 10px 0;
 }
 
 a.link {
@@ -82,25 +88,26 @@ a.link:hover {
 }
 
 .opt_subsection h2 {
-    color: hsl(210, 50%, 40%);
+    color: hsl(210, 30%, 50%);
     margin-bottom: 3px;
+    font-size: 16px;
+    font-family: "Trebuchet MS", sans-serif;
 }
 .opt_subsection p {
     padding: 2px 3px;
+    display:flex;
+    align-items:center;
 }
 .opt_subsection p:hover {
     background-color: hsl(210, 10%, 86%);
     border-radius: 2px;
 }
 .opt_subsection label {
-    display: inline-block;
-    width: 225px;
+    flex: 1;
 }
 .opt_subsection input {
-    margin-top: 1px;
-    float: right;
+    order: 1
 }
-
 
 #grammar_section a {
     padding: 5px 10px;
@@ -139,8 +146,19 @@ a.redbutton:hover {
     color: hsl(0, 0%, 100%);
 }
 
+a.greenbutton {
+    padding: 2px 5px;
+    background-color: hsl(150, 40%, 40%);
+    color: hsl(150, 0%, 96%);
+    text-decoration: none;
+    border-radius: 3px;
+}
+a.greenbutton:hover {
+    background-color: hsl(150, 50%, 45%);
+    color: hsl(0, 0%, 100%);
+}
 
-footer#links {
+footer#promo {
     background-color: hsl(0, 0%, 92%);
     border-top: 1px solid hsl(0, 0%, 86%);
     padding: 20px;

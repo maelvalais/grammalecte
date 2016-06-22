@@ -6,18 +6,22 @@ let xActiveTextZone = null;
 
 
 self.port.on("setActiveElement", function (bSendTextBack=false) {
-	if (document.activeElement.tagName === "TEXTAREA" || document.activeElement.tagName === "INPUT") {
-		xActiveTextZone = document.activeElement;
-		if (bSendTextBack) {
-			self.port.emit("yesThisIsTextZone", xActiveTextZone.value);
+	try {
+		if (document.activeElement.tagName === "TEXTAREA" || document.activeElement.tagName === "INPUT") {
+			xActiveTextZone = document.activeElement;
+			if (bSendTextBack) {
+				self.port.emit("yesThisIsTextZone", xActiveTextZone.value);
+			} else {
+				self.port.emit("yesThisIsTextZone", "");
+			}
+			xActiveTextZone.disabled = true;
 		} else {
-			self.port.emit("yesThisIsTextZone", "");
+			xActiveTextZone = null;
 		}
-		xActiveTextZone.disabled = true;
-	} else {
-		xActiveTextZone = null;
+		dParagraphs.clear();
+	} catch (e) {
+		console.error("\n" + e.fileName + "\n" + e.name + "\nline: " + e.lineNumber + "\n" + e.message);
 	}
-	dParagraphs.clear();
 });
 
 self.port.on("setParagraph", function (iParagraph, sText) {
@@ -58,23 +62,30 @@ self.port.on("write", function (sText) {
 });
 
 self.port.on("clear", function () {
-	if (xActiveTextZone !== null) {
-		xActiveTextZone.disabled = false;
+	try {
+		if (xActiveTextZone !== null) {
+			xActiveTextZone.disabled = false;
+		}
+		xActiveTextZone = null;
+		dParagraphs.clear();
+	} catch (e) {
+		console.error("\n" + e.fileName + "\n" + e.name + "\nline: " + e.lineNumber + "\n" + e.message);
 	}
-	xActiveTextZone = null;
-	dParagraphs.clear();
 });
 
 function getNthParagraph (iParagraph) {
-	let sText = xActiveTextZone.value;
-	let i = 0;
-	let iStart = 0;
-	while (i < iParagraph && ((iStart = sText.indexOf("\n", iStart)) !== -1)) {
-		i++;
-		iStart++;
+	if (xActiveTextZone !== null) {
+		let sText = xActiveTextZone.value;
+		let i = 0;
+		let iStart = 0;
+		while (i < iParagraph && ((iStart = sText.indexOf("\n", iStart)) !== -1)) {
+			i++;
+			iStart++;
+		}
+		if (i === iParagraph) {
+			return ((iEnd = sText.indexOf("\n", iStart)) !== -1) ? sText.slice(iStart, iEnd) : sText.slice(iStart);
+		}
+		return "# Erreur. Paragraphe introuvable.";
 	}
-	if (i === iParagraph) {
-		return ((iEnd = sText.indexOf("\n", iStart)) !== -1) ? sText.slice(iStart, iEnd) : sText.slice(iStart);
-	}
-	return "# Erreur. Paragraphe introuvable.";
+	return "# Erreur. Zone de texte introuvable.";
 }

@@ -6,7 +6,8 @@ self.port.on("conjugate", function (sVerb) {
     createVerbAndConjugate(sVerb);
 });
 
-self.port.on("focus", function (sVerb) {
+self.port.on("start", function () {
+    self.port.emit("setHeight", document.getElementById("main").offsetTop + document.getElementById("main").offsetHeight + 20);
     document.getElementById("verb").focus();
 });
 

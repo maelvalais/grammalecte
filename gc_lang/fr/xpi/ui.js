@@ -17,6 +17,7 @@ const contextmenu = require("sdk/context-menu");
 const _ = require("sdk/l10n").get;
 const hotkeys = require("sdk/hotkeys");
 const sp = require("sdk/simple-prefs");
+const clipboard = require("sdk/clipboard");
 //const selection = require("sdk/selection");
 
 const { Cu } = require("chrome");
@@ -166,7 +167,7 @@ function createAboutPanel () {
                 bottom: 0
             },
             width: 320,
-            height: 560
+            height: 600
         });
 
         xAboutPanel.port.on("openConjugueur", function () {
@@ -244,7 +245,8 @@ function createGCPanel () {
                 xGCPanel.port.emit("setPanelWidth", sp.prefs["nGCPanelWidth"]);
                 if (sp.prefs["sDictSuggestLocale"] !== "") {
                     bDictActive = sce.setDictionary(sp.prefs["sDictSuggestLocale"]);
-                } else {
+                }
+                if (!bDictActive) {
                     bDictActive = sce.setDictionary("fr"); // default dictionary in French version of Firefox
                 }
             },
@@ -270,6 +272,7 @@ function createGCPanel () {
                 xActiveWorker.port.emit("clear");
                 xActiveWorker = null;
             }
+            xGCPanel.resize(sp.prefs["nGCPanelWidth"], sp.prefs["nGCPanelHeight"]);
             xGCPanel.hide();
         });
 
@@ -306,17 +309,27 @@ function createGCPanel () {
             } else {
                 xGCPanel.port.emit("suggestionsFor", sWord, "# Erreur : dictionnaire orthographique introuvable.", sTooltipId);
             }
-        })
+        });
+
+        xGCPanel.port.on("copyToClipboard", function (sText) {
+            clipboard.set(sText);
+        });
 
         xGCPanel.port.on("resize", function(sCmd, n) {
-            switch (sCmd) {
-                case "resize_h_bigger":  if (sp.prefs["nGCPanelHeight"] < 1200) { sp.prefs["nGCPanelHeight"] += n; } break;
-                case "resize_h_smaller": if (sp.prefs["nGCPanelHeight"] > 250)  { sp.prefs["nGCPanelHeight"] -= n } break;
-                case "resize_w_bigger":  if (sp.prefs["nGCPanelWidth"]  < 1200) { sp.prefs["nGCPanelWidth"] += n; } break;
-                case "resize_w_smaller": if (sp.prefs["nGCPanelWidth"]  > 400)  { sp.prefs["nGCPanelWidth"] -= n; } break;
+            if (sCmd == "expand") {
+                xGCPanel.resize(sp.prefs["nGCPanelWidth"], sp.prefs["nGCPanelHeight"]);
+            } else if (sCmd == "reduce") {
+                xGCPanel.resize(280, 50);
+            } else {
+                switch (sCmd) {
+                    case "resize_h_bigger":  if (sp.prefs["nGCPanelHeight"] < 1200) { sp.prefs["nGCPanelHeight"] += n; } break;
+                    case "resize_h_smaller": if (sp.prefs["nGCPanelHeight"] > 250)  { sp.prefs["nGCPanelHeight"] -= n } break;
+                    case "resize_w_bigger":  if (sp.prefs["nGCPanelWidth"]  < 1200) { sp.prefs["nGCPanelWidth"] += n; } break;
+                    case "resize_w_smaller": if (sp.prefs["nGCPanelWidth"]  > 400)  { sp.prefs["nGCPanelWidth"] -= n; } break;
+                }
+                xGCPanel.resize(sp.prefs["nGCPanelWidth"], sp.prefs["nGCPanelHeight"]);
+                xGCPanel.port.emit("setPanelWidth", sp.prefs["nGCPanelWidth"]);
             }
-            xGCPanel.resize(sp.prefs["nGCPanelWidth"], sp.prefs["nGCPanelHeight"]);
-            xGCPanel.port.emit("setPanelWidth", sp.prefs["nGCPanelWidth"]);
         });
     }
 }
@@ -376,8 +389,8 @@ const xHotkeyGC = hotkeys.Hotkey({
         sendTextToPanel("Quoi ? Racontes ! Racontes-moi ! Bon sangg, parles ! Oui. Il y a des menteur partout. "
                       + "Je suit sidérés par la brutales arrogance de cette homme-là. Quelle salopard ! Un escrocs de la pire espece. "
                       + "Quant sera t’il châtiés pour ses <i>mensonge</i> ?             Merde ! J’en aie marre.\n"
-                      + "Deuxièmes <b>test</b>. On va finir par y arrivé! Il faux persévéré... Encore et encore.\n"
-                      + "Aujourd’hui, je m’en fou. Il est au travaille.\n");
+                      + "Deuxièmes <b>test</b>. On va finir par par y arrivé! Il faux persévéré... Encore et encore.\n"
+                      + "Aujourd'hui, je m'en fou. Il est au travaille.\nJ’en veux 10 %.\nJe suit le CAC40 de près.");
     }
 });
 
@@ -405,7 +418,7 @@ function getGCResultPromise (sParagraph, iParagraph, sLang, bDebug) {
 
 function sendTextToPanel (sText) {
     xGCPanel.port.emit("clearErrors");
-    xGCPanel.port.emit("startWaitIcon");
+    xGCPanel.port.emit("start");
     loadGrammarChecker();
     Task.spawn(function* () {
         let iParagraph = 0; // index of paragraphs, used for identification
@@ -425,7 +438,7 @@ function sendTextToPanel (sText) {
     }, function (e) {
         xGCPanel.port.emit("addElem", '<p class="bug">' + e.message + '</p>');
     }).then(function (res) {
-        xGCPanel.port.emit("stopWaitIcon");
+        xGCPanel.port.emit("end");
     });
 }
 
@@ -442,9 +455,7 @@ function createTFPanel () {
             contentURL: self.data.url("tf_panel.html"),
             contentScriptFile: [self.data.url("tf_panel.js"), self.data.url("../grammalecte/fr/textformatter.js")],
             onShow: function () {
-                xTFPanel.port.emit("calculateHeight");
-                xTFPanel.port.emit("setOptionsInPanel", sp.prefs["sTFOptions"]);
-                xTFPanel.port.emit("focus");
+                xTFPanel.port.emit("start", sp.prefs["sTFOptions"]);
             },
             position: {
                 bottom: 30,
@@ -535,17 +546,24 @@ function createLxgPanel () {
         core.getActiveView(xLxgPanel).setAttribute("noautohide", true);
 
         xLxgPanel.port.on("closePanel", function () {
+            xLxgPanel.resize(sp.prefs["nLxgPanelWidth"], sp.prefs["nLxgPanelHeight"]);
             xLxgPanel.hide();
         });
 
         xLxgPanel.port.on("resize", function(sCmd, n) {
-            switch (sCmd) {
-                case "resize_h_bigger":  if (sp.prefs["nLxgPanelHeight"] < 1200) { sp.prefs["nLxgPanelHeight"] += n; } break;
-                case "resize_h_smaller": if (sp.prefs["nLxgPanelHeight"] > 250)  { sp.prefs["nLxgPanelHeight"] -= n } break;
-                case "resize_w_bigger":  if (sp.prefs["nLxgPanelWidth"]  < 1200) { sp.prefs["nLxgPanelWidth"] += n; } break;
-                case "resize_w_smaller": if (sp.prefs["nLxgPanelWidth"]  > 300)  { sp.prefs["nLxgPanelWidth"] -= n; } break;
+            if (sCmd == "expand") {
+                xLxgPanel.resize(sp.prefs["nLxgPanelWidth"], sp.prefs["nLxgPanelHeight"]);
+            } else if (sCmd == "reduce") {
+                xLxgPanel.resize(280, 50);
+            } else {
+                switch (sCmd) {
+                    case "resize_h_bigger":  if (sp.prefs["nLxgPanelHeight"] < 1200) { sp.prefs["nLxgPanelHeight"] += n; } break;
+                    case "resize_h_smaller": if (sp.prefs["nLxgPanelHeight"] > 250)  { sp.prefs["nLxgPanelHeight"] -= n } break;
+                    case "resize_w_bigger":  if (sp.prefs["nLxgPanelWidth"]  < 1200) { sp.prefs["nLxgPanelWidth"] += n; } break;
+                    case "resize_w_smaller": if (sp.prefs["nLxgPanelWidth"]  > 300)  { sp.prefs["nLxgPanelWidth"] -= n; } break;
+                }
+                xLxgPanel.resize(sp.prefs["nLxgPanelWidth"], sp.prefs["nLxgPanelHeight"]);
             }
-            xLxgPanel.resize(sp.prefs["nLxgPanelWidth"], sp.prefs["nLxgPanelHeight"])
         });
     }
 }
@@ -608,7 +626,7 @@ function createConjPanel () {
             contentURL: self.data.url("conj_panel.html"),
             contentScriptFile: [self.data.url("conj_panel.js"), self.data.url("../grammalecte/fr/conj.js")],
             onShow: function () {
-                xConjPanel.port.emit("focus");
+                xConjPanel.port.emit("start");
             },
             onHide: function () {
                 xMainButton.state("window", {checked: false});
@@ -627,6 +645,10 @@ function createConjPanel () {
             if (!xConjPanel.isShowing) {
                 xConjPanel.show({position: xMainButton});
             }
+        });
+
+        xConjPanel.port.on("setHeight", function (n) {
+            xConjPanel.resize(550, n);
         });
 
         xConjPanel.port.on("closePanel", function () {
@@ -697,6 +719,7 @@ function createTestPanel () {
 
         xTestPanel.port.on("allGCTests", function () {
             xTestPanel.port.emit("clear");
+            xTestPanel.port.emit("addElem", 'Performing tests… Wait…');
             loadGrammarChecker();
             let xPromise = xGCEWorker.post('fullTests', ['{"nbsp":true,"esp":true}']);
             xPromise.then(

@@ -115,7 +115,7 @@ def main ():
         sInputText = "\n~==========~ Enter your text [/h /q] ~==========~\n"
         sText = _getText(sInputText)
         bDebug = False
-        while sText:
+        while True:
             if sText.startswith("?"):
                 for sWord in sText[1:].strip().split():
                     if sWord:
@@ -139,10 +139,14 @@ def main ():
                 # reload (todo)
                 pass
             else:
-                if xArgs.textformatter:
-                    sText = oTF.formatText(sText)
-                sRes = generateText(0, sText, oTokenizer, oDict, xArgs.json, nWidth=xArgs.width, bDebug=bDebug, bEmptyIfNoErrors=True)
-                echo("\n"+sRes  if sRes  else "\nNo error found.")
+                for sParagraph in txt.getParagraph(sText):
+                    if xArgs.textformatter:
+                        sText = oTF.formatText(sText)
+                    sRes = generateText(0, sText, oTokenizer, oDict, xArgs.json, nWidth=xArgs.width, bDebug=bDebug, bEmptyIfNoErrors=True)
+                    if sRes:
+                        echo("\n" + sRes)
+                    else:
+                        echo("\nNo error found.")
             sText = _getText(sInputText)
 
 

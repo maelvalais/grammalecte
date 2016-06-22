@@ -1,3 +1,6 @@
+# Inutilisé pour l’instant
+# Mais l’idée, c’est de stocker les suggestions utiles, notamment pour les mots de peu de caractères
+
 mn: min mon ma me
 league: ligue
 pr: pour par

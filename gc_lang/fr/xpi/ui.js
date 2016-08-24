@@ -721,7 +721,7 @@ function createTestPanel () {
             xTestPanel.port.emit("clear");
             xTestPanel.port.emit("addElem", 'Performing tests… Wait…');
             loadGrammarChecker();
-            let xPromise = xGCEWorker.post('fullTests', ['{"nbsp":true,"esp":true}']);
+            let xPromise = xGCEWorker.post('fullTests', ['{"nbsp":true, "esp":true, "unit":true, "num":true}']);
             xPromise.then(
                 function (aVal) {
                     xTestPanel.port.emit("addElem", 'Done.');

@@ -3,27 +3,31 @@
 
 "use strict";
 
-let xWorker = null; // JS sucks. In Firefox, there is no console.log in PromiseWorker, but there is worker.log.
+// In Firefox, there is no console.log in PromiseWorker, but there is worker.log.
+// In Thunderbird, you can’t access to console directly. So it’s required to pass a log function.
+let funcOutput = null;
 
-function setWorker (x) {
-    xWorker = x;
+function setLogOutput (func) {
+    funcOutput = func;
 }
 
 function echo (obj) {
-    if (xWorker === null) {
-        console.log(obj);
+    if (funcOutput !== null) {
+        funcOutput(obj);
     } else {
-        xWorker.log(obj);
+        console.log(obj);
     }
 }
 
-function logerror (e) {
-    if (xWorker === null) {
-        console.error("\n" + e.fileName + "\n" + e.name + "\nline: " + e.lineNumber + "\n" +
-                      e.message + "\n--- Stack ---\n" + e.stack);
+function logerror (e, bStack=false) {
+    let sMsg = "\n" + e.fileName + "\n" + e.name + "\nline: " + e.lineNumber + "\n" + e.message;
+    if (bStack) {
+        sMsg += "\n--- Stack ---\n" + e.stack;
+    }
+    if (funcOutput !== null) {
+        funcOutput(sMsg);
     } else {
-        xWorker.log("\n" + e.fileName + "\n" + e.name + "\nline: " + e.lineNumber + "\n" +
-                    e.message + "\n--- Stack ---\n" + e.stack);
+        console.error(sMsg);
     }
 }
 
@@ -49,4 +53,4 @@ exports.echo = echo;
 exports.logerror = logerror;
 exports.objectToMap = objectToMap;
 exports.mapToObject = mapToObject;
-exports.setWorker = setWorker;
+exports.setLogOutput = setLogOutput;

@@ -8,6 +8,7 @@ import uno
 import traceback
 
 import grammalecte.fr.conj as conj_fr
+import helpers
 
 from com.sun.star.task import XJobExecutor
 from com.sun.star.awt import XActionListener
@@ -207,6 +208,9 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
 
         # dialog height
         self.xDialog.Height = 350
+        xWindowSize = helpers.getWindowSize()
+        self.xDialog.PositionX = int((xWindowSize.Width / 2) - (self.xDialog.Width / 2))
+        self.xDialog.PositionY = int((xWindowSize.Height / 2) - (self.xDialog.Height / 2))
 
         ## container
         self.xContainer = self.xSvMgr.createInstanceWithContext('com.sun.star.awt.UnoControlDialog', self.ctx)

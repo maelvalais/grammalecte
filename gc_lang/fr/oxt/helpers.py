@@ -47,3 +47,16 @@ def getConfigSetting (sNodeConfig, bUpdate):
 def printServices (o):
     for s in o.getAvailableServiceNames():
         print(' > '+s)
+
+
+def getWindowSize ():
+    "return main window size"
+    xCurCtx = uno.getComponentContext()
+    xDesktop = xCurCtx.getServiceManager().createInstanceWithContext('com.sun.star.frame.Desktop', xCurCtx)
+    xContainerWindow = xDesktop.getCurrentComponent().CurrentController.Frame.ContainerWindow
+    xWindowSize = xContainerWindow.convertSizeToLogic(xContainerWindow.Size, uno.getConstantByName("com.sun.star.util.MeasureUnit.POINT"))
+    #print(xContainerWindow.Size.Width, ">", xWindowSize.Width)
+    #print(xContainerWindow.Size.Height, ">", xWindowSize.Height)
+    xWindowSize.Width = xWindowSize.Width * 0.666
+    xWindowSize.Height = xWindowSize.Height * 0.666
+    return xWindowSize

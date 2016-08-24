@@ -133,7 +133,8 @@ function suggVerbImpe (sFlex) {
 }
 
 function suggVerbInfi (sFlex) {
-    return stem(sFlex).join("|");
+    //return stem(sFlex).join("|");
+    return [ for (sStem of stem(sFlex)) if (conj.isVerb(sStem)) sStem ].join("|");
 }
 
 

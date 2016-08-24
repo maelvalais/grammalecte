@@ -9,6 +9,7 @@ import traceback
 import sys
 
 import ab_strings
+import helpers
 
 from com.sun.star.awt import XActionListener
 from com.sun.star.beans import PropertyValue
@@ -42,6 +43,9 @@ class AboutGrammalecte (unohelper.Base, XActionListener):
             self.xDialog.Width = 160
             self.xDialog.Height = 175
             self.xDialog.Title = dUI.get('windowtitle', "#err")
+            xWindowSize = helpers.getWindowSize()
+            self.xDialog.PositionX = int((xWindowSize.Width / 2) - (self.xDialog.Width / 2))
+            self.xDialog.PositionY = int((xWindowSize.Height / 2) - (self.xDialog.Height / 2))
             
             # xWidgets
             hspace = 60

@@ -307,14 +307,18 @@ def createAction (sIdAction, sAction, nGroup):
             FUNCTIONS.append(("m"+sIdAction, sMsg))
             for x in re.finditer("group[(](\d+)[)]", sMsg):
                 if int(x.group(1)) > nGroup:
-                    print("# error in groups in comment at line " + sIdAction + " ("+str(nGroup)+" groups only)")
+                    print("# error in groups in message at line " + sIdAction + " ("+str(nGroup)+" groups only)")
             sMsg = "=m"+sIdAction
         else:
             for x in re.finditer(r"\\(\d+)", sMsg):
                 if int(x.group(1)) > nGroup:
-                    print("# error in groups in comment at line " + sIdAction + " ("+str(nGroup)+" groups only)")
+                    print("# error in groups in message at line " + sIdAction + " ("+str(nGroup)+" groups only)")
+            if re.search("[.]\\w+[(]", sMsg):
+                print("# error in message at line " + sIdAction + ":  This message looks like code. Line should begin with =")
             
     if sAction[0:1] == "=" or cAction == "=":
+        if "define" in sAction and not re.search(r"define\(\\\d+ *, *\[.*\] *\)", sAction):
+            print("# error in action at line " + sIdAction + ": second argument for define must be a list of strings")
         sAction = prepare_for_eval(sAction)
         sAction = sAction.replace("m.group(i[4])", "m.group("+str(iGroup)+")")
         for x in re.finditer("group[(](\d+)[)]", sAction):
@@ -324,6 +328,8 @@ def createAction (sIdAction, sAction, nGroup):
         for x in re.finditer(r"\\(\d+)", sAction):
             if int(x.group(1)) > nGroup:
                 print("# error in groups in replacement at line " + sIdAction + " ("+str(nGroup)+" groups only)")
+        if re.search("[.]\\w+[(]", sAction):
+            print("# error in action at line " + sIdAction + ":  This action looks like code. Line should begin with =")
 
     if cAction == "-":
         ## error detected

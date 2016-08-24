@@ -61,6 +61,8 @@ class AppLauncher (unohelper.Base, XJobExecutor):
             #     # http://opengrok.libreoffice.org/xref/core/sw/source/ui/lingu/olmenu.cxx#785
             #     xSystemShellExecute = self.ctx.getServiceManager().createInstanceWithContext('com.sun.star.system.SystemShellExecute', self.ctx)
             #     xSystemShellExecute.execute(url, "", uno.getConstantByName("com.sun.star.system.SystemShellExecuteFlags.URIS_ONLY"))
+            elif sCmd == "None":
+                pass
             else:
                 print("Unknown command: "+str(sCmd))
         except:

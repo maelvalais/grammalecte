@@ -91,7 +91,14 @@ const _dTAGS = new Map ([
     [':3p', " 3ᵉ p. pl.,"],
     [':3p!', " 3ᵉ p. pl.,"],
 
-    [';S', " : symbole (unité de mesure)"]
+    [';S', " : symbole (unité de mesure)"],
+
+    ['/*', ""],
+    ['/C', " {classique}"],
+    ['/M', ""],
+    ['/R', " {réforme}"],
+    ['/A', ""],
+    ['/X', ""]
 ]);
 
 const _dPFX = new Map ([

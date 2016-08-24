@@ -139,7 +139,7 @@ function _displayResults () {
         // titles
         _setTitles()
         // participes passés
-        document.getElementById('ppas1').textContent = oVerb.participePasse(":Q1") || " ";
+        document.getElementById('ppas1').textContent = oVerb.participePasse(":Q1") || " "; // something or nbsp
         document.getElementById('ppas2').textContent = oVerb.participePasse(":Q2") || " ";
         document.getElementById('ppas3').textContent = oVerb.participePasse(":Q3") || " ";
         document.getElementById('ppas4').textContent = oVerb.participePasse(":Q4") || " ";

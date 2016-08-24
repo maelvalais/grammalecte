@@ -132,7 +132,8 @@ def main ():
             elif sText == "/help" or sText == "/h":
                 echo(_HELP)
             elif sText == "/lopt" or sText == "/l":
-                echo("\n".join( [ k+":\t"+str(v)  for k, v  in sorted(gce.getOptions().items()) ] ))
+                dLabels = gce.getOptionsLabels("fr")
+                echo("\n".join( [ k+":\t"+str(v)+"\t"+dLabels.get(k, ("?", ""))[0]  for k, v  in sorted(gce.getOptions().items()) ] ))
             elif sText == "/quit" or sText == "/q":
                 break
             elif sText.startswith("/rl"):

@@ -89,7 +89,7 @@ class TestPhonet (unittest.TestCase):
             ["moi", "mois"],
             ["notre", "nôtre", "nôtres"],
             ["or", "ors", "hors"],
-            ["ou", "où", "houx"],
+            ["hou", "houe", "houes", "ou", "où", "houx"],
             ["peu", "peux", "peut"],
             ["ses", "ces", "sais", "sait"],
             ["son", "sons", "sont"],

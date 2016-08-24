@@ -166,7 +166,6 @@ if __name__ == '__main__':
             #return template("main", {})
         return SADLIFEOFAMACHINE
 
-
     @app.route("/get_options/fr")
     def listOptions ():
         sUserId = request.cookies.user_id

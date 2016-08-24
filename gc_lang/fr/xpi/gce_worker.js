@@ -16,19 +16,27 @@
 importScripts("resource://gre/modules/workers/require.js");
 let PromiseWorker = require("resource://gre/modules/workers/PromiseWorker.js");
 
+// Instantiate AbstractWorker (see below).
 let worker = new PromiseWorker.AbstractWorker();
-worker.dispatch = function (method, args = []) {
-    return self[method](...args);
-},
-worker.postMessage = function (...args) {
-    self.postMessage(...args);
+
+worker.dispatch = function(method, args = []) {
+  // Dispatch a call to method `method` with args `args`
+  return self[method](...args);
 };
-worker.close = function () {
-    self.close();
+worker.postMessage = function(...args) {
+  // Post a message to the main thread
+  self.postMessage(...args);
 };
-worker.log = function (...args) {
-    dump("Worker: " + args.join(" ") + "\n");
+worker.close = function() {
+  // Close the worker
+  self.close();
 };
+worker.log = function(...args) {
+  // Log (or discard) messages (optional)
+  dump("Worker: " + args.join(" ") + "\n");
+};
+
+// Connect it to message port.
 self.addEventListener("message", msg => worker.handleMessage(msg));
 
 // end of copy/paste
@@ -54,7 +62,7 @@ function loadGrammarChecker (sGCOptions="") {
         tkz = require("resource://grammalecte/tokenizer.js");
         lxg = require("resource://grammalecte/fr/lexicographe.js");
         oTokenizer = new tkz.Tokenizer("fr");
-        helpers.setWorker(worker); // we pass the worker to the helpers to be able to log.
+        helpers.setLogOutput(worker.log);
         gce.load();
         oDict = gce.getDictionary();
         oLxg = new lxg.Lexicographe(oDict);

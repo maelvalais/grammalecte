@@ -102,7 +102,7 @@ def suggVerbImpe (sFlex):
 
 
 def suggVerbInfi (sFlex):
-    return u"|".join(stem(sFlex))
+    return u"|".join([ sStem  for sStem in stem(sFlex)  if conj.isVerb(sStem) ])
 
 
 _dQuiEst = { "je": ":1s", u"j’": ":1s", u"j’en": ":1s", u"j’y": ":1s", \

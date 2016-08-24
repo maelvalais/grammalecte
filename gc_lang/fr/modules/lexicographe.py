@@ -90,6 +90,13 @@ _dTAGS = {
     ':3p!': u" 3ᵉ p. pl.,",
 
     ';S': u" : symbole (unité de mesure)",
+
+    '/*': "",
+    '/C': " {classique}",
+    '/M': "",
+    '/R': " {réforme}",
+    '/A': "",
+    '/X': ""
 }
 
 _dPFX = {
@@ -151,7 +158,7 @@ class Lexicographe:
         self.oDict = oDict
         self._zElidedPrefix = re.compile(u"(?i)^([dljmtsncç]|quoiqu|lorsqu|jusqu|puisqu|qu)['’](.+)")
         self._zCompoundWord = re.compile(u"(?i)(\\w+)-((?:les?|la)-(?:moi|toi|lui|[nv]ous|leur)|t-(?:il|elle|on)|y|en|[mts][’'](?:y|en)|les?|l[aà]|[mt]oi|leur|lui|je|tu|ils?|elles?|on|[nv]ous)$")
-        self._zTag = re.compile(u"[:;]\\w[^:;]*")
+        self._zTag = re.compile(u"[:;/][\\w*][^:;/]*")
 
     def analyzeWord (self, sWord):
         try:

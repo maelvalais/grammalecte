@@ -73,6 +73,9 @@ class GC_Options (unohelper.Base, XActionListener):
             self.xDialog.Width = 300
             self.xDialog.Height = 400
             self.xDialog.Title = dUI.get('title', "#err")
+            xWindowSize = helpers.getWindowSize()
+            self.xDialog.PositionX = int((xWindowSize.Width / 2) - (self.xDialog.Width / 2))
+            self.xDialog.PositionY = int((xWindowSize.Height / 2) - (self.xDialog.Height / 2))
             
             # build
             y = 0

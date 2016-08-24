@@ -13,6 +13,7 @@ from com.sun.star.ui.ContextMenuInterceptorAction import EXECUTE_MODIFIED
 
 import grammalecte.fr.lexicographe as lxg
 from grammalecte.ibdawg import IBDAWG
+from grammalecte.echo import echo
 import helpers
 
 
@@ -42,13 +43,13 @@ class MyContextMenuInterceptor (XContextMenuInterceptor, unohelper.Base):
                 i = self._addItemToContextMenu(xContextMenu, i, "ActionTriggerSeparator", SeparatorType=nUnoConstantLine)
                 for item in aItem:
                     if isinstance(item, str):
-                        i = self._addItemToContextMenu(xContextMenu, i, "ActionTrigger", Text=item)
+                        i = self._addItemToContextMenu(xContextMenu, i, "ActionTrigger", Text=item, CommandURL="service:net.grammalecte.AppLauncher?None")
                     elif isinstance(item, tuple):
                         sRoot, lMorph = item
                         # submenu
                         xSubMenuContainer = xContextMenu.createInstance("com.sun.star.ui.ActionTriggerContainer")
                         for j, s in enumerate(lMorph):
-                            self._addItemToContextMenu(xSubMenuContainer, j, "ActionTrigger", Text=s)
+                            self._addItemToContextMenu(xSubMenuContainer, j, "ActionTrigger", Text=s, CommandURL="service:net.grammalecte.AppLauncher?None")
                         # create root menu entry
                         i = self._addItemToContextMenu(xContextMenu, i, "ActionTrigger", Text=sRoot, SubContainer=xSubMenuContainer)
                     else:
@@ -91,9 +92,12 @@ class MyContextMenuInterceptor (XContextMenuInterceptor, unohelper.Base):
 
     def _addItemToContextMenu (self, xContextMenu, i, sType, **args):
         xMenuItem = xContextMenu.createInstance("com.sun.star.ui."+sType)
+        #echo("com.sun.star.ui."+sType)
         for k, v in args.items():
             xMenuItem.setPropertyValue(k, v)
+            #print("> ", k, v, xMenuItem)
         xContextMenu.insertByIndex(i, xMenuItem)
+
         return i + 1
 
     def _getWord (self):

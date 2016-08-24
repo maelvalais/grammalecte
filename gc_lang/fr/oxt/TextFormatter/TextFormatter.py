@@ -15,6 +15,7 @@ if sys.version_info.major == 3:
 
 import tf_strings
 import tf_options
+import helpers
 
 
 from com.sun.star.task import XJobExecutor
@@ -227,6 +228,9 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
         
         # dialog height
         self.xDialog.Height = 292
+        xWindowSize = helpers.getWindowSize()
+        self.xDialog.PositionX = int((xWindowSize.Width / 2) - (self.xDialog.Width / 2))
+        self.xDialog.PositionY = int((xWindowSize.Height / 2) - (self.xDialog.Height / 2))
 
         # lists of checkbox widgets
         self.dCheckboxWidgets = {

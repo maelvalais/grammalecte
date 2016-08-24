@@ -55,6 +55,10 @@ class FrenchDictionarySwitcher (unohelper.Base, XActionListener, XJobExecutor):
         self.dialog.Width = 200
         self.dialog.Height = 290
         self.dialog.Title = dUI.get('title', "#title#")
+        xWindowSize = helpers.getWindowSize()
+        self.dialog.PositionX = int((xWindowSize.Width / 2) - (self.dialog.Width / 2))
+        self.dialog.PositionY = int((xWindowSize.Height / 2) - (self.dialog.Height / 2))
+
         
         # xWidgets
         padding = 10

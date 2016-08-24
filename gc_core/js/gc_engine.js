@@ -17,7 +17,7 @@ function capitalizeArray (aArray) {
 const ibdawg = require("resource://grammalecte/ibdawg.js");
 const helpers = require("resource://grammalecte/helpers.js");
 const gc_options = require("resource://grammalecte/${lang}/gc_options.js");
-const cr = require("resource://grammalecte/${lang}/cregex.js")
+const cr = require("resource://grammalecte/${lang}/cregex.js");
 const text = require("resource://grammalecte/text.js");
 const echo = require("resource://grammalecte/helpers.js").echo;
 
@@ -38,7 +38,7 @@ const _zEndOfParagraph = new RegExp ("[-  .,;?!…–—]*$", "ig");
 const _rules = require("resource://grammalecte/${lang}/gc_rules.js");
 let _dOptions = gc_options.dOpt._shallowCopy();     // duplication necessary, to be able to reset to default
 let _aIgnoredRules = new Set();
-let _oDict = null
+let _oDict = null;
 let _dAnalyses = new Map();                        // cache for data from dictionary
 
 
@@ -164,6 +164,7 @@ function _proofread (s, sx, nOffset, bParagraph, dDA, sCountry, bDebug) {
                                 }
                             }
                             catch (e) {
+                                echo(s);
                                 echo("# id-rule:" + sRuleId);
                                 helpers.logerror(e);
                             }
@@ -336,7 +337,7 @@ function morph (dDA, aWord, sPattern, bStrict=true, bNoWord=false) {
     if (!_dAnalyses.has(aWord[1]) && !_storeMorphFromFSA(aWord[1])) {
         return false;
     }
-    lMorph = dDA.has(aWord[0]) ? dDA.get(aWord[0]) : _dAnalyses.get(aWord[1]);
+    let lMorph = dDA.has(aWord[0]) ? dDA.get(aWord[0]) : _dAnalyses.get(aWord[1]);
     //echo("lMorph: "+lMorph.toString());
     if (lMorph.length === 0) {
         return false;
@@ -358,7 +359,7 @@ function morphex (dDA, aWord, sPattern, sNegPattern, bNoWord=false) {
     if (!_dAnalyses.has(aWord[1]) && !_storeMorphFromFSA(aWord[1])) {
         return false;
     }
-    lMorph = dDA.has(aWord[0]) ? dDA.get(aWord[0]) : _dAnalyses.get(aWord[1]);
+    let lMorph = dDA.has(aWord[0]) ? dDA.get(aWord[0]) : _dAnalyses.get(aWord[1]);
     //echo("lMorph: "+lMorph.toString());
     if (lMorph.length === 0) {
         return false;

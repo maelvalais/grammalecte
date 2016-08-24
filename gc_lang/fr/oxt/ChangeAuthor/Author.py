@@ -9,6 +9,7 @@ import re
 import traceback
 
 import ca_strings
+import helpers
 
 from com.sun.star.awt import XActionListener
 from com.sun.star.beans import PropertyValue
@@ -41,6 +42,9 @@ class Author (unohelper.Base, XActionListener):
             self.xDialog.Width = 160
             self.xDialog.Height = 85
             self.xDialog.Title = dUI.get('title', "#err")
+            xWindowSize = helpers.getWindowSize()
+            self.xDialog.PositionX = int((xWindowSize.Width / 2) - (self.xDialog.Width / 2))
+            self.xDialog.PositionY = int((xWindowSize.Height / 2) - (self.xDialog.Height / 2))
 
             # fonts
             xFDBut = uno.createUnoStruct("com.sun.star.awt.FontDescriptor")

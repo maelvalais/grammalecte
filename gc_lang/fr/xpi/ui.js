@@ -170,6 +170,12 @@ function createAboutPanel () {
             height: 600
         });
 
+        xAboutPanel.port.emit("calcDefaultPanelHeight");
+
+        xAboutPanel.port.on("setHeight", function (n) {
+            xAboutPanel.resize(320, n);
+        });
+
         xAboutPanel.port.on("openConjugueur", function () {
             createConjPanel();
             xConjPanel.show({position: xMainButton});
@@ -390,7 +396,7 @@ const xHotkeyGC = hotkeys.Hotkey({
                       + "Je suit sidérés par la brutales arrogance de cette homme-là. Quelle salopard ! Un escrocs de la pire espece. "
                       + "Quant sera t’il châtiés pour ses <i>mensonge</i> ?             Merde ! J’en aie marre.\n"
                       + "Deuxièmes <b>test</b>. On va finir par par y arrivé! Il faux persévéré... Encore et encore.\n"
-                      + "Aujourd'hui, je m'en fou. Il est au travaille.\nJ’en veux 10 %.\nJe suit le CAC40 de près.");
+                      + "Aujourd'hui, je m'en fou. Il est au travaille.\nJ’en veux 10 %.\nJe suit le CAC40 de près.\nIl y aura encore des attentas.");
     }
 });
 
@@ -619,9 +625,12 @@ function analyzeWords (sText) {
 */
 
 let xConjPanel = null;
+let sConjData = null;
 
 function createConjPanel () {
     if (xConjPanel === null) {
+        sConjData = self.data.load("../grammalecte/fr/conj_data.json");
+
         xConjPanel = panel.Panel({
             contentURL: self.data.url("conj_panel.html"),
             contentScriptFile: [self.data.url("conj_panel.js"), self.data.url("../grammalecte/fr/conj.js")],
@@ -654,6 +663,8 @@ function createConjPanel () {
         xConjPanel.port.on("closePanel", function () {
             xConjPanel.hide();
         });
+
+        xConjPanel.port.emit("provideConjData", sConjData);
     }
 }
 

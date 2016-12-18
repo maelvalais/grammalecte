@@ -7,26 +7,26 @@ def getUI (sLang):
 
 dStrings = {
     "fr": {
-            "title": u"Grammalecte · Édition du champ “Auteur”",
+            "title": "Grammalecte · Édition du champ “Auteur”",
 
-            "state": u"Valeur actuelle du champ “Auteur” :",
-            "empty": u"[vide]",
+            "state": "Valeur actuelle du champ “Auteur” :",
+            "empty": "[vide]",
 
-            "newvalue": u"Entrez la nouvelle valeur :",
+            "newvalue": "Entrez la nouvelle valeur :",
 
-            "modify": u"Modifier",
-            "cancel": u"Annuler"
+            "modify": "Modifier",
+            "cancel": "Annuler"
           },
     "en": {
-            "title": u"Grammalecte · Edition of field “Author”",
+            "title": "Grammalecte · Edition of field “Author”",
 
-            "state": u"Current value of field “Author”:",
-            "empty": u"[empty]",
+            "state": "Current value of field “Author”:",
+            "empty": "[empty]",
 
-            "newvalue": u"Enter the new value:",
+            "newvalue": "Enter the new value:",
 
-            "modify": u"Modify",
-            "cancel": u"Cancel"
+            "modify": "Modify",
+            "cancel": "Cancel"
           }
 }
 

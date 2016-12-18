@@ -19,7 +19,7 @@ function* getParagraph (sText) {
 function* wrap (sText, nWidth=80) {
     // generator: returns text line by line
     while (sText) {
-        if (sText.length > nWidth) {
+        if (sText.length >= nWidth) {
             let nEnd = sText.lastIndexOf(" ", nWidth) + 1;
             if (nEnd > 0) {
                 yield sText.slice(0, nEnd);

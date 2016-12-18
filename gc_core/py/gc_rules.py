@@ -1,4 +1,4 @@
-# -*- encoding: UTF-8 -*-
+# generated code, do not edit
 
 lParagraphRules = ${paragraph_rules}
 

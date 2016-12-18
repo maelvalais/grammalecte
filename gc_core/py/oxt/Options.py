@@ -73,10 +73,7 @@ class GC_Options (unohelper.Base, XActionListener):
             self.xDialog.Width = 300
             self.xDialog.Height = 400
             self.xDialog.Title = dUI.get('title', "#err")
-            xWindowSize = helpers.getWindowSize()
-            self.xDialog.PositionX = int((xWindowSize.Width / 2) - (self.xDialog.Width / 2))
-            self.xDialog.PositionY = int((xWindowSize.Height / 2) - (self.xDialog.Height / 2))
-            
+
             # build
             y = 0
             nWidth = self.xDialog.Width - 20
@@ -100,6 +97,10 @@ class GC_Options (unohelper.Base, XActionListener):
                         x += nWidth / n
             
             self.xDialog.Height = y + 40
+
+            xWindowSize = helpers.getWindowSize()
+            self.xDialog.PositionX = int((xWindowSize.Width / 2) - (self.xDialog.Width / 2))
+            self.xDialog.PositionY = int((xWindowSize.Height / 2) - (self.xDialog.Height / 2))
 
             but0 = self._addWidget('default', 'Button', 10, self.xDialog.Height-20, 50, 14, \
                                    Label = dUI.get('default', "#err"), FontDescriptor = xFDBut, TextColor = 0x000044)

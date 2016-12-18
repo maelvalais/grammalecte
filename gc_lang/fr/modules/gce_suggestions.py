@@ -27,7 +27,7 @@ def suggVerb (sFlex, sWho, funcSugg2=None):
                         else:
                             aTense.add(m.group(1))
             for sTense in aTense:
-                if sWho == u":1ś" and not conj._hasConjWithTags(tTags, sTense, u":1ś"):
+                if sWho == ":1ś" and not conj._hasConjWithTags(tTags, sTense, ":1ś"):
                     sWho = ":1s"
                 if conj._hasConjWithTags(tTags, sTense, sWho):
                     aSugg.add(conj._getConjWithTags(sStem, tTags, sTense, sWho))
@@ -36,7 +36,7 @@ def suggVerb (sFlex, sWho, funcSugg2=None):
         if aSugg2:
             aSugg.add(aSugg2)
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
@@ -71,17 +71,17 @@ def suggVerbPpas (sFlex, sWhat=None):
             else:
                 aSugg.add(conj._getConjWithTags(sStem, tTags, ":PQ", ":Q1"))
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
 def suggVerbTense (sFlex, sTense, sWho):
     aSugg = set()
     for sStem in stem(sFlex):
-        if conj.hasConj(sStem, ":E", sWho):
-            aSugg.add(conj.getConj(sStem, ":E", sWho))
+        if conj.hasConj(sStem, sTense, sWho):
+            aSugg.add(conj.getConj(sStem, sTense, sWho))
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
@@ -97,15 +97,15 @@ def suggVerbImpe (sFlex):
             if conj._hasConjWithTags(tTags, ":E", ":2p"):
                 aSugg.add(conj._getConjWithTags(sStem, tTags, ":E", ":2p"))
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
 def suggVerbInfi (sFlex):
-    return u"|".join([ sStem  for sStem in stem(sFlex)  if conj.isVerb(sStem) ])
+    return "|".join([ sStem  for sStem in stem(sFlex)  if conj.isVerb(sStem) ])
 
 
-_dQuiEst = { "je": ":1s", u"j’": ":1s", u"j’en": ":1s", u"j’y": ":1s", \
+_dQuiEst = { "je": ":1s", "j’": ":1s", "j’en": ":1s", "j’y": ":1s", \
              "tu": ":2s", "il": ":3s", "on": ":3s", "elle": ":3s", "nous": ":1p", "vous": ":2p", "ils": ":3p", "elles": ":3p" }
 _lIndicatif = [":Ip", ":Iq", ":Is", ":If"]
 _lSubjonctif = [":Sp", ":Sq"]
@@ -132,7 +132,7 @@ def suggVerbMode (sFlex, cMode, sSuj):
                 if conj._hasConjWithTags(tTags, sTense, sWho):
                     aSugg.add(conj._getConjWithTags(sStem, tTags, sTense, sWho))
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
@@ -162,7 +162,7 @@ def suggPlur (sFlex, sWordToAgree=None):
     if mfsp.hasMiscPlural(sFlex):
         aSugg.update(mfsp.getMiscPlural(sFlex))
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
@@ -179,11 +179,11 @@ def suggSing (sFlex):
     if _oDict.isValid(sFlex[:-1]):
         aSugg.add(sFlex[:-1])
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
-def suggMasSing (sFlex):
+def suggMasSing (sFlex, bSuggSimil=False):
     "returns masculine singular forms"
     # we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     aSugg = set()
@@ -199,14 +199,19 @@ def suggMasSing (sFlex):
         else:
             # a verb
             sVerb = cr.getLemmaOfMorph(sMorph)
-            if conj.hasConj(sVerb, ":PQ", ":Q1"):
+            if conj.hasConj(sVerb, ":PQ", ":Q1") and conj.hasConj(sVerb, ":PQ", ":Q3"):
+                # We also check if the verb has a feminine form.
+                # If not, we consider it’s better to not suggest the masculine one, as it can be considered invariable.
                 aSugg.add(conj.getConj(sVerb, ":PQ", ":Q1"))
+    if bSuggSimil:
+        for e in phonet.selectSimil(sFlex, ":m:[si]"):
+            aSugg.add(e)
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
-def suggMasPlur (sFlex):
+def suggMasPlur (sFlex, bSuggSimil=False):
     "returns masculine plural forms"
     # we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     aSugg = set()
@@ -225,13 +230,19 @@ def suggMasPlur (sFlex):
             if conj.hasConj(sVerb, ":PQ", ":Q2"):
                 aSugg.add(conj.getConj(sVerb, ":PQ", ":Q2"))
             elif conj.hasConj(sVerb, ":PQ", ":Q1"):
-                aSugg.add(conj.getConj(sVerb, ":PQ", ":Q1"))
+                sSugg = conj.getConj(sVerb, ":PQ", ":Q1")
+                # it is necessary to filter these flexions, like “succédé” or “agi” that are not masculine plural.
+                if sSugg.endswith("s"):
+                    aSugg.add(sSugg)
+    if bSuggSimil:
+        for e in phonet.selectSimil(sFlex, ":m:[pi]"):
+            aSugg.add(e)
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
-def suggFemSing (sFlex):
+def suggFemSing (sFlex, bSuggSimil=False):
     "returns feminine singular forms"
     # we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     aSugg = set()
@@ -249,12 +260,15 @@ def suggFemSing (sFlex):
             sVerb = cr.getLemmaOfMorph(sMorph)
             if conj.hasConj(sVerb, ":PQ", ":Q3"):
                 aSugg.add(conj.getConj(sVerb, ":PQ", ":Q3"))
+    if bSuggSimil:
+        for e in phonet.selectSimil(sFlex, ":f:[si]"):
+            aSugg.add(e)
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
-def suggFemPlur (sFlex):
+def suggFemPlur (sFlex, bSuggSimil=False):
     "returns feminine plural forms"
     # we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     aSugg = set()
@@ -272,9 +286,31 @@ def suggFemPlur (sFlex):
             sVerb = cr.getLemmaOfMorph(sMorph)
             if conj.hasConj(sVerb, ":PQ", ":Q4"):
                 aSugg.add(conj.getConj(sVerb, ":PQ", ":Q4"))
+    if bSuggSimil:
+        for e in phonet.selectSimil(sFlex, ":f:[pi]"):
+            aSugg.add(e)
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
+
+
+def hasFemForm (sFlex):
+    for sStem in stem(sFlex):
+        if mfsp.isFemForm(sStem) or conj.hasConj(sStem, ":PQ", ":Q3"):
+            return True
+    if phonet.hasSimil(sFlex, ":f"):
+        return True
+    return False
+
+
+def hasMasForm (sFlex):
+    for sStem in stem(sFlex):
+        if mfsp.isFemForm(sStem) or conj.hasConj(sStem, ":PQ", ":Q1"):
+            # what has a feminine form also has a masculine form
+            return True
+    if phonet.hasSimil(sFlex, ":m"):
+        return True
+    return False
 
 
 def switchGender (sFlex, bPlur=None):
@@ -308,7 +344,7 @@ def switchGender (sFlex, bPlur=None):
             elif ":m" in sMorph:
                 aSugg.add(suggFemSing(sFlex))
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
@@ -321,29 +357,24 @@ def switchPlural (sFlex):
         elif ":p" in sMorph:
             aSugg.add(suggSing(sFlex))
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
-def hasSimil (sWord):
-    return phonet.hasSimil(sWord)
+def hasSimil (sWord, sPattern=None):
+    return phonet.hasSimil(sWord, sPattern)
 
 
-def suggSimil (sWord, sPattern):
+def suggSimil (sWord, sPattern=None):
     "return list of words phonetically similar to sWord and whom POS is matching sPattern"
     # we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
-    lSet = phonet.getSimil(sWord)
-    if not lSet:
-        return ""
-    aSugg = set()
-    for sSimil in lSet:
-        if sSimil not in _dAnalyses:
-            _storeMorphFromFSA(sSimil)
-        for sMorph in _dAnalyses.get(sSimil, []):
-            if re.search(sPattern, sMorph):
-                aSugg.add(sSimil)
+    aSugg = phonet.selectSimil(sWord, sPattern)
+    for sMorph in _dAnalyses.get(sWord, []):
+        for e in conj.getSimil(sWord, sMorph):
+            aSugg.add(e)
+        #aSugg = aSugg.union(conj.getSimil(sWord, sMorph))
     if aSugg:
-        return u"|".join(aSugg)
+        return "|".join(aSugg)
     return ""
 
 
@@ -358,19 +389,19 @@ def suggCeOrCet (s):
 def formatNumber (s):
     nLen = len(s)
     if nLen == 10:
-        sRes = s[0] + u" " + s[1:4] + u" " + s[4:7] + u" " + s[7:]                                  # nombre ordinaire
+        sRes = s[0] + " " + s[1:4] + " " + s[4:7] + " " + s[7:]                             # nombre ordinaire
         if s.startswith("0"):
-            sRes += u"|" + s[0:2] + u" " + s[2:4] + u" " + s[4:6] + u" " + s[6:8] + u" " + s[8:]    # téléphone français
+            sRes += "|" + s[0:2] + " " + s[2:4] + " " + s[4:6] + " " + s[6:8] + " " + s[8:] # téléphone français
             if s[1] == "4" and (s[2]=="7" or s[2]=="8" or s[2]=="9"):
-                sRes += u"|" + s[0:4] + u" " + s[4:6] + u" " + s[6:8] + u" " + s[8:]                # mobile belge
-            sRes += u"|" + s[0:3] + u" " + s[3:6] + u" " + s[6:8] + u" " + s[8:]                    # téléphone suisse
-        sRes += u"|" + s[0:4] + u" " + s[4:7] + "-" + s[7:]                                         # téléphone canadien ou américain
+                sRes += "|" + s[0:4] + " " + s[4:6] + " " + s[6:8] + " " + s[8:]            # mobile belge
+            sRes += "|" + s[0:3] + " " + s[3:6] + " " + s[6:8] + " " + s[8:]                # téléphone suisse
+        sRes += "|" + s[0:4] + " " + s[4:7] + "-" + s[7:]                                   # téléphone canadien ou américain
         return sRes
     elif nLen == 9:
-        sRes = s[0:3] + u" " + s[3:6] + u" " + s[6:]                                                # nombre ordinaire
+        sRes = s[0:3] + " " + s[3:6] + " " + s[6:]                                          # nombre ordinaire
         if s.startswith("0"):
-            sRes += "|" + s[0:3] + u" " + s[3:5] + u" " + s[5:7] + u" " + s[7:9]                    # fixe belge 1
-            sRes += "|" + s[0:2] + u" " + s[2:5] + u" " + s[5:7] + u" " + s[7:9]                    # fixe belge 2
+            sRes += "|" + s[0:3] + " " + s[3:5] + " " + s[5:7] + " " + s[7:9]               # fixe belge 1
+            sRes += "|" + s[0:2] + " " + s[2:5] + " " + s[5:7] + " " + s[7:9]               # fixe belge 2
         return sRes
     elif nLen < 4:
         return ""
@@ -378,35 +409,35 @@ def formatNumber (s):
     nEnd = nLen
     while nEnd > 0:
         nStart = max(nEnd-3, 0)
-        sRes = s[nStart:nEnd] + u" " + sRes  if sRes  else s[nStart:nEnd]
+        sRes = s[nStart:nEnd] + " " + sRes  if sRes  else s[nStart:nEnd]
         nEnd = nEnd - 3
     return sRes
 
 
 def formatNF (s):
     try:
-        m = re.match(u"NF[  -]?(C|E|P|Q|S|X|Z|EN(?:[  -]ISO|))[  -]?([0-9]+(?:[/‑-][0-9]+|))", s)
+        m = re.match("NF[  -]?(C|E|P|Q|S|X|Z|EN(?:[  -]ISO|))[  -]?([0-9]+(?:[/‑-][0-9]+|))", s)
         if not m:
             return ""
-        return u"NF " + m.group(1).upper().replace(" ", u" ").replace("-", u" ") + u" " + m.group(2).replace("/", u"‑").replace("-", u"‑")
+        return "NF " + m.group(1).upper().replace(" ", " ").replace("-", " ") + " " + m.group(2).replace("/", "‑").replace("-", "‑")
     except:
         traceback.print_exc()
         return "# erreur #"
 
 
 def undoLigature (c):
-    if c == u"ﬁ":
+    if c == "ﬁ":
         return "fi"
-    elif c == u"ﬂ":
+    elif c == "ﬂ":
         return "fl"
-    elif c == u"ﬀ":
+    elif c == "ﬀ":
         return "ff"
-    elif c == u"ﬃ":
+    elif c == "ﬃ":
         return "ffi"
-    elif c == u"ﬄ":
+    elif c == "ﬄ":
         return "ffl"
-    elif c == u"ﬅ":
+    elif c == "ﬅ":
         return "ft"
-    elif c == u"ﬆ":
+    elif c == "ﬆ":
         return "st"
     return "_"

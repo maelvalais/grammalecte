@@ -4,11 +4,11 @@
         xmlns:l="http://libreoffice.org/extensions/description/2011"
         xmlns:xlink="http://www.w3.org/1999/xlink">
     <!--<identifier value="org.openoffice.comp.pyuno.lightproof.oxt.${implname}" />-->
-    <identifier value="French.linguistic.resources.from.Dicollecte.by.OlivierR" />
+    <identifier value="${oxt_identifier}" />
     <display-name>
         <name lang="en-US">${name} (pack)</name>
     </display-name>
-    <version value="${extversion}" />
+    <version value="${oxt_version}" />
     <publisher>
         <name lang="en" xlink:href="${link}">${provider}</name>
     </publisher>

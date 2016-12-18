@@ -4,7 +4,7 @@ ${map}
 
 const lStructOpt = ${lStructOpt};
 
-const dOpt = new Map (${dOpt});
+const dOpt = new Map (${dOptJavaScript});
 
 const dOptLabel = ${dOptLabel};
 

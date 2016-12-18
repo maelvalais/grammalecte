@@ -1,4 +1,4 @@
-# -*- encoding: UTF-8 -*-
+# generated code, do not edit
 
 def getUI (sLang):
     if sLang in _dOptLabel:
@@ -7,6 +7,6 @@ def getUI (sLang):
 
 lStructOpt = ${lStructOpt}
 
-dOpt = ${dOpt}
+dOpt = ${dOptPython}
 
 _dOptLabel = ${dOptLabel}

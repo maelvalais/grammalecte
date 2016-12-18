@@ -31,6 +31,25 @@ function logerror (e, bStack=false) {
     }
 }
 
+
+// load ressources in workers (suggested by Mozilla extensions reviewers)
+// for more options have a look here: https://gist.github.com/Noitidart/ec1e6b9a593ec7e3efed
+// if not in workers, use sdk/data.load() instead
+function loadFile (spf) {
+    try {
+        const xRequest = new XMLHttpRequest();
+        xRequest.open('GET', spf, false); // 3rd arg is false for synchronous, sync is acceptable in workers
+        xRequest.send();
+        return xRequest.responseText;
+    }
+    catch (e) {
+        logerror(e);
+        return null
+    }
+}
+
+
+// conversions
 function objectToMap (obj) {
     let m = new Map();
     for (let param in obj) {
@@ -48,9 +67,9 @@ function mapToObject (m) {
     return obj;
 }
 
-
 exports.echo = echo;
 exports.logerror = logerror;
 exports.objectToMap = objectToMap;
 exports.mapToObject = mapToObject;
 exports.setLogOutput = setLogOutput;
+exports.loadFile = loadFile;

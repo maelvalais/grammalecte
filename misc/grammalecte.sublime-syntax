@@ -15,12 +15,12 @@ contexts:
 
     # Comments begin with a '#' and finish at the end of the line
     - match: '#'
-      scope: punctuation.definition.comment.grammalecte
+      scope: punctuation.definition.comment
       push: line_comment
 
     # Numbers
     - match: '\b(-)?[0-9.]+\b'
-      scope: constant.numeric.grammalecte
+      scope: constant.numeric
 
     # Keywords are if, else.
     # Note that blackslashes don't need to be escaped within single quoted
@@ -28,47 +28,67 @@ contexts:
     # need to be escaped: this is done by using two single quotes next to each
     # other.
     - match: '\b(?:if|else|and|or|not|in)\b'
-      scope: keyword.control.grammalecte
+      scope: keyword.python
 
     - match: '\b(?:True|False|None)\b'
-      scope: constant.language.grammalecte
+      scope: constant.language
     
-    - match: '\b(?:spell|morph|morphex|stem|textarea0?\w*|before0?\w*|after0?\w*|word|option|define|select|exclude|analysex?|apposition|is[A-Z]\w+|rewriteSubject|checkD\w+|getD\w+|sugg[A-Z]\w+|switch[A-Z]\w+|ceOrCet|formatN\w+|mbUnit|hasSimil)\b'
-      scope: entity.name.function.grammalecte
+    - match: '\b(?:spell|morph|morphex|stem|textarea0?\w*|before0?\w*|after0?\w*|word|option|define|select|exclude|analysex?|apposition|is[A-Z]\w+|rewriteSubject|checkD\w+|getD\w+|has[A-Z]\w+|sugg[A-Z]\w+|switch[A-Z]\w+|ceOrCet|formatN\w+|mbUnit)\b'
+      scope: entity.name.function
 
     - match: '\b(?:replace|endswith|startswith|search|upper|lower|capitalize|strip|rstrip|is(?:upper|lower|digit|title))\b'
-      scope: support.function.grammalecte
+      scope: support.function
+
+    - match: '\becho\b'
+      scope: support.function.debug
 
     - match: '\bre\b'
-      scope: support.class.grammalecte
+      scope: support.class
 
     # Rule options
-    - match: '^__[]\[\w<>/]+__|</?js>'
-      scope: variable.parameter.grammalecte
+    - match: '^__[\[<]([isu])[\]>](/\w+|)(\(\w+\)|)__|</?js>'
+      scope: rule.options
+      captures:
+        1: rule.casing
+        2: rule.optionname
+        3: rule.rulename
 
     # Definitions and options
-    - match: '^DEF[:] |^OPT[:] '
-      scope: variable.parameter.grammalecte
+    - match: '^OPT(?:GROUP|LANG)/|^OPTSOFTWARE:'
+      scope: options.command
 
-    # Tests
-    - match: '^T(EST|ODO)[:] '
-      scope: storage.modifier.grammalecte
+    - match: '^OPT(?:LABEL|)/'
+      scope: options.parameter
+
+    - match: '^DEF: '
+      scope: definition
+
+    # Tests & TODO
+    - match: '^TEST: (?:__[a-zA-Z0-9]+__ |)'
+      scope: test
+
+    - match: '^TODO: '
+      scope: todo
 
     # JS groups positioning codes
     - match: ' @@[0-9w,$*>:]+'
-      scope: comment.line.percentage.grammalecte
+      scope: comment.line.percentage
 
     # rule delimiters
-    - match: '<<-'
+    - match: '<<-|>>>'
       scope: keyword.action
+    - match: '__also__'
+      scope: keyword.condition.green
+    - match: '__else__'
+      scope: keyword.condition.red
     - match: '-(\d*)>>'
       scope: keyword.error
       captures:
-        1: constant.numeric.grammalecte
+        1: constant.numeric
     - match: '~(\d*)>>'
       scope: keyword.textprocessor
       captures:
-        1: constant.numeric.grammalecte
+        1: constant.numeric
     - match: '=>>'
       scope: keyword.disambiguator
 
@@ -78,26 +98,32 @@ contexts:
 
     # URL
     - match: '\| ?https?://[\w./%?&=#+-]+'
-      scope: string.other.grammalecte
+      scope: string.other
 
     # Example errors
-    - match: '{{.+}}'
+    - match: '{{.+?}}'
       scope: message.error
 
     # special chars
-    - match: '\[|[](){}|@=*^?+]'
+    - match: '[@=*^?!:+<>]'
       scope: keyword.other
 
+    - match: '\(\?(?:[:=!]|<!)|[(|)]'
+      scope: keyword.parenthesis
+
+    - match: '\[|[]{}]'
+      scope: keyword.brackets
+
 #  double_quoted_string:
-#    - meta_scope: string.quoted.double.grammalecte
+#    - meta_scope: string.quoted.double
 #    - match: '\\.'
-#      scope: constant.character.escape.grammalecte
+#      scope: constant.character.escape
 #    - match: '(?:"|$)'
-#      scope: punctuation.definition.string.end.grammalecte
+#      scope: punctuation.definition.string.end
 #      pop: true
 
   line_comment:
-    - meta_scope: comment.line.grammalecte
+    - meta_scope: comment.line
     - match: '\\[0-9]+'
       scope: constant.character.escape
     - match: '\| ?https?://[\w./%?&=#+-]+'

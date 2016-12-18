@@ -117,6 +117,9 @@ function resetOptions () {
 
 
 function fullTests (sGCOptions="") {
+    if (!gce || !oDict) {
+        return "# Error: grammar checker or dictionary not loaded."
+    }
     let dMemoOptions = gce.getOptions();
     if (sGCOptions) {
         gce.setOptions(helpers.objectToMap(JSON.parse(sGCOptions)));

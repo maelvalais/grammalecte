@@ -5,8 +5,7 @@
 # by Olivier R.
 # License: MPL 2
 
-
-from string import Template
+import json
 
 import grammalecte.ibdawg as ibdawg
 from grammalecte.echo import echo
@@ -31,6 +30,7 @@ def defineSuffixCode (s1, s2):
         jSfx += 1
     return chr(len(s1)-jSfx+48) + s2[jSfx:] # 48 is the ASCII code for "0"
 
+
 def modifyStringWithSuffixCode (s, sSfx):
     if sSfx == "0":
         return s
@@ -38,7 +38,7 @@ def modifyStringWithSuffixCode (s, sSfx):
 
 
 def makeConj (sp, bJS=False):
-    print("make conjugaison")
+    print("make conjugaisons")
     dVerb = {}
     lVtyp = []; dVtyp = {}; nVtyp = 0
     lTags = []; dTags = {}; nTags = 0
@@ -118,10 +118,9 @@ def makeConj (sp, bJS=False):
                 dVerb[sLemma] = (dVtyp[sVtyp], dTags[tConjTags])
             else:
                 print("# Error - unknown line #", n)
-        hSrc.close()
 
     # convert tuples to bytes string
-    # si ça merde toute la partie conversion peut être supprimée
+    # si ça merde, toute la partie conversion peut être supprimée
     # lBytesTags = []
     # for t in lTags:
     #     b = b""
@@ -145,36 +144,26 @@ def makeConj (sp, bJS=False):
 
 
     ## write file for Python
-    dTpl = { "lVtyp": str(lVtyp), "lTags": str(lTags), "dPatternConj": str(dPatternList), "dVerb": str(dVerb) }
-    with open(sp+"/modules/conj.py", "w", encoding="utf-8") as hDst:
-        hDst.write( Template(open(sp+"/modules/conj.tpl.py", "r", encoding="utf-8").read()).safe_substitute(dTpl) )
-    dTpl.clear()
+    sCode = "## generated data (do not edit)\n\n" + \
+            "# Informations about verbs\n" + \
+            "lVtyp = " + str(lVtyp) + "\n\n" + \
+            "# indexes of tenses in _dPatternConj\n" + \
+            "lTags = " + str(lTags) + "\n\n" + \
+            "# lists of affix codes to generate inflected forms\n" + \
+            "dPatternConj = " + str(dPatternList) + "\n\n" + \
+            "# dictionary of verbs : (index of Vtyp, index of Tags)\n" + \
+            "dVerb = " + str(dVerb) + "\n"
+    open(sp+"/modules/conj_data.py", "w", encoding="utf-8").write(sCode)
 
     if bJS:
         ## write file for JavaScript
-        for i, t in enumerate(lTags):
-            lTags[i] = list(t)
-        #
-        lEntry = []
-        while True:
-            try:
-                k, v = dVerb.popitem()
-            except KeyError:
-                break
-            lEntry.append([k, list(v)])
-        #
-        sPatternConj = "[ "
-        for k1, lDict in dPatternList.items():
-            sPatternConj += "['" + k1 + "', ["
-            for d in lDict:
-                l = [ [k2, v2] for k2, v2 in d.items() ]
-                sPatternConj += "new Map (" + str(l) + "), "
-            sPatternConj = sPatternConj.rstrip(" ,") + "]],  "
-        sPatternConj = sPatternConj.rstrip(" ,") + " ]"
-
-        dTpl = { "lVtyp": str(lVtyp), "lTags": str(lTags), "dPatternConj": sPatternConj, "dVerb": str(lEntry) }
-        with open(sp+"/modules-js/conj.js", "w", encoding="utf-8") as hDst:
-            hDst.write( Template(open(sp+"/modules-js/conj.tpl.js", "r", encoding="utf-8").read()).safe_substitute(dTpl) )
+        with open(sp+"/modules-js/conj_data.json", "w", encoding="utf-8") as hDst:
+            hDst.write("{\n")
+            hDst.write('    "lVtyp": ' + json.dumps(lVtyp, ensure_ascii=False) + ",\n")
+            hDst.write('    "lTags": ' + json.dumps(lTags, ensure_ascii=False) + ",\n")
+            hDst.write('    "dPatternConj": ' + json.dumps(dPatternList, ensure_ascii=False) + ",\n")
+            hDst.write('    "dVerb": ' + json.dumps(dVerb, ensure_ascii=False) + "\n")
+            hDst.write("}\n")
 
 
 def makeMfsp (sp, bJS=False):
@@ -247,38 +236,44 @@ def makeMfsp (sp, bJS=False):
                     print("unknown tag: " + ctype)
             else:
                 print("# Error - unknown line #", n)
-        hSrc.close()
 
     ## write file for Python
-    dTpl = { "lTagMasForm": str(lTagMasForm), "lTagMiscPlur": str(lTagMiscPlur), "dMiscPlur": str(dMiscPlur), "dMasForm": str(dMasForm) }
-    with open(sp+"/modules/mfsp.py", "w", encoding="utf-8") as hDst:
-        hDst.write( Template(open(sp+"/modules/mfsp.tpl.py", "r", encoding="utf-8").read()).safe_substitute(dTpl) )
-    dTpl.clear()
+    sCode = "# generated data (do not edit)\n\n" + \
+            "# list of affix codes\n" + \
+            "lTagMiscPlur = " + str(lTagMiscPlur) + "\n" + \
+            "lTagMasForm = " + str(lTagMasForm) + "\n\n" + \
+            "# dictionary of words with uncommon plurals (-x, -ux, english, latin and italian plurals) and tags to generate them\n" + \
+            "dMiscPlur = " + str(dMiscPlur) + "\n\n" + \
+            "# dictionary of feminine forms and tags to generate masculine forms (singular and plural)\n" + \
+            "dMasForm = " + str(dMasForm) + "\n"
+    open(sp+"/modules/mfsp_data.py", "w", encoding="utf-8").write(sCode)
 
     if bJS:
         ## write file for JavaScript
-        dTpl = { "lTagMasForm": str(lTagMasForm), \
-                 "lTagMiscPlur": str(lTagMiscPlur), \
-                 "dMiscPlur": str([ [k,v]  for k, v in dMiscPlur.items() ]), \
-                 "dMasForm": str([ [k,v]  for k, v in dMasForm.items() ]) }
-        with open(sp+"/modules-js/mfsp.js", "w", encoding="utf-8") as hDst:
-            hDst.write( Template(open(sp+"/modules-js/mfsp.tpl.js", "r", encoding="utf-8").read()).safe_substitute(dTpl) )
+        sCode = '{\n' + \
+                '    "lTagMiscPlur": ' +  json.dumps(lTagMiscPlur, ensure_ascii=False) + ",\n" + \
+                '    "lTagMasForm": ' +  json.dumps(lTagMasForm, ensure_ascii=False) + ",\n" + \
+                '    "dMiscPlur": ' +  json.dumps(dMiscPlur, ensure_ascii=False) + ",\n" + \
+                '    "dMasForm": ' +  json.dumps(dMasForm, ensure_ascii=False) + "\n}"
+        open(sp+"/modules-js/mfsp_data.json", "w", encoding="utf-8").write(sCode)
 
 
 def makePhonetTable (sp, bJS=False):
     print("make phonet tables")
     
     try:
-        oDict = ibdawg.IBDAWG("french.bdic")
+        oDict = ibdawg.IBDAWG("French.bdic")
     except:
         traceback.print_exc()
         return
 
     with open(sp+"/data/phonet_simil.txt", 'r', encoding='utf-8') as hSrc:
+        # set of homophonic words
         lSet = []
         for sLine in hSrc.readlines():
             if not sLine.startswith("#") and sLine.strip():
                 lSet.append(sorted(sLine.strip().split()))
+        # dictionary of words
         dWord = {}
         for i, aSet in enumerate(lSet):
             for sWord in aSet:
@@ -286,20 +281,25 @@ def makePhonetTable (sp, bJS=False):
                     dWord[sWord] = i  # warning, what if word in several sets?
                 else:
                     echo("Mot inconnu : " + sWord)
+        # dictionary of morphologies
+        dMorph = {}
+        for sWord in dWord:
+            dMorph[sWord] = oDict.getMorph(sWord)
 
     # write file for Python
-    dTpl = { "dWord": str(dWord), "lSet": str(lSet) }
-    with open(sp+"/modules/phonet.py", "w", encoding="utf-8") as hDst:
-        hDst.write( Template(open(sp+"/modules/phonet.tpl.py", "r", encoding="utf-8").read()).safe_substitute(dTpl) )
-    
+    sCode = "# generated data (do not edit)\n\n" + \
+            "dWord = " + str(dWord) + "\n\n" + \
+            "lSet = " + str(lSet) + "\n\n" + \
+            "dMorph = " + str(dMorph) + "\n"
+    open(sp+"/modules/phonet_data.py", "w", encoding="utf-8").write(sCode)
+
     if bJS:
         ## write file for JavaScript
-        dTpl = { "lSet": str(lSet), \
-                 "dWord": str([ [k,v]  for k, v in dWord.items() ]) }
-
-        with open(sp+"/modules-js/phonet.js", "w", encoding="utf-8") as hDst:
-            hDst.write( Template(open(sp+"/modules-js/phonet.tpl.js", "r", encoding="utf-8").read()).safe_substitute(dTpl) )
-    dTpl.clear()
+        sCode = "{\n" + \
+                '    "dWord": ' + json.dumps(dWord, ensure_ascii=False) + ",\n" + \
+                '    "lSet": ' + json.dumps(lSet, ensure_ascii=False) + ",\n" + \
+                '    "dMorph": ' + json.dumps(dMorph, ensure_ascii=False) + "\n}"
+        open(sp+"/modules-js/phonet_data.json", "w", encoding="utf-8").write(sCode)
 
 
 def main (spLaunch, bJS=False):

@@ -20,10 +20,10 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.xSvMgr = self.ctx.ServiceManager
         self.xContainer = None
         self.xDialog = None
-        self.lDropDown = [u"être", "avoir", "aller", "vouloir", "pouvoir", "devoir", "faire", "envoyer", "prendre", u"connaître", \
-                          "savoir", "partir", u"répondre", "dire", "voir", "mettre", "tenir", "sentir", "finir", "manger"]
-        self.sWarning = u"Ce verbe n’a pas encore été vérifié. " \
-                        u"C’est pourquoi les options “pronominal” et “temps composés” sont désactivées."
+        self.lDropDown = ["être", "avoir", "aller", "vouloir", "pouvoir", "devoir", "faire", "envoyer", "prendre", "connaître", \
+                          "savoir", "partir", "répondre", "dire", "voir", "mettre", "tenir", "sentir", "finir", "manger"]
+        self.sWarning = "Ce verbe n’a pas encore été vérifié. " \
+                        "C’est pourquoi les options “pronominal” et “temps composés” sont désactivées."
 
     def _addWidget (self, name, wtype, x, y, w, h, **kwargs):
         xWidget = self.xDialog.createInstance('com.sun.star.awt.UnoControl%sModel' % wtype)
@@ -41,7 +41,7 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         ## dialog
         self.xDialog = self.xSvMgr.createInstanceWithContext('com.sun.star.awt.UnoControlDialogModel', self.ctx)
         self.xDialog.Width = 250
-        self.xDialog.Title = u"Grammalecte · Conjugueur"
+        self.xDialog.Title = "Grammalecte · Conjugueur"
 
         xFDinput = uno.createUnoStruct("com.sun.star.awt.FontDescriptor")
         xFDinput.Height = 11
@@ -98,14 +98,14 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.info = self._addWidget('info', 'FixedText', nX1, nY1, nWidth, nHeight, FontDescriptor = xFDinfo)
 
         # options
-        self.oneg = self._addWidget('oneg', 'CheckBox', nX2-5, nY2, 35, nHeight, Label = u"négation")
-        self.opro = self._addWidget('opro', 'CheckBox', nX2+30, nY2, 50, nHeight, Label = u"pronominal")
-        self.ofem = self._addWidget('ofem', 'CheckBox', nX2+80, nY2, 45, nHeight, Label = u"féminin")
-        self.oint = self._addWidget('oint', 'CheckBox', nX2-5, nY2+9, 55, nHeight, Label = u"interrogatif")
-        self.otco = self._addWidget('otco', 'CheckBox', nX2+55, nY2+9, 60, nHeight, Label = u"temps composés")
+        self.oneg = self._addWidget('oneg', 'CheckBox', nX2-5, nY2, 35, nHeight, Label = "négation")
+        self.opro = self._addWidget('opro', 'CheckBox', nX2+30, nY2, 50, nHeight, Label = "pronominal")
+        self.ofem = self._addWidget('ofem', 'CheckBox', nX2+80, nY2, 45, nHeight, Label = "féminin")
+        self.oint = self._addWidget('oint', 'CheckBox', nX2-5, nY2+9, 55, nHeight, Label = "interrogatif")
+        self.otco = self._addWidget('otco', 'CheckBox', nX2+55, nY2+9, 60, nHeight, Label = "temps composés")
 
         # group box // participe passé
-        gb_ppas = self._addWidget('groupbox_ppas', 'GroupBox', nX1-5, nY3-7, nGroupBoxWith, 55, Label = u"Participes présent et passés", \
+        gb_ppas = self._addWidget('groupbox_ppas', 'GroupBox', nX1-5, nY3-7, nGroupBoxWith, 55, Label = "Participes présent et passés", \
                                   FontDescriptor = xFDmode, FontRelief = 1, TextColor = nColorHead)
         self.ppre = self._addWidget('ppre', 'FixedText', nX1, nY3+5, nWidth, nHeightCj, Label = "")
         self.ppas1 = self._addWidget('ppas1', 'FixedText', nX1, nY3+14, nWidth, nHeightCj, Label = "")
@@ -114,18 +114,18 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.ppas4 = self._addWidget('ppas4', 'FixedText', nX1, nY3+35, nWidth, nHeightCj, Label = "")
 
         # group box // impératif
-        gb_impe = self._addWidget('groupbox_impe', 'GroupBox', nX2-5, nY3, nGroupBoxWith, 48, Label = u"Impératif", \
+        gb_impe = self._addWidget('groupbox_impe', 'GroupBox', nX2-5, nY3, nGroupBoxWith, 48, Label = "Impératif", \
                                   FontDescriptor = xFDmode, FontRelief = 1, TextColor = nColorHead)
-        self.impe = self._addWidget('impe', 'FixedText', nX2, nY3+12, nWidth, nHeight, Label = u"Présent", \
+        self.impe = self._addWidget('impe', 'FixedText', nX2, nY3+12, nWidth, nHeight, Label = "Présent", \
                                     FontDescriptor = xFDtemps, FontRelief = 1, TextColor = nColorHead2)
         self.impe1 = self._addWidget('impe1', 'FixedText', nX2, nY3+21, nWidth, nHeightCj, Label = "")
         self.impe2 = self._addWidget('impe2', 'FixedText', nX2, nY3+28, nWidth, nHeightCj, Label = "")
         self.impe3 = self._addWidget('impe3', 'FixedText', nX2, nY3+35, nWidth, nHeightCj, Label = "")
 
         # group box // indicatif
-        gb_ind = self._addWidget('groupbox_ind', 'GroupBox', nX1-5, nY4, nGroupBoxWith, 228, Label = u"Indicatif", \
+        gb_ind = self._addWidget('groupbox_ind', 'GroupBox', nX1-5, nY4, nGroupBoxWith, 228, Label = "Indicatif", \
                                  FontDescriptor = xFDmode, FontRelief = 1, TextColor = nColorHead)
-        self.ipre = self._addWidget('ipre', 'FixedText', nX1, nY4+12, nWidth, nHeight, Label = u"Présent", \
+        self.ipre = self._addWidget('ipre', 'FixedText', nX1, nY4+12, nWidth, nHeight, Label = "Présent", \
                                     FontDescriptor = xFDtemps, FontRelief = 1, TextColor = nColorHead2)
         self.ipre1 = self._addWidget('ipre1', 'FixedText', nX1, nY4+21, nWidth, nHeightCj, Label = "")
         self.ipre2 = self._addWidget('ipre2', 'FixedText', nX1, nY4+28, nWidth, nHeightCj, Label = "")
@@ -134,7 +134,7 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.ipre5 = self._addWidget('ipre5', 'FixedText', nX1, nY4+49, nWidth, nHeightCj, Label = "")
         self.ipre6 = self._addWidget('ipre6', 'FixedText', nX1, nY4+56, nWidth, nHeightCj, Label = "")
 
-        self.iimp = self._addWidget('iimp', 'FixedText', nX1, nY5+12, nWidth, nHeight, Label = u"Imparfait", \
+        self.iimp = self._addWidget('iimp', 'FixedText', nX1, nY5+12, nWidth, nHeight, Label = "Imparfait", \
                                     FontDescriptor = xFDtemps, FontRelief = 1, TextColor = nColorHead2)
         self.iimp1 = self._addWidget('iimp1', 'FixedText', nX1, nY5+21, nWidth, nHeightCj, Label = "")
         self.iimp2 = self._addWidget('iimp2', 'FixedText', nX1, nY5+28, nWidth, nHeightCj, Label = "")
@@ -143,7 +143,7 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.iimp5 = self._addWidget('iimp5', 'FixedText', nX1, nY5+49, nWidth, nHeightCj, Label = "")
         self.iimp6 = self._addWidget('iimp6', 'FixedText', nX1, nY5+56, nWidth, nHeightCj, Label = "")
 
-        self.ipsi = self._addWidget('ipsi', 'FixedText', nX1, nY6+12, nWidth, nHeight, Label = u"Passé Simple", \
+        self.ipsi = self._addWidget('ipsi', 'FixedText', nX1, nY6+12, nWidth, nHeight, Label = "Passé Simple", \
                                     FontDescriptor = xFDtemps, FontRelief = 1, TextColor = nColorHead2)
         self.ipsi1 = self._addWidget('ipsi1', 'FixedText', nX1, nY6+21, nWidth, nHeightCj, Label = "")
         self.ipsi2 = self._addWidget('ipsi2', 'FixedText', nX1, nY6+28, nWidth, nHeightCj, Label = "")
@@ -152,7 +152,7 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.ipsi5 = self._addWidget('ipsi5', 'FixedText', nX1, nY6+49, nWidth, nHeightCj, Label = "")
         self.ipsi6 = self._addWidget('ipsi6', 'FixedText', nX1, nY6+56, nWidth, nHeightCj, Label = "")
 
-        self.ifut = self._addWidget('ifut', 'FixedText', nX1, nY7+12, nWidth, nHeight, Label = u"Futur", \
+        self.ifut = self._addWidget('ifut', 'FixedText', nX1, nY7+12, nWidth, nHeight, Label = "Futur", \
                                     FontDescriptor = xFDtemps, FontRelief = 1, TextColor = nColorHead2)
         self.ifut1 = self._addWidget('ifut1', 'FixedText', nX1, nY7+21, nWidth, nHeightCj, Label = "")
         self.ifut2 = self._addWidget('ifut2', 'FixedText', nX1, nY7+28, nWidth, nHeightCj, Label = "")
@@ -165,9 +165,9 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
                                        MultiLine = True, TextColor = 0x333333, Label = self.sWarning)
 
         # group box // subjonctif
-        gb_sub = self._addWidget('groupbox_sub', 'GroupBox', nX2-5, nY4, nGroupBoxWith, 123, Label = u"Subjonctif", \
+        gb_sub = self._addWidget('groupbox_sub', 'GroupBox', nX2-5, nY4, nGroupBoxWith, 123, Label = "Subjonctif", \
                                  FontDescriptor = xFDmode, FontRelief = 1, TextColor = nColorHead)
-        self.spre = self._addWidget('spre', 'FixedText', nX2, nY4+12, nWidth, nHeight, Label = u"Présent", \
+        self.spre = self._addWidget('spre', 'FixedText', nX2, nY4+12, nWidth, nHeight, Label = "Présent", \
                                     FontDescriptor = xFDtemps, FontRelief = 1, TextColor = nColorHead2)
         self.spre1 = self._addWidget('spre1', 'FixedText', nX2, nY4+21, nWidth, nHeightCj, Label = "")
         self.spre2 = self._addWidget('spre2', 'FixedText', nX2, nY4+28, nWidth, nHeightCj, Label = "")
@@ -176,7 +176,7 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.spre5 = self._addWidget('spre5', 'FixedText', nX2, nY4+49, nWidth, nHeightCj, Label = "")
         self.spre6 = self._addWidget('spre6', 'FixedText', nX2, nY4+56, nWidth, nHeightCj, Label = "")
 
-        self.simp = self._addWidget('simp', 'FixedText', nX2, nY5+12, nWidth, nHeight, Label = u"Imparfait", \
+        self.simp = self._addWidget('simp', 'FixedText', nX2, nY5+12, nWidth, nHeight, Label = "Imparfait", \
                                     FontDescriptor = xFDtemps, FontRelief = 1, TextColor = nColorHead2)
         self.simp1 = self._addWidget('simp1', 'FixedText', nX2, nY5+21, nWidth, nHeightCj, Label = "")
         self.simp2 = self._addWidget('simp2', 'FixedText', nX2, nY5+28, nWidth, nHeightCj, Label = "")
@@ -186,9 +186,9 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.simp6 = self._addWidget('simp6', 'FixedText', nX2, nY5+56, nWidth, nHeightCj, Label = "")
 
         # group box // conditionnel
-        gb_cond = self._addWidget('groupbox_cond', 'GroupBox', nX2-5, nY6b, nGroupBoxWith, 123, Label = u"Conditionnel", \
+        gb_cond = self._addWidget('groupbox_cond', 'GroupBox', nX2-5, nY6b, nGroupBoxWith, 123, Label = "Conditionnel", \
                                   FontDescriptor = xFDmode, FontRelief = 1, TextColor = nColorHead)
-        self.conda = self._addWidget('conda', 'FixedText', nX2, nY6b+12, nWidth, nHeight, Label = u"Présent", \
+        self.conda = self._addWidget('conda', 'FixedText', nX2, nY6b+12, nWidth, nHeight, Label = "Présent", \
                                      FontDescriptor = xFDtemps, FontRelief = 1, TextColor = nColorHead2)
         self.conda1 = self._addWidget('conda1', 'FixedText', nX2, nY6b+21, nWidth, nHeightCj, Label = "")
         self.conda2 = self._addWidget('conda2', 'FixedText', nX2, nY6b+28, nWidth, nHeightCj, Label = "")
@@ -233,7 +233,7 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
         self.xContainer.getControl('ofem').setActionCommand('Change')
 
         ## set verb
-        self.input.Text = sArgs  if sArgs  else u"être"
+        self.input.Text = sArgs  if sArgs  else "être"
         self._newVerb()
 
         ## mysterious action
@@ -420,25 +420,25 @@ class Conjugueur (unohelper.Base, XActionListener, XJobExecutor):
 
     def _setTitles (self):
         if not self.otco.State:
-            self.ipre.Label = u"Présent"
-            self.ifut.Label = u"Futur"
-            self.iimp.Label = u"Imparfait"
-            self.ipsi.Label = u"Passé simple"
-            self.spre.Label = u"Présent"
-            self.simp.Label = u"Imparfait"
-            self.conda.Label = u"Présent"
-            self.condb.Label = u""
-            self.impe.Label = u"Présent"
+            self.ipre.Label = "Présent"
+            self.ifut.Label = "Futur"
+            self.iimp.Label = "Imparfait"
+            self.ipsi.Label = "Passé simple"
+            self.spre.Label = "Présent"
+            self.simp.Label = "Imparfait"
+            self.conda.Label = "Présent"
+            self.condb.Label = ""
+            self.impe.Label = "Présent"
         else:
-            self.ipre.Label = u"Passé composé"
-            self.ifut.Label = u"Futur antérieur"
-            self.iimp.Label = u"Plus-que-parfait"
-            self.ipsi.Label = u"Passé antérieur"
-            self.spre.Label = u"Passé"
-            self.simp.Label = u"Plus-que-parfait"
-            self.conda.Label = u"Passé (1ʳᵉ forme)"
-            self.condb.Label = u"Passé (2ᵉ forme)"
-            self.impe.Label = u"Passé"
+            self.ipre.Label = "Passé composé"
+            self.ifut.Label = "Futur antérieur"
+            self.iimp.Label = "Plus-que-parfait"
+            self.ipsi.Label = "Passé antérieur"
+            self.spre.Label = "Passé"
+            self.simp.Label = "Plus-que-parfait"
+            self.conda.Label = "Passé (1ʳᵉ forme)"
+            self.condb.Label = "Passé (2ᵉ forme)"
+            self.impe.Label = "Passé"
 
 
 # g_ImplementationHelper = unohelper.ImplementationHelper()

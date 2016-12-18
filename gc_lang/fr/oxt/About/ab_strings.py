@@ -7,33 +7,33 @@ def getUI (sLang):
 
 dStrings = {
     "fr": {
-            "windowtitle": u"À propos…",
-            "title": u"Grammalecte",
-            "version": u"Version : ${version}",
-            "license": u"Licence : GPL 3",
-            "website": u"Site web",
+            "windowtitle": "À propos…",
+            "title": "Grammalecte",
+            "version": "Version : ${version}",
+            "license": "Licence : GPL 3",
+            "website": "Site web",
 
-            "pythonver": u"Machine virtuelle Python : v",
+            "pythonver": "Machine virtuelle Python : v",
 
-            "message": u"Avec le soutien de",
-            "sponsor": u"La Mouette…",
-            "link": u"… et de nombreux contributeurs.",
+            "message": "Avec le soutien de",
+            "sponsor": "La Mouette…",
+            "link": "… et de nombreux contributeurs.",
 
-            "close": u"~OK"
+            "close": "~OK"
           },
     "en": {
-            "windowtitle": u"About…",
-            "title": u"Grammalecte",
-            "version": u"Version: ${version}",
-            "license": u"License: GPL 3",
-            "website": u"Web site",
+            "windowtitle": "About…",
+            "title": "Grammalecte",
+            "version": "Version: ${version}",
+            "license": "License: GPL 3",
+            "website": "Web site",
 
-            "pythonver": u"Python virtual machine: v",
+            "pythonver": "Python virtual machine: v",
 
-            "message": u"With the support of",
-            "sponsor": u"La Mouette…",
-            "link": u"… and many contributors.",
+            "message": "With the support of",
+            "sponsor": "La Mouette…",
+            "link": "… and many contributors.",
 
-            "close": u"~OK"
+            "close": "~OK"
           }
 }

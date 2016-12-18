@@ -52,7 +52,7 @@ function parse (sText, sCountry="${country_default}", bDebug=false) {
     let dDA = new Map();
     let sNew = "";
 
-    // analyze by paragraph
+    // parse paragraph
     try {
         [sNew, aErrors] = _proofread(sText, sAlt, 0, true, dDA, sCountry, bDebug);
         if (sNew) {
@@ -63,6 +63,21 @@ function parse (sText, sCountry="${country_default}", bDebug=false) {
         helpers.logerror(e);
     }
 
+    // cleanup
+    if (sText.includes(" ")) {
+        sText = sText.replace(/ /g, ' '); // nbsp
+    }
+    if (sText.includes(" ")) {
+        sText = sText.replace(/ /g, ' '); // snbsp
+    }
+    if (sText.includes("'")) {
+        sText = sText.replace(/'/g, "’");
+    }
+    if (sText.includes("‑")) {
+        sText = sText.replace(/‑/g, "-"); // nobreakdash
+    }
+
+    // parse sentence
     for (let [iStart, iEnd] of _getSentenceBoundaries(sText)) {
         if (4 < (iEnd - iStart) < 2000) {
             dDA.clear();
@@ -94,78 +109,63 @@ function* _getSentenceBoundaries (sText) {
 function _proofread (s, sx, nOffset, bParagraph, dDA, sCountry, bDebug) {
     let aErrs = [];
     let bChange = false;
-    //echo("s: " + s);
-    if (!bParagraph) {
-        // after the first pass, we remove automatically some characters, and change some others
-        if (s.includes(" ")) {
-            s = s.replace(/ /g, ' '); // nbsp
-            bChange = true;
-        }
-        if (s.includes(" ")) {
-            s = s.replace(/ /g, ' '); // snbsp
-            bChange = true;
-        }
-        if (s.includes("@")) {
-            s = s.replace(/@/g, ' ');
-            bChange = true;
-        }
-        if (s.includes("'")) {
-            s = s.replace(/'/g, "’");
-            bChange = true;
-        }
-        if (s.includes("‑")) {
-            s = s.replace(/‑/g, "-"); // nobreakdash
-            bChange = true;
-        }
-    }
-
     let bIdRule = option('idrule');
     let m;
+    let bCondMemo;
 
     for (let [sOption, lRuleGroup] of _getRules(bParagraph)) {
         if (!sOption || option(sOption)) {
-            for (let [zRegex, bUppercase, sRuleId, lActions, lGroups, lNegLookBefore] of lRuleGroup) {
+            for (let [zRegex, bUppercase, sLineId, sRuleId, lActions, lGroups, lNegLookBefore] of lRuleGroup) {
                 if (!_aIgnoredRules.has(sRuleId)) {
                     while ((m = zRegex._exec2(s, lGroups, lNegLookBefore)) !== null) {
+                        bCondMemo = null;
                         /*if (bDebug) {
-                            echo(">>>> Rule # " + sRuleId + " - Text: " + s + " opt: "+ sOption);
+                            echo(">>>> Rule # " + sLineId + " - Text: " + s + " opt: "+ sOption);
                         }*/
                         for (let [sFuncCond, cActionType, sWhat, ...eAct] of lActions) {
                         // action in lActions: [ condition, action type, replacement/suggestion/action[, iGroup[, message, URL]] ]
                             try {
                                 //echo(oEvalFunc[sFuncCond]);
-                                if (!sFuncCond || oEvalFunc[sFuncCond](s, sx, m, dDA, sCountry)) {
+                                bCondMemo = (!sFuncCond || oEvalFunc[sFuncCond](s, sx, m, dDA, sCountry, bCondMemo))
+                                if (bCondMemo) {
                                     switch (cActionType) {
                                         case "-":
                                             // grammar error
-                                            //echo("-> error detected in " + sRuleId + "\nzRegex: " + zRegex.source);
-                                            aErrs.push(_createError(s, sWhat, nOffset, m, eAct[0], sRuleId, bUppercase, eAct[1], eAct[2], bIdRule, sOption));
+                                            //echo("-> error detected in " + sLineId + "\nzRegex: " + zRegex.source);
+                                            aErrs.push(_createError(s, sWhat, nOffset, m, eAct[0], sLineId, sRuleId, bUppercase, eAct[1], eAct[2], bIdRule, sOption));
                                             break;
                                         case "~":
                                             // text processor
-                                            //echo("-> text processor by " + sRuleId + "\nzRegex: " + zRegex.source);
+                                            //echo("-> text processor by " + sLineId + "\nzRegex: " + zRegex.source);
                                             s = _rewrite(s, sWhat, eAct[0], m, bUppercase);
                                             bChange = true;
                                             if (bDebug) {
-                                                echo("~ " + s + "  -- " + m[eAct[0]] + "  # " + sRuleId);
+                                                echo("~ " + s + "  -- " + m[eAct[0]] + "  # " + sLineId);
                                             }
                                             break;
                                         case "=":
                                             // disambiguation
-                                            //echo("-> disambiguation by " + sRuleId + "\nzRegex: " + zRegex.source);
+                                            //echo("-> disambiguation by " + sLineId + "\nzRegex: " + zRegex.source);
                                             oEvalFunc[sWhat](s, m, dDA);
                                             if (bDebug) {
-                                                echo("= " + m[0] + "  # " + sRuleId + "\nDA: " + dDA._toString());
+                                                echo("= " + m[0] + "  # " + sLineId + "\nDA: " + dDA._toString());
                                             }
                                             break;
+                                        case ">":
+                                            // we do nothing, this test is just a condition to apply all following actions
+                                            break;
                                         default:
-                                            echo("# error: unknown action at " + sRuleId);
+                                            echo("# error: unknown action at " + sLineId);
+                                    }
+                                } else {
+                                    if (cActionType == ">") {
+                                        break;
                                     }
                                 }
                             }
                             catch (e) {
                                 echo(s);
-                                echo("# id-rule:" + sRuleId);
+                                echo("# id-rule:" + sLineId);
                                 helpers.logerror(e);
                             }
                         }
@@ -180,11 +180,12 @@ function _proofread (s, sx, nOffset, bParagraph, dDA, sCountry, bDebug) {
     return [false, aErrs];
 }
 
-function _createError (s, sRepl, nOffset, m, iGroup, sId, bUppercase, sMsg, sURL, bIdRule, sOption) {
+function _createError (s, sRepl, nOffset, m, iGroup, sLineId, sRuleId, bUppercase, sMsg, sURL, bIdRule, sOption) {
     let oErr = {};
     oErr["nStart"] = nOffset + m.start[iGroup];
     oErr["nEnd"] = nOffset + m.end[iGroup];
-    oErr["sRuleId"] = sId;
+    oErr["sLineId"] = sLineId;
+    oErr["sRuleId"] = sRuleId;
     oErr["sType"] = (sOption) ? sOption : "notype";
     // suggestions
     if (sRepl[0] === "=") {
@@ -214,7 +215,7 @@ function _createError (s, sRepl, nOffset, m, iGroup, sId, bUppercase, sMsg, sURL
         sMessage = sMsg._expand(m);
     }
     if (bIdRule) {
-        sMessage += "  # " + sId;
+        sMessage += "  #" + sLineId + " #" + sRuleId;
     }
     oErr["sMessage"] = sMessage;
     // URL
@@ -233,14 +234,9 @@ function _rewrite (s, sRepl, iGroup, m, bUppercase) {
     } else if (sRepl === "@") {
         sNew = "@".repeat(ln);
     } else if (sRepl.slice(0,1) === "=") {
-        if (sRepl.slice(1,2) != "@") {
-            sNew = oEvalFunc[sRepl.slice(1)](s, m);
-            sNew = sNew + " ".repeat(ln-sNew.length);
-        } else {
-            sNew = oEvalFunc[sRepl.slice(2)](s, m);
-            sNew = sNew + "@".repeat(ln-sNew.length);
-        }
-        if (bUppercase && m[iGroup].slice(0,1).isupper()) {
+        sNew = oEvalFunc[sRepl.slice(1)](s, m);
+        sNew = sNew + " ".repeat(ln-sNew.length);
+        if (bUppercase && m[iGroup].slice(0,1)._isUpperCase()) {
             sNew = sNew._toCapitalize();
         }
     } else {
@@ -251,12 +247,39 @@ function _rewrite (s, sRepl, iGroup, m, bUppercase) {
     return s.slice(0, m.start[iGroup]) + sNew + s.slice(m.end[iGroup]);
 }
 
-function ignoreRule (sId) {
-    _aIgnoredRules.add(sId);
+function ignoreRule (sRuleId) {
+    _aIgnoredRules.add(sRuleId);
 }
 
 function resetIgnoreRules () {
     _aIgnoredRules.clear();
+}
+
+function reactivateRule (sRuleId) {
+    _aIgnoredRules.delete(sRuleId);
+}
+
+function listRules (sFilter=null) {
+    // generator: returns tuple (sOption, sLineId, sRuleId)
+    try {
+        for ([sOption, lRuleGroup] of _getRules(true)) {
+            for ([_, _, sLineId, sRuleId, _] of lRuleGroup) {
+                if (!sFilter || sRuleId.test(sFilter)) {
+                    yield [sOption, sLineId, sRuleId];
+                }
+            }
+        }
+        for ([sOption, lRuleGroup] of _getRules(false)) {
+            for ([_, _, sLineId, sRuleId, _] of lRuleGroup) {
+                if (!sFilter || sRuleId.test(sFilter)) {
+                    yield [sOption, sLineId, sRuleId];
+                }
+            }
+        }
+    }
+    catch (e) {
+        helpers.logerror(e);
+    }
 }
 
 
@@ -264,10 +287,16 @@ function resetIgnoreRules () {
 
 function load () {
     try {
-        _oDict = new ibdawg.IBDAWG("${lang}");
+        _oDict = new ibdawg.IBDAWG("${js_binary_dic}");
     }
     catch (e) {
         helpers.logerror(e);
+    }
+}
+
+function setOption (sOpt, bVal) {
+    if (_dOptions.has(sOpt)) {
+        _dOptions.set(sOpt, bVal);
     }
 }
 
@@ -415,7 +444,7 @@ function stem (sWord) {
 
 function nextword (s, iStart, n) {
     // get the nth word of the input string or empty string
-    let z = new RegExp("^( +[a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%_-]+){" + (n-1).toString() + "} +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%_-]+)", "i");
+    let z = new RegExp("^( +[a-zà-öA-Zø-ÿÀ-Ö0-9Ø-ßĀ-ʯﬁ-ﬆ%_-]+){" + (n-1).toString() + "} +([a-zà-öA-Zø-ÿÀ-Ö0-9Ø-ßĀ-ʯﬁ-ﬆ%_-]+)", "i");
     let m = z.exec(s.slice(iStart));
     if (!m) {
         return null;
@@ -425,7 +454,7 @@ function nextword (s, iStart, n) {
 
 function prevword (s, iEnd, n) {
     // get the (-)nth word of the input string or empty string
-    let z = new RegExp("([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%_-]+) +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ%_-]+ +){" + (n-1).toString() + "}$", "i");
+    let z = new RegExp("([a-zà-öA-Zø-ÿÀ-Ö0-9Ø-ßĀ-ʯﬁ-ﬆ%_-]+) +([a-zà-öA-Zø-ÿÀ-Ö0-9Ø-ßĀ-ʯﬁ-ﬆ%_-]+ +){" + (n-1).toString() + "}$", "i");
     let m = z.exec(s.slice(0, iEnd));
     if (!m) {
         return null;
@@ -433,8 +462,8 @@ function prevword (s, iEnd, n) {
     return [m.index, m[1]];
 }
 
-const _zNextWord = new RegExp ("^ +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ_][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ_-]*)", "i");
-const _zPrevWord = new RegExp ("([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ_][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ_-]*) +$", "i");
+const _zNextWord = new RegExp ("^ +([a-zà-öA-Zø-ÿÀ-Ö0-9Ø-ßĀ-ʯﬁ-ﬆ_][a-zà-öA-Zø-ÿÀ-Ö0-9Ø-ßĀ-ʯﬁ-ﬆ_-]*)", "i");
+const _zPrevWord = new RegExp ("([a-zà-öA-Zø-ÿÀ-Ö0-9Ø-ßĀ-ʯﬁ-ﬆ_][a-zà-öA-Zø-ÿÀ-Ö0-9Ø-ßĀ-ʯﬁ-ﬆ_-]*) +$", "i");
 
 function nextword1 (s, iStart) {
     // get next word (optimization)
@@ -566,6 +595,11 @@ exports.parse = parse;
 exports.lang = lang;
 exports.version = version;
 exports.getDictionary = getDictionary;
+exports.setOption = setOption;
 exports.setOptions = setOptions;
 exports.getOptions = getOptions;
 exports.resetOptions = resetOptions;
+exports.ignoreRule = ignoreRule;
+exports.reactivateRule = reactivateRule;
+exports.resetIgnoreRules = resetIgnoreRules;
+exports.listRules = listRules;

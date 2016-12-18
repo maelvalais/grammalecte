@@ -1,4 +1,3 @@
-# -*- encoding: UTF-8 -*-
 # Grammalecte - Compiled regular expressions
 
 import re

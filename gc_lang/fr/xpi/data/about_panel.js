@@ -1,5 +1,8 @@
 // JavaScript
 
+let nDefaultPanelHeight = 0;
+
+
 /*
 	Events
 */
@@ -17,6 +20,10 @@ self.port.on("sendSpellingOptionsToPanel", function (bDicMod, bDicClas, bDicRef,
 
 self.port.on("showHelp", function () {
 	showHelp();
+});
+
+self.port.on("calcDefaultPanelHeight", function () {
+	nDefaultPanelHeight = calcPanelHeight();
 });
 
 document.getElementById('grammar').addEventListener("click", function(event) {
@@ -80,22 +87,33 @@ window.addEventListener(
 	Actions
 */
 
+function calcPanelHeight () {
+	return document.getElementById("thanks").offsetTop + document.getElementById("thanks").offsetHeight
+}
+
+function setHeight (n) {
+	self.port.emit("setHeight", n);
+}
+
 function showHelp () {
 	document.getElementById('spelling_section').style.display = "none";
 	document.getElementById('grammar_section').style.display = "none";
 	document.getElementById('help_section').style.display = "block";
+	setHeight(nDefaultPanelHeight);
 }
 
 function showGrammarOptions () {
 	document.getElementById('grammar_section').style.display = "block";
 	document.getElementById('spelling_section').style.display = "none";
 	document.getElementById('help_section').style.display = "none";
+	setHeight(1000);
 }
 
 function showSpellingOptions () {
 	document.getElementById('spelling_section').style.display = "block";
 	document.getElementById('grammar_section').style.display = "none";
 	document.getElementById('help_section').style.display = "none";
+	setHeight(1000);
 }
 
 function setGrammarOptionsOnPanel (oOptions) {

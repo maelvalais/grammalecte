@@ -37,7 +37,7 @@ RegExp.prototype._exec2 = function (sText, aGroupsPos, aNegLookBefore=null) {
                     m.start.push(this.lastIndex - m[i].length);
                     m.end.push(this.lastIndex);
                 } else if (codePos === "w") {
-                    iPos = m[0].search("[ ~]"+m[i]+"[ ,]") + 1 + m.index
+                    iPos = m[0].search("[ ~’,()«»“”]"+m[i]+"[ ,’~()«»“”]") + 1 + m.index
                     m.start.push(iPos);
                     m.end.push(iPos + m[i].length)
                 } else if (codePos === "*") {

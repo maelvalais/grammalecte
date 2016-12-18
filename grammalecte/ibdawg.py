@@ -89,11 +89,12 @@ class IBDAWG:
                 "  Dictionary: {0.nEntries:>12,} entries,    {0.nNode:>11,} nodes,   {0.nArc:>11,} arcs\n" \
                 "  Address size: {0.nBytesNodeAddress:>1} bytes,  Arc size: {0.nBytesArc:>1} bytes\n".format(self)
 
-    def writeAsJSObject (self, spfDest):
+    def writeAsJSObject (self, spfDest, bInJSModule=False):
         "write IBDAWG as a JavaScript object in a JavaScript module"
         import json
         with open(spfDest, "w", encoding="utf-8") as hDst:
-            hDst.write('// JavaScript\n\n"use strict";\n\nconst dictionary = ')
+            if bInJSModule:
+                hDst.write('// JavaScript\n// Generated data (do not edit)\n\n"use strict";\n\nconst dictionary = ')
             hDst.write(json.dumps({
                             "sName": self.sName,
                             "nVersion": self.nVersion,
@@ -118,7 +119,8 @@ class IBDAWG:
                             "_addrBitMask": self._addrBitMask,
                             "nBytesOffset": self.nBytesOffset
                         }, ensure_ascii=False))
-            hDst.write(";\n\nexports.dictionary = dictionary;\n")
+            if bInJSModule:
+                hDst.write(";\n\nexports.dictionary = dictionary;\n")
 
     def isValidToken (self, sToken):
         "checks if sToken is valid (if there is hyphens in sToken, sToken is split, each part is checked)"

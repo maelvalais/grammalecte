@@ -12,21 +12,21 @@
 				<key>background</key>
 				<string>#202025</string>
 				<key>caret</key>
-				<string>#F8F8F0</string>
+				<string>#BFFFFF</string>
 				<key>foreground</key>
 				<string>#F8F8F2</string>
 				<key>invisibles</key>
 				<string>#3B3A32</string>
 				<key>lineHighlight</key>
-				<string>#303040</string>
+				<string>#004060</string>
 				<key>selection</key>
-				<string>#404050</string>
+				<string>#003050</string>
 				<key>findHighlight</key>
-				<string>#FFE792</string>
+				<string>#FFFF00</string>
 				<key>findHighlightForeground</key>
 				<string>#000000</string>
 				<key>selectionBorder</key>
-				<string>#222218</string>
+				<string>#006080</string>
 				<key>activeGuide</key>
 				<string>#9D550FB0</string>
 
@@ -122,7 +122,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#F92672</string>
+				<string>#F06070</string>
 			</dict>
 		</dict>
 		<dict>
@@ -162,6 +162,34 @@
 				<string>#20F0F0</string>
 				<key>background</key>
 				<string>#204040</string>
+				<key>fontStyle</key>
+				<string>bold</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Keyword Condition Green</string>
+			<key>scope</key>
+			<string>keyword.condition.green</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#20F020</string>
+				<key>background</key>
+				<string>#204020</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Keyword Condition Red</string>
+			<key>scope</key>
+			<string>keyword.condition.red</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#F02020</string>
+				<key>background</key>
+				<string>#402020</string>
 			</dict>
 		</dict>
 		<dict>
@@ -175,6 +203,8 @@
 				<string>#FF7070</string>
 				<key>background</key>
 				<string>#602020</string>
+				<key>fontStyle</key>
+				<string>bold</string>
 			</dict>
 		</dict>
 		<dict>
@@ -188,6 +218,8 @@
 				<string>#30FF30</string>
 				<key>background</key>
 				<string>#204020</string>
+				<key>fontStyle</key>
+				<string>bold</string>
 			</dict>
 		</dict>
 		<dict>
@@ -201,8 +233,77 @@
 				<string>#FF9020</string>
 				<key>background</key>
 				<string>#704010</string>
+				<key>fontStyle</key>
+				<string>bold</string>
 			</dict>
 		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>Keyword Python</string>
+			<key>scope</key>
+			<string>keyword.python</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#A0A0A0</string>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>Rule options</string>
+			<key>scope</key>
+			<string>rule.options</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#F0A020</string>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>Rule casing</string>
+			<key>scope</key>
+			<string>rule.casing</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#30C0F0</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Rule option name</string>
+			<key>scope</key>
+			<string>rule.optionname</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#90E010</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Rule rule name</string>
+			<key>scope</key>
+			<string>rule.rulename</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>italic</string>
+				<key>foreground</key>
+				<string>#A0A0A0</string>
+			</dict>
+		</dict>
+		
 
 		<dict>
 			<key>name</key>
@@ -215,6 +316,74 @@
 				<string>#F92672</string>
 			</dict>
 		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>Definition</string>
+			<key>scope</key>
+			<string>definition</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#70B0F0</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Test</string>
+			<key>scope</key>
+			<string>test</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#30F070</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Todo</string>
+			<key>scope</key>
+			<string>todo</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#F05010</string>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>Options command</string>
+			<key>scope</key>
+			<string>options.command</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#50F0A0</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Options parameter</string>
+			<key>scope</key>
+			<string>options.parameter</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#70B0F0</string>
+			</dict>
+		</dict>
+
 		<dict>
 			<key>name</key>
 			<string>Storage</string>
@@ -223,7 +392,7 @@
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>
-				<string></string>
+				<string>bold</string>
 				<key>foreground</key>
 				<string>#F92672</string>
 			</dict>
@@ -251,7 +420,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#A6E22E</string>
+				<string>#A0E030</string>
 			</dict>
 		</dict>
 		<dict>
@@ -343,6 +512,21 @@
 				<string></string>
 				<key>foreground</key>
 				<string>#66D9EF</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Library function debug</string>
+			<key>scope</key>
+			<string>support.function.debug</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#F0F060</string>
+				<key>background</key>
+				<string>#A05000</string>
 			</dict>
 		</dict>
 		<dict>

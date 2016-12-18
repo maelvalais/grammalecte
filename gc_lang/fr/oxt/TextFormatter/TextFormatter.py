@@ -437,7 +437,7 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
                     self.struct1_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.struct2.State:
-                    n = self._replaceText(xElem, u"([:alpha:])- *\n([:alpha:])", u"$1$2", True)  # EOL
+                    n = self._replaceText(xElem, "([:alpha:])- *\n([:alpha:])", "$1$2", True)  # EOL
                     n += self._replaceHyphenAtEndOfParagraphs(xElem) # EOP
                     self.struct2_res.Label = str(n)
                     self.pbar.ProgressValue += 1
@@ -451,37 +451,37 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
             # espaces surnuméraires
             if self.ssp.State:
                 if self.ssp3.State:
-                    n = self._replaceText(xElem, u"[  ]+$", "", True)
+                    n = self._replaceText(xElem, "[  ]+$", "", True)
                     self.ssp3_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.ssp2.State:
-                    n = self._replaceText(xElem, u"  ", u" ", False) # espace + espace insécable -> espace
-                    n += self._replaceText(xElem, u"  ", u" ", False) # espace insécable + espace -> espace
-                    n += self._replaceText(xElem, u"  +", u" ", True) # espaces surnuméraires
-                    n += self._replaceText(xElem, u"  +", u" ", True) # espaces insécables surnuméraires
+                    n = self._replaceText(xElem, "  ", " ", False) # espace + espace insécable -> espace
+                    n += self._replaceText(xElem, "  ", " ", False) # espace insécable + espace -> espace
+                    n += self._replaceText(xElem, "  +", " ", True) # espaces surnuméraires
+                    n += self._replaceText(xElem, "  +", " ", True) # espaces insécables surnuméraires
                     self.ssp2_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.ssp1.State:
-                    n = self._replaceText(xElem, u"^[  ]+", "", True)
+                    n = self._replaceText(xElem, "^[  ]+", "", True)
                     self.ssp1_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.ssp4.State:
-                    n = self._replaceText(xElem, u" +(?=[.,…])", "", True)
+                    n = self._replaceText(xElem, " +(?=[.,…])", "", True)
                     self.ssp4_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.ssp5.State:
-                    n = self._replaceText(xElem, u"\\([  ]+", u"(", True)
-                    n += self._replaceText(xElem, u"[  ]+\\)", u")", True)
+                    n = self._replaceText(xElem, "\\([  ]+", "(", True)
+                    n += self._replaceText(xElem, "[  ]+\\)", ")", True)
                     self.ssp5_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.ssp6.State:
-                    n = self._replaceText(xElem, u"\\[[  ]+", u"[", True)
-                    n += self._replaceText(xElem, u"[  ]+\\]", u"]", True)
+                    n = self._replaceText(xElem, "\\[[  ]+", "[", True)
+                    n += self._replaceText(xElem, "[  ]+\\]", "]", True)
                     self.ssp6_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.ssp7.State:
-                    n = self._replaceText(xElem, u"“[  ]+", u"“", True)
-                    n += self._replaceText(xElem, u"[  ]”", u"”", True)
+                    n = self._replaceText(xElem, "“[  ]+", "“", True)
+                    n += self._replaceText(xElem, "[  ]”", "”", True)
                     self.ssp7_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 self.ssp.State = False
@@ -492,68 +492,68 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
                 if self.nbsp1.State:
                     if self.nnbsp1.State:
                         # espaces insécables fines
-                        n = self._replaceText(xElem, u"(?<=[:alnum:]);", u" ;", True)
-                        n += self._replaceText(xElem, u"(?<=[:alnum:])[?]", u" ?", True)
-                        n += self._replaceText(xElem, u"(?<=[:alnum:])!", u" !", True)
-                        n += self._replaceText(xElem, u"(?<=[]…)»}]);", u" ;", True)
-                        n += self._replaceText(xElem, u"(?<=[]…)»}])[?]", u" ?", True)
-                        n += self._replaceText(xElem, u"(?<=[]…)»}])!", u" !", True)
-                        n += self._replaceText(xElem, u"[  ]+([;?!])", u" $1", True)
-                        n += self._replaceText(xElem, u"(?<=[:alnum:]):", u" :", True)
-                        n += self._replaceText(xElem, u"(?<=[]…)»}]):", u" :", True)
-                        n += self._replaceText(xElem, u"[  ]+:", u" :", True)
+                        n = self._replaceText(xElem, "(?<=[:alnum:]);", " ;", True)
+                        n += self._replaceText(xElem, "(?<=[:alnum:])[?]", " ?", True)
+                        n += self._replaceText(xElem, "(?<=[:alnum:])!", " !", True)
+                        n += self._replaceText(xElem, "(?<=[]…)»}]);", " ;", True)
+                        n += self._replaceText(xElem, "(?<=[]…)»}])[?]", " ?", True)
+                        n += self._replaceText(xElem, "(?<=[]…)»}])!", " !", True)
+                        n += self._replaceText(xElem, "[  ]+([;?!])", " $1", True)
+                        n += self._replaceText(xElem, "(?<=[:alnum:]):", " :", True)
+                        n += self._replaceText(xElem, "(?<=[]…)»}]):", " :", True)
+                        n += self._replaceText(xElem, "[  ]+:", " :", True)
                     else:
                         # espaces insécables
-                        n = self._replaceText(xElem, u"(?<=[:alnum:]):", u" :", True)
-                        n += self._replaceText(xElem, u"(?<=[:alnum:]);", u" ;", True)
-                        n += self._replaceText(xElem, u"(?<=[:alnum:])[?]", u" ?", True)
-                        n += self._replaceText(xElem, u"(?<=[:alnum:])!", u" !", True)
-                        n += self._replaceText(xElem, u"(?<=[]…)»}]):", u" :", True)
-                        n += self._replaceText(xElem, u"(?<=[]…)»}]);", u" ;", True)
-                        n += self._replaceText(xElem, u"(?<=[]…)»}])[?]", u" ?", True)
-                        n += self._replaceText(xElem, u"(?<=[]…)»}])!", u" !", True)
-                        n += self._replaceText(xElem, u"[  ]+([:;?!])", u" $1", True)
-                    n -= self._replaceText(xElem, u"([[(])[   ]([!?:;])", u"$1$2", True)
-                    n -= self._replaceText(xElem, u"(?<=http)[   ]:(?=//)", u":", True)
-                    n -= self._replaceText(xElem, u"(?<=https)[   ]:(?=//)", u":", True)
-                    n -= self._replaceText(xElem, u"(?<=ftp)[   ]:(?=//)", u":", True)
+                        n = self._replaceText(xElem, "(?<=[:alnum:]):", " :", True)
+                        n += self._replaceText(xElem, "(?<=[:alnum:]);", " ;", True)
+                        n += self._replaceText(xElem, "(?<=[:alnum:])[?]", " ?", True)
+                        n += self._replaceText(xElem, "(?<=[:alnum:])!", " !", True)
+                        n += self._replaceText(xElem, "(?<=[]…)»}]):", " :", True)
+                        n += self._replaceText(xElem, "(?<=[]…)»}]);", " ;", True)
+                        n += self._replaceText(xElem, "(?<=[]…)»}])[?]", " ?", True)
+                        n += self._replaceText(xElem, "(?<=[]…)»}])!", " !", True)
+                        n += self._replaceText(xElem, "[  ]+([:;?!])", " $1", True)
+                    n -= self._replaceText(xElem, "([[(])[   ]([!?:;])", "$1$2", True)
+                    n -= self._replaceText(xElem, "(?<=http)[   ]:(?=//)", ":", True)
+                    n -= self._replaceText(xElem, "(?<=https)[   ]:(?=//)", ":", True)
+                    n -= self._replaceText(xElem, "(?<=ftp)[   ]:(?=//)", ":", True)
                     self.nbsp1_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.nbsp2.State:
                     if self.nnbsp2.State:
                         # espaces insécables fines
-                        n = self._replaceText(xElem, u"«(?=[:alnum:])", u"« ", True)
-                        n += self._replaceText(xElem, u"«[  ]+", u"« ", True)
-                        n += self._replaceText(xElem, u"(?<=[:alnum:]|[.!?])»", u" »", True)
-                        n += self._replaceText(xElem, u"[  ]+»", u" »", True)
+                        n = self._replaceText(xElem, "«(?=[:alnum:])", "« ", True)
+                        n += self._replaceText(xElem, "«[  ]+", "« ", True)
+                        n += self._replaceText(xElem, "(?<=[:alnum:]|[.!?])»", " »", True)
+                        n += self._replaceText(xElem, "[  ]+»", " »", True)
                     else:
                         # espaces insécables
-                        n = self._replaceText(xElem, u"«(?=[:alnum:])", u"« ", True)
-                        n += self._replaceText(xElem, u"«[  ]+", u"« ", True)
-                        n += self._replaceText(xElem, u"(?<=[:alnum:]|[.!?])»", u" »", True)
-                        n += self._replaceText(xElem, u"[  ]+»", u" »", True)
+                        n = self._replaceText(xElem, "«(?=[:alnum:])", "« ", True)
+                        n += self._replaceText(xElem, "«[  ]+", "« ", True)
+                        n += self._replaceText(xElem, "(?<=[:alnum:]|[.!?])»", " »", True)
+                        n += self._replaceText(xElem, "[  ]+»", " »", True)
                     self.nbsp2_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.nbsp3.State:
-                    n = self._replaceText(xElem, u"([:digit:])([%‰€$£¥˚℃])", u"$1 $2", True)
-                    n += self._replaceText(xElem, u"([:digit:]) ([%‰€$£¥˚℃])", u"$1 $2", True)
+                    n = self._replaceText(xElem, "([:digit:])([%‰€$£¥˚℃])", "$1 $2", True)
+                    n += self._replaceText(xElem, "([:digit:]) ([%‰€$£¥˚℃])", "$1 $2", True)
                     self.nbsp3_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.nbsp4.State:
                     if self.nnbsp4.State:
                         # espaces insécables fines
-                        n = self._replaceText(xElem, u"([:digit:])[  ]([:digit:])", u"$1 $2", True)
+                        n = self._replaceText(xElem, "([:digit:])[  ]([:digit:])", "$1 $2", True)
                     else:
                         # espaces insécables
-                        n = self._replaceText(xElem, u"([:digit:])[  ]([:digit:])", u"$1 $2", True)
+                        n = self._replaceText(xElem, "([:digit:])[  ]([:digit:])", "$1 $2", True)
                     self.nbsp4_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.nbsp5.State:
-                    n = self._replaceText(xElem, u"(?<=[0-9⁰¹²³⁴⁵⁶⁷⁸⁹]) ?([kcmµnd]?(?:[slgJKΩΩℓ]|m[²³]?|Wh?|Hz|dB)|[%‰]|°C)\\b", " $1", True, True)
+                    n = self._replaceText(xElem, "(?<=[0-9⁰¹²³⁴⁵⁶⁷⁸⁹]) ?([kcmµnd]?(?:[slgJKΩΩℓ]|m[²³]?|Wh?|Hz|dB)|[%‰]|°C)\\b", " $1", True, True)
                     self.nbsp5_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if False:
-                    n = self._replaceText(xElem, u"\\b(MM?\\.|Mlle|Mgr) ", u"$1 ", True)
+                    n = self._replaceText(xElem, "\\b(MM?\\.|Mlle|Mgr) ", "$1 ", True)
                     self.nbsp3_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 self.nbsp.State = False
@@ -562,57 +562,57 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
             # espaces manquants
             if self.typo.State:
                 if self.typo6.State:
-                    n = self._replaceText(xElem, u"\\bN\\.([ms])\\b", u"N·$1", True, True) # N·m et N·m-1, N·s
-                    n += self._replaceText(xElem, u"\\bW\\.h\\b", u"W·h", True, True)
-                    n += self._replaceText(xElem, u"\\bPa\\.s\\b", u"Pa·s", True, True)
-                    n += self._replaceText(xElem, u"\\bA\\.h\\b", u"A·h", True, True)
-                    n += self._replaceText(xElem, u"\\bΩ\\.m\\b", u"Ω·m", True, True)
-                    n += self._replaceText(xElem, u"\\bS\\.m\\b", u"S·m", True, True)
-                    n += self._replaceText(xElem, u"\\bg\\.s(?=-1)\\b", u"g·s", True, True)
-                    n += self._replaceText(xElem, u"\\bm\\.s(?=-[12])\\b", u"m·s", True, True)
-                    n += self._replaceText(xElem, u"\\bg\\.m(?=2|-3)\\b", u"g·m", True, True)
-                    n += self._replaceText(xElem, u"\\bA\\.m(?=-1)\\b", u"A·m", True, True)
-                    n += self._replaceText(xElem, u"\\bJ\\.K(?=-1)\\b", u"J·K", True, True)
-                    n += self._replaceText(xElem, u"\\bW\\.m(?=-2)\\b", u"W·m", True, True)
-                    n += self._replaceText(xElem, u"\\bcd\\.m(?=-2)\\b", u"cd·m", True, True)
-                    n += self._replaceText(xElem, u"\\bC\\.kg(?=-1)\\b", u"C·kg", True, True)
-                    n += self._replaceText(xElem, u"\\bH\\.m(?=-1)\\b", u"H·m", True, True)
-                    n += self._replaceText(xElem, u"\\bJ\\.kg(?=-1)\\b", u"J·kg", True, True)
-                    n += self._replaceText(xElem, u"\\bJ\\.m(?=-3)\\b", u"J·m", True, True)
-                    n += self._replaceText(xElem, u"\\bm[2²]\\.s\\b", u"m²·s", True, True)
-                    n += self._replaceText(xElem, u"\\bm[3³]\\.s(?=-1)\\b", u"m³·s", True, True)
+                    n = self._replaceText(xElem, "\\bN\\.([ms])\\b", "N·$1", True, True) # N·m et N·m-1, N·s
+                    n += self._replaceText(xElem, "\\bW\\.h\\b", "W·h", True, True)
+                    n += self._replaceText(xElem, "\\bPa\\.s\\b", "Pa·s", True, True)
+                    n += self._replaceText(xElem, "\\bA\\.h\\b", "A·h", True, True)
+                    n += self._replaceText(xElem, "\\bΩ\\.m\\b", "Ω·m", True, True)
+                    n += self._replaceText(xElem, "\\bS\\.m\\b", "S·m", True, True)
+                    n += self._replaceText(xElem, "\\bg\\.s(?=-1)\\b", "g·s", True, True)
+                    n += self._replaceText(xElem, "\\bm\\.s(?=-[12])\\b", "m·s", True, True)
+                    n += self._replaceText(xElem, "\\bg\\.m(?=2|-3)\\b", "g·m", True, True)
+                    n += self._replaceText(xElem, "\\bA\\.m(?=-1)\\b", "A·m", True, True)
+                    n += self._replaceText(xElem, "\\bJ\\.K(?=-1)\\b", "J·K", True, True)
+                    n += self._replaceText(xElem, "\\bW\\.m(?=-2)\\b", "W·m", True, True)
+                    n += self._replaceText(xElem, "\\bcd\\.m(?=-2)\\b", "cd·m", True, True)
+                    n += self._replaceText(xElem, "\\bC\\.kg(?=-1)\\b", "C·kg", True, True)
+                    n += self._replaceText(xElem, "\\bH\\.m(?=-1)\\b", "H·m", True, True)
+                    n += self._replaceText(xElem, "\\bJ\\.kg(?=-1)\\b", "J·kg", True, True)
+                    n += self._replaceText(xElem, "\\bJ\\.m(?=-3)\\b", "J·m", True, True)
+                    n += self._replaceText(xElem, "\\bm[2²]\\.s\\b", "m²·s", True, True)
+                    n += self._replaceText(xElem, "\\bm[3³]\\.s(?=-1)\\b", "m³·s", True, True)
                     
-                    #n += self._replaceText(xElem, u"\\bJ.kg-1.K-1\\b", u"J·kg-1·K-1", True, True)
-                    #n += self._replaceText(xElem, u"\\bW.m-1.K-1\\b", u"W·m-1·K-1", True, True)
-                    #n += self._replaceText(xElem, u"\\bW.m-2.K-1\\b", u"W·m-2·K-1", True, True)
-                    n += self._replaceText(xElem, u"\\b(Y|Z|E|P|T|G|M|k|h|da|d|c|m|µ|n|p|f|a|z|y)Ω\\b", u"$1Ω", True, True)
+                    #n += self._replaceText(xElem, "\\bJ.kg-1.K-1\\b", "J·kg-1·K-1", True, True)
+                    #n += self._replaceText(xElem, "\\bW.m-1.K-1\\b", "W·m-1·K-1", True, True)
+                    #n += self._replaceText(xElem, "\\bW.m-2.K-1\\b", "W·m-2·K-1", True, True)
+                    n += self._replaceText(xElem, "\\b(Y|Z|E|P|T|G|M|k|h|da|d|c|m|µ|n|p|f|a|z|y)Ω\\b", "$1Ω", True, True)
                     self.typo6_res.Label = str(n)
                     self.pbar.ProgressValue += 1
             if self.space.State:
                 if self.space1.State:
-                    n = self._replaceText(xElem, u";(?=[:alnum:])", u"; ", True)
-                    n += self._replaceText(xElem, u"\\?(?=[:alnum:])", u"? ", True)
-                    n += self._replaceText(xElem, u"!(?=[:alnum:])", u"! ", True)
-                    n += self._replaceText(xElem, u"…(?=[:alnum:])", u"… ", True)
-                    n += self._replaceText(xElem, u"\\.(?=[A-ZÉÈÎ][:alpha:])", u". ", True, True)
-                    n += self._replaceText(xElem, u"\\.(?=À)", u". ", True, True)
-                    n += self._replaceText(xElem, u",(?=[:alpha:])", u", ", True)
-                    n += self._replaceText(xElem, u":(?=[:alpha:])", u": ", True)
+                    n = self._replaceText(xElem, ";(?=[:alnum:])", "; ", True)
+                    n += self._replaceText(xElem, "\\?(?=[:alnum:])", "? ", True)
+                    n += self._replaceText(xElem, "!(?=[:alnum:])", "! ", True)
+                    n += self._replaceText(xElem, "…(?=[:alnum:])", "… ", True)
+                    n += self._replaceText(xElem, "\\.(?=[A-ZÉÈÎ][:alpha:])", ". ", True, True)
+                    n += self._replaceText(xElem, "\\.(?=À)", ". ", True, True)
+                    n += self._replaceText(xElem, ",(?=[:alpha:])", ", ", True)
+                    n += self._replaceText(xElem, ":(?=[:alpha:])", ": ", True)
                     # exceptions:
-                    n -= self._replaceText(xElem, u"(?<=DnT), w\\b", u",w", True, True)
-                    n -= self._replaceText(xElem, u"(?<=DnT), A\\b", u",A", True, True)
+                    n -= self._replaceText(xElem, "(?<=DnT), w\\b", ",w", True, True)
+                    n -= self._replaceText(xElem, "(?<=DnT), A\\b", ",A", True, True)
                     self.space1_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.space2.State:
-                    n = self._replaceText(xElem, u" -(?=[:alpha:]|[\"«“'‘])", u" - ", True)
-                    n += self._replaceText(xElem, u" –(?=[:alpha:]|[\"«“'‘])", u" – ", True) # demi-cadratin
-                    n += self._replaceText(xElem, u" —(?=[:alpha:]|[\"«“'‘])", u" — ", True) # cadratin
-                    n += self._replaceText(xElem, u"(?<=[:alpha:])– ", u" – ", True)
-                    n += self._replaceText(xElem, u"(?<=[:alpha:])— ", u" — ", True)
-                    n += self._replaceText(xElem, u"(?<=[:alpha:])- ", u" - ", True)
-                    n += self._replaceText(xElem, u"(?<=[\"»”'’])– ", u" – ", True)
-                    n += self._replaceText(xElem, u"(?<=[\"»”'’])— ", u" — ", True)
-                    n += self._replaceText(xElem, u"(?<=[\"»”'’])- ", u" - ", True)
+                    n = self._replaceText(xElem, " -(?=[:alpha:]|[\"«“'‘])", " - ", True)
+                    n += self._replaceText(xElem, " –(?=[:alpha:]|[\"«“'‘])", " – ", True) # demi-cadratin
+                    n += self._replaceText(xElem, " —(?=[:alpha:]|[\"«“'‘])", " — ", True) # cadratin
+                    n += self._replaceText(xElem, "(?<=[:alpha:])– ", " – ", True)
+                    n += self._replaceText(xElem, "(?<=[:alpha:])— ", " — ", True)
+                    n += self._replaceText(xElem, "(?<=[:alpha:])- ", " - ", True)
+                    n += self._replaceText(xElem, "(?<=[\"»”'’])– ", " – ", True)
+                    n += self._replaceText(xElem, "(?<=[\"»”'’])— ", " — ", True)
+                    n += self._replaceText(xElem, "(?<=[\"»”'’])- ", " - ", True)
                     self.space2_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 self.space.State = False
@@ -621,7 +621,7 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
             # Suppression
             if self.delete.State:
                 if self.delete1.State:
-                    n = self._replaceText(xElem, u"­", "", False) # tiret conditionnel / soft hyphen
+                    n = self._replaceText(xElem, "­", "", False) # tiret conditionnel / soft hyphen
                     self.delete1_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.delete2.State:
@@ -634,114 +634,131 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
             # signes typographiques
             if self.typo.State:
                 if self.typo1.State:
-                    n = self._replaceText(xElem, u"\\bl['´‘′`](?=[:alnum:])", u"l’", True, True)
-                    n += self._replaceText(xElem, u"\\bj['´‘′`](?=[:alnum:])", u"j’", True, True)
-                    n += self._replaceText(xElem, u"\\bm['´‘′`](?=[:alnum:])", u"m’", True, True)
-                    n += self._replaceText(xElem, u"\\bt['´‘′`](?=[:alnum:])", u"t’", True, True)
-                    n += self._replaceText(xElem, u"\\bs['´‘′`](?=[:alnum:])", u"s’", True, True)
-                    n += self._replaceText(xElem, u"\\bc['´‘′`](?=[:alnum:])", u"c’", True, True)
-                    n += self._replaceText(xElem, u"\\bd['´‘′`](?=[:alnum:])", u"d’", True, True)
-                    n += self._replaceText(xElem, u"\\bn['´‘′`](?=[:alnum:])", u"n’", True, True)
-                    n += self._replaceText(xElem, u"\\bç['´‘′`](?=[:alnum:])", u"ç’", True, True)
-                    n += self._replaceText(xElem, u"\\bL['´‘′`](?=[:alnum:])", u"L’", True, True)
-                    n += self._replaceText(xElem, u"\\bJ['´‘′`](?=[:alnum:])", u"J’", True, True)
-                    n += self._replaceText(xElem, u"\\bM['´‘′`](?=[:alnum:])", u"M’", True, True)
-                    n += self._replaceText(xElem, u"\\bT['´‘′`](?=[:alnum:])", u"T’", True, True)
-                    n += self._replaceText(xElem, u"\\bS['´‘′`](?=[:alnum:])", u"S’", True, True)
-                    n += self._replaceText(xElem, u"\\bC['´‘′`](?=[:alnum:])", u"C’", True, True)
-                    n += self._replaceText(xElem, u"\\bD['´‘′`](?=[:alnum:])", u"D’", True, True)
-                    n += self._replaceText(xElem, u"\\bN['´‘′`](?=[:alnum:])", u"N’", True, True)
-                    n += self._replaceText(xElem, u"\\bÇ['´‘′`](?=[:alnum:])", u"Ç’", True, True)
-                    n += self._replaceText(xElem, u"(qu|jusqu|lorsqu|puisqu|quoiqu|quelqu|presqu|entr|aujourd|prud)['´‘′`]", u"$1’", True)
+                    n = self._replaceText(xElem, "\\bl['´‘′`](?=[:alnum:])", "l’", True, True)
+                    n += self._replaceText(xElem, "\\bj['´‘′`](?=[:alnum:])", "j’", True, True)
+                    n += self._replaceText(xElem, "\\bm['´‘′`](?=[:alnum:])", "m’", True, True)
+                    n += self._replaceText(xElem, "\\bt['´‘′`](?=[:alnum:])", "t’", True, True)
+                    n += self._replaceText(xElem, "\\bs['´‘′`](?=[:alnum:])", "s’", True, True)
+                    n += self._replaceText(xElem, "\\bc['´‘′`](?=[:alnum:])", "c’", True, True)
+                    n += self._replaceText(xElem, "\\bd['´‘′`](?=[:alnum:])", "d’", True, True)
+                    n += self._replaceText(xElem, "\\bn['´‘′`](?=[:alnum:])", "n’", True, True)
+                    n += self._replaceText(xElem, "\\bç['´‘′`](?=[:alnum:])", "ç’", True, True)
+                    n += self._replaceText(xElem, "\\bL['´‘′`](?=[:alnum:])", "L’", True, True)
+                    n += self._replaceText(xElem, "\\bJ['´‘′`](?=[:alnum:])", "J’", True, True)
+                    n += self._replaceText(xElem, "\\bM['´‘′`](?=[:alnum:])", "M’", True, True)
+                    n += self._replaceText(xElem, "\\bT['´‘′`](?=[:alnum:])", "T’", True, True)
+                    n += self._replaceText(xElem, "\\bS['´‘′`](?=[:alnum:])", "S’", True, True)
+                    n += self._replaceText(xElem, "\\bC['´‘′`](?=[:alnum:])", "C’", True, True)
+                    n += self._replaceText(xElem, "\\bD['´‘′`](?=[:alnum:])", "D’", True, True)
+                    n += self._replaceText(xElem, "\\bN['´‘′`](?=[:alnum:])", "N’", True, True)
+                    n += self._replaceText(xElem, "\\bÇ['´‘′`](?=[:alnum:])", "Ç’", True, True)
+                    n += self._replaceText(xElem, "(qu|jusqu|lorsqu|puisqu|quoiqu|quelqu|presqu|entr|aujourd|prud)['´‘′`]", "$1’", True)
                     self.typo1_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.typo2.State:
-                    n = self._replaceText(xElem, u"...", u"…", False)
-                    n += self._replaceText(xElem, u"(?<=…)[.][.]", u"…", True)
-                    n += self._replaceText(xElem, u"…[.](?![.])", u"…", True)
+                    n = self._replaceText(xElem, "...", "…", False)
+                    n += self._replaceText(xElem, "(?<=…)[.][.]", "…", True)
+                    n += self._replaceText(xElem, "…[.](?![.])", "…", True)
                     self.typo2_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.typo3.State:
                     if self.typo3b.State:
                         # demi-cadratin
-                        n = self._replaceText(xElem, u" - ", u" – ", False)
-                        n += self._replaceText(xElem, u" — ", u" – ", False)
-                        n += self._replaceText(xElem, u" -,", u" –,", False)
-                        n += self._replaceText(xElem, u" —,", u" –,", False)
+                        n = self._replaceText(xElem, " - ", " – ", False)
+                        n += self._replaceText(xElem, " — ", " – ", False)
+                        n += self._replaceText(xElem, " -,", " –,", False)
+                        n += self._replaceText(xElem, " —,", " –,", False)
                     else:
                         # cadratin
-                        n = self._replaceText(xElem, u" - ", u" — ", False)
-                        n += self._replaceText(xElem, u" – ", u" — ", False)
-                        n += self._replaceText(xElem, u" -,", u" —,", False)
-                        n += self._replaceText(xElem, u" –,", u" —,", False)
+                        n = self._replaceText(xElem, " - ", " — ", False)
+                        n += self._replaceText(xElem, " – ", " — ", False)
+                        n += self._replaceText(xElem, " -,", " —,", False)
+                        n += self._replaceText(xElem, " –,", " —,", False)
                     self.typo3_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.typo4.State:
                     if self.typo4a.State:
                         # cadratin
-                        n = self._replaceText(xElem, u"^-[  ]", u"— ", True)
-                        n += self._replaceText(xElem, u"^–[  ]", u"— ", True)
-                        n += self._replaceText(xElem, u"^— ", u"— ", True)
-                        n += self._replaceText(xElem, u"^[-–—](?=[:alnum:])", u"— ", True)
+                        n = self._replaceText(xElem, "^-[  ]", "— ", True)
+                        n += self._replaceText(xElem, "^–[  ]", "— ", True)
+                        n += self._replaceText(xElem, "^— ", "— ", True)
+                        n += self._replaceText(xElem, "^«[  ][—–-][  ]", "« — ", True)
+                        n += self._replaceText(xElem, "^[-–—](?=[:alnum:])", "— ", True)
                     else:
                         # demi-cadratin
-                        n = self._replaceText(xElem, u"^-[  ]", u"– ", True)
-                        n += self._replaceText(xElem, u"^—[  ]", u"– ", True)
-                        n += self._replaceText(xElem, u"^– ", u"– ", True)
-                        n += self._replaceText(xElem, u"^[-–—](?=[:alnum:])", u"– ", True)
+                        n = self._replaceText(xElem, "^-[  ]", "– ", True)
+                        n += self._replaceText(xElem, "^—[  ]", "– ", True)
+                        n += self._replaceText(xElem, "^– ", "– ", True)
+                        n += self._replaceText(xElem, "^[-–—](?=[:alnum:])", "– ", True)
                     self.typo4_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.typo5.State:
-                    n = self._replaceText(xElem, u'"([:alpha:]+)"', u"“$1”", True)
-                    n += self._replaceText(xElem, u"''([:alpha:]+)''", u"“$1”", True)
-                    n += self._replaceText(xElem, u"'([:alpha:]+)'", u"“$1”", True)
-                    n += self._replaceText(xElem, u'^"(?=[:alnum:])', u"« ", True)
-                    n += self._replaceText(xElem, u"^''(?=[:alnum:])", u"« ", True)
-                    n += self._replaceText(xElem, u' "(?=[:alnum:])', u" « ", True)
-                    n += self._replaceText(xElem, u" ''(?=[:alnum:])", u" « ", True)
-                    n += self._replaceText(xElem, u'\\("(?=[:alnum:])', u"(« ", True)
-                    n += self._replaceText(xElem, u"\\(''(?=[:alnum:])", u"(« ", True)
-                    n += self._replaceText(xElem, u'(?<=[:alnum:])"$', u" »", True)
-                    n += self._replaceText(xElem, u"(?<=[:alnum:])''$", u" »", True)
-                    n += self._replaceText(xElem, u'(?<=[:alnum:])"(?=[] ,.:;?!…)])', u" »", True)
-                    n += self._replaceText(xElem, u"(?<=[:alnum:])''(?=[] ,.:;?!…)])", u" »", True)
-                    n += self._replaceText(xElem, u'(?<=[.!?…])" ', u" » ", True)
-                    n += self._replaceText(xElem, u'(?<=[.!?…])"$', u" »", True)
+                    n = self._replaceText(xElem, '"([:alpha:]+)"', "“$1”", True)
+                    n += self._replaceText(xElem, "''([:alpha:]+)''", "“$1”", True)
+                    n += self._replaceText(xElem, "'([:alpha:]+)'", "“$1”", True)
+                    n += self._replaceText(xElem, '^"(?=[:alnum:])', "« ", True)
+                    n += self._replaceText(xElem, "^''(?=[:alnum:])", "« ", True)
+                    n += self._replaceText(xElem, ' "(?=[:alnum:])', " « ", True)
+                    n += self._replaceText(xElem, " ''(?=[:alnum:])", " « ", True)
+                    n += self._replaceText(xElem, '\\("(?=[:alnum:])', "(« ", True)
+                    n += self._replaceText(xElem, "\\(''(?=[:alnum:])", "(« ", True)
+                    n += self._replaceText(xElem, '(?<=[:alnum:])"$', " »", True)
+                    n += self._replaceText(xElem, "(?<=[:alnum:])''$", " »", True)
+                    n += self._replaceText(xElem, '(?<=[:alnum:])"(?=[] ,.:;?!…)])', " »", True)
+                    n += self._replaceText(xElem, "(?<=[:alnum:])''(?=[] ,.:;?!…)])", " »", True)
+                    n += self._replaceText(xElem, '(?<=[.!?…])" ', " » ", True)
+                    n += self._replaceText(xElem, '(?<=[.!?…])"$', " »", True)
                     self.typo5_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.typo7.State:
-                    # no initial cap
-                    n = self._replaceText(xElem, u"coeur", u"cœur", False, True)
-                    n += self._replaceText(xElem, u"coel([aeio])", u"cœl$1", True, True)
-                    n += self._replaceText(xElem, u"choeur", u"chœur", False, True)
-                    n += self._replaceText(xElem, u"foet", u"fœt", False, True)
-                    n += self._replaceText(xElem, u"oeil", u"œil", False, True)
-                    n += self._replaceText(xElem, u"oeno", u"œno", False, True)
-                    n += self._replaceText(xElem, u"oesoph", u"œsoph", False, True)
-                    n += self._replaceText(xElem, u"oestro", u"œstro", False, True)
-                    n += self._replaceText(xElem, u"oeuf", u"œuf", False, True)
-                    n += self._replaceText(xElem, u"oeuvr", u"œuvr", False, True)
-                    n += self._replaceText(xElem, u"moeur", u"mœur", False, True)
-                    n += self._replaceText(xElem, u"noeu", u"nœu", False, True)
-                    n += self._replaceText(xElem, u"soeur", u"sœur", False, True)
-                    n += self._replaceText(xElem, u"voeu", u"vœu", False, True)
-                    n += self._replaceText(xElem, u"aequo", u"æquo", False, True)
-                    # with initial cap
-                    n += self._replaceText(xElem, u"Coeur", u"Cœur", False, True)
-                    n += self._replaceText(xElem, u"Coel([aeio])", u"Cœl$1", True, True)
-                    n += self._replaceText(xElem, u"Choeur", u"Chœur", False, True)
-                    n += self._replaceText(xElem, u"Foet", u"Fœt", False, True)
-                    n += self._replaceText(xElem, u"Oeil", u"Œil", False, True)
-                    n += self._replaceText(xElem, u"Oeno", u"Œno", False, True)
-                    n += self._replaceText(xElem, u"Oesoph", u"Œsoph", False, True)
-                    n += self._replaceText(xElem, u"Oestro", u"Œstro", False, True)
-                    n += self._replaceText(xElem, u"Oeuf", u"Œuf", False, True)
-                    n += self._replaceText(xElem, u"Oeuvr", u"Œuvr", False, True)
-                    n += self._replaceText(xElem, u"Moeur", u"Mœur", False, True)
-                    n += self._replaceText(xElem, u"Noeu", u"Nœu", False, True)
-                    n += self._replaceText(xElem, u"Soeur", u"Sœur", False, True)
-                    n += self._replaceText(xElem, u"Voeu", u"Vœu", False, True)
-                    n += self._replaceText(xElem, u"Aequo", u"Æquo", False, True)
+                    # ligatures: no initial cap
+                    n = self._replaceText(xElem, "coeur", "cœur", False, True)
+                    n += self._replaceText(xElem, "coel([aeio])", "cœl$1", True, True)
+                    n += self._replaceText(xElem, "choeur", "chœur", False, True)
+                    n += self._replaceText(xElem, "foet", "fœt", False, True)
+                    n += self._replaceText(xElem, "oeil", "œil", False, True)
+                    n += self._replaceText(xElem, "oeno", "œno", False, True)
+                    n += self._replaceText(xElem, "oesoph", "œsoph", False, True)
+                    n += self._replaceText(xElem, "oestro", "œstro", False, True)
+                    n += self._replaceText(xElem, "oeuf", "œuf", False, True)
+                    n += self._replaceText(xElem, "oeuvr", "œuvr", False, True)
+                    n += self._replaceText(xElem, "moeur", "mœur", False, True)
+                    n += self._replaceText(xElem, "noeu", "nœu", False, True)
+                    n += self._replaceText(xElem, "soeur", "sœur", False, True)
+                    n += self._replaceText(xElem, "voeu", "vœu", False, True)
+                    n += self._replaceText(xElem, "aequo", "æquo", False, True)
+                    # ligatures: with initial cap
+                    n += self._replaceText(xElem, "Coeur", "Cœur", False, True)
+                    n += self._replaceText(xElem, "Coel([aeio])", "Cœl$1", True, True)
+                    n += self._replaceText(xElem, "Choeur", "Chœur", False, True)
+                    n += self._replaceText(xElem, "Foet", "Fœt", False, True)
+                    n += self._replaceText(xElem, "Oeil", "Œil", False, True)
+                    n += self._replaceText(xElem, "Oeno", "Œno", False, True)
+                    n += self._replaceText(xElem, "Oesoph", "Œsoph", False, True)
+                    n += self._replaceText(xElem, "Oestro", "Œstro", False, True)
+                    n += self._replaceText(xElem, "Oeuf", "Œuf", False, True)
+                    n += self._replaceText(xElem, "Oeuvr", "Œuvr", False, True)
+                    n += self._replaceText(xElem, "Moeur", "Mœur", False, True)
+                    n += self._replaceText(xElem, "Noeu", "Nœu", False, True)
+                    n += self._replaceText(xElem, "Soeur", "Sœur", False, True)
+                    n += self._replaceText(xElem, "Voeu", "Vœu", False, True)
+                    n += self._replaceText(xElem, "Aequo", "Æquo", False, True)
+                    # common words with missing diacritics
+                    n += self._replaceText(xElem, "\\bCa\\b", "Ça", True, True)
+                    n += self._replaceText(xElem, " ca\\b", " ça", True, True)
+                    n += self._replaceText(xElem, "\\bdej[aà]\\b", "déjà", True, True)
+                    n += self._replaceText(xElem, "\\bDej[aà]\\b", "Déjà", True, True)
+                    n += self._replaceText(xElem, "\\bplutot\\b", "plutôt", True, True)
+                    n += self._replaceText(xElem, "\\bPlutot\\b", "Plutôt", True, True)
+                    n += self._replaceText(xElem, "\\b([cC]e(?:ux|lles?|lui))-la\\b", "$1-là", True, True)
+                    n += self._replaceText(xElem, "\\bmalgre\\b", "malgré", True, True)
+                    n += self._replaceText(xElem, "\\bMalgre\\b", "Malgré", True, True)
+                    n += self._replaceText(xElem, "\\betre\\b", "être", True, True)
+                    n += self._replaceText(xElem, "\\bEtre\\b", "Être", True, True)
+                    n += self._replaceText(xElem, "\\btres\\b", "très", True, True)
+                    n += self._replaceText(xElem, "\\bTres\\b", "Très", True, True)
+                    n += self._replaceText(xElem, "\\bEtai([ts]|ent)\\b", "Étai$1", True, True)
+                    n += self._replaceText(xElem, "\\bE(tat|cole|crit|poque|tude|ducation|glise|conomi(?:qu|)e|videmment|lysée|tienne|thiopie|cosse|gypt(?:e|ien)|rythrée|pinal|vreux)", "É$1", True, True)
                     self.typo7_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.typo8.State:
@@ -749,34 +766,34 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
                     n = 0
                     if self.typo8a.State:
                         if self.typo_ffi.State:
-                            n += self._replaceText(xElem, u"ffi", u"ﬃ", False, True)
+                            n += self._replaceText(xElem, "ffi", "ﬃ", False, True)
                         if self.typo_ffl.State:
-                            n += self._replaceText(xElem, u"ffl", u"ﬄ", False, True)
+                            n += self._replaceText(xElem, "ffl", "ﬄ", False, True)
                         if self.typo_fi.State:
-                            n += self._replaceText(xElem, u"fi", u"ﬁ", False, True)
+                            n += self._replaceText(xElem, "fi", "ﬁ", False, True)
                         if self.typo_fl.State:
-                            n += self._replaceText(xElem, u"fl", u"ﬂ", False, True)
+                            n += self._replaceText(xElem, "fl", "ﬂ", False, True)
                         if self.typo_ff.State:
-                            n += self._replaceText(xElem, u"ff", u"ﬀ", False, True)
+                            n += self._replaceText(xElem, "ff", "ﬀ", False, True)
                         if self.typo_ft.State:
-                            n += self._replaceText(xElem, u"ft", u"ﬅ", False, True)
+                            n += self._replaceText(xElem, "ft", "ﬅ", False, True)
                         if self.typo_st.State:
-                            n += self._replaceText(xElem, u"st", u"ﬆ", False, True)
+                            n += self._replaceText(xElem, "st", "ﬆ", False, True)
                     if self.typo8b.State:
                         if self.typo_fi.State:
-                            n += self._replaceText(xElem, u"ﬁ", u"fi", False, True)
+                            n += self._replaceText(xElem, "ﬁ", "fi", False, True)
                         if self.typo_fl.State:
-                            n += self._replaceText(xElem, u"ﬂ", u"fl", False, True)
+                            n += self._replaceText(xElem, "ﬂ", "fl", False, True)
                         if self.typo_ff.State:
-                            n += self._replaceText(xElem, u"ﬀ", u"ff", False, True)
+                            n += self._replaceText(xElem, "ﬀ", "ff", False, True)
                         if self.typo_ffi.State:
-                            n += self._replaceText(xElem, u"ﬃ", u"ffi", False, True)
+                            n += self._replaceText(xElem, "ﬃ", "ffi", False, True)
                         if self.typo_ffl.State:
-                            n += self._replaceText(xElem, u"ﬄ", u"ffl", False, True)
+                            n += self._replaceText(xElem, "ﬄ", "ffl", False, True)
                         if self.typo_ft.State:
-                            n += self._replaceText(xElem, u"ﬅ", u"ft", False, True)
+                            n += self._replaceText(xElem, "ﬅ", "ft", False, True)
                         if self.typo_st.State:
-                            n += self._replaceText(xElem, u"ﬆ", u"st", False, True)
+                            n += self._replaceText(xElem, "ﬆ", "st", False, True)
                     self.typo8_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 self.typo.State = False
@@ -786,76 +803,76 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
             if self.misc.State:
                 if self.misc1.State:
                     if self.misc1a.State:
-                        n = self._replaceText(xElem, u"(?<=\\b[0-9][0-9][0-9][0-9])(i?[èe]me|è|e)\\b", u"ᵉ", True)
-                        n += self._replaceText(xElem, u"(?<=\\b[0-9][0-9][0-9])(i?[èe]me|è|e)\\b", u"ᵉ", True)
-                        n += self._replaceText(xElem, u"(?<=\\b[0-9][0-9])(i?[èe]me|è|e)\\b", u"ᵉ", True)
-                        n += self._replaceText(xElem, u"(?<=\\b[0-9])(i?[èe]me|è|e)\\b", u"ᵉ", True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVICL][XVICL][XVICL][XVICL])(i?[èe]me|è|e)\\b", u"ᵉ", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVICL][XVICL][XVICL])(i?[èe]me|è|e)\\b", u"ᵉ", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVICL][XVICL])(i?[èe]me|è|e)\\b", u"ᵉ", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVICL])(i?[èe]me|è)\\b", u"ᵉ", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b(au|l[ea]|du) [XVICL])e\\b", u"ᵉ", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVI])e(?= siècle)", u"ᵉ", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[1I])er\\b", u"ᵉʳ", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[1I])re\\b", u"ʳᵉ", True, True)
+                        n = self._replaceText(xElem, "(?<=\\b[0-9][0-9][0-9][0-9])(i?[èe]me|è|e)\\b", "ᵉ", True)
+                        n += self._replaceText(xElem, "(?<=\\b[0-9][0-9][0-9])(i?[èe]me|è|e)\\b", "ᵉ", True)
+                        n += self._replaceText(xElem, "(?<=\\b[0-9][0-9])(i?[èe]me|è|e)\\b", "ᵉ", True)
+                        n += self._replaceText(xElem, "(?<=\\b[0-9])(i?[èe]me|è|e)\\b", "ᵉ", True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVICL][XVICL][XVICL][XVICL])(i?[èe]me|è|e)\\b", "ᵉ", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVICL][XVICL][XVICL])(i?[èe]me|è|e)\\b", "ᵉ", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVICL][XVICL])(i?[èe]me|è|e)\\b", "ᵉ", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVICL])(i?[èe]me|è)\\b", "ᵉ", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b(au|l[ea]|du) [XVICL])e\\b", "ᵉ", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVI])e(?= siècle)", "ᵉ", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[1I])er\\b", "ᵉʳ", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[1I])re\\b", "ʳᵉ", True, True)
                     else:
-                        n = self._replaceText(xElem, u"(?<=\\b[0-9][0-9][0-9][0-9])(i?[èe]me|è|ᵉ)\\b", u"e", True)
-                        n += self._replaceText(xElem, u"(?<=\\b[0-9][0-9][0-9])(i?[èe]me|è|ᵉ)\\b", u"e", True)
-                        n += self._replaceText(xElem, u"(?<=\\b[0-9][0-9])(i?[èe]me|è|ᵉ)\\b", u"e", True)
-                        n += self._replaceText(xElem, u"(?<=\\b[0-9])(i?[èe]me|è|ᵉ)\\b", u"e", True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVICL][XVICL][XVICL][XVICL])(i?[èe]me|è|ᵉ)\\b", u"e", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVICL][XVICL][XVICL])(i?[èe]me|è|ᵉ)\\b", u"e", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVICL][XVICL])(i?[èe]me|è|ᵉ)\\b", u"e", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[XVICL])(i?[èe]me|è|ᵉ)\\b", u"e", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[1I])ᵉʳ\\b", u"er", True, True)
-                        n += self._replaceText(xElem, u"(?<=\\b[1I])ʳᵉ\\b", u"er", True, True)
+                        n = self._replaceText(xElem, "(?<=\\b[0-9][0-9][0-9][0-9])(i?[èe]me|è|ᵉ)\\b", "e", True)
+                        n += self._replaceText(xElem, "(?<=\\b[0-9][0-9][0-9])(i?[èe]me|è|ᵉ)\\b", "e", True)
+                        n += self._replaceText(xElem, "(?<=\\b[0-9][0-9])(i?[èe]me|è|ᵉ)\\b", "e", True)
+                        n += self._replaceText(xElem, "(?<=\\b[0-9])(i?[èe]me|è|ᵉ)\\b", "e", True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVICL][XVICL][XVICL][XVICL])(i?[èe]me|è|ᵉ)\\b", "e", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVICL][XVICL][XVICL])(i?[èe]me|è|ᵉ)\\b", "e", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVICL][XVICL])(i?[èe]me|è|ᵉ)\\b", "e", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[XVICL])(i?[èe]me|è|ᵉ)\\b", "e", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[1I])ᵉʳ\\b", "er", True, True)
+                        n += self._replaceText(xElem, "(?<=\\b[1I])ʳᵉ\\b", "er", True, True)
                     self.misc1_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.misc2.State:
-                    n = self._replaceText(xElem, u"etc(…|[.][.][.]?)", u"etc.", True, True)
-                    n += self._replaceText(xElem, u"(?<!,) etc[.]", u", etc.", True, True)
+                    n = self._replaceText(xElem, "etc(…|[.][.][.]?)", "etc.", True, True)
+                    n += self._replaceText(xElem, "(?<!,) etc[.]", ", etc.", True, True)
                     self.misc2_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.misc3.State:
-                    n = self._replaceText(xElem, u"[ -]t[’'](?=il\\b|elle|on\\b)", u"-t-", True)
-                    n += self._replaceText(xElem, u" t-(?=il|elle|on)", u"-t-", True)
-                    n += self._replaceText(xElem, u"[ -]t[’'-](?=ils|elles)", u"-", True)
-                    n += self._replaceText(xElem, u"(?<=[td])-t-(?=il|elle|on)", u"-", True)
-                    n += self._replaceText(xElem, u"(celles?|celui|ceux) (ci|là)\\b", u"$1-$2", True)
-                    n += self._replaceText(xElem, u"\\bdix (sept|huit|neuf)", u"dix-$1", True)
-                    n += self._replaceText(xElem, u"quatre vingt", u"quatre-vingt", False)
-                    n += self._replaceText(xElem, u"(soixante|quatre-vingt) dix", u"$1-dix", True)
-                    n += self._replaceText(xElem, u"(vingt|trente|quarante|cinquante|soixante(?:-dix|)|quatre-vingt(?:-dix|)) (deux|trois|quatre|cinq|six|sept|huit|neuf)", u"$1-$2", True)
-                    n += self._replaceText(xElem, u"(?<!-)\\b(ci) (joint|desso?us|contre|devant|avant|après|incluse|g[îi]t|gisent)", u"$1-$2", True)
-                    n += self._replaceText(xElem, u"\\bvis à vis", u"vis-à-vis", False, True)
-                    n += self._replaceText(xElem, u"\\bVis à vis", u"Vis-à-vis", False, True)
-                    n += self._replaceText(xElem, u"week end", u"week-end", False, True)
-                    n += self._replaceText(xElem, u"Week end", u"Week-end", False, True)
-                    n += self._replaceText(xElem, u"(plus|moins) value", u"$1-value", True)
+                    n = self._replaceText(xElem, "[ -]t[’'](?=il\\b|elle|on\\b)", "-t-", True)
+                    n += self._replaceText(xElem, " t-(?=il|elle|on)", "-t-", True)
+                    n += self._replaceText(xElem, "[ -]t[’'-](?=ils|elles)", "-", True)
+                    n += self._replaceText(xElem, "(?<=[td])-t-(?=il|elle|on)", "-", True)
+                    n += self._replaceText(xElem, "(celles?|celui|ceux) (ci|là)\\b", "$1-$2", True)
+                    n += self._replaceText(xElem, "\\bdix (sept|huit|neuf)", "dix-$1", True)
+                    n += self._replaceText(xElem, "quatre vingt", "quatre-vingt", False)
+                    n += self._replaceText(xElem, "(soixante|quatre-vingt) dix", "$1-dix", True)
+                    n += self._replaceText(xElem, "(vingt|trente|quarante|cinquante|soixante(?:-dix|)|quatre-vingt(?:-dix|)) (deux|trois|quatre|cinq|six|sept|huit|neuf)", "$1-$2", True)
+                    n += self._replaceText(xElem, "(?<!-)\\b(ci) (joint|desso?us|contre|devant|avant|après|incluse|g[îi]t|gisent)", "$1-$2", True)
+                    n += self._replaceText(xElem, "\\bvis à vis", "vis-à-vis", False, True)
+                    n += self._replaceText(xElem, "\\bVis à vis", "Vis-à-vis", False, True)
+                    n += self._replaceText(xElem, "week end", "week-end", False, True)
+                    n += self._replaceText(xElem, "Week end", "Week-end", False, True)
+                    n += self._replaceText(xElem, "(plus|moins) value", "$1-value", True)
                     self.misc3_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 if self.misc5.State:
-                    n = self._replaceText(xElem, u"(qu|lorsqu|puisqu|quoiqu|presqu|jusqu|aujourd|entr|quelqu) ", u"$1’", True, True)
+                    n = self._replaceText(xElem, "(qu|lorsqu|puisqu|quoiqu|presqu|jusqu|aujourd|entr|quelqu) ", "$1’", True, True)
                     if self.misc5b.State:
-                        n += self._replaceText(xElem, u"\\bj (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"j’", True, True)
-                        n += self._replaceText(xElem, u"\\bn (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"n’", True, True)
-                        n += self._replaceText(xElem, u"\\bm (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"m’", True, True)
-                        n += self._replaceText(xElem, u"\\bt (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"t’", True, True)
-                        n += self._replaceText(xElem, u"\\bs (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"s’", True, True)
-                        n += self._replaceText(xElem, u"\\bc (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"c’", True, True)
-                        n += self._replaceText(xElem, u"\\bç (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"ç’", True, True)
-                        n += self._replaceText(xElem, u"\\bl (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"l’", True, True)
-                        n += self._replaceText(xElem, u"\\bd (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"d’", True, True)
+                        n += self._replaceText(xElem, "\\bj (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "j’", True, True)
+                        n += self._replaceText(xElem, "\\bn (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "n’", True, True)
+                        n += self._replaceText(xElem, "\\bm (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "m’", True, True)
+                        n += self._replaceText(xElem, "\\bt (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "t’", True, True)
+                        n += self._replaceText(xElem, "\\bs (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "s’", True, True)
+                        n += self._replaceText(xElem, "\\bc (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "c’", True, True)
+                        n += self._replaceText(xElem, "\\bç (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "ç’", True, True)
+                        n += self._replaceText(xElem, "\\bl (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "l’", True, True)
+                        n += self._replaceText(xElem, "\\bd (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "d’", True, True)
                         if self.misc5c.State:
-                            n += self._replaceText(xElem, u"\\bJ (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"J’", True, True)
-                            n += self._replaceText(xElem, u"\\bN (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"N’", True, True)
-                            n += self._replaceText(xElem, u"\\bM (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"M’", True, True)
-                            n += self._replaceText(xElem, u"\\bT (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"T’", True, True)
-                            n += self._replaceText(xElem, u"\\bS (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"S’", True, True)
-                            n += self._replaceText(xElem, u"\\bC (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"C’", True, True)
-                            n += self._replaceText(xElem, u"\\bÇ (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"Ç’", True, True)
-                            n += self._replaceText(xElem, u"\\bL (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"L’", True, True)
-                            n += self._replaceText(xElem, u"\\bD (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", u"D’", True, True)
+                            n += self._replaceText(xElem, "\\bJ (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "J’", True, True)
+                            n += self._replaceText(xElem, "\\bN (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "N’", True, True)
+                            n += self._replaceText(xElem, "\\bM (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "M’", True, True)
+                            n += self._replaceText(xElem, "\\bT (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "T’", True, True)
+                            n += self._replaceText(xElem, "\\bS (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "S’", True, True)
+                            n += self._replaceText(xElem, "\\bC (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "C’", True, True)
+                            n += self._replaceText(xElem, "\\bÇ (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "Ç’", True, True)
+                            n += self._replaceText(xElem, "\\bL (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "L’", True, True)
+                            n += self._replaceText(xElem, "\\bD (?=[aàeéêiîoôuyhAÀEÉÊIÎOÔUYH])", "D’", True, True)
                     self.misc5_res.Label = str(n)
                     self.pbar.ProgressValue += 1
                 self.misc.State = False
@@ -885,7 +902,7 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
         return 0
 
     def _replaceHyphenAtEndOfParagraphs (self, xDoc):
-        self._replaceText(xDoc, u"-[  ]+$", u"-", True) # remove spaces at end of paragraphs if - is the last character
+        self._replaceText(xDoc, "-[  ]+$", "-", True) # remove spaces at end of paragraphs if - is the last character
         xHunspell = self.xSvMgr.createInstanceWithContext("com.sun.star.linguistic2.SpellChecker", self.ctx)
         xCursor = xDoc.Text.createTextCursor()
         xCursor.gotoStart(False)
@@ -910,7 +927,7 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
         return n
 
     def _mergeContiguousParagraphs (self, xDoc):
-        self._replaceText(xDoc, u"^[  ]+$", u"", True) # clear empty paragraphs
+        self._replaceText(xDoc, "^[  ]+$", "", True) # clear empty paragraphs
         xCursor = xDoc.Text.createTextCursor()
         xCursor.gotoStart(False)
         n = 0
@@ -924,29 +941,30 @@ class TextFormatter (unohelper.Base, XActionListener, XJobExecutor):
                     n += 1
         except:
             traceback.print_exc()
-        self._replaceText(xDoc, u"  +", u" ", True)
+        self._replaceText(xDoc, "  +", " ", True)
         return n
 
     def _replaceBulletsByEmDash (self, xDoc):
         xCursor = xDoc.Text.createTextCursor()
+        helpers.xray(xCursor)
         xCursor.gotoStart(False)
         sParaStyleName = ""
         if not self.delete2c.State:
-            sParaStyleName = u"Standard"  if self.delete2a.State  else u"Text body"
+            sParaStyleName = "Standard"  if self.delete2a.State  else "Text body"
         n = 0
         try:
             if xCursor.NumberingStyleName != "":
                 xCursor.NumberingStyleName = ""
                 if sParaStyleName:
                     xCursor.ParaStyleName = sParaStyleName
-                xDoc.Text.insertString(xCursor, u"— ", False)
+                xDoc.Text.insertString(xCursor, "— ", False)
                 n += 1
             while xCursor.gotoNextParagraph(False):
                 if xCursor.NumberingStyleName != "":
                     xCursor.NumberingStyleName = ""
                     if sParaStyleName:
                         xCursor.ParaStyleName = sParaStyleName
-                    xDoc.Text.insertString(xCursor, u"— ", False)
+                    xDoc.Text.insertString(xCursor, "— ", False)
                     n += 1
         except:
             traceback.print_exc()

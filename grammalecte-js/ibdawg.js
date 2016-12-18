@@ -5,37 +5,16 @@
 const st = require("resource://grammalecte/str_transform.js");
 const helpers = require("resource://grammalecte/helpers.js");
 
-String.prototype._isUpperCase = function () {
-    return (this.search(/^[A-ZÀ-ÖØ-ß0-9-]+$/) !== -1);
-}
-String.prototype._isTitle = function () {
-    return (this.search(/^[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ0-9'’-]+$/) !== -1);
-}
-String.prototype._toCapitalize = function () {
-    return this.slice(0,1).toUpperCase() + this.slice(1).toLowerCase();
-}
-String.prototype._count = function (sSearch, bOverlapping) {
-    // http://jsperf.com/string-ocurrence-split-vs-match/8
-    if (sSearch.length <= 0) {
-        return this.length + 1;
-    }
-    let nOccur = 0;
-    let iPos = 0;
-    let nStep = (bOverlapping) ? 1 : sSearch.length;
-    while ((iPos = this.indexOf(sSearch, iPos)) >= 0) {
-        nOccur++;
-        iPos += nStep;
-    }
-    return nOccur;
-}
 
 class IBDAWG {
     // INDEXABLE BINARY DIRECT ACYCLIC WORD GRAPH
 
-    constructor (sLang) {
+    constructor (sDicName) {
         try {
-            const dict = require("resource://grammalecte/"+sLang+"/dictionary.js");
-            Object.assign(this, dict.dictionary);
+            const dict = JSON.parse(helpers.loadFile("resource://grammalecte/_dictionaries/"+sDicName));
+            Object.assign(this, dict);
+            //const dict = require("resource://grammalecte/"+sLang+"/dictionary.js");
+            //Object.assign(this, dict.dictionary);
         }
         catch (e) {
             throw Error("# Error. File not found or not loadable.\n" + e.message + "\n");

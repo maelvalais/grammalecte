@@ -25,7 +25,7 @@
 
 basic: *typo *apos, *esp *nbsp, *tu *maj, *num *virg, *unit *nf, liga mapos, chim ocr
 gramm: *conf *sgpl, *gn
-verbs: *infi *gv, *imp *inte
+verbs: *infi *gv *ppas, *imp *inte *vmode
 style: *bs *pleo, redon1 redon2, neg
 misc: *date mc
 debug: idrule
@@ -60,6 +60,8 @@ gv=Conjugation\nAgreement between verbs and their subject.
 infi=Infinitive\nChecks confusions between infinitive forms and other forms.
 imp=Imperative mood\nChecks particularly verbs at second person singular (i.e. errors such as: « vas … », « prend … », « manges … »).
 inte=Interrogative mood\nChecks interrogative forms and suggests linking the personal pronouns with verbs.
+ppas=Past participles, adjectives\nChecks subject agreement with past participles and adjectives
+vmode=Verbal modes
 
 style=Style
 bs=Popular style\nUnderlines misuse of language though informal and commonly used.
@@ -105,6 +107,8 @@ gv=Conjugaisons\nAccord des verbes avec leur sujet.
 infi=Infinitif\nConfusion entre l’infinitif et d’autres formes.
 imp=Impératif\nVérifie notamment la deuxième personne du singulier (par exemple, les erreurs : « vas … », « prend … », « manges … »).
 inte=Interrogatif\nVérifie les formes interrogatives et suggère de lier les pronoms personnels avec les verbes.
+ppas=Participes passés, adjectifs
+vmode=Modes verbaux
 
 style=Style
 bs=Populaire\nSouligne un langage courant considéré comme erroné, comme « malgré que ».

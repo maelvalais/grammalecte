@@ -22,10 +22,10 @@ String.prototype._isLowerCase = function () {
     return (this.search(/^[a-zà-öø-ÿ0-9-]+$/) !== -1);
 }
 String.prototype._isUpperCase = function () {
-    return (this.search(/^[A-ZÀ-ÖØ-ß0-9-]+$/) !== -1);
+    return (this.search(/^[A-ZÀ-ÖØ-ßŒ0-9-]+$/) !== -1);
 }
 String.prototype._isTitle = function () {
-    return (this.search(/^[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ'’-]+$/) !== -1);
+    return (this.search(/^[A-ZÀ-ÖØ-ßŒ][a-zà-öø-ÿ'’-]+$/) !== -1);
 }
 String.prototype._toCapitalize = function () {
     return this.slice(0,1).toUpperCase() + this.slice(1).toLowerCase();

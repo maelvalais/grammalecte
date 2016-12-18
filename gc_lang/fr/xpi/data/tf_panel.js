@@ -246,9 +246,9 @@ function applyOptions (sText) {
                 [sText, n1] = formatText(sText, "ts_quotation_marks");
                 document.getElementById('res_o_ts_quotation_marks').textContent = n1;
             }
-            if (document.getElementById("o_ts_spell_ligatures").checked) {
-                [sText, n1] = formatText(sText, "ts_spell_ligatures");
-                document.getElementById('res_o_ts_spell_ligatures').textContent = n1;
+            if (document.getElementById("o_ts_spell").checked) {
+                [sText, n1] = formatText(sText, "ts_spell");
+                document.getElementById('res_o_ts_spell').textContent = n1;
             }
             if (document.getElementById("o_ts_ligature").checked) {
                 // ligatures typographiques : fi, fl, ff, ffi, ffl, ft, st

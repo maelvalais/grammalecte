@@ -10,11 +10,13 @@ class TestGrammarChecking {
 
     constructor (gce) {
         this.gce = gce;
+        this._aRuleTested = new Set();
     };
 
     * testParse (bDebug=false) {
         const t0 = Date.now();
-        const aData = require("resource://grammalecte/"+this.gce.lang+"/tests_data.js").aData;
+        const aData = JSON.parse(helpers.loadFile("resource://grammalecte/"+this.gce.lang+"/tests_data.json")).aData;
+        //const aData = require("resource://grammalecte/"+this.gce.lang+"/tests_data.js").aData;
         let nInvalid = 0
         let nTotal = 0
         let sErrorText;
@@ -25,12 +27,23 @@ class TestGrammarChecking {
         let sListErr;
         let sLineNum;
         let i = 1;
+        let sUntestedRules = "";
+        let bShowUntested = false;
+        let zOption = /^__([a-zA-Z0-9]+)__ /;
+        let sOption;
+        let m;
         yield "Tests [" + this.gce.lang + "]: " + aData.length.toString();
         try {
             for (let sLine of aData) {
                 sLineNum = sLine.slice(0,10).trim();
                 sLine = sLine.slice(10).trim();
                 if (sLine.length > 0 && !sLine.startsWith("#")) {
+                    sOption = false;
+                    m = zOption.exec(sLine);
+                    if (m) {
+                        sLine = sLine.slice(sLine.indexOf(" ")+1);
+                        sOption = m[1];
+                    }
                     if (sLine.includes("->>")) {
                         [sErrorText, sSugg] = sLine.split("->>");
                         sErrorText = sErrorText.trim();
@@ -40,7 +53,7 @@ class TestGrammarChecking {
                     }
                     sExpectedErrors = this._getExpectedErrors(sErrorText);
                     sTextToCheck = sErrorText.replace(/\{\{/g, "").replace(/\}\}/g, "");
-                    [sFoundErrors, sListErr] = this._getFoundErrors(sTextToCheck, bDebug);
+                    [sFoundErrors, sListErr] = this._getFoundErrors(sTextToCheck, bDebug, sOption);
                     if (sExpectedErrors !== sFoundErrors) {
                         yield "\n" + i.toString() +
                               "\n# Line num: " + sLineNum +
@@ -57,9 +70,23 @@ class TestGrammarChecking {
                     yield i.toString();
                 }
             }
+            bShowUntested = true;
         }
         catch (e) {
             helpers.logerror(e);
+        }
+
+        if (bShowUntested) {
+            i = 0;
+            for (let [sOpt, sLineId, sRuleId] of gce.listRules()) {
+                if (!this._aRuleTested.has(sLineId) && !/^[0-9]+[sp]$/.test(sRuleId)) {
+                    sUntestedRules += sRuleId + ", ";
+                    i += 1;
+                }
+            }
+            if (i > 0) {
+                yield sUntestedRules + "\n[" + i.toString() + " untested rules]";
+            }
         }
 
         const t1 = Date.now();
@@ -93,14 +120,22 @@ class TestGrammarChecking {
         return " ".repeat(sLine.length);
     };
 
-    _getFoundErrors (sLine, bDebug) {
+    _getFoundErrors (sLine, bDebug, sOption) {
         try {
-            let aErrs = this.gce.parse(sLine, "FR", bDebug);
+            let aErrs = [];
+            if (sOption) {
+                gce.setOption(sOption, true);
+                aErrs = this.gce.parse(sLine, "FR", bDebug);
+                gce.setOption(sOption, false);
+            } else {
+                aErrs = this.gce.parse(sLine, "FR", bDebug);
+            }
             let sRes = " ".repeat(sLine.length);
             let sListErr = "";
             for (let dErr of aErrs) {
                 sRes = sRes.slice(0, dErr["nStart"]) + "~".repeat(dErr["nEnd"] - dErr["nStart"]) + sRes.slice(dErr["nEnd"]);
-                sListErr += "    * {" + dErr['sRuleId'] + "}  at  " + dErr['nStart'] + ":" + dErr['nEnd'] + "\n";
+                sListErr += "    * {" + dErr['sLineId'] + " / " + dErr['sRuleId'] + "}  at  " + dErr['nStart'] + ":" + dErr['nEnd'] + "\n";
+                this._aRuleTested.add(dErr["sLineId"]);
             }
             return [sRes, sListErr];
         }

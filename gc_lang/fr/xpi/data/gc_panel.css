@@ -6,6 +6,7 @@ header {
     background-color: hsl(0, 0%, 96%);
     padding: 10px 20px;
     border-bottom: 1px solid hsl(0, 0%, 90%);
+    color: hsl(0, 0%, 0%);
     z-index: 99;
 }
 
@@ -15,6 +16,7 @@ body {
 	background-color: hsl(0, 0%, 98%);
 	font-family: Tahoma, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 	overflow-x: hidden;
+    color: hsl(0, 0%, 0%);
 }
 
 #messagebox {
@@ -58,9 +60,10 @@ body {
 .paragraph {
     background-color: hsla(0, 0%, 90%, 1);
     padding: 10px;
+    border-radius: 2px;
     font-size: 14px;
     font-family : "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-    border-radius: 2px;
+    color: hsl(0, 0%, 0%);
 }
 .softred {
     background-color: hsla(0, 20%, 90%, 1);
@@ -280,12 +283,12 @@ body {
 }
 
 /* elems */
-.gv, .infi, .imp, .inte {
+.gv, .infi, .imp, .inte, .ppas, .vmode  {
     background-color: hsl(300, 40%, 40%);
     color: hsl(300, 10%, 96%);
     /*text-decoration: underline wavy hsl(300, 40%, 40%);*/
 }
-.gv:hover, .infi:hover, .imp:hover, .inte:hover {
+.gv:hover, .infi:hover, .imp:hover, .inte:hover, .ppas:hover, .vmode:hover {
     background-color: hsl(300, 50%, 30%);
     color: hsl(300, 10%, 96%);
 }

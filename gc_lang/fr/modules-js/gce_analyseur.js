@@ -128,8 +128,8 @@ function mbUnit (s) {
 //// Syntagmes
 
 const _zEndOfNG1 = new RegExp ("^ +(?:, +|)(?:n(?:’|e |o(?:u?s|tre) )|l(?:’|e(?:urs?|s|) |a )|j(?:’|e )|m(?:’|es? |a |on )|t(?:’|es? |a |u )|s(?:’|es? |a )|c(?:’|e(?:t|tte|s|) )|ç(?:a |’)|ils? |vo(?:u?s|tre) )");
-const _zEndOfNG2 = new RegExp ("^ +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ-]+)");
-const _zEndOfNG3 = new RegExp ("^ *, +([a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ-]+)");
+const _zEndOfNG2 = new RegExp ("^ +([a-zà-öA-Zø-ÿÀ-Ö0-9_Ø-ßĀ-ʯ][a-zà-öA-Zø-ÿÀ-Ö0-9_Ø-ßĀ-ʯ-]+)");
+const _zEndOfNG3 = new RegExp ("^ *, +([a-zà-öA-Zø-ÿÀ-Ö0-9_Ø-ßĀ-ʯ][a-zà-öA-Zø-ÿÀ-Ö0-9_Ø-ßĀ-ʯ-]+)");
 
 function isEndOfNG (dDA, s, iOffset) {
     if (_zEndOfNG1.test(s)) {
@@ -145,6 +145,38 @@ function isEndOfNG (dDA, s, iOffset) {
     }
     return false;
 }
+
+
+const _zNextIsNotCOD1 = new RegExp ("^ *,");
+const _zNextIsNotCOD2 = new RegExp ("^ +(?:[mtsnj](e +|’)|[nv]ous |tu |ils? |elles? )");
+const _zNextIsNotCOD3 = new RegExp ("^ +([a-zéèî][a-zà-öA-Zø-ÿÀ-ÖØ-ßĀ-ʯ-]+)");
+
+function isNextNotCOD (dDA, s, iOffset) {
+    if (_zNextIsNotCOD1.test(s) || _zNextIsNotCOD2.test(s)) {
+        return true;
+    }
+    let m = _zNextIsNotCOD3._exec2(s, ["$"]);
+    if (m && morphex(dDA, [iOffset+m.start[1], m[1]], ":[123][sp]", ":[DM]")) {
+        return true;
+    }
+    return false;
+}
+
+
+const _zNextIsVerb1 = new RegExp ("^ +[nmts](?:e |’) ");
+const _zNextIsVerb2 = new RegExp ("^ +([a-zà-öA-Zø-ÿÀ-Ö0-9_Ø-ßĀ-ʯ][a-zà-öA-Zø-ÿÀ-Ö0-9_Ø-ßĀ-ʯ-]+)");
+
+function isNextVerb (dDA, s, iOffset) {
+    if (_zNextIsVerb1.test(s)) {
+        return true;
+    }
+    let m = _zNextIsVerb2._exec2(s, ["$"]);
+    if (m && morph(dDA, [iOffset+m.start[1], m[1]], ":[123][sp]", false)) {
+        return true;
+    }
+    return false;
+}
+
 
 //// Exceptions
 

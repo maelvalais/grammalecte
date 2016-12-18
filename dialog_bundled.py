@@ -11,6 +11,7 @@ langu = re.compile(r"\[.+=.+\]\s*")
 titl = re.compile(r"\w+\s*=\s*")
 helptexts = []
 
+# XDL file
 xdl_header = """<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
 <dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="%s" dlg:left="101" dlg:top="52" dlg:width="196" dlg:height="72" dlg:closeable="true" dlg:moveable="true" dlg:withtitlebar="false">
@@ -22,6 +23,7 @@ xdl_footer = """</dlg:bulletinboard>
 xdl_group = '<dlg:fixedline dlg:id="%s" dlg:tab-index="%d" dlg:left="5" dlg:top="%d" dlg:width="240" dlg:height="10" dlg:value="&amp;%s"/>\n'
 xdl_item = '<dlg:checkbox dlg:id="%s" dlg:tab-index="%d" dlg:left="%d" dlg:top="%d" dlg:width="%d" dlg:height="10" dlg:value="&amp;%s" dlg:checked="%s" %s/>\n'
 
+# XCS file
 xcs_header = """<?xml version="1.0" encoding="UTF-8"?>
 <oor:component-schema xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 oor:name="%s" oor:package="org.openoffice" xml:lang="en-US">
@@ -30,17 +32,17 @@ oor:name="%s" oor:package="org.openoffice" xml:lang="en-US">
 </info>
 <templates>
 """
-xcs_leaf_header = r"""
+xcs_leaf_header = """
                 <group oor:name="%s">
                         <info>
                                 <desc>The data for one leaf.</desc>
                         </info>
 """
-xcs_leaf = r"""<prop oor:name="%s" oor:type="xs:string">
+xcs_leaf = """<prop oor:name="%s" oor:type="xs:string">
                                 <value></value>
 </prop>
 """
-xcs_leaf_footer = r"""                </group>
+xcs_leaf_footer = """                </group>
 """
 xcs_component_header = """        </templates>
         <component>
@@ -54,6 +56,8 @@ xcs_footer = """                </group>
         
 </oor:component-schema>
 """
+
+# XCU file
 xcu_header = u"""<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE oor:component-data SYSTEM "../../../../component-update.dtd">
 <oor:component-data oor:name="OptionsDialog" oor:package="org.openoffice.Office" xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -103,11 +107,13 @@ xcu_footer = """
 </oor:component-data>
 """
 
+
 indexes = {}
 indexes_def = {}
 modules = {}
 
-def create_xdl(pkg, lines, target, lang):
+
+def create_xdl (pkg, lLineOptions, hZip, lang):
     global indexes
     global indexes_def
     global modules
@@ -123,11 +129,11 @@ def create_xdl(pkg, lines, target, lang):
     k2 = 0
     lin = 0
     ok = False
-    for i in lines:
+    for i in lLineOptions:
         i = i.strip()
         if "=" in i and r"\n" in i:
             helptexts.append(i.split("=")[0])
-    for i in lines:
+    for i in lLineOptions:
         i = i.strip().replace(r"\n", "@#@") + "\n"
         lin = lin + 1
         if not comment.match(i):
@@ -164,7 +170,7 @@ def create_xdl(pkg, lines, target, lang):
             if langu.match(i.strip()):
                 if "xdl" in f2n:
                     f2 = f2 + xdl_footer
-                target.writestr(f2n, f2)
+                hZip.writestr(f2n, f2)
                 f2 = ""
                 i = i.strip()
                 langname = i[1:i.find("=")]
@@ -172,7 +178,7 @@ def create_xdl(pkg, lines, target, lang):
                 f2n = "dialog/" + lang + "_" + langname + ".properties"
                 state = state + 1
                 if state == 1:
-                    target.writestr("dialog/" + lang + "_" + langname + ".default", "")
+                    hZip.writestr("dialog/" + lang + "_" + langname + ".default", "")
             elif titl.match(i.strip()):
                 hlp = i.encode("unicode-escape").decode('ascii').replace(r"\n","\n").replace(r"\t","\t").replace(r"\x","\\u00").split("@#@", 1)
                 if len(hlp) > 1:
@@ -184,43 +190,39 @@ def create_xdl(pkg, lines, target, lang):
                 print ("Syntax error in line %d: %s" %(lin, i))
     if "xdl" in f2n:
         f2 = f2 + xdl_footer
-    target.writestr(f2n, f2)
-
-#def c(pkg, author, language, inpdir, target, prgtarget, dlg):
-
-def c(pkg, dlgdata, target, lang):
-
- # create xdl dialog data files
- create_xdl(pkg, dlgdata, target, lang)
-
- s = xcs_header% ("Lightproof_" + pkg)
- for i in indexes:
-    s = s + xcs_leaf_header%i + \
-        xcs_leaf*len(indexes[i])%tuple(indexes[i]) + \
-        xcs_leaf_footer
- s = s + xcs_component_header
- for i in indexes:
-    s = s + xcs_component%(i,i)
-
- target.writestr("dialog/OptionsDialog.xcs", s + xcs_footer)
-
- s = "" 
- for i in indexes:
-    s = s + xcu_node_header%(pkg, pkg) + \
-        xcu_node*(len(modules[i])//2)%tuple(modules[i]) + \
-        xcu_node_footer%(i, pkg)
- target.writestr("dialog/OptionsDialog.xcu", (xcu_header + s + xcu_footer).encode("utf-8"))
-
- # python resource file
-
- s = """lopts = {}
-lopts_default = {}
-"""
- for i in indexes:
-    s = s + "lopts['" + i + "'] = " + str(indexes[i]) + "\n"
- for i in indexes:
-    s = s + "lopts_default['" + i + "'] = " + str(indexes_def[i]) + "\n"
- target.writestr("pythonpath/lightproof_opts_%s.py"%pkg, s)
+    hZip.writestr(f2n, f2)
 
 
 
+def c (sImplname, lLineOptions, hZip, sLang):
+    # create xdl dialog data files
+    create_xdl(sImplname, lLineOptions, hZip, sLang)
+
+    #print(indexes)
+
+    # create xcs file
+    s = xcs_header% ("Lightproof_" + sImplname)
+    for i in indexes:
+        s = s + xcs_leaf_header%i + \
+            xcs_leaf*len(indexes[i])%tuple(indexes[i]) + xcs_leaf_footer
+    s = s + xcs_component_header
+    for i in indexes:
+        s = s + xcs_component%(i,i)
+
+    hZip.writestr("dialog/OptionsDialog.xcs", s + xcs_footer)
+
+    # create xcu (bundled dialog in LO options)
+    s = "" 
+    for i in indexes:
+        s = s + xcu_node_header%(sImplname, sImplname) + \
+            xcu_node*(len(modules[i])//2)%tuple(modules[i]) + \
+            xcu_node_footer%(i, sImplname)
+    hZip.writestr("dialog/OptionsDialog.xcu", (xcu_header + s + xcu_footer).encode("utf-8"))
+
+    # python resource file
+    s = "lopts = {}\nlopts_default = {}\n"
+    for i in indexes:
+        s = s + "lopts['" + i + "'] = " + str(indexes[i]) + "\n"
+    for i in indexes:
+        s = s + "lopts_default['" + i + "'] = " + str(indexes_def[i]) + "\n"
+    hZip.writestr("pythonpath/lightproof_opts_%s.py"%sImplname, s)

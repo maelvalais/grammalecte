@@ -2,7 +2,7 @@
 
 
 ///// Lemme
-const zLemma = new RegExp("^>([a-zà-öø-ÿĀ-ʯ][a-zà-öø-ÿĀ-ʯ-]+)");
+const zLemma = new RegExp("^>([a-zà-öø-ÿ0-9Ā-ʯ][a-zà-öø-ÿ0-9Ā-ʯ-]+)");
 
 ///// Masculin / féminin / singulier / pluriel
 const zGender = new RegExp(":[mfe]");

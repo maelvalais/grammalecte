@@ -44,7 +44,7 @@ document.getElementById('otco').addEventListener("click", function (event) {
 });
 
 function createVerbAndConjugate (sVerb) {
-    try { 
+    try {
         document.getElementById('oneg').checked = false;
         document.getElementById('opro').checked = false;
         document.getElementById('oint').checked = false;

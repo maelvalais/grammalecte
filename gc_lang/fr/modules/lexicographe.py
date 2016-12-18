@@ -1,4 +1,3 @@
-# -*- encoding: UTF-8 -*-
 # Grammalecte - Lexicographe
 # License: MPL 2
 
@@ -9,87 +8,87 @@ import traceback
 
 _dTAGS = {  
     ':G': "",
-    ':N': u" nom,",
-    ':A': u" adjectif,",
-    ':M1': u" prénom,",
-    ':M2': u" patronyme,",
-    ':MP': u" nom propre,",
-    ':W': u" adverbe,",
-    ':X': u" adverbe de négation,",
-    ':U': u" adverbe interrogatif,",
-    ':J': u" interjection,",
-    ':B': u" nombre,",
+    ':N': " nom,",
+    ':A': " adjectif,",
+    ':M1': " prénom,",
+    ':M2': " patronyme,",
+    ':MP': " nom propre,",
+    ':W': " adverbe,",
+    ':X': " adverbe de négation,",
+    ':U': " adverbe interrogatif,",
+    ':J': " interjection,",
+    ':B': " nombre,",
 
-    ':R': u" préposition,",
-    ':Rv': u" préposition verbale,",
-    ':D': u" déterminant,",
-    ':Dd': u" déterminant démonstratif,",
-    ':De': u" déterminant exclamatif,",
-    ':Dp': u" déterminant possessif,",
-    ':Di': u" déterminant indéfini,",
-    ':Dn': u" déterminant négatif,",
-    ':Od': u" pronom démonstratif,",
-    ':Oi': u" pronom indéfini,",
-    ':On': u" pronom indéfini négatif,",
-    ':Ot': u" pronom interrogatif,",
-    ':Or': u" pronom relatif,",
-    ':Ow': u" pronom adverbial,",
-    ':Os': u" pronom personnel sujet,",
-    ':Oo': u" pronom personnel objet,",
-    ':Cc': u" conjonction de coordination,",
-    ':Cs': u" conjonction de subordination,",
+    ':R': " préposition,",
+    ':Rv': " préposition verbale,",
+    ':D': " déterminant,",
+    ':Dd': " déterminant démonstratif,",
+    ':De': " déterminant exclamatif,",
+    ':Dp': " déterminant possessif,",
+    ':Di': " déterminant indéfini,",
+    ':Dn': " déterminant négatif,",
+    ':Od': " pronom démonstratif,",
+    ':Oi': " pronom indéfini,",
+    ':On': " pronom indéfini négatif,",
+    ':Ot': " pronom interrogatif,",
+    ':Or': " pronom relatif,",
+    ':Ow': " pronom adverbial,",
+    ':Os': " pronom personnel sujet,",
+    ':Oo': " pronom personnel objet,",
+    ':Cc': " conjonction de coordination,",
+    ':Cs': " conjonction de subordination,",
     
-    ':Ŵ': u" locution adverbiale (él.),",
-    ':Ñ': u" locution nominale (él.),",
-    ':Â': u" locution adjectivale (él.),",
-    ':Ṽ': u" locution verbale (él.),",
-    ':Ŕ': u" locution prépositive (él.),",
-    ':Ĵ': u" locution interjective (él.),",
+    ':Ŵ': " locution adverbiale (él.),",
+    ':Ñ': " locution nominale (él.),",
+    ':Â': " locution adjectivale (él.),",
+    ':Ṽ': " locution verbale (él.),",
+    ':Ŕ': " locution prépositive (él.),",
+    ':Ĵ': " locution interjective (él.),",
 
-    ':Zp': u" préfixe,",
-    ':Zs': u" suffixe,",
+    ':Zp': " préfixe,",
+    ':Zs': " suffixe,",
 
-    ':V1': u" verbe (1ᵉʳ gr.),",
-    ':V2': u" verbe (2ᵉ gr.),",
-    ':V3': u" verbe (3ᵉ gr.),",
-    ':V0e': u" verbe,",
-    ':V0a': u" verbe,",
+    ':V1': " verbe (1ᵉʳ gr.),",
+    ':V2': " verbe (2ᵉ gr.),",
+    ':V3': " verbe (3ᵉ gr.),",
+    ':V0e': " verbe,",
+    ':V0a': " verbe,",
 
-    ':O1': u" 1ʳᵉ pers.,",
-    ':O2': u" 2ᵉ pers.,",
-    ':O3': u" 3ᵉ pers.,",
+    ':O1': " 1ʳᵉ pers.,",
+    ':O2': " 2ᵉ pers.,",
+    ':O3': " 3ᵉ pers.,",
     
-    ':e': u" épicène",
-    ':m': u" masculin",
-    ':f': u" féminin",
-    ':s': u" singulier",
-    ':p': u" pluriel",
-    ':i': u" invariable",
+    ':e': " épicène",
+    ':m': " masculin",
+    ':f': " féminin",
+    ':s': " singulier",
+    ':p': " pluriel",
+    ':i': " invariable",
 
-    ':Y': u" infinitif,",
-    ':P': u" participe présent,",
-    ':Q': u" participe passé,",
+    ':Y': " infinitif,",
+    ':P': " participe présent,",
+    ':Q': " participe passé,",
 
-    ':Ip': u" présent,",
-    ':Iq': u" imparfait,",
-    ':Is': u" passé simple,",
-    ':If': u" futur,",
-    ':K': u" conditionnel présent,",
-    ':Sp': u" subjonctif présent,",
-    ':Sq': u" subjonctif imparfait,",
-    ':E': u" impératif,",
+    ':Ip': " présent,",
+    ':Iq': " imparfait,",
+    ':Is': " passé simple,",
+    ':If': " futur,",
+    ':K': " conditionnel présent,",
+    ':Sp': " subjonctif présent,",
+    ':Sq': " subjonctif imparfait,",
+    ':E': " impératif,",
 
-    ':1s': u" 1ʳᵉ p. sg.,",
-    u':1ŝ': u" présent interr. 1ʳᵉ p. sg.,",
-    u':1ś': u" présent interr. 1ʳᵉ p. sg.,",
-    ':2s': u" 2ᵉ p. sg.,",
-    ':3s': u" 3ᵉ p. sg.,",
-    ':1p': u" 1ʳᵉ p. pl.,",
-    ':2p': u" 2ᵉ p. pl.,",
-    ':3p': u" 3ᵉ p. pl.,",
-    ':3p!': u" 3ᵉ p. pl.,",
+    ':1s': " 1ʳᵉ p. sg.,",
+    ':1ŝ': " présent interr. 1ʳᵉ p. sg.,",
+    ':1ś': " présent interr. 1ʳᵉ p. sg.,",
+    ':2s': " 2ᵉ p. sg.,",
+    ':3s': " 3ᵉ p. sg.,",
+    ':1p': " 1ʳᵉ p. pl.,",
+    ':2p': " 2ᵉ p. pl.,",
+    ':3p': " 3ᵉ p. pl.,",
+    ':3p!': " 3ᵉ p. pl.,",
 
-    ';S': u" : symbole (unité de mesure)",
+    ';S': " : symbole (unité de mesure)",
 
     '/*': "",
     '/C': " {classique}",
@@ -100,55 +99,55 @@ _dTAGS = {
 }
 
 _dPFX = {
-    'd': u"(de), déterminant épicène invariable",
-    'l': u"(le/la), déterminant masculin/féminin singulier",
-    'j': u"(je), pronom personnel sujet, 1ʳᵉ pers., épicène singulier",
-    'm': u"(me), pronom personnel objet, 1ʳᵉ pers., épicène singulier",
-    't': u"(te), pronom personnel objet, 2ᵉ pers., épicène singulier",
-    's': u"(se), pronom personnel objet, 3ᵉ pers., épicène singulier/pluriel",
-    'n': u"(ne), adverbe de négation",
-    'c': u"(ce), pronom démonstratif, masculin singulier/pluriel",
-    u'ç': u"(ça), pronom démonstratif, masculin singulier",
-    'qu': u"(que), conjonction de subordination",
-    'lorsqu': u"(lorsque), conjonction de subordination",
-    'quoiqu': u"(quoique), conjonction de subordination",
-    'jusqu': u"(jusque), préposition",
+    'd': "(de), déterminant épicène invariable",
+    'l': "(le/la), déterminant masculin/féminin singulier",
+    'j': "(je), pronom personnel sujet, 1ʳᵉ pers., épicène singulier",
+    'm': "(me), pronom personnel objet, 1ʳᵉ pers., épicène singulier",
+    't': "(te), pronom personnel objet, 2ᵉ pers., épicène singulier",
+    's': "(se), pronom personnel objet, 3ᵉ pers., épicène singulier/pluriel",
+    'n': "(ne), adverbe de négation",
+    'c': "(ce), pronom démonstratif, masculin singulier/pluriel",
+    'ç': "(ça), pronom démonstratif, masculin singulier",
+    'qu': "(que), conjonction de subordination",
+    'lorsqu': "(lorsque), conjonction de subordination",
+    'quoiqu': "(quoique), conjonction de subordination",
+    'jusqu': "(jusque), préposition",
 }
 
 _dAD = {
-    'je': u" pronom personnel sujet, 1ʳᵉ pers. sing.",
-    'tu': u" pronom personnel sujet, 2ᵉ pers. sing.",
-    'il': u" pronom personnel sujet, 3ᵉ pers. masc. sing.",
-    'on': u" pronom personnel sujet, 3ᵉ pers. sing. ou plur.",
-    'elle': u" pronom personnel sujet, 3ᵉ pers. fém. sing.",
-    'nous': u" pronom personnel sujet/objet, 1ʳᵉ pers. plur.",
-    'vous': u" pronom personnel sujet/objet, 2ᵉ pers. plur.",
-    'ils': u" pronom personnel sujet, 3ᵉ pers. masc. plur.",
-    'elles': u" pronom personnel sujet, 3ᵉ pers. masc. plur.",
+    'je': " pronom personnel sujet, 1ʳᵉ pers. sing.",
+    'tu': " pronom personnel sujet, 2ᵉ pers. sing.",
+    'il': " pronom personnel sujet, 3ᵉ pers. masc. sing.",
+    'on': " pronom personnel sujet, 3ᵉ pers. sing. ou plur.",
+    'elle': " pronom personnel sujet, 3ᵉ pers. fém. sing.",
+    'nous': " pronom personnel sujet/objet, 1ʳᵉ pers. plur.",
+    'vous': " pronom personnel sujet/objet, 2ᵉ pers. plur.",
+    'ils': " pronom personnel sujet, 3ᵉ pers. masc. plur.",
+    'elles': " pronom personnel sujet, 3ᵉ pers. masc. plur.",
     
-    u"là": u" particule démonstrative",
-    "ci": u" particule démonstrative",
+    "là": " particule démonstrative",
+    "ci": " particule démonstrative",
     
-    'le': u" COD, masc. sing.",
-    'la': u" COD, fém. sing.",
-    'les': u" COD, plur.",
+    'le': " COD, masc. sing.",
+    'la': " COD, fém. sing.",
+    'les': " COD, plur.",
         
-    'moi': u" COI (à moi), sing.",
-    'toi': u" COI (à toi), sing.",
-    'lui': u" COI (à lui ou à elle), sing.",
-    'nous2': u" COI (à nous), plur.",
-    'vous2': u" COI (à vous), plur.",
-    'leur': u" COI (à eux ou à elles), plur.",
+    'moi': " COI (à moi), sing.",
+    'toi': " COI (à toi), sing.",
+    'lui': " COI (à lui ou à elle), sing.",
+    'nous2': " COI (à nous), plur.",
+    'vous2': " COI (à vous), plur.",
+    'leur': " COI (à eux ou à elles), plur.",
 
-    'y': u" pronom adverbial",
-    "m'y": u" (me) pronom personnel objet + (y) pronom adverbial",
-    "t'y": u" (te) pronom personnel objet + (y) pronom adverbial",
-    "s'y": u" (se) pronom personnel objet + (y) pronom adverbial",
+    'y': " pronom adverbial",
+    "m'y": " (me) pronom personnel objet + (y) pronom adverbial",
+    "t'y": " (te) pronom personnel objet + (y) pronom adverbial",
+    "s'y": " (se) pronom personnel objet + (y) pronom adverbial",
 
-    'en': u" pronom adverbial",
-    "m'en": u" (me) pronom personnel objet + (en) pronom adverbial",
-    "t'en": u" (te) pronom personnel objet + (en) pronom adverbial",
-    "s'en": u" (se) pronom personnel objet + (en) pronom adverbial",
+    'en': " pronom adverbial",
+    "m'en": " (me) pronom personnel objet + (en) pronom adverbial",
+    "t'en": " (te) pronom personnel objet + (en) pronom adverbial",
+    "s'en": " (se) pronom personnel objet + (en) pronom adverbial",
 }
 
 
@@ -156,16 +155,16 @@ class Lexicographe:
 
     def __init__ (self, oDict):
         self.oDict = oDict
-        self._zElidedPrefix = re.compile(u"(?i)^([dljmtsncç]|quoiqu|lorsqu|jusqu|puisqu|qu)['’](.+)")
-        self._zCompoundWord = re.compile(u"(?i)(\\w+)-((?:les?|la)-(?:moi|toi|lui|[nv]ous|leur)|t-(?:il|elle|on)|y|en|[mts][’'](?:y|en)|les?|l[aà]|[mt]oi|leur|lui|je|tu|ils?|elles?|on|[nv]ous)$")
-        self._zTag = re.compile(u"[:;/][\\w*][^:;/]*")
+        self._zElidedPrefix = re.compile("(?i)^([dljmtsncç]|quoiqu|lorsqu|jusqu|puisqu|qu)['’](.+)")
+        self._zCompoundWord = re.compile("(?i)(\\w+)-((?:les?|la)-(?:moi|toi|lui|[nv]ous|leur)|t-(?:il|elle|on)|y|en|[mts][’'](?:y|en)|les?|l[aà]|[mt]oi|leur|lui|je|tu|ils?|elles?|on|[nv]ous)$")
+        self._zTag = re.compile("[:;/][\\w*][^:;/]*")
 
     def analyzeWord (self, sWord):
         try:
             if not sWord:
                 return (None, None)
             if sWord.count("-") > 4:
-                return ([u"élément complexe indéterminé"], None)
+                return (["élément complexe indéterminé"], None)
             if sWord.isdigit():
                 return (["nombre"], None)
 
@@ -174,7 +173,7 @@ class Lexicographe:
             m = self._zElidedPrefix.match(sWord)
             if m:
                 sWord = m.group(2)
-                aMorph.append( u"{}’ : {}".format(m.group(1), _dPFX.get(m.group(1).lower(), "[?]")) )
+                aMorph.append( "{}’ : {}".format(m.group(1), _dPFX.get(m.group(1).lower(), "[?]")) )
             # mots composés
             m2 = self._zCompoundWord.match(sWord)
             if m2:
@@ -185,12 +184,12 @@ class Lexicographe:
                 # sublist
                 aMorph.append( (sWord, [ self.formatTags(s)  for s in lMorph  if ":" in s ]) )
             elif len(lMorph) == 1:
-                aMorph.append( u"{} : {}".format(sWord, self.formatTags(lMorph[0])) )
+                aMorph.append( "{} : {}".format(sWord, self.formatTags(lMorph[0])) )
             else:
-                aMorph.append( u"{} :  inconnu du dictionnaire".format(sWord) )
+                aMorph.append( "{} :  inconnu du dictionnaire".format(sWord) )
             # suffixe d’un mot composé
             if m2:
-                aMorph.append( u"-{} : {}".format(m2.group(2), self._formatSuffix(m2.group(2).lower())) )
+                aMorph.append( "-{} : {}".format(m2.group(2), self._formatSuffix(m2.group(2).lower())) )
             # Verbes
             aVerb = set([ s[1:s.find(" ")]  for s in lMorph  if ":V" in s ])
             return (aMorph, aVerb)
@@ -210,10 +209,10 @@ class Lexicographe:
 
     def _formatSuffix (self, s):
         if s.startswith("t-"):
-            return u"“t” euphonique +" + _dAD.get(s[2:], "[?]")
+            return "“t” euphonique +" + _dAD.get(s[2:], "[?]")
         if not "-" in s:
-            return _dAD.get(s.replace(u"’", "'"), "[?]")
+            return _dAD.get(s.replace("’", "'"), "[?]")
         if s.endswith("ous"):
             s += '2'
         nPos = s.find("-")
-        return u"%s +%s" % (_dAD.get(s[:nPos], "[?]"), _dAD.get(s[nPos+1:], "[?]"))
+        return "%s +%s" % (_dAD.get(s[:nPos], "[?]"), _dAD.get(s[nPos+1:], "[?]"))

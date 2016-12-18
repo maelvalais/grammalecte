@@ -1,3666 +1,4626 @@
 // generated code, do not edit
-var oEvalFunc = {
-    p74p_1: function (s, m) {
+const oEvalFunc = {
+    c330p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\w$/);
+    },
+    c330p_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^\w/);
+    },
+    c334p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\w$/);
+    },
+    c334p_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^\w/);
+    },
+    p358p_1: function (s, m) {
+        return m[1]._toCapitalize();
+    },
+    p371p_1: function (s, m) {
         return m[1].replace(/\./g, "")+".";
     },
-    c76p_1: function (s, sx, m, dDA, sCountry) {
-        return m[0] != "i.e." && m[0] != "s.t.p.";
+    c372p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].search(/^(?:i\.e\.|s\.[tv]\.p\.|e\.g\.|a\.k\.a\.|c\.q\.f\.d\.|b\.a\.)$/i) >= 0);
     },
-    s76p_1: function (s, m) {
+    s372p_1: function (s, m) {
         return m[0].replace(/\./g, "").toUpperCase();
     },
-    p76p_2: function (s, m) {
-        return m[0].replace(/\./g, "");
+    c372p_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0] != "b.a.";
     },
-    c80p_1: function (s, sx, m, dDA, sCountry) {
+    p372p_2: function (s, m) {
+        return m[0].replace(/\./g, "_");
+    },
+    p376p_1: function (s, m) {
+        return m[0].replace(/\./g, "").replace(/-/g,"");
+    },
+    c378p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return ! (m[1].search(/^etc/i) >= 0);
     },
-    c86p_1: function (s, sx, m, dDA, sCountry) {
+    c384p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ":M[12]", false) && (morph(dDA, [m.start[3], m[3]], ":(?:M[12]|V)", false) || ! _oDict.isValid(m[3]));
     },
-    c87p_1: function (s, sx, m, dDA, sCountry) {
+    c385p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ":M[12]", false) && look(s.slice(m.end[0]), /^\W+[a-zéèêîïâ]/);
     },
-    c139p_1: function (s, sx, m, dDA, sCountry) {
+    c446p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return option("typo") && ! m[0].endsWith("·e·s");
     },
-    c139p_2: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false);
-    },
-    d139p_2: function (s, m, dDA) {
-        return define(dDA, m.start[0], [":N:A:Q:e:i"]);
-    },
-    c151p_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^(?:etc|[A-Z]|chap|cf|fig|hab|litt|circ|coll|r[eé]f|étym|suppl|bibl|bibliogr|cit|op|vol|déc|nov|oct|janv|juil|avr|sept)$/i) >= 0) && morph(dDA, [m.start[1], m[1]], ":", false) && morph(dDA, [m.start[2], m[2]], ":", false);
-    },
-    s151p_1: function (s, m) {
-        return m[2]._toCapitalize();
-    },
-    c162p_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":[DR]", false);
-    },
-    c192p_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[1]._isDigit();
-    },
-    c194p_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[1]);
-    },
-    s215p_1: function (s, m) {
-        return m[1].slice(0,-1);
-    },
-    s216p_1: function (s, m) {
-        return m[1].slice(1,3) == "os"  ? "nᵒˢ"  : "nᵒ";
-    },
-    c224p_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /etc$/i);
-    },
-    s225p_1: function (s, m) {
-        return m[0].replace(/\.\.\./g, "…")._trimRight(".");
-    },
-    c241p_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^(?:etc|[A-Z]|fig|hab|litt|circ|coll|ref|étym|suppl|bibl|bibliogr|cit|vol|déc|nov|oct|janv|juil|avr|sept|pp?)$/) >= 0);
-    },
-    s282p_1: function (s, m) {
-        return m[0][0] + "|" + m[0][1];
-    },
-    s283p_1: function (s, m) {
-        return m[0][0] + "|" + m[0][1];
-    },
-    s284p_1: function (s, m) {
-        return m[0][0] + "|" + m[0][1];
-    },
-    c293p_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[3], m[3]], ";S", ":[VCR]") || mbUnit(m[3]) || ! _oDict.isValid(m[3]);
-    },
-    c297p_1: function (s, sx, m, dDA, sCountry) {
-        return (! (m[2].search(/^[0-9][0-9]{1,3}$/) >= 0) && ! _oDict.isValid(m[3])) || morphex(dDA, [m.start[3], m[3]], ";S", ":[VCR]") || mbUnit(m[3]);
-    },
-    c319p_1: function (s, sx, m, dDA, sCountry) {
-        return sCountry != "CA";
-    },
-    s319p_1: function (s, m) {
-        return " "+m[0];
-    },
-    s365p_1: function (s, m) {
-        return undoLigature(m[0]);
-    },
-    c411p_1: function (s, sx, m, dDA, sCountry) {
-        return ! option("mapos") && morph(dDA, [m.start[2], m[2]], ":V", false);
-    },
-    s411p_1: function (s, m) {
-        return m[1].slice(0,-1)+"’";
-    },
-    c414p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V", false);
-    },
-    s414p_1: function (s, m) {
-        return m[1].slice(0,-1)+"’";
-    },
-    c418p_1: function (s, sx, m, dDA, sCountry) {
-        return option("mapos") && ! look(s.slice(0,m.index), /(?:lettre|caractère|glyphe|dimension|variable|fonction|point) *$/i);
-    },
-    s418p_1: function (s, m) {
-        return m[1].slice(0,-1)+"’";
-    },
-    c432p_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[2].search(/^(?:onz[ei]|énième|iourte|ouistiti|ouate|one-?step|ouf|Ouagadougou|I(?:I|V|X|er|ᵉʳ|ʳᵉ|è?re))/i) >= 0) && ! m[2]._isUpperCase() && ! morph(dDA, [m.start[2], m[2]], ":G", false);
-    },
-    s432p_1: function (s, m) {
-        return m[1][0]+"’";
-    },
-    c448p_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[2].search(/^(?:onz|énième|ouf|énième|ouistiti|one-?step|I(?:I|V|X|er|ᵉʳ))/i) >= 0) && morph(dDA, [m.start[2], m[2]], ":[me]");
-    },
-    c456p_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[0].search(/^NF (?:C|E|P|Q|S|X|Z|EN(?: ISO|)) [0-9]+(?:‑[0-9]+|)/) >= 0);
-    },
-    s456p_1: function (s, m) {
-        return formatNF(m[0]);
-    },
-    s461p_1: function (s, m) {
-        return m[0].replace(/2/g, "₂").replace(/3/g, "₃").replace(/4/g, "₄");
-    },
-    c469p_1: function (s, sx, m, dDA, sCountry) {
-        return option("num");
-    },
-    s469p_1: function (s, m) {
-        return m[0].replace(/\./g, " ");
-    },
-    p469p_2: function (s, m) {
-        return m[0].replace(/\./g, " ");
-    },
-    c473p_1: function (s, sx, m, dDA, sCountry) {
-        return option("num");
-    },
-    s473p_1: function (s, m) {
-        return m[0].replace(/ /g, " ");
-    },
-    p473p_2: function (s, m) {
-        return m[0].replace(/ /g, " ");
-    },
-    c478p_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /NF[  -]?(C|E|P|Q|X|Z|EN(?:[  -]ISO|)) */);
-    },
-    s478p_1: function (s, m) {
-        return formatNumber(m[0]);
-    },
-    c493p_1: function (s, sx, m, dDA, sCountry) {
-        return ! option("ocr");
-    },
-    s493p_1: function (s, m) {
-        return m[0].replace(/O/g, "0");
-    },
-    c494p_1: function (s, sx, m, dDA, sCountry) {
-        return ! option("ocr");
-    },
-    s494p_1: function (s, m) {
-        return m[0].replace(/O/g, "0");
-    },
-    c513p_1: function (s, sx, m, dDA, sCountry) {
-        return ! checkDate(m[1], m[2], m[3]) && ! look(s.slice(0,m.index), /\bversions? +$/i);
-    },
-    c516p_1: function (s, sx, m, dDA, sCountry) {
-        return ! checkDateWithString(m[1], m[2], m[3]);
-    },
-    c519p_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), /^ +av(?:ant|\.) J(?:\.-C\.|ésus-Christ)/) && ! checkDay(m[1], m[2], m[3], m[4]);
-    },
-    s519p_1: function (s, m) {
-        return getDay(m[2], m[3], m[4]);
-    },
-    c524p_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), /^ +av(?:ant|\.) J(?:\.-C\.|ésus-Christ)/) && ! checkDayWithString(m[1], m[2], m[3], m[4]);
-    },
-    s524p_1: function (s, m) {
-        return getDayWithString(m[2], m[3], m[4]);
-    },
-    c563p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0", false) || m[1] == "en";
-    },
-    c570p_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[1]+"-"+m[2]) && analyse(m[1]+"-"+m[2], ":", false);
-    },
-    c574p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NB]", false);
-    },
-    c575p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NB]", false) && ! nextword1(s, m.end[0]);
-    },
-    c578p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":N") && ! (m[1].search(/^(?:aequo|nihilo|cathedra|absurdo|abrupto)/i) >= 0);
-    },
-    c580p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false);
-    },
-    c581p_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":N", ":[AGW]");
-    },
-    c584p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false);
-    },
-    c586p_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[1]+"-"+m[2]) && analyse(m[1]+"-"+m[2], ":", false);
-    },
-    c590p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":N");
-    },
-    c590p_2: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":N");
-    },
-    p590p_2: function (s, m) {
-        return m[1];
-    },
-    p593p_1: function (s, m) {
-        return m[1];
-    },
-    c595p_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[1]+"-"+m[2]) && analyse(m[1]+"-"+m[2], ":", false) && morph(dDA, prevword1(s, m.index), ":D", false, ! Boolean((m[1].search(/^s(?:ans|ous)$/i) >= 0)));
-    },
-    c599p_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[1]+"-"+m[2]) && analyse(m[1]+"-"+m[2], ":N", false) && morph(dDA, prevword1(s, m.index), ":(?:D|V0e)", false, true) && ! (morph(dDA, [m.start[1], m[1]], ":G", false) && morph(dDA, [m.start[2], m[2]], ":[GYB]", false));
-    },
-    s606p_1: function (s, m) {
-        return m[0].replace(/ /g, "-");
-    },
-    s607p_1: function (s, m) {
-        return m[0].replace(/ /g, "-");
-    },
-    c618p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":Cs", false, true);
-    },
-    s624p_1: function (s, m) {
-        return m[0].replace(/ /g, "-");
-    },
-    c630p_1: function (s, sx, m, dDA, sCountry) {
-        return ! nextword1(s, m.end[0]);
-    },
-    c632p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":G");
-    },
-    c636p_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(0,m.index), /\b(?:les?|du|des|un|ces?|[mts]on) +/i);
-    },
-    c643p_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":D", false);
-    },
-    c645p_1: function (s, sx, m, dDA, sCountry) {
-        return ! ( morph(dDA, prevword1(s, m.index), ":R", false) && look(s.slice(m.end[0]), /^ +qu[e’]/) );
-    },
-    s693p_1: function (s, m) {
-        return m[0].replace(/ /g, "-");
-    },
-    c695p_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /quatre $/i);
-    },
-    s695p_1: function (s, m) {
-        return m[0].replace(/ /g, "-").replace(/vingts/g, "vingt");
-    },
-    s697p_1: function (s, m) {
-        return m[0].replace(/ /g, "-");
-    },
-    s699p_1: function (s, m) {
-        return m[0].replace(/ /g, "-").replace(/vingts/g, "vingt");
-    },
-    s723p_1: function (s, m) {
-        return m[0].replace(/-/g, " ");
-    },
-    c725p_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
-    },
-    s726p_1: function (s, m) {
-        return m[0].replace(/-/g, " ");
-    },
-    s728p_1: function (s, m) {
-        return m[0].replace(/-/g, " ");
-    },
-    s729p_1: function (s, m) {
-        return m[0].replace(/-/g, " ");
-    },
-    c777p_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":(?:G|V0)|>(?:t(?:antôt|emps|rès)|loin|souvent|parfois|quelquefois|côte|petit) ", false) && ! m[1][0]._isUpperCase();
-    },
-    p793p_1: function (s, m) {
-        return m[0].replace(/‑/g, "");
-    },
-    p794p_1: function (s, m) {
-        return m[0].replace(/‑/g, "");
-    },
-    c840s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[0], m[0]], ":", false);
-    },
-    c843s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D", false);
-    },
-    c844s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":A", false) && ! morph(dDA, prevword1(s, m.index), ":D", false);
-    },
-    c881s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":(?:O[sp]|X)", false);
-    },
-    d881s_1: function (s, m, dDA) {
-        return select(dDA, m.start[1], m[1], ":V");
-    },
-    d883s_1: function (s, m, dDA) {
-        return select(dDA, m.start[1], m[1], ":V");
-    },
-    c885s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":[YD]", false);
-    },
-    d885s_1: function (s, m, dDA) {
-        return exclude(dDA, m.start[1], m[1], ":V");
-    },
-    d887s_1: function (s, m, dDA) {
-        return exclude(dDA, m.start[1], m[1], ":V");
-    },
-    d889s_1: function (s, m, dDA) {
-        return exclude(dDA, m.start[1], m[1], ":V");
-    },
-    c891s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":Y", false);
-    },
-    d891s_1: function (s, m, dDA) {
-        return exclude(dDA, m.start[1], m[1], ":V");
-    },
-    d893s_1: function (s, m, dDA) {
-        return exclude(dDA, m.start[1], m[1], ":[123][sp]");
-    },
-    c904s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":M", ":G") && ! morph(dDA, [m.start[2], m[2]], ":N", false) && ! prevword1(s, m.index);
-    },
-    c914s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":E", false) && morph(dDA, [m.start[3], m[3]], ":M", false);
-    },
-    c924s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":Y", false) && morph(dDA, [m.start[2], m[2]], ":M", false);
-    },
-    c933s_1: function (s, sx, m, dDA, sCountry) {
-        return option("mapos");
-    },
-    s933s_1: function (s, m) {
-        return m[1].slice(0,-1)+"’";
-    },
-    c940s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[GNAY]", ":(?:Q|3s)|>(?:priori|post[eé]riori|contrario|capella) ");
-    },
-    c954s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[0]._isDigit();
-    },
-    s954s_1: function (s, m) {
-        return m[0].replace(/O/g, "0").replace(/I/g, "1");
-    },
-    s957s_1: function (s, m) {
-        return m[0].replace(/a/g, "â").replace(/A/g, "Â");
-    },
-    s960s_1: function (s, m) {
-        return m[0].replace(/n/g, "");
-    },
-    c972s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b([jn]’|il |on |elle )$/i);
-    },
-    c975s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b[jn]e +$/i);
-    },
-    c981s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":N.*:f:s", false);
-    },
-    c984s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D.*:f:[si]");
-    },
-    c987s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, nextword1(s, m.end[0]), ">(?:et|o[uù]) ");
-    },
-    c996s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D.*:p", false, false);
-    },
-    c997s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":[VNA]", false, true);
-    },
-    c1001s_1: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("o");
-    },
-    c1001s_2: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("s") && ! morph(dDA, prevword1(s, m.index), ":D.*:[me]", false, false);
-    },
-    c1006s_1: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("é") && ! morph(dDA, prevword1(s, m.index), ":D.*:m:[si]", false, false);
-    },
-    c1006s_2: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("s") && ! morph(dDA, prevword1(s, m.index), ":D.*:m:p", false, false);
-    },
-    c1011s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\bau /i);
-    },
-    c1032s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index) && morph(dDA, [m.start[2], m[2]], ":(?:O[on]|3s)", false);
-    },
-    c1036s_1: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("U");
-    },
-    c1036s_2: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("s");
-    },
-    c1041s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[0].endsWith("s");
-    },
-    c1041s_2: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("s");
-    },
-    s1046s_1: function (s, m) {
-        return m[0].replace(/o/g, "e");
-    },
-    c1049s_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/) || ! morph(dDA, [m.start[2], m[2]], ":Y", false);
-    },
-    s1053s_1: function (s, m) {
-        return m[0].replace(/é/g, "e").replace(/É/g, "E").replace(/è/g, "e").replace(/È/g, "E");
-    },
-    c1060s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":(?:V0|N.*:m:[si])", false, false);
-    },
-    c1069s_1: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("e") && ! morph(dDA, prevword1(s, m.index), ":D.*:[me]:[si]", false, false);
-    },
-    c1069s_2: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("s") && ! morph(dDA, prevword1(s, m.index), ":D.*:[me]:[pi]", false, false);
-    },
-    s1073s_1: function (s, m) {
-        return m[0].replace(/è/g, "ê").replace(/È/g, "Ê");
-    },
-    s1074s_1: function (s, m) {
-        return m[0].replace(/é/g, "ê").replace(/É/g, "Ê");
-    },
-    c1090s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:ne|il|on|elle|je) +$/i) && morph(dDA, [m.start[1], m[1]], ":[NA].*:[me]:[si]", false);
-    },
-    c1092s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:ne|il|on|elle) +$/i) && morph(dDA, [m.start[1], m[1]], ":[NA].*:[fe]:[si]", false);
-    },
-    c1094s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:ne|tu) +$/i) && morph(dDA, [m.start[1], m[1]], ":[NA].*:[pi]", false);
-    },
-    c1101s_1: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("") && ! morph(dDA, prevword1(s, m.index), ":D.*:m:s", false, false);
-    },
-    c1101s_2: function (s, sx, m, dDA, sCountry) {
-        return m[0].endsWith("x") && ! morph(dDA, prevword1(s, m.index), ":D.*:m:p", false, false);
-    },
-    c1109s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D.*:m:p", false, false);
-    },
-    c1112s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D.*:f:s", false, false);
-    },
-    c1115s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D.*:[me]:p", false, false);
-    },
-    c1121s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D.*:m:s", false, false);
-    },
-    c1130s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":A.*:f", false) || morph(dDA, prevword1(s, m.index), ":D:*:f", false, false);
-    },
-    s1130s_1: function (s, m) {
-        return m[1].replace(/è/g, "ê").replace(/È/g, "Ê");
-    },
-    s1138s_1: function (s, m) {
-        return m[0].replace(/a/g, "o").replace(/A/g, "O");
-    },
-    c1144s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:ce|d[eu]|un|quel|leur) +/i);
-    },
-    c1158s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^([nv]ous|faire|en|la|lui|donnant|œuvre|h[éo]|olé|joli|Bora|couvent|dément|sapiens|très|vroum|[0-9]+)$/i) >= 0) && ! ((m[1].search(/^(?:est|une?)$/) >= 0) && look(s.slice(0,m.index), /[’']$/)) && ! (m[1] == "mieux" && look(s.slice(0,m.index), /qui +$/i));
-    },
-    s1172s_1: function (s, m) {
-        return suggSimil(m[2], ":[NA].*:[pi]");
-    },
-    s1174s_1: function (s, m) {
-        return suggSimil(m[2], ":[NA].*:[si]");
-    },
-    c1197s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^avoir$/i) >= 0) && morph(dDA, [m.start[1], m[1]], ">avoir ", false);
-    },
-    c1212s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:être|mettre) ", false);
-    },
-    c1243s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], / [a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ][a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ-]+ en ([aeo][a-zû]*)/i, ":V0a");
-    },
-    c1263s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">abolir ", false);
-    },
-    c1265s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">achever ", false);
-    },
-    c1266s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), / +de?\b/);
-    },
-    c1275s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":A|>un", false);
-    },
-    c1281s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">comparer ");
-    },
-    c1282s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">contraindre ", false);
-    },
-    c1293s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">joindre ");
-    },
-    c1319s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">suffire ");
-    },
-    c1320s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">talonner ");
-    },
-    c1327s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:prévenir|prévoir|prédire|présager|préparer|pressentir|pronostiquer|avertir|devancer|réserver) ", false);
-    },
-    c1332s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:ajourner|différer|reporter) ", false);
-    },
-    c1399s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase();
-    },
-    s1399s_1: function (s, m) {
-        return suggSimil(m[2], ":[NAQ]:[fe]:[si]");
-    },
-    c1403s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":N.*:[fe]|:[AW]") && m[2][0]._isLowerCase() || m[2] == "va";
-    },
-    c1403s_2: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase() && hasSimil(m[2]);
-    },
-    s1403s_2: function (s, m) {
-        return suggSimil(m[2], ":[NAQ]:[fe]:[si]");
-    },
-    c1409s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase() && ! (m[2] == "sortir" && (m[1].search(/au/i) >= 0));
-    },
-    s1409s_1: function (s, m) {
-        return suggSimil(m[2], ":[NAQ]:[me]:[si]");
-    },
-    c1414s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]:.:[si]|:V0e.*:3[sp]|>devoir") && m[2][0]._isLowerCase() && hasSimil(m[2]);
-    },
-    s1414s_1: function (s, m) {
-        return suggSimil(m[2], ":[NAQ]:[me]:[si]");
-    },
-    c1418s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase();
-    },
-    s1418s_1: function (s, m) {
-        return suggSimil(m[2], ":[NAQ]:.:[si]");
-    },
-    c1422s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V.*:(?:Y|[123][sp])") && m[1][0]._isLowerCase() && ! prevword1(s, m.index);
-    },
-    s1422s_1: function (s, m) {
-        return suggSimil(m[1], ":[NAQ]:[me]:[si]");
-    },
-    c1426s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase() && ! (m[0].search(/^quelques? soi(?:ent|t|s)\b/i) >= 0);
-    },
-    s1426s_1: function (s, m) {
-        return suggSimil(m[2], ":[NAQ]:.:[pi]");
-    },
-    c1430s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase();
-    },
-    s1430s_1: function (s, m) {
-        return suggSimil(m[2], ":[NAQ]:[me]:[pi]");
-    },
-    c1434s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase();
-    },
-    s1434s_1: function (s, m) {
-        return suggSimil(m[2], ":[NAQ]:[fe]:[pi]");
-    },
-    c1438s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[NAQ]");
-    },
-    s1438s_1: function (s, m) {
-        return suggSimil(m[1], ":(?:[NAQ]:[fe]:[si])");
-    },
-    c1446s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[me]", ":[YG]") && m[2][0]._isLowerCase();
-    },
-    c1446s_2: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[123][sp]", false);
-    },
-    s1446s_2: function (s, m) {
-        return suggSimil(m[2], ":Y");
-    },
-    c1455s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[NAQ]");
-    },
-    s1455s_1: function (s, m) {
-        return suggSimil(m[1], ":(?:[NAQ]:.:[si])");
-    },
-    c1462s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:Y|[123][sp])") && ! look(s.slice(0,m.index), /(?:dont|sauf|un à) +$/i);
-    },
-    s1462s_1: function (s, m) {
-        return suggSimil(m[1], ":[NAQ]:[me]:[si]");
-    },
-    c1466s_1: function (s, sx, m, dDA, sCountry) {
-        return m[1][0]._isLowerCase() && morph(dDA, [m.start[1], m[1]], ":V.*:[123][sp]");
-    },
-    s1466s_1: function (s, m) {
-        return suggSimil(m[1], ":[NA]");
-    },
-    c1470s_1: function (s, sx, m, dDA, sCountry) {
-        return m[1][0]._isLowerCase() && morphex(dDA, [m.start[1], m[1]], ":V.*:[123][sp]", ":[GNA]");
-    },
-    s1470s_1: function (s, m) {
-        return suggSimil(m[1], ":[NAQ]");
-    },
-    c1474s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":", ":(?:[123][sp]|O[onw]|X)|ou ") && morphex(dDA, prevword1(s, m.index), ":", ":3s", true);
-    },
-    s1474s_1: function (s, m) {
-        return suggSimil(m[1], ":(?:3s|Oo)");
-    },
-    c1478s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":", ":(?:[123][sp]|O[onw]|X)|ou ") && morphex(dDA, prevword1(s, m.index), ":", ":3p", true);
-    },
-    s1478s_1: function (s, m) {
-        return suggSimil(m[1], ":(?:3p|Oo)");
-    },
-    c1482s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":", ":(?:[123][sp]|O[onw]|X)") && morphex(dDA, prevword1(s, m.index), ":", ":1s", true);
-    },
-    s1482s_1: function (s, m) {
-        return suggSimil(m[1], ":(?:1s|Oo)");
-    },
-    c1486s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":", ":(?:[123][sp]|O[onw]|X)") && morphex(dDA, prevword1(s, m.index), ":", ":(?:2s|V0e)", true);
-    },
-    s1486s_1: function (s, m) {
-        return suggSimil(m[1], ":(?:2s|Oo)");
-    },
-    c1499s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":P", false);
-    },
-    c1500s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]");
-    },
-    c1506s_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P|O[on]|X)|>(?:[lmtsn]|surtout|guère|presque) ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
-    },
-    s1506s_1: function (s, m) {
-        return suggSimil(m[2], ":(?:V|Oo)");
-    },
-    c1509s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[0].search(/^se que?/i) >= 0) && _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P|Oo)|>[lmts] ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
-    },
-    s1509s_1: function (s, m) {
-        return suggSimil(m[2], ":(?:V|Oo)");
-    },
-    c1513s_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P|Oo)", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
-    },
-    s1513s_1: function (s, m) {
-        return suggSimil(m[2], ":V");
-    },
-    c1516s_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P|O[onw]|X)", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
-    },
-    s1516s_1: function (s, m) {
-        return suggSimil(m[2], ":V");
-    },
-    c1519s_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|O[onw])", false);
-    },
-    s1519s_1: function (s, m) {
-        return suggSimil(m[2], ":[123][sp]");
-    },
-    c1522s_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P)|>(?:en|y|ils?) ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
-    },
-    s1522s_1: function (s, m) {
-        return suggSimil(m[2], ":V");
-    },
-    c1525s_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P)|>(?:en|y|ils?|elles?) ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
-    },
-    s1525s_1: function (s, m) {
-        return suggSimil(m[2], ":V");
-    },
-    c1528s_1: function (s, sx, m, dDA, sCountry) {
-        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":[123][sp]|>(?:en|y) ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|dire)$/i) >= 0);
-    },
-    s1528s_1: function (s, m) {
-        return suggSimil(m[2], ":V");
-    },
-    c1547s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:Y|[123][sp])", ":[GAQW]");
-    },
-    c1551s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":(?:G|N|A|Q|W|M[12])");
-    },
-    c1558s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[1][0]._isUpperCase() && morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[GNAQM]");
-    },
-    c1562s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[1][0]._isUpperCase() && morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[GNAQM]") && ! morph(dDA, prevword1(s, m.index), ":[NA]:[me]:si", false);
-    },
-    c1566s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":(?:G|N|A|Q|W|M[12]|T)");
-    },
-    c1570s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y)", ":[GAQW]") && ! morph(dDA, prevword1(s, m.index), ":V[123].*:[123][sp]", false, false);
-    },
-    c1578s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":[VN]", false, true);
-    },
-    c1579s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c1582s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:[lmts]a|leur|une|en) +$/i);
-    },
-    c1584s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":(?:D|Oo|M)", false);
-    },
-    c1585s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">être ") && ! look(s.slice(0,m.index), /\bce que? /i);
-    },
-    c1604s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[2].search(/^(?:côtés?|coups?|peu(?:-près|)|pics?|propos|valoir|plat-ventrismes?)/i) >= 0);
-    },
-    c1604s_2: function (s, sx, m, dDA, sCountry) {
-        return (m[2].search(/^(?:côtés?|coups?|peu(?:-pr(?:ès|êts?|és?)|)|pics?|propos|valoir|plat-ventrismes?)/i) >= 0);
-    },
-    c1609s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":3s", false, false);
-    },
-    c1612s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":(?:3s|R)", false, false) && ! morph(dDA, nextword1(s, m.end[0]), ":Oo", false);
-    },
-    c1617s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":Q", ":M[12P]");
-    },
-    c1620s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":(?:Y|Oo)");
-    },
-    c1624s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":(?:Y|Oo)");
-    },
-    c1631s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\bce que?\b/i);
-    },
-    c1633s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":(?:M[12]|D|Oo)");
-    },
-    c1638s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[123][sp]") && ! m[2].slice(0,1)._isUpperCase() && ! m[2].startsWith("tord");
-    },
-    c1641s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /[ln]’$|\b(?:il|elle|on|y|n’en) +$/i);
-    },
-    c1645s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /(\bque?\\b|[ln]’$|\b(?:il|elle|on|y|n’en) +$)/i);
-    },
-    c1648s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /(\bque?\b|[ln]’$|\b(?:il|elle|on|y|n’en) +$)/i);
-    },
-    c1652s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":Y", false) && ! look(s.slice(0,m.index), /\bque? |(?:il|elle|on|n’(?:en|y)) +$/i);
-    },
-    c1693s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c1700s_1: function (s, sx, m, dDA, sCountry) {
-        return ! nextword1(s, m.end[0]) || look(s.slice(m.end[0]), /^ +que? /i);
-    },
-    c1702s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":G", ">(?:tr(?:ès|op)|peu|bien|plus|moins|toute) |:[NAQ].*:f");
-    },
-    c1706s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! (m[2].search(/^seule?s?/) >= 0);
-    },
-    c1709s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:[oO]h|[aA]h) +$/);
-    },
-    c1711s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":R");
-    },
-    c1724s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":([123][sp]|Y|P|Q)|>l[ea]? ");
-    },
-    c1727s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":Y")  && m[1] != "CE";
-    },
-    c1729s_1: function (s, sx, m, dDA, sCountry) {
-        return (m[0].indexOf(",") >= 0 || morphex(dDA, [m.start[2], m[2]], ":G", ":[AYD]"));
-    },
-    c1732s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V[123].*:(?:Y|[123][sp])") && ! morph(dDA, [m.start[2], m[2]], ">(?:devoir|pouvoir) ") && m[2][0]._isLowerCase() && m[1] != "CE";
-    },
-    c1739s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c1741s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V", ":[NAQ].*:[me]") || look(s.slice(0,m.index), /\b[cs]e +/i);
-    },
-    c1746s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":N.*:s", ":(?:A.*:[pi]|P)");
-    },
-    c1768s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":N.*:p", ":(?:G|W|M|A.*:[si])");
-    },
-    c1778s_1: function (s, sx, m, dDA, sCountry) {
-        return m[1].endsWith("en") || look(s.slice(0,m.index), /^ *$/);
-    },
-    c1784s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index) && ! morph(dDA, nextword1(s, m.end[0]), ":W", false, false);
-    },
-    c1787s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[1].startsWith("B");
-    },
-    c1803s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":E|>le ", false, false);
-    },
-    c1813s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y)", ":(?:G|N|A|M[12P])") && ! look(s.slice(0,m.index), /\bles *$/i);
-    },
-    c1828s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":W", false) && ! morph(dDA, prevword1(s, m.index), ":V.*:3s", false, false);
-    },
-    s1840s_1: function (s, m) {
-        return m[1].replace(/pal/g, "pâl");
-    },
-    s1843s_1: function (s, m) {
-        return m[1].replace(/pal/g, "pâl");
-    },
-    c1852s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /très +$/);
-    },
-    c1855s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[AQ]", false);
-    },
-    c1878s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ">(?:arriver|venir|à|revenir|partir|aller) ");
-    },
-    c1883s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":P", false);
-    },
-    c1894s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":(?:G|[123][sp]|W)");
-    },
-    s1894s_1: function (s, m) {
-        return m[1].replace(/ /g, "");
-    },
-    c1899s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
-    },
-    c1907s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index) && morph(dDA, [m.start[2], m[2]], ":V", false);
-    },
-    c1910s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index) && morph(dDA, [m.start[2], m[2]], ":V", false) && ! ( m[1] == "sans" && morph(dDA, [m.start[2], m[2]], ":[NY]", false) );
-    },
-    c1919s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":A");
-    },
-    c1941s_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(0,m.index), /\b(aux|[ldmts]es|[nv]os) +$/);
-    },
-    c1942s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[AQ].*:[pi]", false);
-    },
-    c1946s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c1948s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:d[eu]|avant|après|sur|malgré) +$/i);
-    },
-    c1950s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:d[eu]|avant|après|sur|malgré) +$/i) && ! morph(dDA, [m.start[2], m[2]], ":(?:3s|Oo)", false);
-    },
-    c1953s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:d[eu]|avant|après|sur|malgré) +$/i);
-    },
-    c1959s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":f") && ! look(s.slice(0,m.index), /(?:à|pas|de|[nv]ous|eux) +$/i);
-    },
-    c1962s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":m") && ! look(s.slice(0,m.index), /(?:à|pas|de|[nv]ous|eux) +$/i);
-    },
-    c1966s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":N.*:[fp]", ":(?:A|W|G|M[12P]|Y|[me]:i|3s)") && morph(dDA, prevword1(s, m.index), ":R|>de ", false, true);
-    },
-    s1966s_1: function (s, m) {
-        return suggMasSing(m[1]);
-    },
-    c1970s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[mp]") && morph(dDA, prevword1(s, m.index), ":R|>de ", false, true);
-    },
-    s1970s_1: function (s, m) {
-        return suggFemSing(m[1]);
-    },
-    c1974s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[fs]") && morph(dDA, prevword1(s, m.index), ":R|>de ", false, true);
-    },
-    s1974s_1: function (s, m) {
-        return suggMasPlur(m[1]);
-    },
-    c1978s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[ms]") && morph(dDA, prevword1(s, m.index), ":R|>de ", false, true);
-    },
-    s1978s_1: function (s, m) {
-        return suggFemPlur(m[1]);
-    },
-    c1992s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[123][sp]", false) && ! ((m[3].search(/^(?:jamais|rien)$/i) >= 0) && look(s.slice(0,m.index), /\b(?:que?|plus|moins)\b/));
-    },
-    c1996s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[123][sp]", false) && ! ((m[3].search(/^(?:jamais|rien)$/i) >= 0) && look(s.slice(0,m.index), /\b(?:que?|plus|moins)\b/));
-    },
-    c2000s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[3], m[3]], ":[123][sp]", false) && ! ((m[3].search(/^(?:jamais|rien)$/i) >= 0) && look(s.slice(0,m.index), /\b(?:que?|plus|moins)\b/));
-    },
-    c2004s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[3], m[3]], ":[123][sp]", false) && ! ((m[3].search(/^(?:jamais|rien)$/i) >= 0) && look(s.slice(0,m.index), /\b(?:que?|plus|moins)\b/));
-    },
-    c2019s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":(?:Y|W|O[ow])", false) && _oDict.isValid(m[1]);
-    },
-    s2019s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
-    },
-    c2049s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":A.*:s", false);
-    },
-    c2291s_1: function (s, sx, m, dDA, sCountry) {
+    c446p_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":G");
     },
-    c2298s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    d446p_2: function (s, m, dDA) {
+        return define(dDA, m.start[0], [":N:A:Q:e:i"]);
     },
-    c2310s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[2].search(/^(?:janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor)s?$/i) >= 0);
+    c461p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return option("typo") && ! m[0].endsWith("·e");
     },
-    c2317s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:une|la|cette|[mts]a|[nv]otre|de) +/);
-    },
-    c2347s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
-    },
-    c2347s_2: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
-    },
-    c2366s_1: function (s, sx, m, dDA, sCountry) {
-        return m[2]._isDigit() || morph(dDA, [m.start[2], m[2]], ":B", false);
-    },
-    c2371s_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(0,m.index), /\b[lL]a +$/);
-    },
-    d2371s_1: function (s, m, dDA) {
-        return define(dDA, m.start[0], [">numéro :N:f:s"]);
-    },
-    c2381s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">prendre ", false);
-    },
-    c2385s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">rester ", false);
-    },
-    c2390s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:sembler|para[îi]tre) ") && morphex(dDA, [m.start[3], m[3]], ":A", ":G");
-    },
-    c2393s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">tenir ", false);
-    },
-    c2395s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">trier ", false);
-    },
-    c2397s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">venir ", false);
-    },
-    c2411s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", ":(?:G|3p)");
-    },
-    c2416s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", ":(?:G|3p)");
-    },
-    c2423s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":B", false);
-    },
-    c2424s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":V0", false) || ! morph(dDA, nextword1(s, m.end[0]), ":A", false);
-    },
-    c2425s_1: function (s, sx, m, dDA, sCountry) {
-        return isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c2426s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":W", false);
-    },
-    c2427s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":A .*:m:s", false);
-    },
-    c2429s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":(?:R|C[sc])", false, true);
-    },
-    c2430s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":B", false) || (m[1].search(/^(?:plusieurs|maintes)/i) >= 0);
-    },
-    c2431s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, nextword1(s, m.end[0]), ":[NAQR]", false, true);
-    },
-    c2432s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":V0");
-    },
-    c2434s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":D", false);
-    },
-    c2435s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":D.*:[me]:[si]", false);
-    },
-    c2436s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, nextword1(s, m.end[0]), ":([AQ].*:[me]:[pi])", false, false);
-    },
-    c2437s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[2], m[2]], ":A", false);
-    },
-    c2438s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:croire|devoir|estimer|imaginer|penser) ");
-    },
-    c2440s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:R|D|[123]s|X)", false);
-    },
-    c2441s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[2], m[2]], ":[AQ]:[ef]:[si]", false);
-    },
-    c2442s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[2], m[2]], ":[AQ]:[em]:[si]", false);
-    },
-    c2443s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
-    },
-    c2444s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\bt(?:u|oi qui)\b/i);
-    },
-    c2445s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
-    },
-    c2446s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":A", false);
-    },
-    c2447s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
-    },
-    c2448s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":W", false);
-    },
-    c2449s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[AW]", ":G");
-    },
-    c2450s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[AW]", false);
-    },
-    c2451s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[2], m[2]], ":Y", false);
-    },
-    c2454s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NV]", ":D");
-    },
-    c2455s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[2], m[2]], ":(?:3s|X)", false);
-    },
-    c2456s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[me]", false);
-    },
-    c2463s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":M[12]", false) && (morph(dDA, [m.start[2], m[2]], ":(?:M[12]|V)", false) || ! _oDict.isValid(m[2]));
-    },
-    c2464s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":M", false) && morph(dDA, [m.start[2], m[2]], ":M", false);
-    },
-    c2465s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":M", false);
-    },
-    c2466s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:M[12]|N)") && morph(dDA, [m.start[2], m[2]], ":(?:M[12]|N)");
-    },
-    c2467s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":MP");
-    },
-    c2468s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":M[12]", false);
-    },
-    c2469s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":M[12]", false);
-    },
-    c2472s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[MT]", false) && morph(dDA, prevword1(s, m.index), ":Cs", false, true) && ! look(s.slice(0,m.index), /\b(?:plus|moins|aussi) .* que +$/);
-    },
-    p2472s_1: function (s, m) {
-        return rewriteSubject(m[1],m[2]);
-    },
-    c2477s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
-    },
-    c2479s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
-    },
-    c2481s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:V0e|N)", false) && morph(dDA, [m.start[3], m[3]], ":[AQ]", false);
-    },
-    c2483s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0", false);
-    },
-    c2485s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0", false) && morph(dDA, [m.start[3], m[3]], ":[QY]", false);
-    },
-    c2487s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && ! (m[2] == "crainte" && look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/));
-    },
-    c2489s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
-    },
-    c2491s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morph(dDA, [m.start[3], m[3]], ":B", false) && morph(dDA, [m.start[4], m[4]], ":(?:Q|V1.*:Y)", false);
-    },
-    c2495s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V", false);
-    },
-    c2496s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V[123]");
-    },
-    c2497s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V[123]", false);
-    },
-    c2498s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V", false);
-    },
-    c2501s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":G");
-    },
-    c2504s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[2], m[2]], "[NAQ].*:[me]:[si]", false);
-    },
-    c2506s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[me]", ":G") && morph(dDA, [m.start[3], m[3]], ":[AQ].*:[me]", false);
-    },
-    c2508s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[fe]", ":G") && morph(dDA, [m.start[3], m[3]], ":[AQ].*:[fe]", false);
-    },
-    c2510s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", ":[123][sp]") && morph(dDA, [m.start[3], m[3]], ":[AQ].*:[pi]", false);
-    },
-    c2513s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[AW]");
-    },
-    c2515s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[AW]", false);
-    },
-    c2517s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[AQ]", false);
-    },
-    c2519s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":W", ":3p");
-    },
-    c2521s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[AW]", ":[123][sp]");
-    },
-    c2525s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && morph(dDA, [m.start[3], m[3]], ":W", false) && morph(dDA, [m.start[4], m[4]], ":[AQ]", false);
-    },
-    c2527s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D", false, true);
-    },
-    c2528s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":W\\b");
-    },
-    c2531s_1: function (s, sx, m, dDA, sCountry) {
+    c461p_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false);
     },
-    c2535s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:N|A|Q|V0e)", false);
+    d461p_2: function (s, m, dDA) {
+        return define(dDA, m.start[0], [":N:A:Q:e:s"]);
     },
-    c2608s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":1s", false, false);
+    c472p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^(?:etc|[A-Z]|chap|cf|fig|hab|litt|circ|coll|r[eé]f|étym|suppl|bibl|bibliogr|cit|op|vol|déc|nov|oct|janv|juil|avr|sept)$/i) >= 0) && morph(dDA, [m.start[1], m[1]], ":", false) && morph(dDA, [m.start[2], m[2]], ":", false);
     },
-    c2609s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":2s", false, false);
-    },
-    c2610s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":3s", false, false);
-    },
-    c2611s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":1p", false, false);
-    },
-    c2612s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":2p", false, false);
-    },
-    c2613s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":3p", false, false);
-    },
-    c2614s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[123][sp]");
-    },
-    c2620s_1: function (s, sx, m, dDA, sCountry) {
-        return isAmbiguousNAV(m[3]) && morph(dDA, [m.start[1], m[1]], ":[NAQ]", false);
-    },
-    c2623s_1: function (s, sx, m, dDA, sCountry) {
-        return isAmbiguousNAV(m[3]) && morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && ! (m[0].search(/^[dD](?:’une?|e la) /) >= 0);
-    },
-    c2626s_1: function (s, sx, m, dDA, sCountry) {
-        return isAmbiguousNAV(m[3]) && ( morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":3[sp]") && ! prevword1(s, m.index)) );
-    },
-    c2642s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":(?:G|V0)", false);
-    },
-    c2652s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ]", false);
-    },
-    c2655s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ]", false);
-    },
-    c2658s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f", false);
-    },
-    c2673s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:e|m|P|G|W|[123][sp]|Y)");
-    },
-    c2676s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":(?:e|m|P|G|W|[123][sp]|Y)") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[me]") && morphex(dDA, [m.start[1], m[1]], ":R", ">(?:e[tn]|ou) ") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
-    },
-    c2680s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:e|m|P|G|W|Y)");
-    },
-    c2684s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[GWme]");
-    },
-    c2687s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:e|m|G|W|V0|3s)");
-    },
-    c2690s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:e|m|G|W|P)");
-    },
-    c2693s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[GWme]");
-    },
-    c2696s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[GWme]");
-    },
-    c2699s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:s", ":[GWme]");
-    },
-    c2703s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:e|f|P|G|W|[1-3][sp]|Y)");
-    },
-    c2706s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":(?:e|f|P|G|W|[1-3][sp]|Y)") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[fe]") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou) ") && ! (morph(dDA, [m.start[1], m[1]], ":(?:Rv|C)", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
-    },
-    c2710s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efPGWY]");
-    },
-    c2714s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
-    },
-    c2717s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:e|f|G|W|V0|3s|P)") && ! ( m[2] == "demi" && morph(dDA, nextword1(s, m.end[0]), ":N.*:f") );
-    },
-    c2720s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:e|f|G|W|V0|3s)");
-    },
-    c2723s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGWP]");
-    },
-    c2726s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
-    },
-    c2729s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
-    },
-    s2729s_1: function (s, m) {
-        return suggCeOrCet(m[2]);
-    },
-    c2733s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[GWme]");
-    },
-    s2733s_1: function (s, m) {
-        return m[1].replace(/on/g, "a");
-    },
-    c2736s_1: function (s, sx, m, dDA, sCountry) {
-        return (m[2].search(/^[aâeéèêiîoôuûyœæ]/i) >= 0) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[eGW]");
-    },
-    s2736s_1: function (s, m) {
-        return m[1].replace(/a/g, "on");
-    },
-    c2736s_2: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
-    },
-    s2736s_2: function (s, m) {
-        return m[1].replace(/a/g, "on");
-    },
-    c2743s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
-    },
-    c2749s_1: function (s, sx, m, dDA, sCountry) {
-        return ( morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false)) ) || m[1] in aREGULARPLURAL;
-    },
-    s2749s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c2753s_1: function (s, sx, m, dDA, sCountry) {
-        return ( morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") || (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[pi]|>avoir") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou) ") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[2], m[2]], ":Y", false))) ) && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false));
-    },
-    s2753s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c2758s_1: function (s, sx, m, dDA, sCountry) {
-        return (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ipYPGW]") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[1] in aREGULARPLURAL;
-    },
-    s2758s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c2763s_1: function (s, sx, m, dDA, sCountry) {
-        return (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ipGW]") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[1] in aREGULARPLURAL;
-    },
-    s2763s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c2768s_1: function (s, sx, m, dDA, sCountry) {
-        return (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":(?:[ipGW]|[123][sp])") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[2] in aREGULARPLURAL;
-    },
-    s2768s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c2768s_2: function (s, sx, m, dDA, sCountry) {
-        return (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":(?:[ipGW]|[123][sp])") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[2] in aREGULARPLURAL;
-    },
-    c2777s_1: function (s, sx, m, dDA, sCountry) {
-        return (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ipPGW]") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[1] in aREGULARPLURAL;
-    },
-    s2777s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c2787s_1: function (s, sx, m, dDA, sCountry) {
-        return (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ip]|>o(?:nde|xydation|or)\\b") && morphex(dDA, prevword1(s, m.index), ":(?:G|[123][sp])", ":[AD]", true)) || m[1] in aREGULARPLURAL;
-    },
-    s2787s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c2793s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ip]") || m[1] in aREGULARPLURAL;
-    },
-    s2793s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c2797s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ip]") || m[1] in aREGULARPLURAL;
-    },
-    s2797s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c2801s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[123][sp]|:[si]");
-    },
-    s2801s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c2805s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p");
-    },
-    s2805s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c2808s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") || ( morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[si]") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou)") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[2], m[2]], ":Y", false)) );
-    },
-    s2808s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c2812s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[siGW]");
-    },
-    s2812s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c2816s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p");
-    },
-    c2816s_2: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p");
-    },
-    s2816s_2: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c2819s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[3], m[3]], ":[NAQ].*:p") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[si]") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou)") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
-    },
-    c2819s_2: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[3], m[3]], ":[NAQ].*:p") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[si]") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou)") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
-    },
-    s2819s_2: function (s, m) {
-        return suggSing(m[3]);
-    },
-    c2824s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
-    },
-    c2824s_2: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
-    },
-    s2824s_2: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c2828s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[siGW]");
-    },
-    s2828s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c2832s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
-    },
-    c2836s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siG]");
-    },
-    c2840s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[siGW]") && ! morph(dDA, prevword(s, m.index, 2), ":B", false);
-    },
-    s2840s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c2883s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! (m[2].search(/^(janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|rue|route|ruelle|place|boulevard|avenue|allée|chemin|sentier|square|impasse|cour|quai|chaussée|côte|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor)$/i) >= 0)) || m[2] in aREGULARPLURAL;
-    },
-    s2883s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c2889s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! morph(dDA, prevword1(s, m.index), ":N", false) && ! (m[2].search(/^(janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|rue|route|ruelle|place|boulevard|avenue|allée|chemin|sentier|square|impasse|cour|quai|chaussée|côte|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor)$/i) >= 0)) || m[2] in aREGULARPLURAL;
-    },
-    s2889s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c2895s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") || m[1] in aREGULARPLURAL) && ! look(s.slice(0,m.index), /\b(?:le|un|ce|du) +$/i);
-    },
-    s2895s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c2899s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p") && ! (m[1].search(/^(janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|rue|route|ruelle|place|boulevard|avenue|allée|chemin|sentier|square|impasse|cour|quai|chaussée|côte|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor|Rois|Corinthiens|Thessaloniciens)$/i) >= 0);
-    },
-    s2899s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c2903s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^0*[01]$/) >= 0) && ((morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! (m[2].search(/^(janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|rue|route|ruelle|place|boulevard|avenue|allée|chemin|sentier|square|impasse|cour|quai|chaussée|côte|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor)$/i) >= 0)) || m[1] in aREGULARPLURAL);
-    },
-    s2903s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c2915s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:p", ":(?:V0e|[NAQ].*:[me]:[si])");
-    },
-    c2915s_2: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:p", ":(?:V0e|[NAQ].*:[me]:[si])");
-    },
-    c2915s_3: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:[si]", ":(?:V0e|[NAQ].*:[me]:[si])");
-    },
-    c2919s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:s", ":(?:V0e|[NAQ].*:[me]:[pi])");
-    },
-    c2919s_2: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:s", ":(?:V0e|[NAQ].*:[me]:[pi])");
-    },
-    c2919s_3: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:[pi]", ":(?:V0e|[NAQ].*:[me]:[pi])");
-    },
-    c2923s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:p", ":(?:V0e|[NAQ].*:[fe]:[si])");
-    },
-    c2923s_2: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:p", ":(?:V0e|[NAQ].*:[fe]:[si])");
-    },
-    c2923s_3: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:[si]", ":(?:V0e|[NAQ].*:[fe]:[si])");
-    },
-    c2927s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:s", ":(?:V0e|[NAQ].*:[fe]:[pi])");
-    },
-    c2927s_2: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:s", ":(?:V0e|[NAQ].*:[fe]:[pi])");
-    },
-    c2927s_3: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:[pi]", ":(?:V0e|[NAQ].*:[fe]:[pi])");
-    },
-    c2939s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/);
-    },
-    c2942s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/);
-    },
-    s2942s_1: function (s, m) {
-        return m[1].slice(0,-1);
-    },
-    c2946s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[me]");
-    },
-    c2950s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[fe]");
-    },
-    c2954s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[me]");
-    },
-    c2958s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[fe]");
-    },
-    c2974s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V0e", false);
-    },
-    c2977s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V0e", false) && morphex(dDA, [m.start[4], m[4]], ":[NAQ].*:m", ":[fe]");
-    },
-    s2977s_1: function (s, m) {
-        return m[1].replace(/lle/g, "l");
-    },
-    c2982s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V0e", false);
-    },
-    c2985s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V0e", false) && morphex(dDA, [m.start[4], m[4]], ":[NAQ].*:f", ":[me]");
-    },
-    s2985s_1: function (s, m) {
-        return m[1].replace(/l/g, "lle");
-    },
-    c3004s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">trouver ", false) && morphex(dDA, [m.start[3], m[3]], ":A.*:(?:f|m:p)", ":(?:G|3[sp]|M[12P])");
-    },
-    s3004s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c3015s_1: function (s, sx, m, dDA, sCountry) {
-        return ((morph(dDA, [m.start[1], m[1]], ":[NAQ].*:m") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:f") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]);
-    },
-    s3015s_1: function (s, m) {
-        return switchGender(m[2]);
-    },
-    c3015s_2: function (s, sx, m, dDA, sCountry) {
-        return ((morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s"))) && ! apposition(m[1], m[2]);
-    },
-    s3015s_2: function (s, m) {
-        return switchPlural(m[2]);
-    },
-    c3023s_1: function (s, sx, m, dDA, sCountry) {
-        return ((morph(dDA, [m.start[1], m[1]], ":[NAQ].*:m") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:f") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
-    },
-    s3023s_1: function (s, m) {
-        return switchGender(m[2]);
-    },
-    c3023s_2: function (s, sx, m, dDA, sCountry) {
-        return ((morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p"))) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
-    },
-    s3023s_2: function (s, m) {
-        return switchPlural(m[2]);
-    },
-    c3035s_1: function (s, sx, m, dDA, sCountry) {
-        return ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":[GYfe]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":[GYme]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
-    },
-    s3035s_1: function (s, m) {
-        return switchGender(m[2]);
-    },
-    c3035s_2: function (s, sx, m, dDA, sCountry) {
-        return ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[GYsi]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[GYpi]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p"))) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
-    },
-    s3035s_2: function (s, m) {
-        return switchPlural(m[2]);
-    },
-    c3047s_1: function (s, sx, m, dDA, sCountry) {
-        return ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":(?:[Gfe]|V0e|Y)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":(?:[Gme]|V0e|Y)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
-    },
-    s3047s_1: function (s, m) {
-        return switchGender(m[2]);
-    },
-    c3047s_2: function (s, sx, m, dDA, sCountry) {
-        return ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":(?:[Gsi]|V0e|Y)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":(?:[Gpi]|V0e|Y)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p"))) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
-    },
-    s3047s_2: function (s, m) {
-        return switchPlural(m[2]);
-    },
-    c3065s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^air$/i) >= 0) && ! m[2].startsWith("seul") && ((morph(dDA, [m.start[1], m[1]], ":m") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morph(dDA, [m.start[1], m[1]], ":f") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s3065s_1: function (s, m) {
-        return switchGender(m[2], false);
-    },
-    c3065s_2: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^air$/i) >= 0) && ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[si]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s3065s_2: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c3074s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[2].startsWith("seul") && ((morph(dDA, [m.start[1], m[1]], ":m") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morph(dDA, [m.start[1], m[1]], ":f") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]", false, false) && ! apposition(m[1], m[2]);
-    },
-    s3074s_1: function (s, m) {
-        return switchGender(m[2], false);
-    },
-    c3074s_2: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^air$/i) >= 0) && ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[si]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! morph(dDA, prevword1(s, m.index), ":[NAQ]", false, false) && ! apposition(m[1], m[2]);
-    },
-    s3074s_2: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c3089s_1: function (s, sx, m, dDA, sCountry) {
-        return m[1] != "fois" && ! m[2].startsWith("seul") && ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":[fe]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":[me]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && morph(dDA, prevword1(s, m.index), ":[VRBX]|>comme ", true, true) && ! apposition(m[1], m[2]);
-    },
-    s3089s_1: function (s, m) {
-        return switchGender(m[2], true);
-    },
-    c3089s_2: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && morph(dDA, prevword1(s, m.index), ":[VRBX]|>comme ", true, true) && ! apposition(m[1], m[2]);
-    },
-    s3089s_2: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c3110s_1: function (s, sx, m, dDA, sCountry) {
-        return m[1] != "fois" && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! m[2].startsWith("seul") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|d’) *$/);
-    },
-    s3110s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c3114s_1: function (s, sx, m, dDA, sCountry) {
-        return m[1] != "fois" && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! m[2].startsWith("seul") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQB]", false, false);
-    },
-    s3114s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c3124s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[3].startsWith("seul") && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[me]", ":(?:B|G|V0|f)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:f") && ! apposition(m[2], m[3]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s3124s_1: function (s, m) {
-        return (m[1].search(/^(?:certains|quels)/i) >= 0) ? suggMasPlur(m[3])  : suggMasSing(m[3]);
-    },
-    c3130s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[3].startsWith("seul") && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[me]", ":(?:B|G|V0|f)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:f") && ! apposition(m[2], m[3]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
-    },
-    s3130s_1: function (s, m) {
-        return (m[1].search(/^(?:certains|quels)/i) >= 0) ? suggMasPlur(m[3])  : suggMasSing(m[3]);
-    },
-    c3138s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[3].startsWith("seul") && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:B|G|e|V0|f)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:f") && ! apposition(m[2], m[3]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s3138s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c3143s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[3].startsWith("seul") && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:B|G|e|V0|f)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:f") && ! apposition(m[2], m[3]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
-    },
-    s3143s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c3150s_1: function (s, sx, m, dDA, sCountry) {
-        return m[2] != "fois" && ! m[3].startsWith("seul") && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[fe]", ":(?:B|G|V0|m)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:m") && ! apposition(m[2], m[3]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s3150s_1: function (s, m) {
-        return (m[1].search(/^(?:certaines|quelles)/i) >= 0)  ? suggFemPlur(m[3])  : suggFemSing(m[3]);
-    },
-    c3156s_1: function (s, sx, m, dDA, sCountry) {
-        return m[2] != "fois" && ! m[3].startsWith("seul") && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[fe]", ":(?:B|G|V0|m)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:m") && ! apposition(m[2], m[3]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
-    },
-    s3156s_1: function (s, m) {
-        return (m[1].search(/^(?:certaines|quelles)/i) >= 0)  ? suggFemPlur(m[3])  : suggFemSing(m[3]);
-    },
-    c3164s_1: function (s, sx, m, dDA, sCountry) {
-        return m[2] != "fois" && ! m[3].startsWith("seul") && ! (m[0].search(/^quelque chose/i) >= 0) && ((morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:B|e|G|V0|f)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:B|e|G|V0|m)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:m"))) && ! apposition(m[2], m[3]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s3164s_1: function (s, m) {
-        return switchGender(m[3], m[1].endsWith("s"));
-    },
-    c3169s_1: function (s, sx, m, dDA, sCountry) {
-        return m[2] != "fois" && ! m[3].startsWith("seul") && ! (m[0].search(/^quelque chose/i) >= 0) && ((morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:B|e|G|V0|f)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:B|e|G|V0|m)") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:m"))) && ! apposition(m[2], m[3]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
-    },
-    s3169s_1: function (s, m) {
-        return switchGender(m[3], m[1].endsWith("s"));
-    },
-    c3178s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s3178s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c3183s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
-    },
-    s3183s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c3190s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWi]") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s3190s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c3195s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWi]") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
-    },
-    s3195s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c3202s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], /^ +et +([a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ][a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ-]+)/i, ":A");
-    },
-    s3202s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c3208s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], /^ +et +([a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ][a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ-]+)/i, ":A") && ! look(s.slice(0,m.index), /\bune? de /i);
-    },
-    s3208s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c3243s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:s")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[si]") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:p"));
-    },
-    s3243s_1: function (s, m) {
-        return switchPlural(m[3]);
-    },
-    c3248s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:s");
-    },
-    s3248s_1: function (s, m) {
-        return suggPlur(m[3]);
-    },
-    c3252s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:[pi]", ":G") && morph(dDA, [m.start[4], m[4]], ":[NAQ].*:s") && ! look(s.slice(0,m.index), /\bune? de /i);
-    },
-    s3252s_1: function (s, m) {
-        return suggPlur(m[4]);
-    },
-    c3257s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:[si]", ":G") && morph(dDA, [m.start[4], m[4]], ":[NAQ].*:p");
-    },
-    s3257s_1: function (s, m) {
-        return suggSing(m[4]);
-    },
-    c3267s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:(?:m|f:p)", ":(?:G|P|[fe]:[is]|V0|3[sp])") && ! apposition(m[1], m[2]);
-    },
-    s3267s_1: function (s, m) {
-        return suggFemSing(m[2]);
-    },
-    c3271s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:(?:f|m:p)", ":(?:G|P|[me]:[is]|V0|3[sp])") && ! apposition(m[1], m[2]);
-    },
-    s3271s_1: function (s, m) {
-        return suggMasSing(m[2]);
-    },
-    c3275s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":[NAQ].*:f|>[aéeiou].*:e", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:(?:f|m:p)", ":(?:G|P|m:[is]|V0|3[sp])") && ! apposition(m[1], m[2]);
-    },
-    s3275s_1: function (s, m) {
-        return suggMasSing(m[2]);
-    },
-    c3279s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":G|>[aéeiou].*:[ef]") && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:(?:f|m:p)", ":(?:G|P|[me]:[is]|V0|3[sp])") && ! apposition(m[2], m[3]);
-    },
-    s3279s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c3284s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":G|>[aéeiou].*:[ef]") && ! morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f|>[aéeiou].*:e", false) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:(?:f|m:p)", ":(?:G|P|[me]:[is]|V0|3[sp])") && ! apposition(m[2], m[3]);
-    },
-    s3284s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c3289s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":(?:G|P|[me]:[ip]|V0|3[sp])") && ! apposition(m[1], m[2]);
-    },
-    s3289s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c3311s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":B.*:p", false) && m[2] != "cents";
-    },
-    c3346s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c3347s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c3348s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c3354s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\bquatre $/i);
-    },
-    c3357s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, nextword1(s, m.end[0]), ":B", false) && ! look(s.slice(0,m.index), /\b(?:numéro|page|chapitre|référence|année|test|série)s? +$/i);
-    },
-    c3368s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, nextword1(s, m.end[0]), ":B|>une?", false, true) && ! look(s.slice(0,m.index), /\b(?:numéro|page|chapitre|référence|année|test|série)s? +$/i);
-    },
-    c3372s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, nextword1(s, m.end[0]), ":B|>une?", false, false);
-    },
-    c3375s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", ":G") && morphex(dDA, prevword1(s, m.index), ":[VR]", ":B", true);
-    },
-    c3380s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, nextword1(s, m.end[0]), ":B") || (morph(dDA, prevword1(s, m.index), ":B") && morph(dDA, nextword1(s, m.end[0]), ":[NAQ]", false));
-    },
-    c3390s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":D.*:[si]", false, true);
-    },
-    s3395s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    s3398s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c3413s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
-    },
-    c3416s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">faire ", false) && morph(dDA, [m.start[3], m[3]], ":(?:N|MP)");
-    },
-    s3457s_1: function (s, m) {
-        return m[1]._trimRight("e");
-    },
-    c3462s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:V0e|W)|>très", false);
-    },
-    c3470s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:co[ûu]ter|payer) ", false);
-    },
-    c3487s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">donner ", false);
-    },
-    c3502s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:mettre|mise) ", false);
-    },
-    c3514s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:avoir|perdre) ", false);
-    },
-    c3517s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:lit|fauteuil|armoire|commode|guéridon|tabouret|chaise)s?\b/i);
-    },
-    c3524s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":(?:V|[NAQ].*:s)", ":(?:[NA]:.:[pi]|V0e.*:[123]p)", true);
-    },
-    c3582s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:aller|partir) ", false);
-    },
-    c3591s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":V0e.*:3p", false, false) || morph(dDA, nextword1(s, m.end[0]), ":Q", false, false);
-    },
-    c3611s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:être|devenir|para[îi]tre|rendre|sembler) ", false);
-    },
-    s3611s_1: function (s, m) {
-        return m[2].replace(/oc/g, "o");
-    },
-    s3615s_1: function (s, m) {
-        return m[1].replace(/oc/g, "o");
-    },
-    c3633s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">tenir ");
-    },
-    c3650s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">mettre ", false);
-    },
-    c3651s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
-    },
-    c3672s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:être|aller) ", false);
-    },
-    s3674s_1: function (s, m) {
-        return m[1].replace(/auspice/g, "hospice");
-    },
-    s3676s_1: function (s, m) {
-        return m[1].replace(/auspice/g, "hospice");
-    },
-    c3697s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, nextword1(s, m.end[0]), ":[AQ]");
-    },
-    s3711s_1: function (s, m) {
-        return m[1].replace(/cane/g, "canne");
-    },
-    c3718s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:appuyer|battre|frapper|lever|marcher) ", false);
-    },
-    s3718s_1: function (s, m) {
-        return m[2].replace(/cane/g, "canne");
-    },
-    c3724s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^C(?:annes|ANNES)/) >= 0);
-    },
-    c3727s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^C(?:annes|ANNES)/) >= 0);
-    },
-    c3741s_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(m.end[0]), /^ +[ldmtsc]es /) || ( morph(dDA, prevword1(s, m.index), ":Cs", false, true) && ! look(s.slice(0,m.index), /, +$/) && ! look(s.slice(m.end[0]), /^ +(?:ils?|elles?)\b/) && ! morph(dDA, nextword1(s, m.end[0]), ":Q", false, false) );
-    },
-    c3750s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
-    },
-    c3758s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
-    },
-    c3760s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":[VR]", false);
-    },
-    c3764s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[0].search(/^à cor et à cri$/i) >= 0);
-    },
-    c3771s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">tordre ", false);
-    },
-    c3773s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">rendre ", false);
-    },
-    c3784s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">couper ");
-    },
-    c3785s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:avoir|donner) ", false);
-    },
-    c3797s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V.[^:]:(?!Q)");
-    },
-    c3803s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:[lmtsc]es|des?|[nv]os|leurs|quels) +$/i);
-    },
-    c3814s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, nextword1(s, m.end[0]), ":[GV]", ":[NAQ]", true);
-    },
-    c3817s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, nextword1(s, m.end[0]), ":[GV]", ":[NAQ]");
-    },
-    c3820s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, nextword1(s, m.end[0]), ":[GV]", ":[NAQ]", true);
-    },
-    c3823s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, nextword1(s, m.end[0]), ":G", ":[NAQ]");
-    },
-    c3826s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
-    },
-    s3826s_1: function (s, m) {
-        return m[2].replace(/nd/g, "nt");
-    },
-    c3837s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":V0e", false, false);
-    },
-    c3843s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ">(?:abandonner|céder|résister) ", false) && ! look(s.slice(m.end[0]), /^ d(?:e |’)/);
-    },
-    s3856s_1: function (s, m) {
-        return m[1].replace(/nt/g, "mp");
-    },
-    c3871s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false) && morph(dDA, [m.start[3], m[3]], ":(?:Y|Oo)", false);
-    },
-    s3871s_1: function (s, m) {
-        return m[2].replace(/sens/g, "cens");
-    },
-    s3878s_1: function (s, m) {
-        return m[1].replace(/c/g, "s").replace(/C/g, "S");
-    },
-    s3885s_1: function (s, m) {
-        return m[1].replace(/o/g, "ô");
-    },
-    c3900s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
-    },
-    c3917s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:desceller|desseller) ", false);
-    },
-    s3917s_1: function (s, m) {
-        return m[2].replace(/descell/g, "décel").replace(/dessell/g, "décel");
-    },
-    c3921s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:desceller|desseller) ", false);
-    },
-    s3921s_1: function (s, m) {
-        return m[1].replace(/descell/g, "décel").replace(/dessell/g, "décel");
-    },
-    c3935s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0", false);
-    },
-    s3935s_1: function (s, m) {
-        return m[2].replace(/î/g, "i");
-    },
-    c3938s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:[vn]ous|lui|leur|et toi) +$|[nm]’$/i);
-    },
-    s3946s_1: function (s, m) {
-        return m[1].replace(/and/g, "ant");
-    },
-    c3952s_1: function (s, sx, m, dDA, sCountry) {
-        return ! ( m[1] == "bonne" && look(s.slice(0,m.index), /\bune +$/i) && look(s.slice(m.end[0]), /^ +pour toute/i) );
-    },
-    c3955s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:faire|perdre|donner) ", false);
-    },
-    c3980s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":D");
-    },
-    s4057s_1: function (s, m) {
-        return m[0].slice(0,-1).replace(/ /g, "-")+"à";
-    },
-    c4058s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":[NAQ]");
-    },
-    c4059s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":[123][sp]");
-    },
-    c4068s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":[GQ]");
-    },
-    c4070s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":[GQ]");
-    },
-    c4074s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":[GQ]");
-    },
-    c4085s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":Y", ":[NA].*:[pe]") && ! look(s.slice(0,m.index), /\b[ld]es +$/i);
-    },
-    c4095s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">soulever ", false);
-    },
-    s4095s_1: function (s, m) {
-        return m[1].slice(3);
-    },
-    c4110s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:être|habiter|trouver|situer|rester|demeurer?) ", false);
-    },
-    c4121s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
-    },
-    c4125s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
-    },
-    c4139s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1] == "Notre" && look(s.slice(m.end[0]), /Père/));
-    },
-    s4139s_1: function (s, m) {
-        return m[1].replace(/otre/g, "ôtre");
-    },
-    c4141s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(les?|la|du|des|aux?) +/i) && morph(dDA, [m.start[2], m[2]], ":[NAQ]", false);
-    },
-    s4141s_1: function (s, m) {
-        return m[1].replace(/ôtre/g, "otre")._trimRight("s");
-    },
-    c4149s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
-    },
-    c4160s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c4163s_1: function (s, sx, m, dDA, sCountry) {
-        return ( (m[2].search(/^[nmts]e$/) >= 0) || (! (m[2].search(/^(?:confiance|envie|peine|prise|crainte|affaire|hâte|force|recours|somme)$/i) >= 0) && morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":[AG]")) ) && ! prevword1(s, m.index);
-    },
-    c4168s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:[1-3][sp])", ":(?:G|1p)") && ! ( m[0].indexOf(" leur ") && morph(dDA, [m.start[2], m[2]], ":[NA].*:[si]", false) ) && ! prevword1(s, m.index);
-    },
-    c4174s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":[VR]", false, false) && ! look(s.slice(m.end[0]), /^ +>/) && ! morph(dDA, nextword1(s, m.end[0]), ":3s", false);
-    },
-    c4182s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V.[a-z_!?]+:(?!Y)");
-    },
-    c4183s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V0e", ":Y");
-    },
-    c4185s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
-    },
-    s4192s_1: function (s, m) {
-        return m[1].replace(/pin/g, "pain");
-    },
-    c4194s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:manger|dévorer|avaler|engloutir) ");
-    },
-    s4194s_1: function (s, m) {
-        return m[2].replace(/pin/g, "pain");
-    },
-    c4201s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">aller ", false);
-    },
-    c4208s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
-    },
-    s4208s_1: function (s, m) {
-        return m[2].replace(/pal/g, "pâl");
-    },
-    s4211s_1: function (s, m) {
-        return m[2].replace(/pal/g, "pâl");
-    },
-    c4217s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">prendre ", false);
-    },
-    c4218s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">tirer ", false);
-    },
-    c4219s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
-    },
-    c4221s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">prendre ", false);
-    },
-    c4229s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ]");
-    },
-    c4230s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c4236s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":A") && ! (m[2].search(/^seule?s?$/i) >= 0);
-    },
-    c4240s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:N|A|Q|G|MP)");
-    },
-    c4254s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":(?:Y|M[12P])");
-    },
-    c4257s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /(?:peu|de) $/i) && morph(dDA, [m.start[2], m[2]], ":Y|>(tout|les?|la) ");
-    },
-    c4269s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
-    },
-    c4275s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":Q");
-    },
-    c4283s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, nextword1(s, m.end[0]), ":[AQ]", false);
-    },
-    c4303s_1: function (s, sx, m, dDA, sCountry) {
-        return ! nextword1(s, m.end[0]);
-    },
-    c4306s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">résonner ", false);
-    },
-    s4306s_1: function (s, m) {
-        return m[1].replace(/réso/g, "raiso");
-    },
-    c4316s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":M1", false);
-    },
-    s4329s_1: function (s, m) {
-        return m[1].replace(/sale/g, "salle");
-    },
-    c4333s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
-    },
-    s4333s_1: function (s, m) {
-        return m[2].replace(/salle/g, "sale");
-    },
-    s4347s_1: function (s, m) {
-        return m[1].replace(/scep/g,"sep");
-    },
-    c4350s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">être ", false);
-    },
-    s4350s_1: function (s, m) {
-        return m[2].replace(/sep/g, "scep");
-    },
-    c4358s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">suivre ", false);
-    },
-    c4366s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), / soit /);
-    },
-    c4367s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, nextword1(s, m.end[0]), ":[GY]", true, true) && ! look(s.slice(0,m.index), /quel(?:s|les?|) qu $|on $|il $/i) && ! look(s.slice(m.end[0]), / soit /);
-    },
-    c4371s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, prevword1(s, m.index), ":[YQ]|>(?:avec|contre|par|pour|sur) ", false, true);
-    },
-    c4385s_1: function (s, sx, m, dDA, sCountry) {
-        return ( morphex(dDA, [m.start[2], m[2]], ":N.*:[me]:s", ":[GW]") || ((m[2].search(/^[aeéiîou]/i) >= 0) && morphex(dDA, [m.start[2], m[2]], ":N.*:f:s", ":G")) ) && ( look(s.slice(0,m.index), /^ *$|\b(?:à|avec|chez|dès|contre|devant|derrière|en|par|pour|sans|sur) +$|, +$/i) || (morphex(dDA, prevword1(s, m.index), ":V", ":(?:G|W|[NA].*:[pi])") && ! look(s.slice(0,m.index), /\bce que?\b/i)) );
-    },
-    s4405s_1: function (s, m) {
-        return m[1].replace(/sur/g, "sûr");
-    },
-    s4408s_1: function (s, m) {
-        return m[1].replace(/sur/g, "sûr");
-    },
-    c4414s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":M1", false);
-    },
-    c4417s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":Y", false);
-    },
-    s4417s_1: function (s, m) {
-        return m[1].replace(/sur/g, "sûr");
-    },
-    c4426s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":N", ":[GMY]|>(?:fond|envergure|ampleur|importance|départ) ") && ! look(s.slice(0,m.index), /accompl|dél[éè]gu/);
-    },
-    s4426s_1: function (s, m) {
-        return m[1].replace(/â/g, "a");
-    },
-    s4430s_1: function (s, m) {
-        return m[1].replace(/â/g, "a");
-    },
-    c4442s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ">aller ", false);
-    },
-    c4445s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ">faire ", false);
-    },
-    s4448s_1: function (s, m) {
-        return m[1].replace(/taule/g, "tôle");
-    },
-    c4458s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false) && morph(dDA, [m.start[3], m[3]], ":Y", false);
-    },
-    c4466s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">avoir ", false);
-    },
-    s4476s_1: function (s, m) {
-        return m[1].replace(/vénén/g, "venim");
-    },
-    s4478s_1: function (s, m) {
-        return m[1].replace(/venim/g, "vénén");
-    },
-    c4493s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[me]:s");
-    },
-    c4512s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">ouvrir ", false);
-    },
-    c4521s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index) && morph(dDA, [m.start[2], m[2]], ":A") && ! morph(dDA, nextword1(s, m.end[0]), ":D", false, false);
-    },
-    c4550s_1: function (s, sx, m, dDA, sCountry) {
-        return ! m[1]._isDigit() && ! m[2]._isDigit() && ! morph(dDA, [m.start[0], m[0]], ":", false) && ! morph(dDA, [m.start[2], m[2]], ":G", false) && _oDict.isValid(m[1]+m[2]);
-    },
-    c4550s_2: function (s, sx, m, dDA, sCountry) {
-        return m[2] != "là" && ! (m[1].search(/^(?:ex|mi|quasi|semi|non|demi|pro|anti|multi|pseudo|proto|extra)$/i) >= 0) && ! m[1]._isDigit() && ! m[2]._isDigit() && ! morph(dDA, [m.start[2], m[2]], ":G", false) && ! morph(dDA, [m.start[0], m[0]], ":", false) && ! _oDict.isValid(m[1]+m[2]);
-    },
-    c4563s_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ,] +$/);
-    },
-    s4563s_1: function (s, m) {
-        return m[0].toLowerCase();
-    },
-    c4568s_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ,] +$/) && !( ( m[0]=="Juillet" && look(s.slice(0,m.index), /monarchie +de +$/i) ) || ( m[0]=="Octobre" && look(s.slice(0,m.index), /révolution +d’$/i) ) );
-    },
-    s4568s_1: function (s, m) {
-        return m[0].toLowerCase();
-    },
-    c4587s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[0].search(/^fonctions? /i) >= 0) || ! look(s.slice(0,m.index), /\ben $/i);
-    },
-    c4594s_1: function (s, sx, m, dDA, sCountry) {
-        return m[2]._isTitle() && morphex(dDA, [m.start[1], m[1]], ":N", ":(?:A|V0e|D|R|B)") && ! (m[0].search(/^[oO]céan Indien/i) >= 0);
-    },
-    s4594s_1: function (s, m) {
-        return m[2].toLowerCase();
-    },
-    c4594s_2: function (s, sx, m, dDA, sCountry) {
-        return m[2]._isLowerCase() && ! m[2].startsWith("canadienne") && ( (m[1].search(/^(?:certaine?s?|cette|ce[ts]?|[dl]es|[nv]os|quelques|plusieurs|chaque|une|aux)$/i) >= 0) || ( (m[1].search(/^un$/i) >= 0) && ! look(s.slice(m.end[0]), /(?:approximatif|correct|courant|parfait|facile|aisé|impeccable|incompréhensible)/) ) );
-    },
-    s4594s_2: function (s, m) {
+    s472p_1: function (s, m) {
         return m[2]._toCapitalize();
     },
-    s4611s_1: function (s, m) {
-        return m[1]._toCapitalize();
+    c484p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":[DR]", false);
     },
-    c4615s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:parler|cours|leçon|apprendre|étudier|traduire|enseigner|professeur|enseignant|dictionnaire|méthode) ", false);
+    c519p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[1]._isDigit();
     },
-    s4615s_1: function (s, m) {
-        return m[2].toLowerCase();
+    c521p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[1]);
     },
-    s4620s_1: function (s, m) {
-        return m[1].toLowerCase();
+    s543p_1: function (s, m) {
+        return m[1].slice(0,-1);
     },
-    c4632s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
+    s544p_1: function (s, m) {
+        return (m[1].slice(1,3) == "os" ) ? "nᵒˢ"  : "nᵒ";
     },
-    c4644s_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/);
+    c552p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /etc$/i);
     },
-    s4655s_1: function (s, m) {
-        return m[1]._toCapitalize();
+    s553p_1: function (s, m) {
+        return m[0].replace(/\.\.\./g, "…")._trimRight(".");
     },
-    s4657s_1: function (s, m) {
-        return m[1]._toCapitalize();
+    c569p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^(?:etc|[A-Z]|fig|hab|litt|circ|coll|ref|étym|suppl|bibl|bibliogr|cit|vol|déc|nov|oct|janv|juil|avr|sept|pp?)$/) >= 0);
     },
-    c4665s_1: function (s, sx, m, dDA, sCountry) {
-        return (m[2].search(/^(?:Mètre|Watt|Gramme|Seconde|Ampère|Kelvin|Mole|Cand[eé]la|Hertz|Henry|Newton|Pascal|Joule|Coulomb|Volt|Ohm|Farad|Tesla|W[eé]ber|Radian|Stéradian|Lumen|Lux|Becquerel|Gray|Sievert|Siemens|Katal)s?|(?:Exa|P[ée]ta|Téra|Giga|Méga|Kilo|Hecto|Déc[ai]|Centi|Mi(?:lli|cro)|Nano|Pico|Femto|Atto|Ze(?:pto|tta)|Yo(?:cto|etta))(?:mètre|watt|gramme|seconde|ampère|kelvin|mole|cand[eé]la|hertz|henry|newton|pascal|joule|coulomb|volt|ohm|farad|tesla|w[eé]ber|radian|stéradian|lumen|lux|becquerel|gray|sievert|siemens|katal)s?/) >= 0);
+    s593p_1: function (s, m) {
+        return ",|" + m[1];
     },
-    s4665s_1: function (s, m) {
-        return m[2].toLowerCase();
+    s594p_1: function (s, m) {
+        return ";|" + m[1];
     },
-    c4692s_1: function (s, sx, m, dDA, sCountry) {
+    s595p_1: function (s, m) {
+        return ":|" + m[0][1];
+    },
+    c609p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[3], m[3]], ";S", ":[VCR]") || mbUnit(m[3]) || ! _oDict.isValid(m[3]);
+    },
+    c614p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (! (m[2].search(/^[0-9][0-9]{1,3}$/) >= 0) && ! _oDict.isValid(m[3])) || morphex(dDA, [m.start[3], m[3]], ";S", ":[VCR]") || mbUnit(m[3]);
+    },
+    c638p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return sCountry != "CA";
+    },
+    s638p_1: function (s, m) {
+        return " "+m[0];
+    },
+    c673p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /[a-zA-Zéïîùàâäôö]$/);
+    },
+    s695p_1: function (s, m) {
+        return undoLigature(m[0]);
+    },
+    s733p_1: function (s, m) {
+        return m[1].slice(0,-1)+"’";
+    },
+    c735p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! option("mapos") && morph(dDA, [m.start[2], m[2]], ":V", false);
+    },
+    s735p_1: function (s, m) {
+        return m[1].slice(0,-1)+"’";
+    },
+    c739p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return option("mapos") && ! look(s.slice(0,m.index), /(?:lettre|caractère|glyphe|dimension|variable|fonction|point) *$/i);
+    },
+    s739p_1: function (s, m) {
+        return m[1].slice(0,-1)+"’";
+    },
+    c756p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^(?:onz[ei]|énième|iourte|ouistiti|ouate|one-?step|ouf|Ouagadougou|I(?:I|V|X|er|ᵉʳ|ʳᵉ|è?re))/i) >= 0) && ! m[2]._isUpperCase() && ! morph(dDA, [m.start[2], m[2]], ":G", false);
+    },
+    s756p_1: function (s, m) {
+        return m[1][0]+"’";
+    },
+    c774p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^(?:onz|énième|ouf|énième|ouistiti|one-?step|I(?:I|V|X|er|ᵉʳ))/i) >= 0) && morph(dDA, [m.start[2], m[2]], ":[me]");
+    },
+    c783p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].search(/^NF (?:C|E|P|Q|S|X|Z|EN(?: ISO|)) [0-9]+(?:‑[0-9]+|)/) >= 0);
+    },
+    s783p_1: function (s, m) {
+        return formatNF(m[0]);
+    },
+    s792p_1: function (s, m) {
+        return m[0].replace(/2/g, "₂").replace(/3/g, "₃").replace(/4/g, "₄");
+    },
+    c803p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /NF[  -]?(C|E|P|Q|X|Z|EN(?:[  -]ISO|)) */);
+    },
+    s803p_1: function (s, m) {
+        return formatNumber(m[0]);
+    },
+    c818p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return option("num");
+    },
+    s818p_1: function (s, m) {
+        return m[0].replace(/\./g, " ");
+    },
+    p818p_2: function (s, m) {
+        return m[0].replace(/\./g, "");
+    },
+    c826p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return option("num");
+    },
+    s826p_1: function (s, m) {
+        return m[0].replace(/ /g, " ");
+    },
+    p826p_2: function (s, m) {
+        return m[0].replace(/ /g, "");
+    },
+    c838p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! checkDate(m[1], m[2], m[3]) && ! look(s.slice(0,m.index), /\bversions? +$/i);
+    },
+    p838p_2: function (s, m) {
+        return m[0].replace(/\./g, "-").replace(/ /g, "-").replace(/\//g, "-");
+    },
+    c854p_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":(?:G|V0)|>(?:t(?:antôt|emps|rès)|loin|souvent|parfois|quelquefois|côte|petit|même) ", false) && ! m[1][0]._isUpperCase();
+    },
+    c854p_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    p872p_1: function (s, m) {
+        return m[0].replace(/‑/g, "");
+    },
+    p873p_1: function (s, m) {
+        return m[0].replace(/‑/g, "");
+    },
+    c935s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^([nv]ous|faire|en|la|lui|donnant|œuvre|h[éoa]|hou|olé|joli|Bora|couvent|dément|sapiens|très|vroum|[0-9]+)$/i) >= 0) && ! ((m[1].search(/^(?:est|une?)$/) >= 0) && look(s.slice(0,m.index), /[’']$/)) && ! (m[1] == "mieux" && look(s.slice(0,m.index), /qui +$/i));
+    },
+    c951s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! option("ocr");
+    },
+    s951s_1: function (s, m) {
+        return m[0].replace(/O/g, "0");
+    },
+    c952s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! option("ocr");
+    },
+    s952s_1: function (s, m) {
+        return m[0].replace(/O/g, "0");
+    },
+    c973s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! checkDateWithString(m[1], m[2], m[3]);
+    },
+    c980s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +av(?:ant|) +J(?:C|ésus-Christ)/) && ! checkDay(m[1], m[2], m[3], m[4]);
+    },
+    s980s_1: function (s, m) {
+        return getDay(m[2], m[3], m[4]);
+    },
+    c988s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +av(?:ant|) +J(?:C|ésus-Christ)/) && ! checkDayWithString(m[1], m[2], m[3], m[4]);
+    },
+    s988s_1: function (s, m) {
+        return getDayWithString(m[2], m[3], m[4]);
+    },
+    c1036s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[0], m[0]], ":", false);
+    },
+    c1039s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D", false);
+    },
+    c1040s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":A", false) && ! morph(dDA, prevword1(s, m.index), ":D", false);
+    },
+    c1072s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[0].replace(/ /g, "_"));
+    },
+    p1072s_1: function (s, m) {
+        return m[0].replace(/ /g, "_");
+    },
+    c1084s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":(?:O[sp]|X)", false);
+    },
+    d1084s_1: function (s, m, dDA) {
+        return select(dDA, m.start[1], m[1], ":V");
+    },
+    d1086s_1: function (s, m, dDA) {
+        return select(dDA, m.start[1], m[1], ":V");
+    },
+    c1088s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":[YD]", false);
+    },
+    d1088s_1: function (s, m, dDA) {
+        return exclude(dDA, m.start[1], m[1], ":V");
+    },
+    d1090s_1: function (s, m, dDA) {
+        return exclude(dDA, m.start[1], m[1], ":V");
+    },
+    d1092s_1: function (s, m, dDA) {
+        return exclude(dDA, m.start[1], m[1], ":V");
+    },
+    c1094s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return ! morph(dDA, [m.start[1], m[1]], ":Y", false);
     },
-    c4694s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V1") && ! look(s.slice(0,m.index), /\b(?:quelqu(?:e chose|’une?)|(?:l(es?|a)|nous|vous|me|te|se)[ @]trait|personne|rien(?: +[a-zéèêâîûù]+|) +$)/i);
+    d1094s_1: function (s, m, dDA) {
+        return exclude(dDA, m.start[1], m[1], ":V");
     },
-    s4694s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    d1096s_1: function (s, m, dDA) {
+        return exclude(dDA, m.start[1], m[1], ":V");
     },
-    c4697s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V1", ":M[12P]");
+    d1098s_1: function (s, m, dDA) {
+        return exclude(dDA, m.start[1], m[1], ":[123][sp]");
     },
-    s4697s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c1100s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:p|>[a-z]+ièmes ", false, false);
     },
-    c4699s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V1", false);
+    d1100s_1: function (s, m, dDA) {
+        return select(dDA, m.start[0], m[0], ":P");
     },
-    s4699s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c1168s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[1]+"-"+m[2]) && analyse(m[1]+"-"+m[2], ":", false);
     },
-    c4701s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":[123][sp]");
+    c1176s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NB]", false);
     },
-    c4703s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V1", ":[NM]") && ! morph(dDA, prevword1(s, m.index), ">(?:tenir|passer) ", false);
+    c1178s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NB]", false) && ! nextword1(s, m.end[0]);
     },
-    s4703s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c1187s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":N") && ! (m[1].search(/^(?:aequo|nihilo|cathedra|absurdo|abrupto)/i) >= 0);
     },
-    c4706s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V1", false);
+    c1195s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false);
     },
-    s4706s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c1201s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":N", ":[AGW]");
     },
-    c4708s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V1", ":[NM]");
+    c1210s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":G");
     },
-    s4708s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c1216s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[1]+"-"+m[2]) && analyse(m[1]+"-"+m[2], ":", false);
     },
-    c4710s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":Q", false);
+    c1227s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":N");
     },
-    c4712s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:Q|2p)", false);
+    c1227s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":N");
     },
-    s4712s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c1236s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[1]+"-"+m[2]) && analyse(m[1]+"-"+m[2], ":", false) && morph(dDA, prevword1(s, m.index), ":D", false, ! Boolean((m[1].search(/^s(?:ans|ous)$/i) >= 0)));
     },
-    c4714s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":Q", false) && ! morph(dDA, prevword1(s, m.index), "V0.*[12]p", false);
+    c1244s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[1]+"-"+m[2]) && analyse(m[1]+"-"+m[2], ":N", false) && morph(dDA, prevword1(s, m.index), ":(?:D|V0e)", false, true) && ! (morph(dDA, [m.start[1], m[1]], ":G", false) && morph(dDA, [m.start[2], m[2]], ":[GYB]", false));
     },
-    c4716s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:devoir|savoir|pouvoir) ", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Q|A|[13]s|2[sp])", ":[GYW]");
-    },
-    s4716s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
-    },
-    c4719s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:Q|A|[13]s|2[sp])", ":[GYWM]");
-    },
-    s4719s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
-    },
-    s4728s_1: function (s, m) {
-        return m[1].slice(0,-1);
-    },
-    c4753s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V", false);
-    },
-    c4757s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">sembler ", false);
-    },
-    c4771s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4776s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V[123]_i_._") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4778s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":A", false) && morphex(dDA, [m.start[2], m[2]], ":A", ":[GM]");
-    },
-    c4780s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":A", false);
-    },
-    c4782s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GV]") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4785s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":V0") && morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":(?:G|[123][sp]|P)");
-    },
-    c4796s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4800s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /[jn]’$/);
-    },
-    c4808s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":G") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4811s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4814s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4818s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index);
-    },
-    c4821s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":N", ":[GY]") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4823s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4825s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":Y") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
-    },
-    c4859s_1: function (s, sx, m, dDA, sCountry) {
-        return (m[2].search(/^(?:fini|terminé)s?/i) >= 0) && morph(dDA, prevword1(s, m.index), ":C", false, true);
-    },
-    c4859s_2: function (s, sx, m, dDA, sCountry) {
-        return (m[2].search(/^(?:assez|trop)$/i) >= 0) && (look(s.slice(m.end[0]), /^ +d(?:e |’)/) || ! nextword1(s, m.end[0]));
-    },
-    c4859s_3: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":A", ":[GVW]") && morph(dDA, prevword1(s, m.index), ":C", false, true);
-    },
-    c4871s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">aller", false) && ! look(s.slice(m.end[0]), / soit /);
-    },
-    c4879s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V", false);
-    },
-    s4879s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
-    },
-    c4881s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V", false);
-    },
-    s4881s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
-    },
-    c4883s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V", false);
-    },
-    s4883s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
-    },
-    c4886s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:faire|vouloir) ", false) && ! look(s.slice(0,m.index), /\b(?:en|[mtsld]es?|[nv]ous|un) +$/i) && morphex(dDA, [m.start[2], m[2]], ":V", ":M");
-    },
-    s4886s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
-    },
-    c4889s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">faire ", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":M");
-    },
-    s4889s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
-    },
-    c4892s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":M");
-    },
-    s4892s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
-    },
-    c4895s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">savoir :V", false) && morph(dDA, [m.start[2], m[2]], ":V", false) && ! look(s.slice(0,m.index), /\b(?:[mts]e|[vn]ous|les?|la|un) +$/i);
-    },
-    s4895s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
-    },
-    c4898s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:Q|2p)", false);
-    },
-    s4898s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
-    },
-    c4901s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:Q|2p)", ":N");
-    },
-    s4901s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
-    },
-    c4945s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]");
-    },
-    s4945s_1: function (s, m) {
-        return suggSing(m[3]);
-    },
-    c4965s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[1], m[1]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[1].endsWith(" été")) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
-    },
-    s4965s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c4973s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]"));
-    },
-    s4973s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c4986s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (morph(dDA, [m.start[1], m[1]], ">seule ", false) && look(s.slice(m.end[0]), /^ +que? /)) && ( morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[GWYsi]") || ( morphex(dDA, [m.start[1], m[1]], ":[AQ].*:f", ":[GWYme]") && ! morph(dDA, nextword1(s, m.end[0]), ":N.*:f", false, false) ) );
-    },
-    s4986s_1: function (s, m) {
-        return suggMasSing(m[1]);
-    },
-    c4996s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[GWYsi]") || ( morphex(dDA, [m.start[1], m[1]], ":[AQ].*:f", ":[GWYme]") && ! morph(dDA, nextword1(s, m.end[0]), ":N.*:f", false, false) );
-    },
-    s4996s_1: function (s, m) {
-        return suggMasSing(m[1]);
-    },
-    c5003s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]")) && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
-    },
-    s5003s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c5013s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]")) && ! morph(dDA, prevword1(s, m.index), ":R|>de ", false, false);
-    },
-    s5013s_1: function (s, m) {
-        return suggFemSing(m[3]);
-    },
-    c5026s_1: function (s, sx, m, dDA, sCountry) {
-        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]"));
-    },
-    s5026s_1: function (s, m) {
-        return suggFemSing(m[3]);
-    },
-    c5031s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[2].search(/^légion$/i) >= 0) && ! look(s.slice(0,m.index), /\b(?:nous|ne) +$/i) && ((morph(dDA, [m.start[1], m[1]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) && morph(dDA, [m.start[1], m[1]], ":1p", false)) || m[1].endsWith(" été")) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GWYpi]");
-    },
-    s5031s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c5041s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[3].search(/^légion$/i) >= 0) && (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWYpi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]")) && ! look(s.slice(0,m.index), /ce que? +$/i) && (! (m[1].search(/^(?:ceux-(?:ci|là)|lesquels)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
-    },
-    s5041s_1: function (s, m) {
-        return suggMasPlur(m[3]);
-    },
-    c5058s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[3].search(/^légion$/i) >= 0) && (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWYpi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]")) && (! (m[1].search(/^(?:elles|celles-(?:ci|là)|lesquelles)$/i) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
-    },
-    s5058s_1: function (s, m) {
-        return suggFemPlur(m[3]);
-    },
-    c5070s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morphex(dDA, [m.start[2], m[2]], ":[123]s", ":[GNAQWY]");
-    },
-    s5070s_1: function (s, m) {
-        return suggVerbPpas(m[2]);
-    },
-    c5107s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]");
-    },
-    s5107s_1: function (s, m) {
-        return suggSing(m[3]);
-    },
-    c5111s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
-    },
-    s5111s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c5115s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]"));
-    },
-    s5115s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c5120s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[MWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]")) && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
-    },
-    s5120s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c5126s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]")) && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
-    },
-    s5126s_1: function (s, m) {
-        return suggFemSing(m[3]);
-    },
-    c5132s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[MWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]"));
-    },
-    s5132s_1: function (s, m) {
-        return suggFemSing(m[3]);
-    },
-    c5137s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[2].search(/^légion$/i) >= 0) && morph(dDA, [m.start[1], m[1]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && morph(dDA, [m.start[1], m[1]], ":1p", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GWYpi]");
-    },
-    s5137s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c5142s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[3].search(/^légion$/i) >= 0) && morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWYpi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]")) && (! (m[1].search(/^(?:ceux-(?:ci|là)|lesquels)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
-    },
-    s5142s_1: function (s, m) {
-        return suggMasPlur(m[3]);
-    },
-    c5148s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[3].search(/^légion$/i) >= 0) && morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWYpi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]")) && (! (m[1].search(/^(?:elles|celles-(?:ci|là)|lesquelles)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
-    },
-    s5148s_1: function (s, m) {
-        return suggFemPlur(m[3]);
-    },
-    c5179s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GMWYsi]") && ! morph(dDA, [m.start[1], m[1]], ":G", false);
-    },
-    s5179s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c5183s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[2].search(/^légion$/i) >= 0) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GWYpi]") && ! morph(dDA, [m.start[1], m[1]], ":G", false);
-    },
-    s5183s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c5188s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[3].search(/^légion$/i) >= 0) && ((morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWme]") && morphex(dDA, [m.start[2], m[2]], ":m", ":[Gfe]")) || (morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWfe]") && morphex(dDA, [m.start[2], m[2]], ":f", ":[Gme]"))) && ! ( morph(dDA, [m.start[3], m[3]], ":p", false) && morph(dDA, [m.start[2], m[2]], ":s", false) ) && ! morph(dDA, prevword1(s, m.index), ":(?:R|P|Q|Y|[123][sp])", false, false) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s5188s_1: function (s, m) {
-        return switchGender(m[3]);
-    },
-    c5195s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[2].search(/^légion$/i) >= 0) && ((morphex(dDA, [m.start[1], m[1]], ":M[1P].*:f", ":[GWme]") && morphex(dDA, [m.start[2], m[2]], ":m", ":[GWfe]")) || (morphex(dDA, [m.start[1], m[1]], ":M[1P].*:m", ":[GWfe]") && morphex(dDA, [m.start[2], m[2]], ":f", ":[GWme]"))) && ! morph(dDA, prevword1(s, m.index), ":(?:R|P|Q|Y|[123][sp])", false, false) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
-    },
-    s5195s_1: function (s, m) {
-        return switchGender(m[2]);
-    },
-    c5204s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":A.*:p", ":(?:G|E|M1|W|s|i)");
-    },
-    s5204s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c5208s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":A.*:[fp]", ":(?:G|E|M1|W|m:[si])");
-    },
-    s5208s_1: function (s, m) {
-        return suggMasSing(m[1]);
-    },
-    c5212s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":A.*:[mp]", ":(?:G|E|M1|W|f:[si])|>(?:désoler|pire) ");
-    },
-    s5212s_1: function (s, m) {
-        return suggFemSing(m[1]);
-    },
-    c5216s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":A.*:[fs]", ":(?:G|E|M1|W|m:[pi])|>(?:désoler|pire) ");
-    },
-    s5216s_1: function (s, m) {
-        return suggMasPlur(m[1]);
-    },
-    c5220s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":A.*:[ms]", ":(?:G|E|M1|W|f:[pi])|>(?:désoler|pire) ");
-    },
-    s5220s_1: function (s, m) {
-        return suggFemPlur(m[1]);
-    },
-    c5237s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], "V0e", false);
-    },
-    c5244s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:p)", ":[GWsi]");
-    },
-    s5244s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c5247s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:p)", ":[GWsi]");
-    },
-    s5247s_1: function (s, m) {
-        return suggSing(m[1]);
-    },
-    c5250s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|[NAQ].*:[pf])", ":(?:G|W|[me]:[si])|question ") && ! (m[1] == "ce" && morph(dDA, [m.start[2], m[2]], ":Y", false));
-    },
-    s5250s_1: function (s, m) {
-        return suggMasSing(m[2]);
-    },
-    c5253s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:[pm])", ":(?:G|W|[fe]:[si])");
-    },
-    s5253s_1: function (s, m) {
-        return suggFemSing(m[1]);
-    },
-    c5256s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:s)", ":[GWpi]");
-    },
-    s5256s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c5259s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^légion$/i) >= 0) && (morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:s)", ":[GWpi]") || morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|[AQ].*:f)", ":[GWme]"));
-    },
-    s5259s_1: function (s, m) {
-        return suggMasPlur(m[1]);
-    },
-    c5262s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^légion$/i) >= 0) && (morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:s)", ":[GWpi]") || morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|[AQ].*:m)", ":[GWfe]"));
-    },
-    s5262s_1: function (s, m) {
-        return suggFemPlur(m[1]);
-    },
-    c5292s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":[QWGBMpi]") && ! (m[1].search(/^(?:légion|nombre|cause)$/i) >= 0) && ! look(s.slice(0,m.index), /\bce que?\b/i);
-    },
-    s5292s_1: function (s, m) {
-        return suggPlur(m[1]);
-    },
-    c5292s_2: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:N|A|Q|W|G|3p)") && ! look(s.slice(0,m.index), /\bce que?\b/i);
-    },
-    s5292s_2: function (s, m) {
-        return suggVerbPpas(m[1], ":m:p");
-    },
-    c5303s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
-    },
-    s5303s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c5307s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
-    },
-    s5307s_1: function (s, m) {
-        return suggSing(m[2]);
-    },
-    c5311s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWsi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[GWYme]")) && (! (m[1].search(/^(?:celui-(?:ci|là)|lequel)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
-    },
-    s5311s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c5317s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWsi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[GWYfe]")) && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
-    },
-    s5317s_1: function (s, m) {
-        return suggFemSing(m[3]);
-    },
-    c5323s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWsi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[GWYfe]"));
-    },
-    s5323s_1: function (s, m) {
-        return suggFemSing(m[3]);
-    },
-    c5328s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GWpi]");
-    },
-    s5328s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c5332s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWpi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[GWYme]")) && (! (m[1].search(/^(?:ceux-(?:ci|là)|lesquels)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
-    },
-    s5332s_1: function (s, m) {
-        return suggMasPlur(m[3]);
-    },
-    c5338s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWpi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[GWYfe]")) && (! (m[1].search(/^(?:elles|celles-(?:ci|là)|lesquelles)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
-    },
-    s5338s_1: function (s, m) {
-        return suggFemPlur(m[3]);
-    },
-    c5346s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire) ", false) && morphex(dDA, [m.start[2], m[2]], ":[AQ]:(?:m:p|f)", ":(?:G|Y|[AQ]:m:[is])");
-    },
-    s5346s_1: function (s, m) {
-        return suggMasSing(m[2]);
-    },
-    c5349s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire) ", false) && morphex(dDA, [m.start[2], m[2]], ":[AQ]:(?:f:p|m)", ":(?:G|Y|[AQ]:f:[is])");
-    },
-    s5349s_1: function (s, m) {
-        return suggFemSing(m[2]);
-    },
-    c5352s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire) ", false) && morphex(dDA, [m.start[2], m[2]], ":[AQ].*:s", ":(?:G|Y|[AQ].*:[ip])");
-    },
-    s5352s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c5355s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ">(?:trouver|considérer|croire) ", false) && morphex(dDA, [m.start[3], m[3]], ":[AQ].*:p", ":(?:G|Y|[AQ].*:[is])");
-    },
-    s5355s_1: function (s, m) {
-        return suggSing(m[3]);
-    },
-    c5358s_1: function (s, sx, m, dDA, sCountry) {
-        return ( morphex(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire) ", ":1p") || (morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire) .*:1p", false) && look(s.slice(0,m.index), /\bn(?:ous|e) +$/)) ) && morphex(dDA, [m.start[2], m[2]], ":[AQ].*:s", ":(?:G|Y|[AQ].*:[ip])");
-    },
-    s5358s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c5381s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morph(dDA, [m.start[3], m[3]], ":Y", false);
-    },
-    c5383s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[3].search(/^(?:confiance|cours|envie|peine|prise|crainte|cure|affaire|hâte|force|recours)$/i) >= 0) && morph(dDA, prevword1(s, m.index), ">puisque? ", false, true) && morph(dDA, [m.start[2], m[2]], ":V0a", false) && ! m[3]._isUpperCase() && morphex(dDA, [m.start[3], m[3]], ":(?:[123][sp]|Q.*:[fp])", ":(?:G|W|Q.*:m:[si])");
-    },
-    s5383s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c5389s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[4].search(/^(?:confiance|cours|envie|peine|prise|crainte|cure|affaire|hâte|force|recours)$/i) >= 0) && morph(dDA, prevword1(s, m.index), ">puisque? ", false, true) && morph(dDA, [m.start[3], m[3]], ":V0a", false) && ! m[4]._isUpperCase() && morphex(dDA, [m.start[4], m[4]], ":(?:[123][sp]|Q.*:[fp])", ":(?:G|W|Q.*:m:[si])");
-    },
-    s5389s_1: function (s, m) {
-        return suggMasSing(m[4]);
-    },
-    c5395s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":V[0-3]..t.*:Q.*:s", ":[GWpi]");
-    },
-    s5395s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c5400s_1: function (s, sx, m, dDA, sCountry) {
-        return look(s.slice(m.end[0]), /^ *$/) && morph(dDA, [m.start[2], m[2]], ":V0a", false) && morph(dDA, [m.start[1], m[1]], ":(?:M|Os)", false) && morphex(dDA, [m.start[3], m[3]], ":V[0-3]..t_.*:Q.*:s", ":[GWpi]") && ! look(s.slice(0,m.index), /\bque +$/);
-    },
-    s5400s_1: function (s, m) {
-        return suggPlur(m[3]);
-    },
-    c5405s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":V[0-3]..t.*:Q.*:p", ":[GWsi]");
-    },
-    s5405s_1: function (s, m) {
-        return m[2].slice(0,-1);
-    },
-    c5410s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V0a", false) && morphex(dDA, [m.start[3], m[3]], ":V[0-3]..t_.*:Q.*:p", ":[GWsi]") && ! look(s.slice(0,m.index), /\bque?\b/);
-    },
-    s5410s_1: function (s, m) {
-        return m[3].slice(0,-1);
-    },
-    c5415s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":Q.*:(?:f|m:p)", ":m:[si]");
-    },
-    s5415s_1: function (s, m) {
-        return suggMasSing(m[1]);
-    },
-    c5421s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^(?:confiance|cours|envie|peine|prise|crainte|cure|affaire|hâte|force|recours)$/i) >= 0) && morphex(dDA, [m.start[1], m[1]], ":Q.*:(?:f|m:p)", ":m:[si]") && look(s.slice(0,m.index), /(?:après +$|sans +$|pour +$|que? +$|quand +$|, +$|^ *$)/i);
-    },
-    s5421s_1: function (s, m) {
-        return suggMasSing(m[1]);
-    },
-    c5460s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[3], m[3]], ":V0a", false) && ! (((m[4].search(/^(?:décidé|essayé|tenté)$/) >= 0) && look(s.slice(m.end[0]), / +d(?:e |’)/)) || ((m[4].search(/^réussi$/) >= 0) && look(s.slice(m.end[0]), / +à/))) && morph(dDA, [m.start[2], m[2]], ":[NAQ]", false) && morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:s", ":[GWpi]") && ! morph(dDA, nextword1(s, m.end[0]), ":(?:Y|Oo|D)", false);
-    },
-    s5460s_1: function (s, m) {
-        return suggPlur(m[4], m[2]);
-    },
-    c5473s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[3], m[3]], ":V0a", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m", false) && (morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:f", ":[GWme]") || morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:p", ":[GWsi]"));
-    },
-    s5473s_1: function (s, m) {
-        return suggMasSing(m[4]);
-    },
-    c5487s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[3], m[3]], ":V0a", false) && ! (((m[4].search(/^(?:décidé|essayé|tenté)$/) >= 0) && look(s.slice(m.end[0]), / +d(?:e |’)/)) || ((m[4].search(/^réussi$/) >= 0) && look(s.slice(m.end[0]), / +à/))) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f", false) && (morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:m", ":[GWfe]") || morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:p", ":[GWsi]")) && ! morph(dDA, nextword1(s, m.end[0]), ":(?:Y|Oo)|>que?", false);
-    },
-    s5487s_1: function (s, m) {
-        return suggFemSing(m[4]);
-    },
-    c5503s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && (morphex(dDA, [m.start[2], m[2]], ":V[0-3]..t.*:Q.*:f", ":[GWme]") || morphex(dDA, [m.start[2], m[2]], ":V[0-3]..t.*:Q.*:p", ":[GWsi]"));
-    },
-    s5503s_1: function (s, m) {
-        return suggMasSing(m[2]);
-    },
-    c5509s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[1].search(/^(?:A|avions)$/) >= 0) && morph(dDA, [m.start[1], m[1]], ":V0a", false) && morph(dDA, [m.start[2], m[2]], ":V.+:(?:Y|2p)", false);
-    },
-    s5509s_1: function (s, m) {
-        return suggVerbPpas(m[2], ":m:s");
-    },
-    c5515s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && (morph(dDA, [m.start[3], m[3]], ":Y") || (m[3].search(/^(?:[mtsn]e|[nv]ous|leur|lui)$/) >= 0));
-    },
-    c5519s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && (morph(dDA, [m.start[3], m[3]], ":Y") || (m[3].search(/^(?:[mtsn]e|[nv]ous|leur|lui)$/) >= 0));
-    },
-    c5525s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, nextword1(s, m.end[0]), ":[NAQ].*:[me]", false);
-    },
-    c5527s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
-    },
-    c5544s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Y|2p|Q.*:[fp])", ":m:[si]") && m[2] != "prise" && ! morph(dDA, prevword1(s, m.index), ">(?:les|[nv]ous|en)|:[NAQ].*:[fp]", false) && ! look(s.slice(0,m.index), /\bquel(?:le|)s?\b/i);
-    },
-    s5544s_1: function (s, m) {
-        return suggMasSing(m[2]);
-    },
-    c5550s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V0a", false) && morphex(dDA, [m.start[3], m[3]], ":(?:Y|2p|Q.*:p)", ":[si]");
-    },
-    s5550s_1: function (s, m) {
-        return suggMasSing(m[3]);
-    },
-    c5555s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":V[123]..t.*:Q.*:s", ":[GWpi]");
-    },
-    s5555s_1: function (s, m) {
-        return suggPlur(m[2]);
-    },
-    c5561s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:G|Y|P|1p|3[sp])") && ! look(s.slice(m.end[0]), /^ +(?:je|tu|ils?|elles?|on|[vn]ous) /);
-    },
-    s5561s_1: function (s, m) {
-        return suggVerb(m[1], ":1p");
-    },
-    c5567s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:G|Y|P|2p|3[sp])") && ! look(s.slice(m.end[0]), /^ +(?:je|ils?|elles?|on|[vn]ous) /);
-    },
-    s5567s_1: function (s, m) {
-        return suggVerb(m[1], ":2p");
-    },
-    c5607s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":G");
-    },
-    c5615s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V[13].*:Ip.*:2s", ":[GNAM]");
-    },
-    s5615s_1: function (s, m) {
-        return m[1].slice(0,-1);
-    },
-    c5618s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V[13].*:Ip.*:2s", ":G");
-    },
-    s5618s_1: function (s, m) {
-        return m[1].slice(0,-1);
-    },
-    c5623s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[MOs]");
-    },
-    c5630s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V[23].*:Ip.*:3s", ":[GNA]") && analyse(m[1].slice(0,-1)+"s", ":E:2s", false) && ! (m[1].search(/^doit$/i) >= 0) && ! ((m[1].search(/^vient$/i) >= 0) && look(s.slice(m.end[0]), / +l[ea]/));
-    },
-    s5630s_1: function (s, m) {
-        return m[1].slice(0,-1)+"s";
-    },
-    c5634s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V[23].*:Ip.*:3s", ":G") && analyse(m[1].slice(0,-1)+"s", ":E:2s", false);
-    },
-    s5634s_1: function (s, m) {
-        return m[1].slice(0,-1)+"s";
-    },
-    c5639s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V3.*:Ip.*:3s", ":[GNA]");
-    },
-    c5642s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V3.*:Ip.*:3s", ":G");
-    },
-    c5652s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":A", ":G") && ! look(s.slice(m.end[0]), /\bsoit\b/);
-    },
-    c5663s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":E|>chez", false) && _oDict.isValid(m[1]);
-    },
-    s5663s_1: function (s, m) {
-        return suggVerbImpe(m[1]);
-    },
-    c5668s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":E|>chez", false) && _oDict.isValid(m[1]);
-    },
-    s5668s_1: function (s, m) {
-        return suggVerbTense(m[1], ":E", ":2s");
-    },
-    c5693s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":E", ":[GM]");
-    },
-    c5698s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":E", ":[GM]") && morphex(dDA, nextword1(s, m.end[0]), ":", ":(?:Y|3[sp])", true) && morph(dDA, prevword1(s, m.index), ":Cc", false, true) && ! look(s.slice(0,m.index), /~ +$/);
-    },
-    c5703s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":E", ":[GM]") && morphex(dDA, nextword1(s, m.end[0]), ":", ":(?:N|A|Q|Y|B|3[sp])", true) && morph(dDA, prevword1(s, m.index), ":Cc", false, true) && ! look(s.slice(0,m.index), /~ +$/);
-    },
-    c5708s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":E", ":[GM]") && morphex(dDA, nextword1(s, m.end[0]), ":", ":(?:N|A|Q|Y|MP)", true) && morph(dDA, prevword1(s, m.index), ":Cc", false, true) && ! look(s.slice(0,m.index), /~ +$/);
-    },
-    c5727s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":E", ":(?:G|M[12])") && morphex(dDA, nextword1(s, m.end[0]), ":", ":(?:Y|[123][sp])", true);
-    },
-    s5727s_1: function (s, m) {
+    s1255s_1: function (s, m) {
         return m[0].replace(/ /g, "-");
     },
-    c5732s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":E", false);
-    },
-    s5732s_1: function (s, m) {
+    s1256s_1: function (s, m) {
         return m[0].replace(/ /g, "-");
     },
-    c5737s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":E", false) && morphex(dDA, nextword1(s, m.end[0]), ":[RC]", ":[NAQ]", true);
+    s1262s_1: function (s, m) {
+        return m[0].replace(/ /g, "-").replace(/si/g, "ci");
     },
-    s5737s_1: function (s, m) {
+    c1266s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":Cs", false, true);
+    },
+    s1273s_1: function (s, m) {
         return m[0].replace(/ /g, "-");
     },
-    c5742s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":E", false) && morphex(dDA, nextword1(s, m.end[0]), ":[RC]", ":Y", true);
+    c1279s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! nextword1(s, m.end[0]);
     },
-    s5742s_1: function (s, m) {
+    c1281s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":G");
+    },
+    c1286s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(0,m.index), /\b(?:les?|du|des|un|ces?|[mts]on) +/i);
+    },
+    c1293s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":D", false);
+    },
+    c1295s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! ( morph(dDA, prevword1(s, m.index), ":R", false) && look(s.slice(m.end[0]), /^ +qu[e’]/) );
+    },
+    c1358s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +s(?:i |’)/);
+    },
+    s1427s_1: function (s, m) {
         return m[0].replace(/ /g, "-");
     },
-    c5748s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, nextword1(s, m.end[0]), ":Y", false, false);
+    c1430s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /quatre $/i);
     },
-    s5748s_1: function (s, m) {
+    s1430s_1: function (s, m) {
+        return m[0].replace(/ /g, "-").replace(/vingts/g, "vingt");
+    },
+    s1433s_1: function (s, m) {
         return m[0].replace(/ /g, "-");
     },
-    c5750s_1: function (s, sx, m, dDA, sCountry) {
-        return ! prevword1(s, m.index) && ! morph(dDA, nextword1(s, m.end[0]), ":Y", false, false);
+    s1436s_1: function (s, m) {
+        return m[0].replace(/ /g, "-").replace(/vingts/g, "vingt");
     },
-    s5752s_1: function (s, m) {
-        return m[0].replace(/ /g, "-");
+    s1465s_1: function (s, m) {
+        return m[0].replace(/-/g, " ");
     },
-    c5778s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":R", false, true);
+    c1467s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
     },
-    c5779s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    s1468s_1: function (s, m) {
+        return m[0].replace(/-/g, " ");
     },
-    c5781s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    s1469s_1: function (s, m) {
+        return m[0].replace(/-/g, " ");
     },
-    c5783s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[123][sp]");
+    s1470s_1: function (s, m) {
+        return m[0].replace(/-/g, " ");
     },
-    c5784s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":[123]s", false, false);
+    c1483s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V0|>en ", false);
     },
-    c5785s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":(?:[123]s|R)", false, false);
+    c1493s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":M", ":G") && ! morph(dDA, [m.start[2], m[2]], ":N", false) && ! prevword1(s, m.index);
     },
-    c5786s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":(?:[123]p|R)", false, false);
+    c1505s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":E", false) && morph(dDA, [m.start[3], m[3]], ":M", false);
     },
-    c5787s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, prevword1(s, m.index), ":3p", false, false);
+    c1516s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":Y", false) && morph(dDA, [m.start[2], m[2]], ":M", false) && ! morph(dDA, prevword1(s, m.index), ">à ", false, false);
     },
-    c5788s_1: function (s, sx, m, dDA, sCountry) {
+    c1527s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return option("mapos");
+    },
+    s1527s_1: function (s, m) {
+        return m[1].slice(0,-1)+"’";
+    },
+    c1536s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[GNAY]", ":(?:Q|3s)|>(?:priori|post[eé]riori|contrario|capella|fortiori) ");
+    },
+    c1554s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0] == "II";
+    },
+    c1554s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! bCondMemo && ! m[0]._isDigit();
+    },
+    s1554s_2: function (s, m) {
+        return m[0].replace(/O/g, "0").replace(/I/g, "1");
+    },
+    s1563s_1: function (s, m) {
+        return m[0].replace(/a/g, "â").replace(/A/g, "Â");
+    },
+    s1569s_1: function (s, m) {
+        return m[0].replace(/n/g, "");
+    },
+    c1598s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b([jnlmts]’|il |on |elle )$/i);
+    },
+    c1604s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b[jn]e +$/i);
+    },
+    c1622s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":N.*:f:s", false);
+    },
+    c1628s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:f:[si]");
+    },
+    c1634s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ">(?:et|o[uù]) ");
+    },
+    c1645s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].search(/^contre$/i) >= 0);
+    },
+    c1651s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:p", false, false);
+    },
+    c1652s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:p", false, false);
+    },
+    c1661s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("é") && ! morph(dDA, prevword1(s, m.index), ":D.*:m:[si]", false, false);
+    },
+    c1661s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("s") && ! morph(dDA, prevword1(s, m.index), ":D.*:m:p", false, false);
+    },
+    c1670s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("o");
+    },
+    c1670s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! bCondMemo && ! morph(dDA, prevword1(s, m.index), ":D.*:[me]", false, false);
+    },
+    c1678s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\bau /i);
+    },
+    c1690s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("e") && ( morph(dDA, prevword1(s, m.index), ":R", false, true) || isNextVerb(dDA, s.slice(m.end[0]), m.end[0]) );
+    },
+    c1690s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("s") && ( morph(dDA, prevword1(s, m.index), ":R", false, true) || isNextVerb(dDA, s.slice(m.end[0]), m.end[0]) );
+    },
+    c1704s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /[0-9] +$/);
+    },
+    c1710s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("l");
+    },
+    c1710s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! bCondMemo;
+    },
+    c1735s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index) && morph(dDA, [m.start[2], m[2]], ":(?:O[on]|3s)", false);
+    },
+    c1742s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("s");
+    },
+    c1742s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! bCondMemo;
+    },
+    c1750s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[0].endsWith("s");
+    },
+    c1750s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! bCondMemo;
+    },
+    s1758s_1: function (s, m) {
+        return m[0].replace(/o/g, "e");
+    },
+    c1764s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/) || ! morph(dDA, [m.start[2], m[2]], ":Y", false);
+    },
+    c1774s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0]._isTitle() && _oDict.isValid("v"+m[1]) && look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/);
+    },
+    c1774s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0]._isTitle() && _oDict.isValid(m[1]) && look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/);
+    },
+    s1783s_1: function (s, m) {
+        return m[0].replace(/é/g, "e").replace(/É/g, "E").replace(/è/g, "e").replace(/È/g, "E");
+    },
+    c1796s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":(?:V0|N.*:m:[si])", false, false);
+    },
+    c1809s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D:[me]:p", false, false);
+    },
+    c1816s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("e") && ! morph(dDA, prevword1(s, m.index), ":D.*:[me]:[si]", false, false);
+    },
+    c1816s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("s") && ! morph(dDA, prevword1(s, m.index), ":D.*:[me]:[pi]", false, false);
+    },
+    s1819s_1: function (s, m) {
+        return m[0].replace(/è/g, "ê").replace(/È/g, "Ê");
+    },
+    s1820s_1: function (s, m) {
+        return m[0].replace(/é/g, "ê").replace(/É/g, "Ê");
+    },
+    c1854s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:ne|il|on|elle|je) +$/i) && morph(dDA, [m.start[2], m[2]], ":[NA].*:[me]:[si]", false);
+    },
+    c1856s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:ne|il|on|elle) +$/i) && morph(dDA, [m.start[2], m[2]], ":[NA].*:[fe]:[si]", false);
+    },
+    c1858s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:ne|tu) +$/i) && morph(dDA, [m.start[2], m[2]], ":[NA].*:[pi]", false);
+    },
+    c1873s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("") && ! morph(dDA, prevword1(s, m.index), ":D.*:m:s", false, false);
+    },
+    c1873s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("x") && ! morph(dDA, prevword1(s, m.index), ":D.*:m:p", false, false);
+    },
+    c1887s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:m:p", false, false);
+    },
+    c1893s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:f:s", false, false);
+    },
+    c1899s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:[me]:p", false, false);
+    },
+    c1911s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:m:s", false, false);
+    },
+    c1917s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[0].endsWith("s");
+    },
+    c1917s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! bCondMemo;
+    },
+    c1931s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:ce|[mts]on|du|un|le) $/i);
+    },
+    c1943s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:je|il|elle|on|ne) $/i);
+    },
+    s1943s_1: function (s, m) {
+        return m[0].replace(/è/g, "ê").replace(/È/g, "Ê");
+    },
+    s1957s_1: function (s, m) {
+        return m[0].replace(/a/g, "o").replace(/A/g, "O");
+    },
+    s1963s_1: function (s, m) {
+        return m[0].replace(/n/g, "").replace(/N/g, "U");
+    },
+    c1969s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:ce|d[eu]|un|quel|leur|le) +/i);
+    },
+    c1993s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D:[me]" ,false, false);
+    },
+    s2002s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA].*:[pi]");
+    },
+    s2005s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA].*:[si]");
+    },
+    s2008s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA].*:[pi]");
+    },
+    c2036s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^avoir$/i) >= 0) && morph(dDA, [m.start[1], m[1]], ">avoir ", false);
+    },
+    c2053s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:être|mettre) ", false);
+    },
+    c2102s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], / [a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+ en ([aeo][a-zû]*)/i, ":V0a");
+    },
+    c2123s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">abolir ", false);
+    },
+    c2124s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">acculer ", false);
+    },
+    c2125s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">achever ", false);
+    },
+    c2126s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), / +de?\b/);
+    },
+    c2132s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">avancer ", false);
+    },
+    c2135s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":A|>un", false);
+    },
+    c2139s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">collaborer ", false);
+    },
+    c2141s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">comparer ", false);
+    },
+    c2142s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">contraindre ", false);
+    },
+    c2146s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">enchevêtrer ", false);
+    },
+    c2147s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">entraider ", false);
+    },
+    c2153s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">joindre ");
+    },
+    c2160s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">monter ", false);
+    },
+    c2171s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">rénov(?:er|ation) ", false);
+    },
+    c2173s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">réunir ", false);
+    },
+    c2174s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">recul(?:er|) ", false);
+    },
+    c2178s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">suffire ", false);
+    },
+    c2179s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">talonner ", false);
+    },
+    c2252s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:prévenir|prévoir|prédire|présager|préparer|pressentir|pronostiquer|avertir|devancer|deviner|réserver) ", false);
+    },
+    c2262s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:ajourner|différer|reporter) ", false);
+    },
+    c2288s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase();
+    },
+    s2288s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA]:[fe]:[si]");
+    },
+    c2296s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":N.*:[fe]|:[AW]") && m[2][0]._isLowerCase() || m[2] == "va";
+    },
+    c2296s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase() && hasSimil(m[2]);
+    },
+    s2296s_2: function (s, m) {
+        return suggSimil(m[2], ":[NA]:[fe]:[si]");
+    },
+    c2307s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase() && ! (m[2] == "sortir" && (m[1].search(/au/i) >= 0));
+    },
+    s2307s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA]:[me]:[si]");
+    },
+    c2315s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]:.:[si]|:V0e.*:3[sp]|>devoir") && m[2][0]._isLowerCase() && hasSimil(m[2]);
+    },
+    s2315s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA]:[me]:[si]");
+    },
+    c2323s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase();
+    },
+    s2323s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA]:.:[si]");
+    },
+    c2331s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V.*:(?:Y|[123][sp])") && m[1][0]._isLowerCase() && ! prevword1(s, m.index);
+    },
+    s2331s_1: function (s, m) {
+        return suggSimil(m[1], ":[NA]:[me]:[si]");
+    },
+    c2339s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase() && ! (m[0].search(/^quelques? soi(?:ent|t|s)\b/i) >= 0);
+    },
+    s2339s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA]:.:[pi]");
+    },
+    c2347s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase();
+    },
+    s2347s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA]:[me]:[pi]");
+    },
+    c2355s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:Y|[123][sp])", ":[NAQ]") && m[2][0]._isLowerCase();
+    },
+    s2355s_1: function (s, m) {
+        return suggSimil(m[2], ":[NA]:[fe]:[pi]");
+    },
+    c2363s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[NAQ]");
+    },
+    s2363s_1: function (s, m) {
+        return suggSimil(m[1], ":(?:[NA]:[fe]:[si])");
+    },
+    c2374s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[me]", ":[YG]") && m[2][0]._isLowerCase();
+    },
+    c2374s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[2], m[2]], ":[123][sp]", false);
     },
-    c5789s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":(?:[NAQ].*:m:[si]|G|M)");
+    s2374s_2: function (s, m) {
+        return suggSimil(m[2], ":Y");
     },
-    c5790s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":(?:[NAQ].*:f:[si]|G|M)");
+    c2382s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[NAQ]");
     },
-    c5791s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":(?:[NAQ].*:[si]|G|M)");
+    s2382s_1: function (s, m) {
+        return suggSimil(m[1], ":(?:[NA]:.:[si])");
     },
-    c5792s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":(?:[NAQ].*:[si]|G|M)");
+    c2389s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":(?:Y|[123][sp])") && ! look(s.slice(0,m.index), /(?:dont|sauf|un à) +$/i);
     },
-    c5794s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":(?:A|G|M|1p)");
+    s2389s_1: function (s, m) {
+        return suggSimil(m[1], ":[NAQ]:[me]:[si]");
     },
-    c5795s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":(?:A|G|M|2p)");
+    c2397s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1][0]._isLowerCase() && morph(dDA, [m.start[1], m[1]], ":V.*:[123][sp]");
     },
-    c5797s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V", false);
+    s2397s_1: function (s, m) {
+        return suggSimil(m[1], ":[NA]");
     },
-    c5798s_1: function (s, sx, m, dDA, sCountry) {
+    c2404s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1][0]._isLowerCase() && morphex(dDA, [m.start[1], m[1]], ":V.*:[123][sp]", ":[GNA]") && ! look(s.slice(0,m.index), /\b(?:plus|moins) +$/i);
+    },
+    s2404s_1: function (s, m) {
+        return suggSimil(m[1], ":[NA]");
+    },
+    c2414s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":", ":(?:[123][sp]|O[onw]|X)|ou ") && morphex(dDA, prevword1(s, m.index), ":", ":3s", true);
+    },
+    s2414s_1: function (s, m) {
+        return suggSimil(m[1], ":(?:3s|Oo)");
+    },
+    c2422s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":", ":(?:[123][sp]|O[onw]|X)|ou ") && morphex(dDA, prevword1(s, m.index), ":", ":3p", true);
+    },
+    s2422s_1: function (s, m) {
+        return suggSimil(m[1], ":(?:3p|Oo)");
+    },
+    c2431s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":", ":(?:[123][sp]|O[onw]|X)") && morphex(dDA, prevword1(s, m.index), ":", ":1s", true);
+    },
+    s2431s_1: function (s, m) {
+        return suggSimil(m[1], ":(?:1s|Oo)");
+    },
+    c2439s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":", ":(?:[123][sp]|O[onw]|X)") && morphex(dDA, prevword1(s, m.index), ":", ":(?:2s|V0e)", true);
+    },
+    s2439s_1: function (s, m) {
+        return suggSimil(m[1], ":(?:2s|Oo)");
+    },
+    c2454s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":", ":P");
+    },
+    c2455s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]");
+    },
+    c2465s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|O[onw])", false);
+    },
+    s2465s_1: function (s, m) {
+        return suggSimil(m[2], ":[123][sp]");
+    },
+    c2469s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P|O[onw]|X)|>(?:[lmtsn]|surtout|guère|presque|même) ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
+    },
+    s2469s_1: function (s, m) {
+        return suggSimil(m[2], ":(?:[123][sp]|Oo|Y)");
+    },
+    c2473s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P|O[onw]|X)", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
+    },
+    s2473s_1: function (s, m) {
+        return suggSimil(m[2], ":(?:[123][sp]|Y)");
+    },
+    c2477s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].search(/^se que?/i) >= 0) && _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P|Oo)|>[lmts] ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
+    },
+    s2477s_1: function (s, m) {
+        return suggSimil(m[2], ":(?:[123][sp]|Oo|Y)");
+    },
+    c2482s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P|Oo)", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
+    },
+    s2482s_1: function (s, m) {
+        return suggSimil(m[2], ":(?:[123][sp]|Y)");
+    },
+    c2486s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P)|>(?:en|y|ils?) ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
+    },
+    s2486s_1: function (s, m) {
+        return suggSimil(m[2], ":(?:[123][sp]|Y)");
+    },
+    c2490s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|P)|>(?:en|y|ils?|elles?) ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|ce)$/i) >= 0);
+    },
+    s2490s_1: function (s, m) {
+        return suggSimil(m[2], ":(?:[123][sp]|Y)");
+    },
+    c2494s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return _oDict.isValid(m[2]) && ! morph(dDA, [m.start[2], m[2]], ":[123][sp]|>(?:en|y|que?) ", false) && ! (m[2].search(/-(?:ils?|elles?|[nv]ous|je|tu|on|dire)$/i) >= 0);
+    },
+    s2494s_1: function (s, m) {
+        return suggSimil(m[2], ":3s");
+    },
+    c2523s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:Y|[123][sp])", ":[AQW]");
+    },
+    s2523s_1: function (s, m) {
+        return suggSimil(m[1], ":[AW]");
+    },
+    c2530s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":[GNAQWM]") && ! look(s.slice(0,m.index), /\bce que? /i);
+    },
+    c2541s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[1][0]._isUpperCase() && morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[GNAQM]");
+    },
+    c2548s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[1][0]._isUpperCase() && morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[GNAQM]") && ! morph(dDA, prevword1(s, m.index), ":[NA]:[me]:si", false);
+    },
+    c2556s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[123][sp]", ":[GNAQWMT]") && morphex(dDA, nextword1(s, m.end[0]), ":", ":D", true);
+    },
+    s2556s_1: function (s, m) {
+        return suggSimil(m[1], ":[AWGT]");
+    },
+    c2565s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y)", ":[GAQW]") && ! morph(dDA, prevword1(s, m.index), ":V[123].*:[123][sp]", false, false);
+    },
+    s2565s_1: function (s, m) {
+        return suggVerbPpas(m[1]);
+    },
+    c2576s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":[VN]", false, true);
+    },
+    c2577s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return ! prevword1(s, m.index);
     },
-    c5799s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":V", false);
+    c2580s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:[lmts]a|leur|une|en) +$/i);
     },
-    c5800s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[2], m[2]], ":2s", false) || look(s.slice(0,m.index), /\b(?:je|tu|on|ils?|elles?|nous) +$/i);
+    c2582s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":(?:D|Oo|M)", false);
     },
-    c5801s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[2], m[2]], ":2s|>(ils?|elles?|on) ", false) || look(s.slice(0,m.index), /\b(?:je|tu|on|ils?|elles?|nous) +$/i);
+    c2583s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">être :V") && ! look(s.slice(0,m.index), /\bce que? /i);
     },
-    c5815s_1: function (s, sx, m, dDA, sCountry) {
+    c2597s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^(?:côtés?|coups?|peu(?:-près|)|pics?|propos|valoir|plat-ventrismes?)/i) >= 0);
+    },
+    c2597s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (m[2].search(/^(?:côtés?|coups?|peu(?:-pr(?:ès|êts?|és?)|)|pics?|propos|valoir|plat-ventrismes?)/i) >= 0);
+    },
+    c2603s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":3s", false, false);
+    },
+    c2606s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":(?:3s|R)", false, false) && ! morph(dDA, nextword1(s, m.end[0]), ":Oo|>qui ", false, false);
+    },
+    c2612s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":Q", ":M[12P]");
+    },
+    c2614s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":(?:Y|Oo)");
+    },
+    c2617s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":(?:Y|Oo)");
+    },
+    c2622s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\bce que?\b/i);
+    },
+    c2626s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":(?:M[12]|D|Oo)");
+    },
+    c2634s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[123][sp]") && ! m[2].slice(0,1)._isUpperCase() && ! m[2].startsWith("tord");
+    },
+    c2640s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /[ln]’$|\b(?:il|elle|on|y|n’en) +$/i);
+    },
+    c2644s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /(?:\bque? |[ln]’$|\b(?:il|elle|on|y|n’en) +$)/i);
+    },
+    c2648s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /(?:\bque? |[ln]’$|\b(?:il|elle|on|y|n’en) +$)/i);
+    },
+    c2652s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":Y", false) && ! look(s.slice(0,m.index), /\bque? |(?:il|elle|on|n’(?:en|y)) +$/i);
+    },
+    c2718s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c2730s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! (m[2].search(/^seule?s?/) >= 0);
+    },
+    c2732s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":G", ">(?:tr(?:ès|op)|peu|bien|plus|moins|toute) |:[NAQ].*:f");
+    },
+    c2735s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! nextword1(s, m.end[0]) || look(s.slice(m.end[0]), /^ +que? /i);
+    },
+    c2737s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:[oO]h|[aA]h) +$/);
+    },
+    c2738s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":R");
+    },
+    c2754s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":Y")  && m[1] != "CE";
+    },
+    c2757s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V[123].*:(?:Y|[123][sp])") && ! morph(dDA, [m.start[2], m[2]], ">(?:devoir|pouvoir) ") && m[2][0]._isLowerCase() && m[1] != "CE";
+    },
+    c2761s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (m[0].indexOf(",") >= 0 || morphex(dDA, [m.start[2], m[2]], ":G", ":[AYD]"));
+    },
+    c2769s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c2771s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":[NAQ].*:[me]") || look(s.slice(0,m.index), /\b[cs]e +/i);
+    },
+    c2778s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:être|pouvoir|devoir) .*:3s", false);
+    },
+    c2782s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[123]s", ":P");
+    },
+    c2785s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":([123][sp]|Y|P|Q)|>l[ea]? ");
+    },
+    c2788s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":N.*:s", ":(?:A.*:[pi]|P|R)|>autour ");
+    },
+    c2826s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":N.*:p", ":(?:G|W|M|A.*:[si])");
+    },
+    c2838s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1].endsWith("en") || look(s.slice(0,m.index), /^ *$/);
+    },
+    c2854s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":Q");
+    },
+    c2857s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ">(?:profiter|bénéficier) ", false);
+    },
+    c2863s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false) && morphex(dDA, [m.start[3], m[3]], ":[NAQ]", ":G");
+    },
+    c2876s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index) && ! morph(dDA, nextword1(s, m.end[0]), ":[WAY]", false, false);
+    },
+    c2880s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[1].startsWith("B");
+    },
+    c2915s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":E|>le ", false, false);
+    },
+    c2934s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y)", ":(?:G|N|A|M[12P])") && ! look(s.slice(0,m.index), /\b[ld]es +$/i);
+    },
+    c2951s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":W", false) && ! morph(dDA, prevword1(s, m.index), ":V.*:3s", false, false);
+    },
+    s2964s_1: function (s, m) {
+        return m[1].replace(/pal/g, "pâl");
+    },
+    s2968s_1: function (s, m) {
+        return m[1].replace(/pal/g, "pâl");
+    },
+    c2978s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /très +$/);
+    },
+    c2984s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[AQ]", false);
+    },
+    c2990s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":C", false, true);
+    },
+    c2996s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /(?:quelqu|l|d)’/i);
+    },
+    c3008s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":A") && ! (m[2].search(/^seule?s?$/i) >= 0);
+    },
+    c3043s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /(?:peu|de) $/i) && morph(dDA, [m.start[2], m[2]], ":Y|>(?:tout|les?|la) ");
+    },
+    c3046s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":(?:Y|M[12P])|>(?:en|y|les?) ", false);
+    },
+    c3059s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ">(?:arriver|venir|à|revenir|partir|aller) ");
+    },
+    c3064s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":P", false);
+    },
+    c3076s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":(?:G|[123][sp]|W)");
+    },
+    s3076s_1: function (s, m) {
+        return m[1].replace(/ /g, "");
+    },
+    c3084s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
+    },
+    c3093s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index) && morph(dDA, [m.start[2], m[2]], ":V", false);
+    },
+    c3096s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index) && morph(dDA, [m.start[2], m[2]], ":V", false) && ! ( m[1] == "sans" && morph(dDA, [m.start[2], m[2]], ":[NY]", false) );
+    },
+    c3106s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":M[12]", false);
+    },
+    c3145s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">ouvrir ", false);
+    },
+    c3160s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^(?:grand|petit|rouge)$/) >= 0) && morphex(dDA, [m.start[2], m[2]], ":A", ":[NGM]") && ! look(s.slice(0,m.index), /\bne (?:pas |jamais |) *$/i) && ! morph(dDA, prevword1(s, m.index), ":O[os]|>(?:ne|falloir|pouvoir|savoir|de) ", false);
+    },
+    c3167s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":Cs|>(?:ni|et|sans|pour|falloir|[pv]ouvoir|aller) ", true, false);
+    },
+    c3213s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(0,m.index), /\b(aux|[ldmts]es|[nv]os) +$/);
+    },
+    c3214s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[AQ].*:[pi]", false);
+    },
+    c3218s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c3224s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:d[eu]|avant|après|sur|malgré) +$/i);
+    },
+    c3232s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:d[eu]|avant|après|sur|malgré) +$/i) && ! morph(dDA, [m.start[2], m[2]], ":(?:3s|Oo)", false);
+    },
+    c3240s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:d[eu]|avant|après|sur|malgré) +$/i);
+    },
+    c3257s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":f", ":[123][sp]") && morphex(dDA, prevword1(s, m.index), ":", ":(?:R|[123][sp]|Q)|>(?:[nv]ous|eux) ", true);
+    },
+    c3257s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s3257s_2: function (s, m) {
+        return suggMasPlur(m[2], true);
+    },
+    c3262s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":m", ":[123][sp]") && morphex(dDA, prevword1(s, m.index), ":", ":(?:R|[123][sp]|Q)|>(?:[nv]ous|eux) ", true);
+    },
+    c3262s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s3262s_2: function (s, m) {
+        return suggFemPlur(m[2], true);
+    },
+    c3272s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":N.*:[fp]", ":(?:A|W|G|M[12P]|Y|[me]:i|3s)") && morph(dDA, prevword1(s, m.index), ":R|>de ", false, true);
+    },
+    s3272s_1: function (s, m) {
+        return suggMasSing(m[1], true);
+    },
+    c3277s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[mp]") && morph(dDA, prevword1(s, m.index), ":R|>de ", false, true);
+    },
+    s3277s_1: function (s, m) {
+        return suggFemSing(m[1], true);
+    },
+    c3282s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[fs]") && morph(dDA, prevword1(s, m.index), ":R|>de ", false, true);
+    },
+    s3282s_1: function (s, m) {
+        return suggMasPlur(m[1], true);
+    },
+    c3287s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[ms]") && morph(dDA, prevword1(s, m.index), ":R|>de ", false, true);
+    },
+    s3287s_1: function (s, m) {
+        return suggFemPlur(m[1], true);
+    },
+    c3307s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[123][sp]", false) && ! ((m[2].search(/^(?:jamais|rien)$/i) >= 0) && look(s.slice(0,m.index), /\b(?:que?|plus|moins) /));
+    },
+    c3312s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[123][sp]", false) && ! ((m[2].search(/^(?:jamais|rien)$/i) >= 0) && look(s.slice(0,m.index), /\b(?:que?|plus|moins) /));
+    },
+    c3317s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[123][sp]", false) && ! ((m[3].search(/^(?:jamais|rien)$/i) >= 0) && look(s.slice(0,m.index), /\b(?:que?|plus|moins) /));
+    },
+    c3322s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[123][sp]", false) && ! ((m[3].search(/^(?:jamais|rien)$/i) >= 0) && look(s.slice(0,m.index), /\b(?:que?|plus|moins) /));
+    },
+    c3338s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":(?:Y|W|O[ow])|>que? ", false) && _oDict.isValid(m[1]);
+    },
+    s3338s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c3372s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ":[AN].*:[pi]", false, false);
+    },
+    c3373s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":A.*:s");
+    },
+    c3374s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":A.*:s", false);
+    },
+    p3527s_1: function (s, m) {
+        return m[0].replace(/ /g, "_");
+    },
+    c3624s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":G");
+    },
+    c3631s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    c3643s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^(?:janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor)s?$/i) >= 0);
+    },
+    c3650s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:une|la|cette|[mts]a|[nv]otre|de) +/);
+    },
+    c3682s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
+    },
+    c3682s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
+    },
+    c3701s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[2]._isDigit() || morph(dDA, [m.start[2], m[2]], ":B", false);
+    },
+    c3707s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(0,m.index), /\b[lL]a +$/);
+    },
+    d3707s_1: function (s, m, dDA) {
+        return define(dDA, m.start[0], [">numéro :N:f:s"]);
+    },
+    c3718s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">prendre ", false);
+    },
+    c3722s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">rester ", false);
+    },
+    c3727s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:sembler|para[îi]tre) ") && morphex(dDA, [m.start[3], m[3]], ":A", ":G");
+    },
+    c3731s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">tenir ", false);
+    },
+    c3734s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">trier ", false);
+    },
+    c3736s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">venir ", false);
+    },
+    c3751s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", ":(?:G|3p)");
+    },
+    c3756s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", ":(?:G|3p)");
+    },
+    c3763s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":B", false);
+    },
+    c3764s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":V0", false) || ! morph(dDA, nextword1(s, m.end[0]), ":A", false);
+    },
+    c3765s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c3766s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":W", false);
+    },
+    c3767s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":A .*:m:s", false);
+    },
+    c3769s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":(?:R|C[sc])", false, true);
+    },
+    c3770s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":B", false) || (m[1].search(/^(?:plusieurs|maintes)/i) >= 0);
+    },
+    c3771s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, nextword1(s, m.end[0]), ":[NAQR]", false, true);
+    },
+    c3772s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":V0");
+    },
+    c3774s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":D", false);
+    },
+    c3775s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":D.*:[me]:[si]", false);
+    },
+    c3776s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ":([AQ].*:[me]:[pi])", false, false);
+    },
+    c3777s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A", false);
+    },
+    c3778s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:croire|devoir|estimer|imaginer|penser) ");
+    },
+    c3780s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":(?:R|D|[123]s|X)", false);
+    },
+    c3781s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":[AQ]:[ef]:[si]", false);
+    },
+    c3782s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":[AQ]:[em]:[si]", false);
+    },
+    c3783s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:il +|n’)$/i);
+    },
+    c3784s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
+    },
+    c3785s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\bt(?:u|oi qui)\b/i);
+    },
+    c3786s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
+    },
+    c3787s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":A", false);
+    },
+    c3788s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
+    },
+    c3789s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":W", false);
+    },
+    c3790s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[AW]", ":G");
+    },
+    c3791s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[AW]", false);
+    },
+    c3792s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":Y", false);
+    },
+    c3795s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NV]", ":D");
+    },
+    c3796s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":(?:3s|X)", false);
+    },
+    c3797s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[me]", false);
+    },
+    c3804s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":M[12]", false) && (morph(dDA, [m.start[2], m[2]], ":(?:M[12]|V)", false) || ! _oDict.isValid(m[2]));
+    },
+    c3805s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":M", false) && morph(dDA, [m.start[2], m[2]], ":M", false);
+    },
+    c3806s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":M", false);
+    },
+    c3807s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":(?:M[12]|N)") && morph(dDA, [m.start[2], m[2]], ":(?:M[12]|N)");
+    },
+    c3808s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":MP");
+    },
+    c3809s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":M[12]", false);
+    },
+    c3810s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":M[12]", false);
+    },
+    c3813s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[MT]", false) && morph(dDA, prevword1(s, m.index), ":Cs", false, true) && ! look(s.slice(0,m.index), /\b(?:plus|moins|aussi) .* que +$/);
+    },
+    p3813s_1: function (s, m) {
+        return rewriteSubject(m[1],m[2]);
+    },
+    c3818s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
+    },
+    c3820s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
+    },
+    c3822s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":(?:V0e|N)", false) && morph(dDA, [m.start[3], m[3]], ":[AQ]", false);
+    },
+    c3824s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0", false);
+    },
+    c3826s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0", false) && morph(dDA, [m.start[3], m[3]], ":[QY]", false);
+    },
+    c3828s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && ! (m[2] == "crainte" && look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/));
+    },
+    c3830s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
+    },
+    c3832s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morph(dDA, [m.start[3], m[3]], ":B", false) && morph(dDA, [m.start[4], m[4]], ":(?:Q|V1.*:Y)", false);
+    },
+    c3836s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":A:[fe]:s", false);
+    },
+    c3837s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":A:[fe]:p", false);
+    },
+    c3840s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ":V", false);
     },
-    c5818s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":Y");
+    c3841s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V[123]");
     },
-    c5832s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:ce que?|tout) /i);
+    c3842s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V[123]", false);
     },
-    c5845s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":M") && ! (m[1].endsWith("ez") && look(s.slice(m.end[0]), / +vous/));
+    c3843s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V", false);
     },
-    s5845s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c3846s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":G");
     },
-    c5848s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:Q|2p)", ":M");
+    c3849s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], "[NAQ].*:[me]:[si]", false);
     },
-    s5848s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c3851s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[me]", ":G") && morph(dDA, [m.start[3], m[3]], ":[AQ].*:[me]", false);
     },
-    c5851s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:aimer|aller|désirer|devoir|espérer|pouvoir|préférer|souhaiter|venir) ", false) && ! morph(dDA, [m.start[1], m[1]], ":[GN]", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":M");
+    c3853s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[fe]", ":G") && morph(dDA, [m.start[3], m[3]], ":[AQ].*:[fe]", false);
     },
-    s5851s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
+    c3855s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", ":[123][sp]") && morph(dDA, [m.start[3], m[3]], ":[AQ].*:[pi]", false);
     },
-    c5855s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">devoir ", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":M") && ! morph(dDA, prevword1(s, m.index), ":D", false);
+    c3858s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[AW]");
     },
-    s5855s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
+    c3860s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[AW]", false);
     },
-    c5858s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">(?:cesser|décider|défendre|suggérer|commander|essayer|tenter|choisir|permettre|interdire) ", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Q|2p)", ":M");
+    c3862s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[AQ]", false);
     },
-    s5858s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
+    c3864s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":W", ":3p");
     },
-    c5861s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:Q|2p)", ":M");
+    c3866s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[AW]", ":[123][sp]");
     },
-    s5861s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c3870s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && morph(dDA, [m.start[3], m[3]], ":W", false) && morph(dDA, [m.start[4], m[4]], ":[AQ]", false);
     },
-    c5864s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ">valoir ", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Q|2p)", ":[GM]");
+    c3872s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D", false, true);
     },
-    s5864s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
+    c3873s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":W\\b");
     },
-    c5867s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V1", ":[NM]") && ! m[1]._isTitle() && ! look(s.slice(0,m.index), /> +$/);
+    c3876s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false);
     },
-    s5867s_1: function (s, m) {
-        return suggVerbInfi(m[1]);
+    c3880s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":(?:N|A|Q|V0e)", false);
     },
-    c5870s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V1", ":N");
+    c3904s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\bne +$/i);
     },
-    s5870s_1: function (s, m) {
-        return suggVerbInfi(m[2]);
+    c3930s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[me]:[pi]", false);
     },
-    c5883s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":V0e", false) && (morphex(dDA, [m.start[2], m[2]], ":Y", ":[NAQ]") || m[2] in aSHOULDBEVERB) && ! (m[1].search(/^(?:soit|été)$/i) >= 0) && ! morph(dDA, prevword1(s, m.index), ":Y|>ce", false, false) && ! look(s.slice(0,m.index), /ce (?:>|qu|que >) $/i) && ! look_chk1(dDA, s.slice(0,m.index), 0, /([a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ][a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ-]+) +> $/i, ":Y") && ! look_chk1(dDA, s.slice(0,m.index), 0, /^ *>? *([a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ][a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ-]+)/i, ":Y");
+    c3931s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":(?:A.*:[fe]:[si]|Oo|[123][sp])", false);
     },
-    s5883s_1: function (s, m) {
-        return suggVerbPpas(m[2]);
+    c3932s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":(?:A.*:[me]:[si]|Oo|[123][sp])", false);
     },
-    c5894s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":1s|>(?:en|y)", false);
+    c3933s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[me]:[si]", false);
     },
-    s5894s_1: function (s, m) {
-        return suggVerb(m[1], ":1s");
+    c3934s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[me]:[si]", false);
     },
-    c5897s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:1s|G)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:1s", false, false));
+    c3935s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[me]:[pi]", false);
     },
-    s5897s_1: function (s, m) {
-        return suggVerb(m[2], ":1s");
+    c3936s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[fe]:[pi]", false);
     },
-    c5900s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:1s|G|1p)");
+    c3937s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[fe]:[pi]", false);
     },
-    s5900s_1: function (s, m) {
-        return suggVerb(m[2], ":1s");
+    c3938s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[fe]:[pi]", false);
     },
-    c5903s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:1s|G|1p)");
+    c3939s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[fe]:[pi]", false);
     },
-    s5903s_1: function (s, m) {
-        return suggVerb(m[2], ":1s");
+    c3940s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[me]:[pi]", false);
     },
-    c5906s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:1s|G|1p|3p!)");
+    c3941s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":A.*:[me]:[si]", false);
     },
-    s5906s_1: function (s, m) {
-        return suggVerb(m[2], ":1s");
+    c3987s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":1s", false, false);
     },
-    c5926s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:G|[ISK].*:2s)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:2s", false, false));
+    c3988s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":2s", false, false);
     },
-    s5926s_1: function (s, m) {
-        return suggVerb(m[2], ":2s");
+    c3989s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":3s", false, false);
     },
-    c5929s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:G|[ISK].*:2s)");
+    c3990s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":1p", false, false);
     },
-    s5929s_1: function (s, m) {
-        return suggVerb(m[2], ":2s");
+    c3991s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":2p", false, false);
     },
-    c5932s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:G|2p|3p!|[ISK].*:2s)");
+    c3992s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":3p", false, false);
     },
-    s5932s_1: function (s, m) {
-        return suggVerb(m[2], ":2s");
+    c3999s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return isAmbiguousNAV(m[3]) && morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ">telle ");
     },
-    c5943s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3s", false, false));
+    c4002s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return isAmbiguousNAV(m[3]) && morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ">telle ") && ! (m[0].search(/^[dD](?:’une?|e l(?:a|eur)) /) >= 0);
     },
-    s5943s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4005s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return isAmbiguousNAV(m[3]) && ( morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":3[sp]") && ! prevword1(s, m.index)) );
     },
-    c5946s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)");
+    c4022s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":(?:G|V0)|>même ", false);
     },
-    s5946s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4022s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
     },
-    c5961s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:N|A|3s|P|Q|G|V0e.*:3p)");
+    c4041s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ]", false);
     },
-    s5961s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4043s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ]", false);
     },
-    c5965s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|Q|G)");
+    c4045s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[fe]", false);
     },
-    s5965s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4056s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[123][sp]|:[si]");
     },
-    c5973s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|Q|G|3p!)") && ! morph(dDA, prevword1(s, m.index), ":[VR]|>de", false, false) && !(m[1].endsWith("out") && (morph(dDA, [m.start[2], m[2]], ":(?:Y|N.*:m:[si])", false) || morph(dDA, prevword1(s, m.index), ":D", false, false)));
+    s4056s_1: function (s, m) {
+        return suggSing(m[1]);
     },
-    s5973s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4063s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:e|m|P|G|W|[123][sp]|Y)");
     },
-    c5993s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:3s|P|G|3p!)") && ! morph(dDA, prevword1(s, m.index), ":R|>(?:et|ou)", false, false) && ! (morph(dDA, [m.start[1], m[1]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3s", false, false));
+    c4063s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    s5993s_1: function (s, m) {
-        return suggVerb(m[1], ":3s");
+    s4063s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    c5997s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:3s|P|G|3p!)") && ! morph(dDA, prevword1(s, m.index), ":R|>(?:et|ou)", false, false);
+    c4063s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p");
     },
-    s5997s_1: function (s, m) {
-        return suggVerb(m[1], ":3s");
+    s4063s_3: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    c6014s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":3p", ":(?:G|3s)");
+    c4068s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":(?:e|m|P|G|W|[123][sp]|Y)") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[me]") && morphex(dDA, [m.start[1], m[1]], ":R", ">(?:e[tn]|ou) ") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
     },
-    c6017s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":3s", ":(?:G|3p)");
+    c4068s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[3]);
     },
-    c6020s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":3p", ":(?:G|3s)") && (! prevword1(s, m.index) || look(s.slice(0,m.index), /\b(?:parce que?|quoi ?que?|pour ?quoi|puisque?|quand|com(?:ment|bien)|car|tandis que?) +$/i));
+    s4068s_2: function (s, m) {
+        return suggMasSing(m[3], true);
     },
-    c6024s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":3s", ":(?:G|3p)") && (! prevword1(s, m.index) || look(s.slice(0,m.index), /\b(?:parce que?|quoi ?que?|pour ?quoi|puisque?|quand|com(?:ment|bien)|car|tandis que?) +$/i));
+    c4068s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[3], m[3]], ":[NAQ].*:p") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[si]") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou)") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
     },
-    s6032s_1: function (s, m) {
-        return m[1].slice(0,-1)+"t";
+    s4068s_3: function (s, m) {
+        return suggMasSing(m[3]);
     },
-    c6035s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P|Q|[123][sp]|R)", true) && !( m[1].endsWith("ien") && look(s.slice(0,m.index), /> +$/) && morph(dDA, [m.start[2], m[2]], ":Y", false) );
+    c4077s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:e|m|P|G|W|Y)");
     },
-    s6035s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4077s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    c6053s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G|Q)") && morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P|Q|[123][sp]|R)", true);
+    s4077s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    s6053s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4077s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    c6057s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P|Q|[123][sp]|R)", true);
+    s4077s_3: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    s6057s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4091s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[GWme]");
     },
-    c6065s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":Y", false) && morph(dDA, [m.start[2], m[2]], ":V.[a-z_!?]+(?!.*:(?:3s|P|Q|Y|3p!))");
+    c4091s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    s6065s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    s4091s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    c6073s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P)", true) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[3], m[3]], ":V", ":(?:3s|P|Q|Y|3p!|G)") && ! (look(s.slice(0,m.index), /\b(?:et|ou) +$/i) && morph(dDA, [m.start[3], m[3]], ":[1-3]p", false)) && ! look(s.slice(0,m.index), /\bni .* ni\b/i) && ! checkAgreement(m[2], m[3]);
+    c4091s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    s6073s_1: function (s, m) {
-        return suggVerb(m[3], ":3s");
+    s4091s_3: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    c6077s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P)", true) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[3], m[3]], ":V", ":(?:3s|1p|P|Q|Y|3p!|G)") && ! (look(s.slice(0,m.index), /\b(?:et|ou) +$/i) && morph(dDA, [m.start[3], m[3]], ":[123]p", false)) && ! look(s.slice(0,m.index), /\bni .* ni\b/i);
+    c4096s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:e|m|G|W|V0|3s)");
     },
-    s6077s_1: function (s, m) {
-        return suggVerb(m[3], ":3s");
+    c4096s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    c6100s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P)", true) && isAmbiguousAndWrong(m[2], m[3], ":s", ":3s") && ! (look(s.slice(0,m.index), /\b(?:et|ou) +$/i) && morph(dDA, [m.start[3], m[3]], ":(?:[123]p|p)", false)) && ! look(s.slice(0,m.index), /\bni .* ni\b/i);
+    s4096s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    s6100s_1: function (s, m) {
-        return suggVerb(m[3], ":3s", suggSing);
+    c4096s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]") && ! morph(dDA, prevword(s, m.index, 2), ":B", false);
     },
-    c6105s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P)", true) && isVeryAmbiguousAndWrong(m[2], m[3], ":s", ":3s", ! prevword1(s, m.index)) && ! (look(s.slice(0,m.index), /\b(?:et|ou) +$/i) && morph(dDA, [m.start[3], m[3]], ":(?:[123]p|p)", false)) && ! look(s.slice(0,m.index), /\bni .* ni\b/i);
+    s4096s_3: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    s6105s_1: function (s, m) {
-        return suggVerb(m[3], ":3s", suggSing);
+    c4101s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:e|m|G|W|V0|3s)");
     },
-    c6111s_1: function (s, sx, m, dDA, sCountry) {
-        return ( morph(dDA, [m.start[0], m[0]], ":1s") || ( look(s.slice(0,m.index), /> +$/) && morph(dDA, [m.start[0], m[0]], ":1s", false) ) ) && ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/)) && ! look(sx.slice(0,m.index), /\b(?:j(?:e |[’'])|moi(?:,? qui| seul) )/i);
+    c4101s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    s6111s_1: function (s, m) {
-        return suggVerb(m[0], ":3s");
+    s4101s_2: function (s, m) {
+        return suggMasPlur(m[2], true);
     },
-    c6115s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[0], m[0]], ":2s", ":(?:E|G|W|M|J|[13][sp]|2p)") && ! m[0].slice(0,1)._isUpperCase() && ! look(s.slice(0,m.index), /^ *$/) && ( ! morph(dDA, [m.start[0], m[0]], ":[NAQ]", false) || look(s.slice(0,m.index), /> +$/) ) && ! look(sx.slice(0,m.index), /\bt(?:u |[’']|oi,? qui |oi seul )/i);
+    c4105s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[GWme]");
     },
-    s6115s_1: function (s, m) {
-        return suggVerb(m[0], ":3s");
+    c4105s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    c6120s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[0], m[0]], ":2s", ":(?:G|W|M|J|[13][sp]|2p)") && ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/)) && ( ! morph(dDA, [m.start[0], m[0]], ":[NAQ]", false) || look(s.slice(0,m.index), /> +$/) ) && ! look(sx.slice(0,m.index), /\bt(?:u |[’']|oi,? qui |oi seul )/i);
+    s4105s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    s6120s_1: function (s, m) {
-        return suggVerb(m[0], ":3s");
+    c4105s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    c6125s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[0], m[0]], ":[12]s", ":(?:E|G|W|M|J|3[sp]|2p|1p)") && ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/)) && ( ! morph(dDA, [m.start[0], m[0]], ":[NAQ]", false) || look(s.slice(0,m.index), /> +$/) || ( (m[0].search(/^étais$/i) >= 0) && ! morph(dDA, prevword1(s, m.index), ":[DA].*:p", false, true) ) ) && ! look(sx.slice(0,m.index), /\b(?:j(?:e |[’'])|moi(?:,? qui| seul) |t(?:u |[’']|oi,? qui |oi seul ))/i);
+    s4105s_3: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    s6125s_1: function (s, m) {
-        return suggVerb(m[0], ":3s");
+    c4110s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[GWme]");
     },
-    c6130s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/)) && ! look(sx.slice(0,m.index), /\b(?:j(?:e |[’'])|moi(?:,? qui| seul) |t(?:u |[’']|oi,? qui |oi seul ))/i);
+    c4110s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    s6130s_1: function (s, m) {
-        return suggVerb(m[0], ":3s");
+    s4110s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    c6133s_1: function (s, sx, m, dDA, sCountry) {
-        return ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/)) && ! look(sx.slice(0,m.index), /\b(?:j(?:e |[’'])|moi(?:,? qui| seul) |t(?:u |[’']|oi,? qui |oi seul ))/i);
+    c4110s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ">[bcçdfgjklmnpqrstvwxz].+:[NAQ].*:m", ":[efGW]");
     },
-    s6133s_1: function (s, m) {
-        return suggVerb(m[0], ":3s");
+    c4110s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    c6141s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:1p|3[sp])") && ! look(s.slice(m.end[0]), /^ +(?:je|tu|ils?|elles?|on|[vn]ous)/);
+    s4110s_4: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    s6141s_1: function (s, m) {
-        return suggVerb(m[1], ":1p");
+    c4116s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":(?:3s|[GWme])");
     },
-    c6144s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":1p") && ! look(s.slice(m.end[0]), /^ +(?:je|tu|ils?|elles?|on|[vn]ous)/);
+    c4116s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    s6144s_1: function (s, m) {
-        return suggVerb(m[1], ":1p");
+    s4116s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    c6147s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":1p") && ! look(s.slice(m.end[0]), /^ +(?:ils|elles)/);
+    c4116s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[GWme]") && morph(dDA, [m.start[2], m[2]], ":3s", false);
     },
-    s6147s_1: function (s, m) {
-        return suggVerb(m[1], ":1p");
+    c4116s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    c6156s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:2p|3[sp])") && ! look(s.slice(m.end[0]), /^ +(?:je|ils?|elles?|on|[vn]ous)/);
+    s4116s_4: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    s6156s_1: function (s, m) {
-        return suggVerb(m[1], ":2p");
+    c4122s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ">[bcdfgjklmnpqrstvwxz].*:[NAQ].*:f", ":[GWme]");
     },
-    c6159s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":2p") && ! look(s.slice(m.end[0]), /^ +(?:je|ils?|elles?|on|[vn]ous)/);
+    s4122s_1: function (s, m) {
+        return m[1].replace(/on/g, "a");
     },
-    s6159s_1: function (s, m) {
-        return suggVerb(m[1], ":2p");
+    c4122s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    c6168s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[0], m[0]], ":V.*:1p", ":[EGMNAJ]") && ! (m[0].slice(0,1)._isUpperCase() && look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/)) && ! look(sx.slice(0,m.index), /\b(?:[nN]ous(?:-mêmes?|)|[eE]t moi),? /);
+    s4122s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    s6168s_1: function (s, m) {
-        return suggVerb(m[0], ":3p");
+    c4122s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    c6172s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[0], m[0]], ":V.*:2p", ":[EGMNAJ]") && ! (m[0].slice(0,1)._isUpperCase() && look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ]/)) && ! look(sx.slice(0,m.index), /\b(?:[vV]ous(?:-mêmes?|)|[eE]t toi|[tT]oi et),? /);
+    s4122s_3: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    c6182s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3p", false, false));
+    c4127s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:s", ":[GWme]");
     },
-    s6182s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    c4127s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
     },
-    c6185s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)");
+    s4127s_2: function (s, m) {
+        return suggMasSing(m[2], true);
     },
-    s6185s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    c4127s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    c6189s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)");
+    s4127s_3: function (s, m) {
+        return suggMasSing(m[2]);
     },
-    s6189s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    c4127s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
     },
-    c6193s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)") && ! morph(dDA, prevword1(s, m.index), ":[VR]", false, false);
+    c4148s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:e|f|P|G|W|[1-3][sp]|Y)");
     },
-    s6193s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    c4148s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
     },
-    c6197s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:3p|P|Q|G)") && ! morph(dDA, prevword1(s, m.index), ":R", false, false) && ! (morph(dDA, [m.start[1], m[1]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3p", false, false));
+    s4148s_2: function (s, m) {
+        return suggFemSing(m[2], true);
     },
-    s6197s_1: function (s, m) {
-        return suggVerb(m[1], ":3p");
+    c4148s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p");
     },
-    c6200s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:3p|P|Q|G)") && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    s4148s_3: function (s, m) {
+        return suggFemSing(m[2]);
     },
-    s6200s_1: function (s, m) {
-        return suggVerb(m[1], ":3p");
+    c4153s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":(?:e|f|P|G|W|[1-3][sp]|Y)") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[fe]") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou) ") && ! (morph(dDA, [m.start[1], m[1]], ":(?:Rv|C)", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
     },
-    c6215s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:à|avec|sur|chez|par|dans|parmi|contre|ni|de|pour|sous) +$/i);
+    c4153s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[3]);
     },
-    c6222s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|mg)") && ! morph(dDA, prevword1(s, m.index), ":[VR]|>de ", false, false);
+    s4153s_2: function (s, m) {
+        return suggFemSing(m[3], true);
     },
-    s6222s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    c4153s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[3], m[3]], ":[NAQ].*:p") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[si]") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou)") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
     },
-    c6226s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)") && ! morph(dDA, prevword1(s, m.index), ":[VR]", false, false);
+    s4153s_3: function (s, m) {
+        return suggFemSing(m[3]);
     },
-    s6226s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    c4162s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efPGWY]");
     },
-    c6236s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:G|N|A|3p|P|Q)") && ! morph(dDA, prevword1(s, m.index), ":[VR]", false, false);
+    c4162s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
     },
-    s6236s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    s4162s_2: function (s, m) {
+        return suggFemSing(m[2], true);
     },
-    c6243s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[3], m[3]], ":V", ":(?:[13]p|P|Q|Y|G|A.*:e:[pi])") && morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && ! checkAgreement(m[2], m[3]);
+    c4162s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    s6243s_1: function (s, m) {
-        return suggVerb(m[3], ":3p");
+    s4162s_3: function (s, m) {
+        return suggFemSing(m[2]);
     },
-    c6246s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[3], m[3]], ":V", ":(?:[13]p|P|Y|G)") && morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true);
+    c4177s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
     },
-    s6246s_1: function (s, m) {
-        return suggVerb(m[3], ":3p");
+    c4177s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
     },
-    c6267s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":(?:[13]p|P|G|Q.*:p)") && morph(dDA, nextword1(s, m.end[0]), ":(?:R|D.*:p)|>au ", false, true);
+    s4177s_2: function (s, m) {
+        return suggFemSing(m[2], true);
     },
-    s6267s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    c4177s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
     },
-    c6270s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":(?:[13]p|P|G)");
+    s4177s_3: function (s, m) {
+        return suggFemSing(m[2]);
     },
-    s6270s_1: function (s, m) {
-        return suggVerb(m[2], ":3p");
+    c4186s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:e|f|G|W|V0|3s|P)") && ! ( m[2] == "demi" && morph(dDA, nextword1(s, m.end[0]), ":N.*:f") );
     },
-    c6276s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && isAmbiguousAndWrong(m[2], m[3], ":p", ":3p");
+    c4186s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
     },
-    s6276s_1: function (s, m) {
-        return suggVerb(m[3], ":3p", suggPlur);
+    s4186s_2: function (s, m) {
+        return suggFemSing(m[2], true);
     },
-    c6280s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && isVeryAmbiguousAndWrong(m[1], m[2], ":p", ":3p", ! prevword1(s, m.index));
+    c4186s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]") && ! morph(dDA, prevword(s, m.index, 2), ":B", false);
     },
-    s6280s_1: function (s, m) {
-        return suggVerb(m[2], ":3p", suggPlur);
+    s4186s_3: function (s, m) {
+        return suggFemSing(m[2]);
     },
-    c6284s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && isVeryAmbiguousAndWrong(m[1], m[2], ":m:p", ":3p", ! prevword1(s, m.index));
+    c4192s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":(?:e|f|G|W|V0|3s)");
     },
-    s6284s_1: function (s, m) {
-        return suggVerb(m[2], ":3p", suggMasPlur);
+    c4192s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
     },
-    c6288s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && isVeryAmbiguousAndWrong(m[1], m[2], ":f:p", ":3p", ! prevword1(s, m.index));
+    s4192s_2: function (s, m) {
+        return suggFemPlur(m[2], true);
     },
-    s6288s_1: function (s, m) {
-        return suggVerb(m[2], ":3p", suggFemPlur);
+    c4204s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
     },
-    c6321s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V0e", ":3s");
+    s4204s_1: function (s, m) {
+        return suggCeOrCet(m[2]);
     },
-    s6321s_1: function (s, m) {
-        return suggVerb(m[1], ":3s");
+    c4204s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
     },
-    c6325s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V0e.*:3s", ":3p");
+    s4204s_2: function (s, m) {
+        return suggFemSing(m[2], true);
     },
-    s6325s_1: function (s, m) {
+    c4204s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
+    },
+    s4204s_3: function (s, m) {
+        return suggFemSing(m[2]);
+    },
+    c4209s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
+    },
+    s4209s_1: function (s, m) {
+        return m[1].replace(/a/g, "on");
+    },
+    c4209s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && ! (m[2].search(/^[aâeéèêiîoôuûyœæ]/i) >= 0) && hasFemForm(m[2]);
+    },
+    s4209s_2: function (s, m) {
+        return suggFemSing(m[2], true);
+    },
+    c4209s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ">[aâeéèêiîoôuûyœæ].+:[NAQ].*:f", ":[eGW]");
+    },
+    s4209s_3: function (s, m) {
+        return m[1].replace(/a/g, "on");
+    },
+    c4209s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
+    },
+    s4209s_4: function (s, m) {
+        return suggFemSing(m[2]);
+    },
+    c4227s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[emGWP]");
+    },
+    c4227s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
+    },
+    s4227s_2: function (s, m) {
+        return suggMasPlur(m[2], true);
+    },
+    c4227s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":(?:[ipGWP]|V0)") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[1] in aREGULARPLURAL;
+    },
+    s4227s_3: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4235s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f", ":[emGW]");
+    },
+    c4235s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasMasForm(m[2]);
+    },
+    s4235s_2: function (s, m) {
+        return suggMasPlur(m[2], true);
+    },
+    c4240s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGWP]");
+    },
+    c4240s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4240s_2: function (s, m) {
+        return suggFemPlur(m[2], true);
+    },
+    c4240s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[ipGWP]") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[2] in aREGULARPLURAL;
+    },
+    s4240s_3: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4248s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m", ":[efGW]");
+    },
+    c4248s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4248s_2: function (s, m) {
+        return suggFemPlur(m[2], true);
+    },
+    c4262s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p");
+    },
+    c4262s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4262s_2: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c4266s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[3], m[3]], ":[NAQ].*:p") || ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[si]") && morphex(dDA, [m.start[1], m[1]], ":[RC]|>de ", ">(?:e[tn]|ou)") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[3], m[3]], ":Y", false)) );
+    },
+    c4266s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4266s_2: function (s, m) {
+        return suggSing(m[3]);
+    },
+    c4271s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siGW]");
+    },
+    c4271s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4271s_2: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c4281s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[siGW]");
+    },
+    s4281s_1: function (s, m) {
+        return suggSing(m[1]);
+    },
+    c4288s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[siG]");
+    },
+    c4297s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false)) ) || m[1] in aREGULARPLURAL;
+    },
+    s4297s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4302s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") || (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[pi]|>avoir") && morphex(dDA, [m.start[1], m[1]], ":[RC]", ">(?:e[tn]|ou) ") && ! (morph(dDA, [m.start[1], m[1]], ":Rv", false) && morph(dDA, [m.start[2], m[2]], ":Y", false))) ) && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false));
+    },
+    s4302s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4308s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ipYPGW]") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[1] in aREGULARPLURAL;
+    },
+    s4308s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4322s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":(?:[ipGW]|[123][sp])") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[2] in aREGULARPLURAL;
+    },
+    s4322s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4322s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    c4333s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ipGW]") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[1] in aREGULARPLURAL;
+    },
+    s4333s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4339s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ipGWP]") && ! (look(s.slice(m.end[0]), /^ +(?:et|ou) /) && morph(dDA, nextword(s, m.end[0], 2), ":[NAQ]", true, false))) || m[1] in aREGULARPLURAL;
+    },
+    s4339s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4365s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ip]|>o(?:nde|xydation|or)\\b") && morphex(dDA, prevword1(s, m.index), ":(?:G|[123][sp])", ":[AD]", true)) || m[1] in aREGULARPLURAL;
+    },
+    s4365s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4374s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ip]") || m[1] in aREGULARPLURAL;
+    },
+    s4374s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4382s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[ip]") || m[1] in aREGULARPLURAL;
+    },
+    s4382s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4394s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":B.*:p", false) && m[2] != "cents";
+    },
+    c4419s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! (m[2].search(/^(janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|rue|route|ruelle|place|boulevard|avenue|allée|chemin|sentier|square|impasse|cour|quai|chaussée|côte|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor)$/i) >= 0)) || m[2] in aREGULARPLURAL;
+    },
+    s4419s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4429s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! morph(dDA, prevword1(s, m.index), ":N", false) && ! (m[2].search(/^(janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|rue|route|ruelle|place|boulevard|avenue|allée|chemin|sentier|square|impasse|cour|quai|chaussée|côte|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor)$/i) >= 0)) || m[2] in aREGULARPLURAL;
+    },
+    s4429s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4439s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") || m[1] in aREGULARPLURAL) && ! look(s.slice(0,m.index), /\b(?:le|un|ce|du) +$/i);
+    },
+    s4439s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c4447s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p") && ! (m[1].search(/^(janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|rue|route|ruelle|place|boulevard|avenue|allée|chemin|sentier|square|impasse|cour|quai|chaussée|côte|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor|Rois|Corinthiens|Thessaloniciens)$/i) >= 0);
+    },
+    s4447s_1: function (s, m) {
+        return suggSing(m[1]);
+    },
+    c4457s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^0*[01]$/) >= 0) && ((morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! (m[2].search(/^(janvier|février|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|décembre|rue|route|ruelle|place|boulevard|avenue|allée|chemin|sentier|square|impasse|cour|quai|chaussée|côte|vendémiaire|brumaire|frimaire|nivôse|pluviôse|ventôse|germinal|floréal|prairial|messidor|thermidor|fructidor)$/i) >= 0)) || m[1] in aREGULARPLURAL);
+    },
+    s4457s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4469s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:p", ":(?:V0e|[NAQ].*:[me]:[si])");
+    },
+    c4469s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4469s_2: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c4469s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:p", ":(?:V0e|[NAQ].*:[me]:[si])");
+    },
+    c4469s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4469s_4: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c4469s_5: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:[si]", ":(?:V0e|[NAQ].*:[me]:[si])");
+    },
+    c4469s_6: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4469s_6: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c4477s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:s", ":(?:V0e|[NAQ].*:[me]:[pi])");
+    },
+    c4477s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4477s_2: function (s, m) {
+        return suggMasPlur(m[2], true);
+    },
+    c4477s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:s", ":(?:V0e|[NAQ].*:[me]:[pi])");
+    },
+    c4477s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4477s_4: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4477s_5: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:[pi]", ":(?:V0e|[NAQ].*:[me]:[pi])");
+    },
+    c4477s_6: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4477s_6: function (s, m) {
+        return suggMasPlur(m[2], true);
+    },
+    c4485s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:p", ":(?:V0e|[NAQ].*:[fe]:[si])");
+    },
+    c4485s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4485s_2: function (s, m) {
+        return suggFemSing(m[2], true);
+    },
+    c4485s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:p", ":(?:V0e|[NAQ].*:[fe]:[si])");
+    },
+    c4485s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4485s_4: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c4485s_5: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:[si]", ":(?:V0e|[NAQ].*:[fe]:[si])");
+    },
+    c4485s_6: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4485s_6: function (s, m) {
+        return suggFemSing(m[2], true);
+    },
+    c4493s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:s", ":(?:V0e|[NAQ].*:[fe]:[pi])");
+    },
+    c4493s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4493s_2: function (s, m) {
+        return suggFemPlur(m[2], true);
+    },
+    c4493s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:f:s", ":(?:V0e|[NAQ].*:[fe]:[pi])");
+    },
+    c4493s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4493s_4: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4493s_5: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:m:[pi]", ":(?:V0e|[NAQ].*:[fe]:[pi])");
+    },
+    c4493s_6: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[2]);
+    },
+    s4493s_6: function (s, m) {
+        return suggFemPlur(m[2], true);
+    },
+    c4510s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/);
+    },
+    c4515s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/);
+    },
+    s4515s_1: function (s, m) {
         return m[1].slice(0,-1);
     },
-    c6331s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V0e", ":3p");
+    c4520s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[me]");
     },
-    s6331s_1: function (s, m) {
-        return suggVerb(m[1], ":3p");
+    c4525s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[fe]");
     },
-    c6335s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[2], m[2]], ":V0e.*:3p", ":3s");
+    c4530s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[me]");
     },
-    c6346s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(0,m.index), /\b(?:et |ou |[dD][eu] |ni |[dD]e l’) *$/) && morph(dDA, [m.start[1], m[1]], ":M", false) && morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":(?:G|3s|3p!|P|M|[AQ].*:[si])") && ! morph(dDA, prevword1(s, m.index), ":[VRD]", false, false) && ! look(s.slice(0,m.index), /([A-ZÉÈ][a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ-]+), +([A-ZÉÈ][a-zA-Zà-öÀ-Ö0-9ø-ÿØ-ßĀ-ʯ-]+), +$/);
+    c4535s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\btel(?:le|)s? +$/) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[fe]");
     },
-    s6346s_1: function (s, m) {
-        return suggVerb(m[2], ":3s");
+    c4552s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V0e", false);
     },
-    c6353s_1: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":M", false) && morph(dDA, [m.start[2], m[2]], ":M", false) && morphex(dDA, [m.start[3], m[3]], ":[123][sp]", ":(?:G|3p|P|Q.*:[pi])") && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    c4556s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V0e", false) && morphex(dDA, [m.start[4], m[4]], ":[NAQ].*:m", ":[fe]");
     },
-    s6353s_1: function (s, m) {
-        return suggVerb(m[3], ":3p");
+    s4556s_1: function (s, m) {
+        return m[1].replace(/lle/g, "l");
     },
-    c6371s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":(?:[12]s|3p)", ":(?:3s|G|W|3p!)") && ! look(s.slice(m.end[0]), /^ +et (?:l(?:es? |a |’|eurs? )|[mts](?:a|on|es) |ce(?:tte|ts|) |[nv]o(?:s|tre) |du )/);
+    c4568s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V0e", false);
     },
-    s6371s_1: function (s, m) {
-        return suggVerb(m[1], ":3s");
+    c4572s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V0e", false) && morphex(dDA, [m.start[4], m[4]], ":[NAQ].*:f", ":[me]");
     },
-    c6376s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[123]s", ":(?:3p|G|W)");
+    s4572s_1: function (s, m) {
+        return m[1].replace(/l/g, "lle");
     },
-    s6376s_1: function (s, m) {
-        return suggVerb(m[1], ":3p");
+    c4585s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">trouver ", false) && morphex(dDA, [m.start[3], m[3]], ":A.*:(?:f|m:p)", ":(?:G|3[sp]|M[12P])");
     },
-    c6381s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[12][sp]", ":(?:G|W|3[sp]|Y|P|Q)");
+    s4585s_1: function (s, m) {
+        return suggMasSing(m[3]);
     },
-    c6386s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":[12][sp]", ":(?:G|W|3[sp])");
+    c4597s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ((morph(dDA, [m.start[1], m[1]], ":[NAQ].*:m") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:f") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]);
     },
-    c6400s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V.*:1s", ":[GNW]") && ! look(s.slice(0,m.index), /\bje +>? *$/i);
+    s4597s_1: function (s, m) {
+        return switchGender(m[2]);
     },
-    s6400s_1: function (s, m) {
-        return m[1].slice(0,-1)+"é-je";
+    c4597s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
     },
-    c6403s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":V.*:1s", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:je|tu) +>? *$/i);
+    s4597s_2: function (s, m) {
+        return switchGender(m[1]);
     },
-    c6406s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:2s", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:je|tu) +>? *$/i);
+    c4597s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ((morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s"))) && ! apposition(m[1], m[2]);
     },
-    c6409s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:3s", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:ce|il|elle|on) +>? *$/i);
+    s4597s_3: function (s, m) {
+        return switchPlural(m[2]);
     },
-    s6409s_1: function (s, m) {
-        return m[0].replace(/ /g, "-");
+    c4597s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
     },
-    c6412s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|aussi|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:3s", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:ce|il|elle|on) +>? *$/i);
+    s4597s_4: function (s, m) {
+        return switchPlural(m[1]);
     },
-    c6415s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|aussi|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:1p", ":[GNW]") && ! morph(dDA, prevword1(s, m.index), ":Os", false, false) && ! morph(dDA, nextword1(s, m.end[0]), ":Y", false, false);
+    c4612s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:m") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:f") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m")) ) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
     },
-    c6419s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|aussi|>)/) && ! m[1].endsWith("euillez") && morphex(dDA, [m.start[1], m[1]], ":V.*:2pl", ":[GNW]") && ! morph(dDA, prevword1(s, m.index), ":Os", false, false) && ! morph(dDA, nextword1(s, m.end[0]), ":Y", false, false);
+    s4612s_1: function (s, m) {
+        return switchGender(m[2]);
     },
-    c6423s_1: function (s, sx, m, dDA, sCountry) {
-        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|aussi|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:3p", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:ce|ils|elles) +>? *$/i);
+    c4612s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
     },
-    s6423s_1: function (s, m) {
-        return m[0].replace(/ /g, "-");
+    s4612s_2: function (s, m) {
+        return switchGender(m[1]);
     },
-    c6428s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":1[sśŝ]", false) && _oDict.isValid(m[1]) && ! (m[1].search(/^vite$/i) >= 0);
+    c4612s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p")) ) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
     },
-    s6428s_1: function (s, m) {
-        return suggVerb(m[1], ":1ś");
+    s4612s_3: function (s, m) {
+        return switchPlural(m[2]);
     },
-    c6431s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":[ISK].*:2s", false) && _oDict.isValid(m[1]) && ! (m[1].search(/^vite$/i) >= 0);
+    c4612s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
     },
-    s6431s_1: function (s, m) {
-        return suggVerb(m[1], ":2s");
+    s4612s_4: function (s, m) {
+        return switchPlural(m[1]);
     },
-    c6434s_1: function (s, sx, m, dDA, sCountry) {
-        return m[1] != "t" && ! morph(dDA, [m.start[1], m[1]], ":3s", false) && (! m[1].endsWith("oilà") || m[2] != "il") && _oDict.isValid(m[1]) && ! (m[1].search(/^vite$/i) >= 0);
+    c4627s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":[GYfe]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":[GYme]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m")) ) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
     },
-    s6434s_1: function (s, m) {
-        return suggVerb(m[1], ":3s");
+    s4627s_1: function (s, m) {
+        return switchGender(m[2]);
     },
-    c6437s_1: function (s, sx, m, dDA, sCountry) {
-        return morphex(dDA, [m.start[1], m[1]], ":3p", ":3s") && _oDict.isValid(m[1]);
+    c4627s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
     },
-    c6440s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":(?:1p|E:2[sp])", false) && _oDict.isValid(m[1]) && ! (m[1].search(/^(?:vite|chez)$/i) >= 0);
+    s4627s_2: function (s, m) {
+        return switchGender(m[1]);
     },
-    s6440s_1: function (s, m) {
+    c4627s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[GYsi]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":[GYpi]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p")) ) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
+    },
+    s4627s_3: function (s, m) {
+        return switchPlural(m[2]);
+    },
+    c4627s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4627s_4: function (s, m) {
+        return switchPlural(m[1]);
+    },
+    c4642s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":(?:[Gfe]|V0e|Y)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":(?:[Gme]|V0e|Y)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m")) ) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
+    },
+    s4642s_1: function (s, m) {
+        return switchGender(m[2]);
+    },
+    c4642s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
+    },
+    s4642s_2: function (s, m) {
+        return switchGender(m[1]);
+    },
+    c4642s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":(?:[Gsi]|V0e|Y)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:s", ":(?:[Gpi]|V0e|Y)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p")) ) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRX]", true, true);
+    },
+    s4642s_3: function (s, m) {
+        return switchPlural(m[2]);
+    },
+    c4642s_4: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo;
+    },
+    s4642s_4: function (s, m) {
+        return switchPlural(m[1]);
+    },
+    c4668s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^air$/i) >= 0) && ! m[2].startsWith("seul") && ( (morph(dDA, [m.start[1], m[1]], ":m") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morph(dDA, [m.start[1], m[1]], ":f") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m")) ) && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4668s_1: function (s, m) {
+        return switchGender(m[2], false);
+    },
+    c4668s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
+    },
+    s4668s_2: function (s, m) {
+        return switchGender(m[1]);
+    },
+    c4668s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^air$/i) >= 0) && ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[si]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4668s_3: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c4679s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && ( (morph(dDA, [m.start[1], m[1]], ":m") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morph(dDA, [m.start[1], m[1]], ":f") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m")) ) && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]", false, false);
+    },
+    s4679s_1: function (s, m) {
+        return switchGender(m[2], false);
+    },
+    c4679s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
+    },
+    s4679s_2: function (s, m) {
+        return switchGender(m[1]);
+    },
+    c4679s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^air$/i) >= 0) && ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[si]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]", false, false);
+    },
+    s4679s_3: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c4699s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[me]", ":(?:B|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4699s_1: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c4699s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! m[2].startsWith("seul") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|d’) *$/);
+    },
+    s4699s_2: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c4708s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[me]", ":(?:B|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4708s_1: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c4708s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! m[2].startsWith("seul") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQB]|>(?:et|ou) ", false, false);
+    },
+    s4708s_2: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c4728s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[fe]", ":(?:B|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4728s_1: function (s, m) {
+        return suggFemSing(m[2], true);
+    },
+    c4728s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! m[2].startsWith("seul") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|d’) *$/);
+    },
+    s4728s_2: function (s, m) {
+        return suggFemSing(m[2]);
+    },
+    c4737s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[fe]", ":(?:B|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4737s_1: function (s, m) {
+        return suggFemSing(m[2], true);
+    },
+    c4737s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:p") && ! m[2].startsWith("seul") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQB]|>(?:et|ou) ", false, false);
+    },
+    s4737s_2: function (s, m) {
+        return suggFemSing(m[2]);
+    },
+    c4758s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[me]", ":(?:B|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4758s_1: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c4758s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWsi]") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4758s_2: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c4768s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[me]", ":(?:B|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4768s_1: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c4768s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWsi]") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4768s_2: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c4783s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":(?:B|G|e|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4783s_1: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c4783s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWsi]") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4783s_2: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c4793s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":(?:B|G|e|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4793s_1: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c4793s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWsi]") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4793s_2: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c4809s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[fe]", ":(?:B|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4809s_1: function (s, m) {
+        return suggFemSing(m[2], true);
+    },
+    c4809s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWsi]") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4809s_2: function (s, m) {
+        return suggFemSing(m[2]);
+    },
+    c4819s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[fe]", ":(?:B|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4819s_1: function (s, m) {
+        return suggFemSing(m[2], true);
+    },
+    c4819s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWsi]") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4819s_2: function (s, m) {
+        return suggFemSing(m[2]);
+    },
+    c4836s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && ! (m[0].search(/^quelque chose/i) >= 0) && ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":(?:B|e|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":(?:B|e|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4836s_1: function (s, m) {
+        return switchGender(m[2], false);
+    },
+    c4836s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
+    },
+    s4836s_2: function (s, m) {
+        return switchGender(m[1], false);
+    },
+    c4836s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWsi]") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4836s_3: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c4847s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && ! (m[0].search(/quelque chose/i) >= 0) && ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":(?:B|e|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":(?:B|e|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4847s_1: function (s, m) {
+        return switchGender(m[2], false);
+    },
+    c4847s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
+    },
+    s4847s_2: function (s, m) {
+        return switchGender(m[1], false);
+    },
+    c4847s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWsi]") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4847s_3: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c4864s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[me]", ":(?:B|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4864s_1: function (s, m) {
+        return suggMasPlur(m[2], true);
+    },
+    c4864s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], /^ +et +([a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+)/i, ":A") && ! look(s.slice(0,m.index), /\bune de /i);
+    },
+    s4864s_2: function (s, m) {
+        return suggMasPlur(m[2]);
+    },
+    c4875s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[me]", ":(?:B|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4875s_1: function (s, m) {
+        return suggMasPlur(m[2], true);
+    },
+    c4875s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], /^ +et +([a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+)/i, ":A") && ! ( look(s.slice(0,m.index), /\bune? de /i) || (m[0].startsWith("de") && look(s.slice(0,m.index), /\bune? +$/i)) );
+    },
+    s4875s_2: function (s, m) {
+        return suggMasPlur(m[2]);
+    },
+    c4892s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[fe]", ":(?:B|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m") && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4892s_1: function (s, m) {
+        return suggFemPlur(m[2], true);
+    },
+    c4892s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], /^ +et +([a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+)/i, ":A") && ! look(s.slice(0,m.index), /\bune de /i);
+    },
+    s4892s_2: function (s, m) {
+        return suggFemPlur(m[2]);
+    },
+    c4903s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:[fe]", ":(?:B|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m") && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4903s_1: function (s, m) {
+        return suggFemPlur(m[2], true);
+    },
+    c4903s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], /^ +et +([a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+)/i, ":A") && ! ( look(s.slice(0,m.index), /\bune? de /i) || (m[0].startsWith("de") && look(s.slice(0,m.index), /\bune? +$/i)) );
+    },
+    s4903s_2: function (s, m) {
+        return suggFemPlur(m[2]);
+    },
+    c4920s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":(?:B|e|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":(?:B|e|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s4920s_1: function (s, m) {
+        return switchGender(m[2], true);
+    },
+    c4920s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
+    },
+    s4920s_2: function (s, m) {
+        return switchGender(m[1], true);
+    },
+    c4920s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], /^ +et +([a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+)/i, ":A") && ! look(s.slice(0,m.index), /\bune? de /i);
+    },
+    s4920s_3: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4932s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && ((morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":(?:B|e|G|V0|f)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":(?:B|e|G|V0|m)") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m"))) && ! apposition(m[1], m[2]) && ! morph(dDA, prevword1(s, m.index), ":[NAQ]|>(?:et|ou) ", false, false);
+    },
+    s4932s_1: function (s, m) {
+        return switchGender(m[2], true);
+    },
+    c4932s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
+    },
+    s4932s_2: function (s, m) {
+        return switchGender(m[1], true);
+    },
+    c4932s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && ! look_chk1(dDA, s.slice(m.end[0]), m.end[0], /^ +et +([a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+)/i, ":A") && ! ( look(s.slice(0,m.index), /\bune? de /i) || (m[0].startsWith("de") && look(s.slice(0,m.index), /\bune? +$/i)) );
+    },
+    s4932s_3: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4953s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "fois" && ! m[2].startsWith("seul") && ( (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":[fe]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f")) || (morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:f", ":[me]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m")) ) && ! apposition(m[1], m[2]) && morph(dDA, prevword1(s, m.index), ":[VRBX]|>comme ", true, true);
+    },
+    s4953s_1: function (s, m) {
+        return switchGender(m[2], true);
+    },
+    c4953s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && hasFemForm(m[1]);
+    },
+    s4953s_2: function (s, m) {
+        return switchGender(m[1]);
+    },
+    c4953s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:s") && ! apposition(m[1], m[2]) && (morphex(dDA, [m.start[2], m[2]], ":N", ":[AQ]") || morph(dDA, prevword1(s, m.index), ":[VRBX]|>comme ", true, true));
+    },
+    s4953s_3: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c4979s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:p") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:s")) || (morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[si]") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:p"));
+    },
+    s4979s_1: function (s, m) {
+        return switchPlural(m[3]);
+    },
+    c4988s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]") && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]") && morph(dDA, [m.start[3], m[3]], ":[NAQ].*:s");
+    },
+    s4988s_1: function (s, m) {
+        return suggPlur(m[3]);
+    },
+    c4996s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:[si]", ":G") && morph(dDA, [m.start[4], m[4]], ":[NAQ].*:p");
+    },
+    s4996s_1: function (s, m) {
+        return suggSing(m[4]);
+    },
+    c5005s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:[pi]", ":G") && morph(dDA, [m.start[4], m[4]], ":[NAQ].*:s") && ! look(s.slice(0,m.index), /\bune? de /i);
+    },
+    s5005s_1: function (s, m) {
+        return suggPlur(m[4]);
+    },
+    c5017s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:(?:m|f:p)", ":(?:G|P|[fe]:[is]|V0|3[sp])") && ! apposition(m[1], m[2]);
+    },
+    s5017s_1: function (s, m) {
+        return suggFemSing(m[2], true);
+    },
+    c5022s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:(?:f|m:p)", ":(?:G|P|[me]:[is]|V0|3[sp])") && ! apposition(m[1], m[2]);
+    },
+    s5022s_1: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c5027s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":[NAQ].*:f|>[aéeiou].*:e", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:(?:f|m:p)", ":(?:G|P|m:[is]|V0|3[sp])") && ! apposition(m[1], m[2]);
+    },
+    s5027s_1: function (s, m) {
+        return suggMasSing(m[2], true);
+    },
+    c5032s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":G|>[aéeiou].*:[ef]") && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:(?:f|m:p)", ":(?:G|P|[me]:[is]|V0|3[sp])") && ! apposition(m[2], m[3]);
+    },
+    s5032s_1: function (s, m) {
+        return suggMasSing(m[3], true);
+    },
+    c5038s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:m", ":G|>[aéeiou].*:[ef]") && ! morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f|>[aéeiou].*:e", false) && morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:(?:f|m:p)", ":(?:G|P|[me]:[is]|V0|3[sp])") && ! apposition(m[2], m[3]);
+    },
+    s5038s_1: function (s, m) {
+        return suggMasSing(m[3], true);
+    },
+    c5044s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":(?:G|P|[me]:[ip]|V0|3[sp])") && ! apposition(m[1], m[2]);
+    },
+    s5044s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c5085s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c5087s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c5089s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c5103s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\bquatre $/i);
+    },
+    c5105s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ":B", false) && ! look(s.slice(0,m.index), /\b(?:numéro|page|chapitre|référence|année|test|série)s? +$/i);
+    },
+    s5120s_1: function (s, m) {
+        return m[0].slice(0,-1);
+    },
+    c5128s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ":B|>une?", false, true) && ! look(s.slice(0,m.index), /\b(?:numéro|page|chapitre|référence|année|test|série)s? +$/i);
+    },
+    c5132s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, nextword1(s, m.end[0]), ":B|>une?", false, false);
+    },
+    c5136s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", ":G") && morphex(dDA, prevword1(s, m.index), ":[VR]", ":B", true);
+    },
+    c5147s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, nextword1(s, m.end[0]), ":B|:N.*:p", ":[QA]", false) || (morph(dDA, prevword1(s, m.index), ":B") && morph(dDA, nextword1(s, m.end[0]), ":[NAQ]", false));
+    },
+    c5160s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":D.*:[si]", false, true);
+    },
+    s5168s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    s5173s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c5190s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:mettre|mise) ", false);
+    },
+    c5210s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
+    },
+    c5213s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false) && morph(dDA, [m.start[3], m[3]], ":(?:N|MP)");
+    },
+    s5263s_1: function (s, m) {
+        return m[1]._trimRight("e");
+    },
+    c5271s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":(?:V0e|W)|>très", false);
+    },
+    c5280s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:co[ûu]ter|payer) ", false);
+    },
+    c5289s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">donner ", false);
+    },
+    c5327s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:avoir|perdre) ", false);
+    },
+    c5330s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:lit|fauteuil|armoire|commode|guéridon|tabouret|chaise)s?\b/i);
+    },
+    c5343s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, prevword1(s, m.index), ":(?:V|[NAQ].*:s)", ":(?:[NA]:.:[pi]|V0e.*:[123]p)", true);
+    },
+    c5394s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (look(s.slice(m.end[0]), /^ [ldmtsc]es /) && ! look(s.slice(0,m.index), /\b(?:ils?|elles?|ne) +/i)) || ( morph(dDA, prevword1(s, m.index), ":Cs", false, true) && ! look(s.slice(0,m.index), /, +$/) && ! look(s.slice(m.end[0]), /^ +(?:ils?|elles?)\b/i) && ! morph(dDA, nextword1(s, m.end[0]), ":Q", false, false) );
+    },
+    c5421s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:f:s", false, false);
+    },
+    c5423s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:aller|partir) ", false);
+    },
+    c5434s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":V0e.*:3p", false, false) || morph(dDA, nextword1(s, m.end[0]), ":Q", false, false);
+    },
+    c5456s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:être|devenir|para[îi]tre|rendre|sembler) ", false);
+    },
+    s5456s_1: function (s, m) {
+        return m[2].replace(/oc/g, "o");
+    },
+    s5461s_1: function (s, m) {
+        return m[1].replace(/oc/g, "o");
+    },
+    c5481s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">tenir ");
+    },
+    c5498s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">mettre ", false);
+    },
+    c5500s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
+    },
+    c5541s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:être|aller) ", false);
+    },
+    s5544s_1: function (s, m) {
+        return m[1].replace(/auspice/g, "hospice");
+    },
+    s5547s_1: function (s, m) {
+        return m[1].replace(/auspice/g, "hospice").replace(/Auspice/g, "Hospice");
+    },
+    c5581s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ":[AQ]");
+    },
+    s5589s_1: function (s, m) {
+        return m[0].replace(/ite/g, "itte");
+    },
+    c5596s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "bonne et due forme";
+    },
+    s5611s_1: function (s, m) {
+        return m[1].replace(/cane/g, "canne");
+    },
+    c5621s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:appuyer|battre|frapper|lever|marcher) ", false);
+    },
+    s5621s_1: function (s, m) {
+        return m[2].replace(/cane/g, "canne");
+    },
+    c5629s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^C(?:annes|ANNES)/) >= 0);
+    },
+    c5633s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^C(?:annes|ANNES)/) >= 0);
+    },
+    c5649s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
+    },
+    c5666s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
+    },
+    c5669s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":[VR]", false);
+    },
+    c5678s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].search(/^à cor et à cri$/i) >= 0);
+    },
+    c5687s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">tordre ", false);
+    },
+    c5690s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">rendre ", false);
+    },
+    c5704s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">couper ");
+    },
+    c5706s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:avoir|donner|laisser) ", false);
+    },
+    c5724s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:[lmtsc]es|des?|[nv]os|leurs|quels) +$/i);
+    },
+    c5738s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, nextword1(s, m.end[0]), ":[GVX]", ":[NAQ]", true);
+    },
+    c5742s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, nextword1(s, m.end[0]), ":[GV]", ":[NAQ]", false);
+    },
+    c5746s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, nextword1(s, m.end[0]), ":[GV]", ":[NAQ]", true);
+    },
+    c5750s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, nextword1(s, m.end[0]), ":G", ":[NAQ]");
+    },
+    c5754s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
+    },
+    s5754s_1: function (s, m) {
+        return m[2].replace(/nd/g, "nt");
+    },
+    c5770s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":V0e", false, false);
+    },
+    c5777s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ">(?:abandonner|céder|résister) ", false) && ! look(s.slice(m.end[0]), /^ d(?:e |’)/);
+    },
+    s5791s_1: function (s, m) {
+        return m[1].replace(/nt/g, "mp");
+    },
+    c5808s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false) && morph(dDA, [m.start[3], m[3]], ":(?:Y|Oo)", false);
+    },
+    s5808s_1: function (s, m) {
+        return m[2].replace(/sens/g, "cens");
+    },
+    s5818s_1: function (s, m) {
+        return m[1].replace(/c/g, "s").replace(/C/g, "S");
+    },
+    s5826s_1: function (s, m) {
+        return m[1].replace(/o/g, "ô");
+    },
+    s5834s_1: function (s, m) {
+        return m[1].replace(/o/g, "ô").replace(/tt/g, "t");
+    },
+    s5840s_1: function (s, m) {
+        return m[1].replace(/ô/g, "o").replace(/tt/g, "t");
+    },
+    s5843s_1: function (s, m) {
+        return m[1].replace(/ô/g, "o").replace(/t/g, "tt");
+    },
+    c5846s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
+    },
+    c5877s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:desceller|desseller) ", false);
+    },
+    s5877s_1: function (s, m) {
+        return m[2].replace(/descell/g, "décel").replace(/dessell/g, "décel");
+    },
+    c5882s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:desceller|desseller) ", false);
+    },
+    s5882s_1: function (s, m) {
+        return m[1].replace(/descell/g, "décel").replace(/dessell/g, "décel");
+    },
+    c5895s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D.*:[me]:[sp]", false);
+    },
+    c5897s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0", false);
+    },
+    s5897s_1: function (s, m) {
+        return m[2].replace(/î/g, "i");
+    },
+    c5907s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:[vn]ous|lui|leur|et toi) +$|[nm]’$/i);
+    },
+    s5917s_1: function (s, m) {
+        return m[1].replace(/and/g, "ant");
+    },
+    c5924s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! ( m[1] == "bonne" && look(s.slice(0,m.index), /\bune +$/i) && look(s.slice(m.end[0]), /^ +pour toute/i) );
+    },
+    c5928s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:faire|perdre|donner) ", false);
+    },
+    c5959s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":D", false);
+    },
+    s6055s_1: function (s, m) {
+        return m[0].slice(0,-1).replace(/ /g, "-")+"à";
+    },
+    c6057s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":[NAQ]");
+    },
+    c6059s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":[123][sp]");
+    },
+    c6072s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":[GQ]");
+    },
+    c6075s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":[GQ]");
+    },
+    c6081s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":[GQ]");
+    },
+    s6102s_1: function (s, m) {
+        return m[0].replace(/ée/g, "er");
+    },
+    c6109s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">soulever ", false);
+    },
+    s6109s_1: function (s, m) {
+        return m[1].slice(3);
+    },
+    c6127s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:être|habiter|trouver|situer|rester|demeurer?) ", false);
+    },
+    c6132s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">avoir ", false);
+    },
+    c6150s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(0,m.index), /(?:la|une|cette|quelle|cette|[mts]a) +$/i);
+    },
+    c6157s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
+    },
+    c6166s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
+    },
+    c6189s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1] == "Notre" && look(s.slice(m.end[0]), /Père/));
+    },
+    s6189s_1: function (s, m) {
+        return m[1].replace(/otre/g, "ôtre");
+    },
+    c6192s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(les?|la|du|des|aux?) +/i) && morph(dDA, [m.start[2], m[2]], ":[NAQ]", false);
+    },
+    s6192s_1: function (s, m) {
+        return m[1].replace(/ôtre/g, "otre")._trimRight("s");
+    },
+    c6202s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
+    },
+    c6223s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c6226s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( (m[2].search(/^[nmts]e$/) >= 0) || (! (m[2].search(/^(?:confiance|envie|peine|prise|crainte|affaire|hâte|force|recours|somme)$/i) >= 0) && morphex(dDA, [m.start[2], m[2]], ":[0123][sp]", ":[QG]")) ) && morph(dDA, prevword1(s, m.index), ":Cs", false, true);
+    },
+    c6232s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V.*:(?:[1-3][sp])", ":(?:G|1p)") && ! ( m[0].indexOf(" leur ") && morph(dDA, [m.start[2], m[2]], ":[NA].*:[si]", false) ) && ! prevword1(s, m.index);
+    },
+    c6241s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":[VR]", false, false) && ! morph(dDA, nextword1(s, m.end[0]), ":(?:3s|Oo|X)", false);
+    },
+    c6256s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":3[sp]", ":Y");
+    },
+    c6260s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":D", false, false);
+    },
+    s6272s_1: function (s, m) {
+        return m[1].replace(/pin/g, "pain");
+    },
+    c6275s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:manger|dévorer|avaler|engloutir) ");
+    },
+    s6275s_1: function (s, m) {
+        return m[2].replace(/pin/g, "pain");
+    },
+    c6289s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">aller ", false);
+    },
+    c6297s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
+    },
+    s6297s_1: function (s, m) {
+        return m[2].replace(/pal/g, "pâl");
+    },
+    s6301s_1: function (s, m) {
+        return m[1].replace(/pal/g, "pâl");
+    },
+    c6311s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">prendre ", false);
+    },
+    c6313s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">tirer ", false);
+    },
+    c6315s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
+    },
+    c6319s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">prendre ", false);
+    },
+    c6337s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ]");
+    },
+    c6346s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:N|A|Q|G|MP)");
+    },
+    c6373s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( m[0].endsWith("s") && look(s.slice(0,m.index), /\b(?:[mtscd]es|[nv]os|leurs|quels) $/i) ) || ( m[0].endsWith("e") && look(s.slice(0,m.index), /\b(?:mon|ce|quel|un|du) $/i) );
+    },
+    s6373s_1: function (s, m) {
+        return m[0].replace(/que/g, "c");
+    },
+    c6384s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false);
+    },
+    c6391s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, nextword1(s, m.end[0]), ":(?:Os|C)", false, true);
+    },
+    c6402s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ":[AQ]", false);
+    },
+    c6443s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! nextword1(s, m.end[0]);
+    },
+    c6450s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">résonner ", false);
+    },
+    s6450s_1: function (s, m) {
+        return m[1].replace(/réso/g, "raiso");
+    },
+    c6466s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":M1", false) && morph(dDA, prevword1(s, m.index), ":(?:R|[123][sp])", false, true);
+    },
+    s6486s_1: function (s, m) {
+        return m[1].replace(/sale/g, "salle");
+    },
+    c6490s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
+    },
+    s6490s_1: function (s, m) {
+        return m[2].replace(/salle/g, "sale");
+    },
+    s6509s_1: function (s, m) {
+        return m[1].replace(/scep/g,"sep");
+    },
+    c6512s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:être|demeurer) ", false);
+    },
+    s6512s_1: function (s, m) {
+        return m[2].replace(/sep/g, "scep");
+    },
+    c6522s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">suivre ", false);
+    },
+    c6530s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].search(/^soi-disant$/i) >= 0);
+    },
+    c6538s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), / soit /);
+    },
+    c6540s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, nextword1(s, m.end[0]), ":[GY]", true, true) && ! look(s.slice(0,m.index), /quel(?:s|les?|) qu $|on $|il $/i) && ! look(s.slice(m.end[0]), / soit /);
+    },
+    c6546s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, prevword1(s, m.index), ":[YQ]|>(?:avec|contre|par|pour|sur) ", false, true);
+    },
+    c6568s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( morphex(dDA, [m.start[2], m[2]], ":N.*:[me]:s", ":[GW]") || ((m[2].search(/^[aeéiîou]/i) >= 0) && morphex(dDA, [m.start[2], m[2]], ":N.*:f:s", ":G")) ) && ( look(s.slice(0,m.index), /^ *$|\b(?:à|avec|chez|dès|contre|devant|derrière|par|pour|sans|sur) +$|, +$| en +$|^en +$/i) || (morphex(dDA, prevword1(s, m.index), ":V", ":(?:G|W|[NA].*:[pi])") && ! look(s.slice(0,m.index), /\bce que?\b/i)) );
+    },
+    s6594s_1: function (s, m) {
+        return m[1].replace(/sur/g, "sûr");
+    },
+    s6598s_1: function (s, m) {
+        return m[1].replace(/sur/g, "sûr");
+    },
+    c6606s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":Y", false);
+    },
+    s6606s_1: function (s, m) {
+        return m[1].replace(/sur/g, "sûr");
+    },
+    c6624s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":N", ":[GMY]|>(?:fonds?|grande (?:envergure|ampleur|importance)|envergure|ampleur|importance|départ|surveillance) ") && ! look(s.slice(0,m.index), /accompl|dél[éè]gu/);
+    },
+    s6624s_1: function (s, m) {
+        return m[1].replace(/â/g, "a");
+    },
+    s6629s_1: function (s, m) {
+        return m[1].replace(/â/g, "a");
+    },
+    c6644s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">aller ", false);
+    },
+    c6647s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false);
+    },
+    s6650s_1: function (s, m) {
+        return m[1].replace(/au/g, "ô");
+    },
+    c6662s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false) && morph(dDA, [m.start[3], m[3]], ":Y|>(?:ne|en|y) ", false);
+    },
+    c6684s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">avoir ", false);
+    },
+    s6695s_1: function (s, m) {
+        return m[1].replace(/énén/g, "enim");
+    },
+    s6698s_1: function (s, m) {
+        return m[1].replace(/enim/g, "énén");
+    },
+    s6710s_1: function (s, m) {
+        return m[1].replace(/re/g, "").replace(/t/g, "");
+    },
+    c6720s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[me]:s");
+    },
+    c6759s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[1]._isDigit() && ! m[2]._isDigit() && ! morph(dDA, [m.start[0], m[0]], ":", false) && ! morph(dDA, [m.start[2], m[2]], ":G", false) && _oDict.isValid(m[1]+m[2]);
+    },
+    c6759s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[2] != "là" && ! (m[1].search(/^(?:ex|mi|quasi|semi|non|demi|pro|anti|multi|pseudo|proto|extra)$/i) >= 0) && ! m[1]._isDigit() && ! m[2]._isDigit() && ! morph(dDA, [m.start[2], m[2]], ":G", false) && ! morph(dDA, [m.start[0], m[0]], ":", false) && ! _oDict.isValid(m[1]+m[2]);
+    },
+    c6774s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ,] +$/);
+    },
+    s6774s_1: function (s, m) {
+        return m[0].toLowerCase();
+    },
+    c6783s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ,] +$/) && !( ( m[0]=="Juillet" && look(s.slice(0,m.index), /monarchie +de +$/i) ) || ( m[0]=="Octobre" && look(s.slice(0,m.index), /révolution +d’$/i) ) );
+    },
+    s6783s_1: function (s, m) {
+        return m[0].toLowerCase();
+    },
+    c6809s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].search(/^fonctions? /i) >= 0) || ! look(s.slice(0,m.index), /\ben $/i);
+    },
+    s6814s_1: function (s, m) {
+        return m[1].replace(/é/g, "É");
+    },
+    c6826s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[2]._isTitle() && morphex(dDA, [m.start[1], m[1]], ":N", ":(?:A|V0e|D|R|B)") && ! (m[0].search(/^[oO]céan Indien/i) >= 0);
+    },
+    s6826s_1: function (s, m) {
+        return m[2].toLowerCase();
+    },
+    c6826s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[2]._isLowerCase() && ! m[2].startsWith("canadienne") && ( (m[1].search(/^(?:certaine?s?|cette|ce[ts]?|[dl]es|[nv]os|quelques|plusieurs|chaque|une|aux)$/i) >= 0) || ( (m[1].search(/^un$/i) >= 0) && ! look(s.slice(m.end[0]), /(?:approximatif|correct|courant|parfait|facile|aisé|impeccable|incompréhensible)/) ) );
+    },
+    s6826s_2: function (s, m) {
+        return m[2]._toCapitalize();
+    },
+    s6845s_1: function (s, m) {
+        return m[1]._toCapitalize();
+    },
+    c6853s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:parler|cours|leçon|apprendre|étudier|traduire|enseigner|professeur|enseignant|dictionnaire|méthode) ", false);
+    },
+    s6853s_1: function (s, m) {
+        return m[2].toLowerCase();
+    },
+    s6858s_1: function (s, m) {
+        return m[1].toLowerCase();
+    },
+    c6886s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/);
+    },
+    s6900s_1: function (s, m) {
+        return m[1]._toCapitalize();
+    },
+    s6903s_1: function (s, m) {
+        return m[1]._toCapitalize();
+    },
+    c6913s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (m[2].search(/^(?:Mètre|Watt|Gramme|Seconde|Ampère|Kelvin|Mole|Cand[eé]la|Hertz|Henry|Newton|Pascal|Joule|Coulomb|Volt|Ohm|Farad|Tesla|W[eé]ber|Radian|Stéradian|Lumen|Lux|Becquerel|Gray|Sievert|Siemens|Katal)s?|(?:Exa|P[ée]ta|Téra|Giga|Méga|Kilo|Hecto|Déc[ai]|Centi|Mi(?:lli|cro)|Nano|Pico|Femto|Atto|Ze(?:pto|tta)|Yo(?:cto|etta))(?:mètre|watt|gramme|seconde|ampère|kelvin|mole|cand[eé]la|hertz|henry|newton|pascal|joule|coulomb|volt|ohm|farad|tesla|w[eé]ber|radian|stéradian|lumen|lux|becquerel|gray|sievert|siemens|katal)s?/) >= 0);
+    },
+    s6913s_1: function (s, m) {
+        return m[2].toLowerCase();
+    },
+    c6929s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":Y");
+    },
+    s6929s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c6936s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V1") && ! m[1].slice(0,1)._isUpperCase() && (m[1].endsWith("z") || ! look(s.slice(0,m.index), /\b(?:quelqu(?:e chose|’une?)|(?:l(es?|a)|nous|vous|me|te|se)[ @]trait|personne|rien(?: +[a-zéèêâîûù]+|) +$)/i));
+    },
+    s6936s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c6946s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V1", ":M[12P]");
+    },
+    s6946s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c6953s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V1", false);
+    },
+    s6953s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c6960s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":[123][sp]");
+    },
+    c6967s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V1", ":[NM]") && ! morph(dDA, prevword1(s, m.index), ">(?:tenir|passer) ", false);
+    },
+    s6967s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c6975s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V1", false);
+    },
+    s6975s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c6982s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V1", ":[NM]");
+    },
+    s6982s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c6989s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":Q", false) && ! morph(dDA, prevword1(s, m.index), "V0.*[12]p", false);
+    },
+    c6996s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:devoir|savoir|pouvoir) ", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Q|A|[123][sp])", ":[GYW]");
+    },
+    s6996s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c7005s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:V1.*:Q|[13]s|2[sp])", ":[GYWM]") && ! look(s.slice(0,m.index), /\bque? +$/i);
+    },
+    s7005s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c7016s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:commencer|finir) ", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":[NGM]") && ! m[2].slice(0,1)._isUpperCase();
+    },
+    s7016s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c7027s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":A", false);
+    },
+    s7027s_1: function (s, m) {
+        return m[1].slice(0,-1);
+    },
+    c7047s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V", false);
+    },
+    c7051s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">sembler ", false);
+    },
+    c7067s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7072s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V[123]_i", false) && isNextNotCOD(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7074s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":A", false) && morphex(dDA, [m.start[2], m[2]], ":A", ":[GM]");
+    },
+    c7076s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":A", false);
+    },
+    c7078s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:s", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GV]") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7081s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":V0") && morphex(dDA, [m.start[2], m[2]], ":[NAQ]", ":(?:G|[123][sp]|P)");
+    },
+    c7092s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7096s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /[jn]’$/);
+    },
+    c7104s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":[GY]") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7107s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7110s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7114s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c7117s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":N", ":[GY]") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7119s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ]", false) && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7121s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":Y") && isEndOfNG(dDA, s.slice(m.end[0]), m.end[0]);
+    },
+    c7173s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (m[2].search(/^(?:fini|terminé)s?/i) >= 0) && morph(dDA, prevword1(s, m.index), ":C", false, true);
+    },
+    c7173s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (m[2].search(/^(?:assez|trop)$/i) >= 0) && (look(s.slice(m.end[0]), /^ +d(?:e |’)/) || ! nextword1(s, m.end[0]));
+    },
+    c7173s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":A", ":[GVW]") && morph(dDA, prevword1(s, m.index), ":C", false, true);
+    },
+    c7193s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">aller", false) && ! look(s.slice(m.end[0]), / soit /);
+    },
+    c7201s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":[AN].*:[me]:[pi]|>(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) .*:[123]p|>(?:affirmer|trouver|croire|désirer|estime|préférer|penser|imaginer|voir|vouloir|aimer|adorer|souhaiter) ") && ! morph(dDA, nextword1(s, m.end[0]), ":A.*:[me]:[pi]", false);
+    },
+    c7218s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V", false);
+    },
+    s7218s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c7225s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V", false);
+    },
+    s7225s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c7232s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V", false);
+    },
+    s7232s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c7240s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:faire|vouloir) ", false) && ! look(s.slice(0,m.index), /\b(?:en|[mtsld]es?|[nv]ous|un) +$/i) && morphex(dDA, [m.start[2], m[2]], ":V", ":M") && ! ((m[1].search(/^(?:fait|vouloir)$/i) >= 0) && m[2].endsWith("é")) && ! ((m[1].search(/^(?:fait|vouloir)s$/i) >= 0) && m[2].endsWith("és"));
+    },
+    s7240s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c7251s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">faire ", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":M");
+    },
+    s7251s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c7259s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":M");
+    },
+    s7259s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c7267s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">savoir :V", false) && morph(dDA, [m.start[2], m[2]], ":V", false) && ! look(s.slice(0,m.index), /\b(?:[mts]e|[vn]ous|les?|la|un) +$/i);
+    },
+    s7267s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c7275s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":(?:Q|2p)", false);
+    },
+    s7275s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c7283s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:Q|2p)", ":N");
+    },
+    s7283s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c7291s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":Q", false);
+    },
+    s7291s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c7300s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">être ", false);
+    },
+    c7300s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":Y", false);
+    },
+    s7300s_2: function (s, m) {
+        return suggVerbPpas(m[2]);
+    },
+    c7300s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! bCondMemo && morph(dDA, [m.start[1], m[1]], ":[123]s", false) && morph(dDA, [m.start[2], m[2]], ":Q.*:p", false) && ! look(s.slice(0,m.index), /\bque?[, ]/i);
+    },
+    s7300s_3: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7351s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[1], m[1]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[1].endsWith(" été")) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
+    },
+    s7351s_1: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7372s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[1], m[1]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[1].endsWith(" été")) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
+    },
+    s7372s_1: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7381s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]"));
+    },
+    s7381s_1: function (s, m) {
+        return suggMasSing(m[3]);
+    },
+    c7395s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (morph(dDA, [m.start[1], m[1]], ">seule ", false) && look(s.slice(m.end[0]), /^ +que? /)) && ( morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[GWYsi]") || ( morphex(dDA, [m.start[1], m[1]], ":[AQ].*:f", ":[GWYme]") && ! morph(dDA, nextword1(s, m.end[0]), ":N.*:f", false, false) ) );
+    },
+    s7395s_1: function (s, m) {
+        return suggMasSing(m[1]);
+    },
+    c7406s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ].*:p", ":[GWYsi]") || ( morphex(dDA, [m.start[1], m[1]], ":[AQ].*:f", ":[GWYme]") && ! morph(dDA, nextword1(s, m.end[0]), ":N.*:f", false, false) );
+    },
+    s7406s_1: function (s, m) {
+        return suggMasSing(m[1]);
+    },
+    c7414s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && ( morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || ( morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]") && ! morph(dDA, nextword1(s, m.end[0]), ":N.*:f", false, false) ) ) && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    s7414s_1: function (s, m) {
+        return suggMasSing(m[3]);
+    },
+    c7426s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]")) && ! morph(dDA, prevword1(s, m.index), ":R|>de ", false, false);
+    },
+    s7426s_1: function (s, m) {
+        return suggFemSing(m[3]);
+    },
+    c7440s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]"));
+    },
+    s7440s_1: function (s, m) {
+        return suggFemSing(m[3]);
+    },
+    c7449s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^légion$/i) >= 0) && ! look(s.slice(0,m.index), /\b(?:nous|ne) +$/i) && ((morph(dDA, [m.start[1], m[1]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) && morph(dDA, [m.start[1], m[1]], ":1p", false)) || m[1].endsWith(" été")) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GWYpi]");
+    },
+    s7449s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c7460s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[3].search(/^légion$/i) >= 0) && (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWYpi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]")) && ! look(s.slice(0,m.index), /ce que? +$/i) && (! (m[1].search(/^(?:ceux-(?:ci|là)|lesquels)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
+    },
+    s7460s_1: function (s, m) {
+        return suggMasPlur(m[3]);
+    },
+    c7479s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[3].search(/^légion$/i) >= 0) && (morph(dDA, [m.start[2], m[2]], ">(?:être|sembler|devenir|re(?:ster|devenir)|para[îi]tre) ", false) || m[2].endsWith(" été")) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWYpi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]")) && (! (m[1].search(/^(?:elles|celles-(?:ci|là)|lesquelles)$/i) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
+    },
+    s7479s_1: function (s, m) {
+        return suggFemPlur(m[3]);
+    },
+    c7492s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morphex(dDA, [m.start[2], m[2]], ":[123]s", ":[GNAQWY]");
+    },
+    s7492s_1: function (s, m) {
+        return suggVerbPpas(m[2]);
+    },
+    c7504s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
+    },
+    s7504s_1: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7517s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
+    },
+    s7517s_1: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7527s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]"));
+    },
+    s7527s_1: function (s, m) {
+        return suggMasSing(m[3]);
+    },
+    c7540s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[MWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]")) && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    s7540s_1: function (s, m) {
+        return suggMasSing(m[3]);
+    },
+    c7550s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]")) && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    s7550s_1: function (s, m) {
+        return suggFemSing(m[3]);
+    },
+    c7560s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[MWYsi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]"));
+    },
+    s7560s_1: function (s, m) {
+        return suggFemSing(m[3]);
+    },
+    c7569s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^légion$/i) >= 0) && morph(dDA, [m.start[1], m[1]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && morph(dDA, [m.start[1], m[1]], ":1p", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GWYpi]");
+    },
+    s7569s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c7579s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[3].search(/^légion$/i) >= 0) && morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWYpi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWYme]")) && (! (m[1].search(/^(?:ceux-(?:ci|là)|lesquels)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
+    },
+    s7579s_1: function (s, m) {
+        return suggMasPlur(m[3]);
+    },
+    c7589s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[3].search(/^légion$/i) >= 0) && morph(dDA, [m.start[2], m[2]], ">(?:sembler|para[îi]tre|pouvoir|penser|préférer|croire|d(?:evoir|éclarer|ésirer|étester|ire)|vouloir|affirmer|aimer|adorer|souhaiter|estimer|imaginer) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWYpi]") || morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWYfe]")) && (! (m[1].search(/^(?:elles|celles-(?:ci|là)|lesquelles)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
+    },
+    s7589s_1: function (s, m) {
+        return suggFemPlur(m[3]);
+    },
+    c7607s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GMWYsi]") && ! morph(dDA, [m.start[1], m[1]], ":G", false);
+    },
+    s7607s_1: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7612s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^légion$/i) >= 0) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GWYpi]") && ! morph(dDA, [m.start[1], m[1]], ":G", false);
+    },
+    s7612s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c7620s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[3].search(/^légion$/i) >= 0) && ((morphex(dDA, [m.start[3], m[3]], ":[AQ].*:f", ":[GWme]") && morphex(dDA, [m.start[2], m[2]], ":m", ":[Gfe]")) || (morphex(dDA, [m.start[3], m[3]], ":[AQ].*:m", ":[GWfe]") && morphex(dDA, [m.start[2], m[2]], ":f", ":[Gme]"))) && ! ( morph(dDA, [m.start[3], m[3]], ":p", false) && morph(dDA, [m.start[2], m[2]], ":s", false) ) && ! morph(dDA, prevword1(s, m.index), ":(?:R|P|Q|Y|[123][sp])", false, false) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s7620s_1: function (s, m) {
+        return switchGender(m[3]);
+    },
+    c7640s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[2].search(/^légion$/i) >= 0) && ((morphex(dDA, [m.start[1], m[1]], ":M[1P].*:f", ":[GWme]") && morphex(dDA, [m.start[2], m[2]], ":m", ":[GWfe]")) || (morphex(dDA, [m.start[1], m[1]], ":M[1P].*:m", ":[GWfe]") && morphex(dDA, [m.start[2], m[2]], ":f", ":[GWme]"))) && ! morph(dDA, prevword1(s, m.index), ":(?:R|P|Q|Y|[123][sp])", false, false) && ! look(s.slice(0,m.index), /\b(?:et|ou|de) +$/);
+    },
+    s7640s_1: function (s, m) {
+        return switchGender(m[2]);
+    },
+    c7659s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":A.*:p", ":(?:G|E|M1|W|s|i)");
+    },
+    s7659s_1: function (s, m) {
+        return suggSing(m[1]);
+    },
+    c7667s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":A.*:[fp]", ":(?:G|E|M1|W|m:[si])");
+    },
+    s7667s_1: function (s, m) {
+        return suggMasSing(m[1]);
+    },
+    c7675s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":A.*:[mp]", ":(?:G|E|M1|W|f:[si])|>(?:désoler|pire) ");
+    },
+    s7675s_1: function (s, m) {
+        return suggFemSing(m[1]);
+    },
+    c7683s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":A.*:[fs]", ":(?:G|E|M1|W|m:[pi])|>(?:désoler|pire) ");
+    },
+    s7683s_1: function (s, m) {
+        return suggMasPlur(m[1]);
+    },
+    c7695s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":A.*:[ms]", ":(?:G|E|M1|W|f:[pi])|>(?:désoler|pire) ");
+    },
+    s7695s_1: function (s, m) {
+        return suggFemPlur(m[1]);
+    },
+    c7705s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], "V0e", false) && m[3] != "rendu";
+    },
+    c7715s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:p)", ":[GWsi]");
+    },
+    s7715s_1: function (s, m) {
+        return suggSing(m[1]);
+    },
+    c7719s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:p)", ":[GWsi]");
+    },
+    s7719s_1: function (s, m) {
+        return suggSing(m[1]);
+    },
+    c7723s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y|[NAQ].*:[pf])", ":(?:G|W|[me]:[si])|question ") && ! (m[1] == "ce" && morph(dDA, [m.start[2], m[2]], ":Y", false));
+    },
+    s7723s_1: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c7727s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:[pm])", ":(?:G|W|[fe]:[si])");
+    },
+    s7727s_1: function (s, m) {
+        return suggFemSing(m[1]);
+    },
+    c7731s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:s)", ":[GWpi]");
+    },
+    s7731s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c7735s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^légion$/i) >= 0) && (morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:s)", ":[GWpi]") || morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|[AQ].*:f)", ":[GWme]"));
+    },
+    s7735s_1: function (s, m) {
+        return suggMasPlur(m[1]);
+    },
+    c7739s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^légion$/i) >= 0) && (morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|Y|[NAQ].*:s)", ":[GWpi]") || morphex(dDA, [m.start[1], m[1]], ":(?:[123][sp]|[AQ].*:m)", ":[GWfe]"));
+    },
+    s7739s_1: function (s, m) {
+        return suggFemPlur(m[1]);
+    },
+    c7770s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":[QWGBMpi]") && ! (m[1].search(/^(?:légion|nombre|cause)$/i) >= 0) && ! look(s.slice(0,m.index), /\bce que?\b/i);
+    },
+    s7770s_1: function (s, m) {
+        return suggPlur(m[1]);
+    },
+    c7770s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! bCondMemo && morphex(dDA, [m.start[1], m[1]], ":V", ":(?:N|A|Q|W|G|3p)") && ! look(s.slice(0,m.index), /\bce que?\b/i);
+    },
+    s7770s_2: function (s, m) {
+        return suggVerbPpas(m[1], ":m:p");
+    },
+    c7781s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
+    },
+    s7781s_1: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7789s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:p", ":[GWYsi]");
+    },
+    s7789s_1: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7797s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWsi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[GWYme]")) && (! (m[1].search(/^(?:celui-(?:ci|là)|lequel)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
+    },
+    s7797s_1: function (s, m) {
+        return suggMasSing(m[3]);
+    },
+    c7807s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWsi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[GWYfe]")) && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    s7807s_1: function (s, m) {
+        return suggFemSing(m[3]);
+    },
+    c7818s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:p", ":[GWsi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[GWYfe]"));
+    },
+    s7818s_1: function (s, m) {
+        return suggFemSing(m[3]);
+    },
+    c7827s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && morphex(dDA, [m.start[2], m[2]], ":[NAQ].*:s", ":[GWpi]");
+    },
+    s7827s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c7835s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWpi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:f", ":[GWYme]")) && (! (m[1].search(/^(?:ceux-(?:ci|là)|lesquels)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
+    },
+    s7835s_1: function (s, m) {
+        return suggMasPlur(m[3]);
+    },
+    c7845s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:montrer|penser|révéler|savoir|sentir|voir|vouloir) ", false) && (morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:s", ":[GWpi]") || morphex(dDA, [m.start[3], m[3]], ":[NAQ].*:m", ":[GWYfe]")) && (! (m[1].search(/^(?:elles|celles-(?:ci|là)|lesquelles)$/) >= 0) || ! morph(dDA, prevword1(s, m.index), ":R", false, false));
+    },
+    s7845s_1: function (s, m) {
+        return suggFemPlur(m[3]);
+    },
+    c7855s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire|rendre|voilà) ", false) && morphex(dDA, [m.start[2], m[2]], ":[AQ]:(?:[me]:p|f)", ":(?:G|Y|[AQ]:m:[is])");
+    },
+    s7855s_1: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c7859s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire|rendre|voilà) ", false) && morphex(dDA, [m.start[2], m[2]], ":[AQ]:(?:[fe]:p|m)", ":(?:G|Y|[AQ]:f:[is])");
+    },
+    s7859s_1: function (s, m) {
+        return suggFemSing(m[2]);
+    },
+    c7863s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire|rendre|voilà) ", false) && morphex(dDA, [m.start[2], m[2]], ":[AQ].*:s", ":(?:G|Y|[AQ].*:[ip])");
+    },
+    s7863s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c7867s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ">(?:trouver|considérer|croire|rendre|voilà) ", false) && morphex(dDA, [m.start[3], m[3]], ":[AQ].*:p", ":(?:G|Y|[AQ].*:[is])");
+    },
+    s7867s_1: function (s, m) {
+        return suggSing(m[3]);
+    },
+    c7871s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire|rendre) .*:3s", false) && morphex(dDA, [m.start[2], m[2]], ":[AQ].*:p", ":(?:G|Y|[AQ].*:[is])");
+    },
+    s7871s_1: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7871s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire|rendre) .*:3p", false) && morphex(dDA, [m.start[2], m[2]], ":[AQ].*:s", ":(?:G|Y|[AQ].*:[ip])");
+    },
+    s7871s_2: function (s, m) {
+        return suggSing(m[2]);
+    },
+    c7877s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( morphex(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire|rendre|voilà) ", ":1p") || (morph(dDA, [m.start[1], m[1]], ">(?:trouver|considérer|croire) .*:1p", false) && look(s.slice(0,m.index), /\bn(?:ous|e) +$/)) ) && morphex(dDA, [m.start[2], m[2]], ":[AQ].*:s", ":(?:G|Y|[AQ].*:[ip])");
+    },
+    s7877s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c7907s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morph(dDA, [m.start[3], m[3]], ":Y", false);
+    },
+    c7909s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[3].search(/^(?:confiance|cours|envie|peine|prise|crainte|cure|affaire|hâte|force|recours)$/i) >= 0) && morph(dDA, prevword1(s, m.index), ">puisque? ", false, true) && morph(dDA, [m.start[2], m[2]], ":V0a", false) && ! m[3]._isUpperCase() && morphex(dDA, [m.start[3], m[3]], ":(?:[123][sp]|Q.*:[fp])", ":(?:G|W|Q.*:m:[si])");
+    },
+    s7909s_1: function (s, m) {
+        return suggMasSing(m[3]);
+    },
+    c7919s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[4].search(/^(?:confiance|cours|envie|peine|prise|crainte|cure|affaire|hâte|force|recours)$/i) >= 0) && morph(dDA, prevword1(s, m.index), ">puisque? ", false, true) && morph(dDA, [m.start[3], m[3]], ":V0a", false) && ! m[4]._isUpperCase() && morphex(dDA, [m.start[4], m[4]], ":(?:[123][sp]|Q.*:[fp])", ":(?:G|W|Q.*:m:[si])");
+    },
+    s7919s_1: function (s, m) {
+        return suggMasSing(m[4]);
+    },
+    c7930s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":V[0-3]..t.*:Q.*:s", ":[GWpi]");
+    },
+    s7930s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c7939s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return look(s.slice(m.end[0]), /^ *$/) && morph(dDA, [m.start[2], m[2]], ":V0a", false) && morphex(dDA, [m.start[1], m[1]], ":(?:M|Os|N)", ":R") && morphex(dDA, [m.start[3], m[3]], ":V[0-3]..t_.*:Q.*:s", ":[GWpi]") && ! look(s.slice(0,m.index), /\bque +$/);
+    },
+    s7939s_1: function (s, m) {
+        return suggPlur(m[3]);
+    },
+    c7949s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":V[0-3]..t.*:Q.*:p", ":[GWsi]");
+    },
+    s7949s_1: function (s, m) {
+        return m[2].slice(0,-1);
+    },
+    c7958s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V0a", false) && morphex(dDA, [m.start[3], m[3]], ":V[0-3]..t_.*:Q.*:p", ":[GWsi]") && ! look(s.slice(0,m.index), /\bque? /);
+    },
+    s7958s_1: function (s, m) {
+        return m[3].slice(0,-1);
+    },
+    c7967s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morphex(dDA, [m.start[2], m[2]], ":Q.*:(?:f|m:p)", ":m:[si]");
+    },
+    s7967s_1: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c7976s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^(?:confiance|cours|envie|peine|prise|crainte|cure|affaire|hâte|force|recours)$/i) >= 0) && morphex(dDA, [m.start[1], m[1]], ":Q.*:(?:f|m:p)", ":m:[si]") && look(s.slice(0,m.index), /(?:après +$|sans +$|pour +$|que? +$|quand +$|, +$|^ *$)/i);
+    },
+    s7976s_1: function (s, m) {
+        return suggMasSing(m[1]);
+    },
+    c8017s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Y|[123][sp])", ":[QGWMX]");
+    },
+    s8017s_1: function (s, m) {
+        return suggVerbPpas(m[2], ":m:s");
+    },
+    c8030s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[3], m[3]], ":V0a", false) && ! (((m[4].search(/^(?:décidé|essayé|tenté)$/) >= 0) && look(s.slice(m.end[0]), / +d(?:e |’)/)) || ((m[4].search(/^réussi$/) >= 0) && look(s.slice(m.end[0]), / +à/))) && morph(dDA, [m.start[2], m[2]], ":[NAQ]", false) && morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:s", ":[GWpi]") && ! morph(dDA, nextword1(s, m.end[0]), ":(?:Y|Oo|D)", false);
+    },
+    s8030s_1: function (s, m) {
+        return suggPlur(m[4], m[2]);
+    },
+    c8045s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[3], m[3]], ":V0a", false) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:m", false) && (morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:f", ":[GWme]") || morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:p", ":[GWsi]"));
+    },
+    s8045s_1: function (s, m) {
+        return suggMasSing(m[4]);
+    },
+    c8060s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[3], m[3]], ":V0a", false) && ! (((m[4].search(/^(?:décidé|essayé|tenté)$/) >= 0) && look(s.slice(m.end[0]), / +d(?:e |’)/)) || ((m[4].search(/^réussi$/) >= 0) && look(s.slice(m.end[0]), / +à/))) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:f", false) && (morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:m", ":[GWfe]") || morphex(dDA, [m.start[4], m[4]], ":V[0-3]..t.*:Q.*:p", ":[GWsi]")) && ! morph(dDA, nextword1(s, m.end[0]), ":(?:Y|Oo)|>que?", false);
+    },
+    s8060s_1: function (s, m) {
+        return suggFemSing(m[4]);
+    },
+    c8077s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && (morphex(dDA, [m.start[2], m[2]], ":V[0-3]..t.*:Q.*:f", ":[GWme]") || morphex(dDA, [m.start[2], m[2]], ":V[0-3]..t.*:Q.*:p", ":[GWsi]"));
+    },
+    s8077s_1: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c8087s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[1].search(/^(?:A|avions)$/) >= 0) && morph(dDA, [m.start[1], m[1]], ":V0a", false) && morph(dDA, [m.start[2], m[2]], ":V.+:(?:Y|2p)", false);
+    },
+    s8087s_1: function (s, m) {
+        return suggVerbPpas(m[2], ":m:s");
+    },
+    c8096s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && (morph(dDA, [m.start[3], m[3]], ":Y") || (m[3].search(/^(?:[mtsn]e|[nv]ous|leur|lui)$/) >= 0));
+    },
+    c8101s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && (morph(dDA, [m.start[3], m[3]], ":Y") || (m[3].search(/^(?:[mtsn]e|[nv]ous|leur|lui)$/) >= 0));
+    },
+    c8110s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ":[NAQ].*:[me]", false);
+    },
+    c8113s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false);
+    },
+    c8137s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Y|2p|Q.*:[fp])", ":m:[si]") && m[2] != "prise" && ! morph(dDA, prevword1(s, m.index), ">(?:les|[nv]ous|en)|:[NAQ].*:[fp]", false) && ! look(s.slice(0,m.index), /\b(?:quel(?:le|)s?|combien) /i);
+    },
+    s8137s_1: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c8144s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Y|2p|Q.*:[fp])", ":m:[si]") && m[2] != "prise" && ! morph(dDA, prevword1(s, m.index), ">(?:les|[nv]ous|en)|:[NAQ].*:[fp]", false) && ! look(s.slice(0,m.index), /\b(?:quel(?:le|)s?|combien) /i);
+    },
+    s8144s_1: function (s, m) {
+        return suggMasSing(m[2]);
+    },
+    c8151s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V0a", false) && morphex(dDA, [m.start[3], m[3]], ":(?:Y|2p|Q.*:p)", ":[si]");
+    },
+    s8151s_1: function (s, m) {
+        return suggMasSing(m[3]);
+    },
+    c8157s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0a", false) && morphex(dDA, [m.start[2], m[2]], ":V[123]..t.*:Q.*:s", ":[GWpi]");
+    },
+    s8157s_1: function (s, m) {
+        return suggPlur(m[2]);
+    },
+    c8172s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:G|Y|P|1p|3[sp])") && ! look(s.slice(m.end[0]), /^ +(?:je|tu|ils?|elles?|on|[vn]ous) /);
+    },
+    s8172s_1: function (s, m) {
         return suggVerb(m[1], ":1p");
     },
-    c6443s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":2p", false) && _oDict.isValid(m[1]) && ! (m[1].search(/^(?:tes|vite)$/i) >= 0) && ! _oDict.isValid(m[0]);
+    c8179s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:G|Y|P|2p|3[sp])") && ! look(s.slice(m.end[0]), /^ +(?:je|ils?|elles?|on|[vn]ous) /);
     },
-    s6443s_1: function (s, m) {
+    s8179s_1: function (s, m) {
         return suggVerb(m[1], ":2p");
     },
-    c6446s_1: function (s, sx, m, dDA, sCountry) {
-        return m[1] != "t" && ! morph(dDA, [m.start[1], m[1]], ":3p", false) && _oDict.isValid(m[1]);
+    c8192s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":2p", ":(?:3[sp]|P)");
     },
-    s6446s_1: function (s, m) {
+    s8192s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c8196s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":1p", ":(?:3[sp]|P)");
+    },
+    s8196s_1: function (s, m) {
         return suggVerb(m[1], ":3p");
     },
-    c6450s_1: function (s, sx, m, dDA, sCountry) {
-        return ! morph(dDA, [m.start[1], m[1]], ":V", false) && ! (m[1].search(/^vite$/i) >= 0) && _oDict.isValid(m[1]) && ! ( m[0].endsWith("il") && m[1].endsWith("oilà") ) && ! ( m[1] == "t" && (m[0].search(/(?:ils?|elles?|on)$/) >= 0) );
+    c8225s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[NAQ]", ":G");
     },
-    c6469s_1: function (s, sx, m, dDA, sCountry) {
+    c8236s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V[13].*:Ip.*:2s", ":[GNAM]");
+    },
+    s8236s_1: function (s, m) {
+        return m[1].slice(0,-1);
+    },
+    c8240s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V[13].*:Ip.*:2s", ":G");
+    },
+    s8240s_1: function (s, m) {
+        return m[1].slice(0,-1);
+    },
+    c8253s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[MYOs]");
+    },
+    c8261s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V[23].*:Ip.*:3s", ":[GNA]") && analyse(m[1].slice(0,-1)+"s", ":E:2s", false) && ! (m[1].search(/^(?:doit|suffit)$/i) >= 0) && ! ((m[1].search(/^vient$/i) >= 0) && look(s.slice(m.end[0]), / +l[ea]/));
+    },
+    s8261s_1: function (s, m) {
+        return m[1].slice(0,-1)+"s";
+    },
+    c8266s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V[23].*:Ip.*:3s", ":G") && analyse(m[1].slice(0,-1)+"s", ":E:2s", false);
+    },
+    s8266s_1: function (s, m) {
+        return m[1].slice(0,-1)+"s";
+    },
+    c8277s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V3.*:Ip.*:3s", ":[GNA]");
+    },
+    c8281s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V3.*:Ip.*:3s", ":G");
+    },
+    c8299s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":A", ":G") && ! look(s.slice(m.end[0]), /\bsoit\b/);
+    },
+    c8320s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":E|>chez", false) && _oDict.isValid(m[1]);
+    },
+    s8320s_1: function (s, m) {
+        return suggVerbImpe(m[1]);
+    },
+    c8326s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":E|>chez", false) && _oDict.isValid(m[1]);
+    },
+    s8326s_1: function (s, m) {
+        return suggVerbTense(m[1], ":E", ":2s");
+    },
+    c8354s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":E", ":[GM]");
+    },
+    c8363s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":E", ":[GM]") && morphex(dDA, nextword1(s, m.end[0]), ":", ":(?:Y|3[sp])", true) && morph(dDA, prevword1(s, m.index), ":Cc", false, true) && ! look(s.slice(0,m.index), /~ +$/);
+    },
+    c8372s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":E", ":[GM]") && morphex(dDA, nextword1(s, m.end[0]), ":", ":(?:N|A|Q|Y|B|3[sp])", true) && morph(dDA, prevword1(s, m.index), ":Cc", false, true) && ! look(s.slice(0,m.index), /~ +$/);
+    },
+    c8381s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":E", ":[GM]") && morphex(dDA, nextword1(s, m.end[0]), ":", ":(?:N|A|Q|Y|MP)", true) && morph(dDA, prevword1(s, m.index), ":Cc", false, true) && ! look(s.slice(0,m.index), /~ +$/);
+    },
+    c8396s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].endsWith("t-en") && look(s.slice(0,m.index), /\bva$/i) && morph(dDA, nextword1(s, m.end[0]), ">guerre ", false, false));
+    },
+    c8404s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":E", ":(?:G|M[12])") && morphex(dDA, nextword1(s, m.end[0]), ":", ":(?:Y|[123][sp])", true);
+    },
+    s8404s_1: function (s, m) {
+        return m[0].replace(/ /g, "-");
+    },
+    c8413s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":E", false);
+    },
+    s8413s_1: function (s, m) {
+        return m[0].replace(/ /g, "-");
+    },
+    c8422s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":E", false) && morphex(dDA, nextword1(s, m.end[0]), ":[RC]", ":[NAQ]", true);
+    },
+    s8422s_1: function (s, m) {
+        return m[0].replace(/ /g, "-");
+    },
+    c8431s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":E", false) && morphex(dDA, nextword1(s, m.end[0]), ":[RC]", ":Y", true);
+    },
+    s8431s_1: function (s, m) {
+        return m[0].replace(/ /g, "-");
+    },
+    c8440s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, nextword1(s, m.end[0]), ":Y", false, false);
+    },
+    s8440s_1: function (s, m) {
+        return m[0].replace(/ /g, "-");
+    },
+    c8443s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index) && ! morph(dDA, nextword1(s, m.end[0]), ":Y", false, false);
+    },
+    s8446s_1: function (s, m) {
+        return m[0].replace(/ /g, "-");
+    },
+    c8466s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":R", false, true);
+    },
+    c8467s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    c8469s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] == "le" && ! morph(dDA, [m.start[2], m[2]], ":N.*:[me]:[si]");
+    },
+    c8469s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] == "la" && ! morph(dDA, [m.start[2], m[2]], ":N.*:[fe]:[si]");
+    },
+    c8469s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] == "les" && ! morph(dDA, [m.start[2], m[2]], ":N.*:.:[pi]");
+    },
+    c8473s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    c8475s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[123][sp]");
+    },
+    c8476s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":[123]s", false, false);
+    },
+    c8477s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":(?:[123]s|R)", false, false);
+    },
+    c8478s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":(?:[123]p|R)", false, false);
+    },
+    c8479s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, prevword1(s, m.index), ":3p", false, false);
+    },
+    c8480s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[123][sp]", false);
+    },
+    c8481s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y)", ":(?:[NAQ].*:m:[si]|G|M)");
+    },
+    c8482s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y)", ":(?:[NAQ].*:f:[si]|G|M)");
+    },
+    c8483s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y)", ":(?:[NAQ].*:[si]|G|M)");
+    },
+    c8484s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y)", ":(?:[NAQ].*:[si]|G|M)");
+    },
+    c8486s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y)", ":(?:A|G|M|1p)");
+    },
+    c8487s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":(?:[123][sp]|Y)", ":(?:A|G|M|2p)");
+    },
+    c8489s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V", false);
+    },
+    c8490s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! prevword1(s, m.index);
+    },
+    c8491s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":V", false);
+    },
+    c8492s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":2s", false) || look(s.slice(0,m.index), /\b(?:je|tu|on|ils?|elles?|nous) +$/i);
+    },
+    c8493s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":2s|>(ils?|elles?|on) ", false) || look(s.slice(0,m.index), /\b(?:je|tu|on|ils?|elles?|nous) +$/i);
+    },
+    c8507s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V", false) && m[2] != "A";
+    },
+    c8511s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V", false) && m[2] != "A";
+    },
+    c8515s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":Y") && m[2] != "A";
+    },
+    c8534s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:ce que?|tout) /i);
+    },
+    c8548s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":M") && ! (m[1].endsWith("ez") && look(s.slice(m.end[0]), / +vous/));
+    },
+    s8548s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c8556s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:Q|2p)", ":M");
+    },
+    s8556s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c8564s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:aimer|aller|désirer|devoir|espérer|pouvoir|préférer|souhaiter|venir) ", false) && ! morph(dDA, [m.start[1], m[1]], ":[GN]", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":M");
+    },
+    s8564s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c8573s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">devoir ", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":M") && ! morph(dDA, prevword1(s, m.index), ":D", false);
+    },
+    s8573s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c8581s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">(?:cesser|décider|défendre|suggérer|commander|essayer|tenter|choisir|permettre|interdire) ", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Q|2p)", ":M");
+    },
+    s8581s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c8589s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:Q|2p)", ":M");
+    },
+    s8589s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c8597s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">valoir ", false) && morphex(dDA, [m.start[2], m[2]], ":(?:Q|2p)", ":[GM]");
+    },
+    s8597s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c8605s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V1", ":[NM]") && ! m[1]._isTitle() && ! look(s.slice(0,m.index), /> +$/);
+    },
+    s8605s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c8614s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morphex(dDA, [m.start[2], m[2]], ":V1", ":N");
+    },
+    s8614s_1: function (s, m) {
+        return suggVerbInfi(m[2]);
+    },
+    c8622s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[Q123][sp]?", ":Y");
+    },
+    s8622s_1: function (s, m) {
+        return suggVerbInfi(m[1]);
+    },
+    c8638s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":V0e", false) && (morphex(dDA, [m.start[2], m[2]], ":Y", ":[NAQ]") || m[2] in aSHOULDBEVERB) && ! (m[1].search(/^(?:soit|été)$/i) >= 0) && ! morph(dDA, prevword1(s, m.index), ":Y|>ce", false, false) && ! look(s.slice(0,m.index), /ce (?:>|qu|que >) $/i) && ! look_chk1(dDA, s.slice(0,m.index), 0, /({w_2}) +> $/i, ":Y") && ! look_chk1(dDA, s.slice(0,m.index), 0, /^ *>? *([a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+)/i, ":Y");
+    },
+    s8638s_1: function (s, m) {
+        return suggVerbPpas(m[2]);
+    },
+    c8651s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":1s|>(?:en|y)", false);
+    },
+    s8651s_1: function (s, m) {
+        return suggVerb(m[1], ":1s");
+    },
+    c8655s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:1s|G)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:1s", false, false));
+    },
+    s8655s_1: function (s, m) {
+        return suggVerb(m[2], ":1s");
+    },
+    c8659s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:1s|G|1p)");
+    },
+    s8659s_1: function (s, m) {
+        return suggVerb(m[2], ":1s");
+    },
+    c8663s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:1s|G|1p)");
+    },
+    s8663s_1: function (s, m) {
+        return suggVerb(m[2], ":1s");
+    },
+    c8667s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:1s|G|1p|3p!)");
+    },
+    s8667s_1: function (s, m) {
+        return suggVerb(m[2], ":1s");
+    },
+    c8688s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:G|[ISK].*:2s)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:2s", false, false));
+    },
+    s8688s_1: function (s, m) {
+        return suggVerb(m[2], ":2s");
+    },
+    c8692s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:G|[ISK].*:2s)");
+    },
+    s8692s_1: function (s, m) {
+        return suggVerb(m[2], ":2s");
+    },
+    c8696s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:G|2p|3p!|[ISK].*:2s)");
+    },
+    s8696s_1: function (s, m) {
+        return suggVerb(m[2], ":2s");
+    },
+    c8709s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3s", false, false));
+    },
+    s8709s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8709s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && morph(dDA, [m.start[2], m[2]], ":3p", false);
+    },
+    c8714s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)");
+    },
+    s8714s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8714s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && morph(dDA, [m.start[2], m[2]], ":3p", false);
+    },
+    c8732s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3s", false, false));
+    },
+    s8732s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8736s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)");
+    },
+    s8736s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8746s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:3s|P|G|Q.*:m:[si])");
+    },
+    s8746s_1: function (s, m) {
+        return suggVerb(m[1], ":3s");
+    },
+    c8750s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:3s|P|G)");
+    },
+    s8750s_1: function (s, m) {
+        return suggVerb(m[1], ":3s");
+    },
+    c8760s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:N|A|3s|P|Q|G|V0e.*:3p)");
+    },
+    s8760s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8765s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|Q|G)");
+    },
+    s8765s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8775s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|Q|G|3p!)") && ! morph(dDA, prevword1(s, m.index), ":[VR]|>de", false, false);
+    },
+    s8775s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8795s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:3s|P|Q|G|3p!)") && ! morph(dDA, prevword1(s, m.index), ":[VRD]|>de", false, false) && !( morph(dDA, [m.start[1], m[1]], ":(?:Y|N.*:m:[si])", false) && ! (m[0].search(/ (?:qui|>) /) >= 0) );
+    },
+    s8795s_1: function (s, m) {
+        return suggVerb(m[1], ":3s");
+    },
+    c8806s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|Q|G|3p!)") && ! morph(dDA, prevword1(s, m.index), ":[VR]|>de", false, false) && !( morph(dDA, [m.start[2], m[2]], ":Y", false) && ! (m[0].search(/ (?:qui|>) /) >= 0) );
+    },
+    s8806s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8817s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":3s", false);
+    },
+    s8817s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8817s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[2], m[2]], ":3s", false) || look(s.slice(0,m.index), /\b(?:ils?|on) +/i);
+    },
+    c8830s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && ! morph(dDA, prevword1(s, m.index), ":R|>(?:et|ou)", false, false) && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3s", false, false));
+    },
+    s8830s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8830s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && morph(dDA, [m.start[2], m[2]], ":3p", false);
+    },
+    c8836s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && ! morph(dDA, prevword1(s, m.index), ":R|>(?:et|ou)", false, false);
+    },
+    s8836s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8836s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && morph(dDA, [m.start[2], m[2]], ":3p", false);
+    },
+    s8855s_1: function (s, m) {
+        return m[1].slice(0,-1)+"t";
+    },
+    c8863s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P|Q|[123][sp]|R)", true) && !( m[1].endsWith("ien") && look(s.slice(0,m.index), /> +$/) && morph(dDA, [m.start[2], m[2]], ":Y", false) );
+    },
+    s8863s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8882s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G|Q)") && morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P|Q|[123][sp]|R)", true);
+    },
+    s8882s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8887s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3s|P|G)") && morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P|Q|[123][sp]|R)", true);
+    },
+    s8887s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8897s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":Y", false) && morph(dDA, [m.start[2], m[2]], ":V.[a-z_!?]+(?!.*:(?:3s|P|Q|Y|3p!))");
+    },
+    s8897s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c8906s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! ((m[0].search(/^une? +(?:dizaine|douzaine|quinzaine|vingtaine|trentaine|quarantaine|cinquantaine|soixantaine|centaine|majorité|minorité|millier|poignée) /i) >= 0) && morph(dDA, [m.start[3], m[3]], ":3p", false)) && morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P)", true) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[3], m[3]], ":V", ":(?:3s|P|Q|Y|3p!|G)") && ! (look(s.slice(0,m.index), /\b(?:et|ou) +$/i) && morph(dDA, [m.start[3], m[3]], ":[1-3]p", false)) && ! look(s.slice(0,m.index), /\bni .* ni\b/i) && ! checkAgreement(m[2], m[3]);
+    },
+    s8906s_1: function (s, m) {
+        return suggVerb(m[3], ":3s");
+    },
+    c8912s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! ((m[0].search(/^une? +(?:dizaine|douzaine|quinzaine|vingtaine|trentaine|quarantaine|cinquantaine|soixantaine|centaine|majorité|minorité|millier|poignée) /i) >= 0) && morph(dDA, [m.start[3], m[3]], ":3p", false)) && morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P)", true) && morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[si]", false) && morphex(dDA, [m.start[3], m[3]], ":V", ":(?:3s|1p|P|Q|Y|3p!|G)") && ! (look(s.slice(0,m.index), /\b(?:et|ou) +$/i) && morph(dDA, [m.start[3], m[3]], ":[123]p", false)) && ! look(s.slice(0,m.index), /\bni .* ni\b/i);
+    },
+    s8912s_1: function (s, m) {
+        return suggVerb(m[3], ":3s");
+    },
+    c8939s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P)", true) && isAmbiguousAndWrong(m[2], m[3], ":s", ":3s") && ! (look(s.slice(0,m.index), /\b(?:et|ou) +$/i) && morph(dDA, [m.start[3], m[3]], ":(?:[123]p|p)", false)) && ! look(s.slice(0,m.index), /\bni .* ni\b/i);
+    },
+    s8939s_1: function (s, m) {
+        return suggVerb(m[3], ":3s", suggSing);
+    },
+    c8945s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, prevword1(s, m.index), ":C", ":(?:Y|P)", true) && isVeryAmbiguousAndWrong(m[2], m[3], ":s", ":3s", ! prevword1(s, m.index)) && ! (look(s.slice(0,m.index), /\b(?:et|ou) +$/i) && morph(dDA, [m.start[3], m[3]], ":(?:[123]p|p)", false)) && ! look(s.slice(0,m.index), /\bni .* ni\b/i);
+    },
+    s8945s_1: function (s, m) {
+        return suggVerb(m[3], ":3s", suggSing);
+    },
+    c8962s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ( morph(dDA, [m.start[0], m[0]], ":1s") || ( look(s.slice(0,m.index), /> +$/) && morph(dDA, [m.start[0], m[0]], ":1s", false) ) ) && ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/)) && ! look(sx.slice(0,m.index), /\b(?:j(?:e |[’'])|moi(?:,? qui| seul) )/i);
+    },
+    s8962s_1: function (s, m) {
+        return suggVerb(m[0], ":3s");
+    },
+    c8967s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[0], m[0]], ":2s", ":(?:E|G|W|M|J|[13][sp]|2p)") && ! m[0].slice(0,1)._isUpperCase() && ! look(s.slice(0,m.index), /^ *$/) && ( ! morph(dDA, [m.start[0], m[0]], ":[NAQ]", false) || look(s.slice(0,m.index), /> +$/) ) && ! look(sx.slice(0,m.index), /\bt(?:u |[’']|oi,? qui |oi seul )/i);
+    },
+    s8967s_1: function (s, m) {
+        return suggVerb(m[0], ":3s");
+    },
+    c8973s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[0], m[0]], ":2s", ":(?:G|W|M|J|[13][sp]|2p)") && ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/)) && ( ! morph(dDA, [m.start[0], m[0]], ":[NAQ]", false) || look(s.slice(0,m.index), /> +$/) ) && ! look(sx.slice(0,m.index), /\bt(?:u |[’']|oi,? qui |oi seul )/i);
+    },
+    s8973s_1: function (s, m) {
+        return suggVerb(m[0], ":3s");
+    },
+    c8979s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[0], m[0]], ":[12]s", ":(?:E|G|W|M|J|3[sp]|2p|1p)") && ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/)) && ( ! morph(dDA, [m.start[0], m[0]], ":[NAQ]", false) || look(s.slice(0,m.index), /> +$/) || ( (m[0].search(/^étais$/i) >= 0) && ! morph(dDA, prevword1(s, m.index), ":[DA].*:p", false, true) ) ) && ! look(sx.slice(0,m.index), /\b(?:j(?:e |[’'])|moi(?:,? qui| seul) |t(?:u |[’']|oi,? qui |oi seul ))/i);
+    },
+    s8979s_1: function (s, m) {
+        return suggVerb(m[0], ":3s");
+    },
+    c8985s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/)) && ! look(sx.slice(0,m.index), /\b(?:j(?:e |[’'])|moi(?:,? qui| seul) |t(?:u |[’']|oi,? qui |oi seul ))/i);
+    },
+    s8985s_1: function (s, m) {
+        return suggVerb(m[0], ":3s");
+    },
+    c8989s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! (m[0].slice(0,1)._isUpperCase() && look(sx.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/)) && ! look(sx.slice(0,m.index), /\b(?:j(?:e |[’'])|moi(?:,? qui| seul) |t(?:u |[’']|oi,? qui |oi seul ))/i);
+    },
+    s8989s_1: function (s, m) {
+        return suggVerb(m[0], ":3s");
+    },
+    c9002s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:1p|3[sp])") && ! look(s.slice(m.end[0]), /^ +(?:je|tu|ils?|elles?|on|[vn]ous)/);
+    },
+    s9002s_1: function (s, m) {
+        return suggVerb(m[1], ":1p");
+    },
+    c9006s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":1p") && ! look(s.slice(m.end[0]), /^ +(?:je|tu|ils?|elles?|on|[vn]ous)/);
+    },
+    s9006s_1: function (s, m) {
+        return suggVerb(m[1], ":1p");
+    },
+    c9010s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":1p") && ! look(s.slice(m.end[0]), /^ +(?:ils|elles)/);
+    },
+    s9010s_1: function (s, m) {
+        return suggVerb(m[1], ":1p");
+    },
+    c9022s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:2p|3[sp])") && ! look(s.slice(m.end[0]), /^ +(?:je|ils?|elles?|on|[vn]ous)/);
+    },
+    s9022s_1: function (s, m) {
+        return suggVerb(m[1], ":2p");
+    },
+    c9026s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":2p") && ! look(s.slice(m.end[0]), /^ +(?:je|ils?|elles?|on|[vn]ous)/);
+    },
+    s9026s_1: function (s, m) {
+        return suggVerb(m[1], ":2p");
+    },
+    c9037s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[0], m[0]], ":V.*:1p", ":[EGMNAJ]") && ! (m[0].slice(0,1)._isUpperCase() && look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/)) && ! look(sx.slice(0,m.index), /\b(?:[nN]ous(?:-mêmes?|)|[eE]t moi(?:-même|)|[nN]i (?:moi|nous)),? /);
+    },
+    s9037s_1: function (s, m) {
+        return suggVerb(m[0], ":3p");
+    },
+    c9042s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[0], m[0]], ":V.*:2p", ":[EGMNAJ]") && ! (m[0].slice(0,1)._isUpperCase() && look(s.slice(0,m.index), /[a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ]/)) && ! look(sx.slice(0,m.index), /\b(?:[vV]ous(?:-mêmes?|)|[eE]t toi(?:-même|)|[tT]oi(?:-même|) et|[nN]i (?:vous|toi)),? /);
+    },
+    c9059s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)") && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3p", false, false));
+    },
+    s9059s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9059s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && morph(dDA, [m.start[2], m[2]], ":3s", false);
+    },
+    c9064s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|G)");
+    },
+    s9064s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9064s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && morph(dDA, [m.start[2], m[2]], ":3s", false);
+    },
+    c9074s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)");
+    },
+    s9074s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9083s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)") && ! morph(dDA, prevword1(s, m.index), ":[VR]", false, false) && ! (morph(dDA, [m.start[2], m[2]], ":Y", false) && (m[1].search(/lesquel/i) >= 0) && ! (m[0].search(/ qui |>/) >= 0));
+    },
+    s9083s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9093s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)") && ! morph(dDA, prevword1(s, m.index), ":R", false, false) && ! (morph(dDA, [m.start[2], m[2]], ":[PQ]", false) && morph(dDA, prevword1(s, m.index), ":V0.*:3p", false, false));
+    },
+    s9093s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9093s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && morph(dDA, [m.start[2], m[2]], ":3s", false);
+    },
+    c9098s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|G)") && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    s9098s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9098s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return bCondMemo && morph(dDA, [m.start[2], m[2]], ":3s", false);
+    },
+    c9118s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:à|avec|sur|chez|par|dans|parmi|contre|ni|de|pour|sous) +$/i);
+    },
+    c9129s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)") && ! morph(dDA, prevword1(s, m.index), ":[VR]|>de ", false, false);
+    },
+    s9129s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9134s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:3p|P|Q|G)") && ! morph(dDA, prevword1(s, m.index), ":[VR]", false, false);
+    },
+    s9134s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9147s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V", ":(?:G|N|A|3p|P|Q)") && ! morph(dDA, prevword1(s, m.index), ":[VR]", false, false);
+    },
+    s9147s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9156s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[3], m[3]], ":V", ":(?:[13]p|P|Q|Y|G|A.*:e:[pi])") && morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && ! checkAgreement(m[2], m[3]) && !( morph(dDA, [m.start[3], m[3]], ":3s", false) && look(s.slice(0,m.index), /\b(?:le|ce(?:tte|t|)|[mts](?:on|a)) .+ entre .+ et /i) );
+    },
+    s9156s_1: function (s, m) {
+        return suggVerb(m[3], ":3p");
+    },
+    c9161s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[3], m[3]], ":V", ":(?:[13]p|P|Y|G)") && morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && !( morph(dDA, [m.start[3], m[3]], ":3s", false) && look(s.slice(0,m.index), /\b(?:le|ce(?:tte|t|)|[mts](?:on|a)) .+ entre .+ et /i) );
+    },
+    s9161s_1: function (s, m) {
+        return suggVerb(m[3], ":3p");
+    },
+    c9185s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":(?:[13]p|P|G|Q)") && morph(dDA, nextword1(s, m.end[0]), ":(?:R|D.*:p)|>au ", false, true);
+    },
+    s9185s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9189s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":[NAQ].*:[pi]", false) && morphex(dDA, [m.start[2], m[2]], ":V", ":(?:[13]p|P|G)");
+    },
+    s9189s_1: function (s, m) {
+        return suggVerb(m[2], ":3p");
+    },
+    c9199s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && isAmbiguousAndWrong(m[2], m[3], ":p", ":3p");
+    },
+    s9199s_1: function (s, m) {
+        return suggVerb(m[3], ":3p", suggPlur);
+    },
+    c9208s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && isVeryAmbiguousAndWrong(m[1], m[2], ":p", ":3p", ! prevword1(s, m.index));
+    },
+    s9208s_1: function (s, m) {
+        return suggVerb(m[2], ":3p", suggPlur);
+    },
+    c9226s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && isVeryAmbiguousAndWrong(m[1], m[2], ":m:p", ":3p", ! prevword1(s, m.index));
+    },
+    s9226s_1: function (s, m) {
+        return suggVerb(m[2], ":3p", suggMasPlur);
+    },
+    c9234s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, prevword1(s, m.index), ":C", ":[YP]", true) && isVeryAmbiguousAndWrong(m[1], m[2], ":f:p", ":3p", ! prevword1(s, m.index));
+    },
+    s9234s_1: function (s, m) {
+        return suggVerb(m[2], ":3p", suggFemPlur);
+    },
+    c9246s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V0e", ":3s");
+    },
+    s9246s_1: function (s, m) {
+        return suggVerb(m[1], ":3s");
+    },
+    c9255s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V0e.*:3s", ":3p");
+    },
+    s9255s_1: function (s, m) {
+        return m[1].slice(0,-1);
+    },
+    c9265s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V0e", ":3p");
+    },
+    s9265s_1: function (s, m) {
+        return suggVerb(m[1], ":3p");
+    },
+    c9274s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":V0e.*:3p", ":3s");
+    },
+    c9287s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(0,m.index), /\b(?:et |ou |[dD][eu] |ni |[dD]e l’) *$/) && morph(dDA, [m.start[1], m[1]], ":M", false) && morphex(dDA, [m.start[2], m[2]], ":[123][sp]", ":(?:G|3s|3p!|P|M|[AQ].*:[si])") && ! morph(dDA, prevword1(s, m.index), ":[VRD]", false, false) && ! look(s.slice(0,m.index), /([A-ZÉÈ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+), +([A-ZÉÈ][a-zA-Zà-öÀ-Ö0-9_ø-ÿØ-ßĀ-ʯﬁ-ﬆ-]+), +$/) && ! (morph(dDA, [m.start[2], m[2]], ":3p", false) && prevword1(s, m.index));
+    },
+    s9287s_1: function (s, m) {
+        return suggVerb(m[2], ":3s");
+    },
+    c9305s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[1], m[1]], ":M", false) && morph(dDA, [m.start[2], m[2]], ":M", false) && morphex(dDA, [m.start[3], m[3]], ":[123][sp]", ":(?:G|3p|P|Q.*:[pi])") && ! morph(dDA, prevword1(s, m.index), ":R", false, false);
+    },
+    s9305s_1: function (s, m) {
+        return suggVerb(m[3], ":3p");
+    },
+    c9319s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":(?:[12]s|3p)", ":(?:3s|G|W|3p!)") && ! look(s.slice(m.end[0]), /^ +(?:et|ou) (?:l(?:es? |a |’|eurs? )|[mts](?:a|on|es) |ce(?:tte|ts|) |[nv]o(?:s|tre) |d(?:u|es) )/);
+    },
+    s9319s_1: function (s, m) {
+        return suggVerb(m[1], ":3s");
+    },
+    c9335s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[123]s", ":(?:3p|G|W)");
+    },
+    s9335s_1: function (s, m) {
+        return suggVerb(m[1], ":3p");
+    },
+    c9343s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[12][sp]", ":(?:G|W|3[sp]|Y|P|Q|N)");
+    },
+    s9343s_1: function (s, m) {
+        return suggVerb(m[1], ":3s");
+    },
+    c9351s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":[12][sp]", ":(?:G|W|3[sp])");
+    },
+    s9351s_1: function (s, m) {
+        return suggVerb(m[1], ":3s");
+    },
+    c9361s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V.*:1[sŝś]", ":[GNW]") && ! look(s.slice(0,m.index), /\bje +>? *$/i) && ! morph(dDA, nextword1(s, m.end[0]), ":(?:Oo|X|1s)", false, false);
+    },
+    s9361s_1: function (s, m) {
+        return m[1].slice(0,-1)+"é-je";
+    },
+    c9365s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V.*:1s", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:je|tu) +>? *$/i) && ! morph(dDA, nextword1(s, m.end[0]), ":(?:Oo|X|1s)", false, false);
+    },
+    c9369s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:2s", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:je|tu) +>? *$/i);
+    },
+    c9373s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:3s", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:ce|il|elle|on) +>? *$/i);
+    },
+    s9373s_1: function (s, m) {
+        return m[0].replace(/ /g, "-");
+    },
+    c9377s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|aussi|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:3s", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:ce|il|elle|on) +>? *$/i);
+    },
+    c9381s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|aussi|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:1p", ":[GNW]") && ! morph(dDA, prevword1(s, m.index), ":Os", false, false) && ! morph(dDA, nextword1(s, m.end[0]), ":Y", false, false);
+    },
+    c9386s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|aussi|>)/) && ! m[1].endsWith("euillez") && morphex(dDA, [m.start[1], m[1]], ":V.*:2p", ":[GNW]") && ! morph(dDA, prevword1(s, m.index), ":Os", false, false) && ! morph(dDA, nextword1(s, m.end[0]), ":Y", false, false);
+    },
+    c9391s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! look(s.slice(m.end[0]), /^ +(?:en|y|ne|aussi|>)/) && morphex(dDA, [m.start[1], m[1]], ":V.*:3p", ":[GNW]") && ! look(s.slice(0,m.index), /\b(?:ce|ils|elles) +>? *$/i);
+    },
+    s9391s_1: function (s, m) {
+        return m[0].replace(/ /g, "-");
+    },
+    c9408s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":1[sśŝ]");
+    },
+    s9408s_1: function (s, m) {
+        return suggVerb(m[1], ":1ś");
+    },
+    c9408s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":V", false);
+    },
+    s9408s_2: function (s, m) {
+        return suggSimil(m[1], ":1[sśŝ]");
+    },
+    c9418s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":[ISK].*:2s");
+    },
+    s9418s_1: function (s, m) {
+        return suggVerb(m[1], ":2s");
+    },
+    c9418s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":V", false);
+    },
+    s9418s_2: function (s, m) {
+        return suggSimil(m[1], ":2s");
+    },
+    c9427s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":3s");
+    },
+    s9427s_1: function (s, m) {
+        return suggVerb(m[1], ":3s");
+    },
+    c9427s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "t" && (! m[1].endsWith("oilà") || m[2] != "il") && morphex(dDA, [m.start[1], m[1]], ":", ":V");
+    },
+    s9427s_2: function (s, m) {
+        return suggSimil(m[1], ":3s");
+    },
+    c9427s_3: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! m[2].endsWith(("n", "N")) && morphex(dDA, [m.start[1], m[1]], ":3p", ":3s");
+    },
+    c9442s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":(?:1p|E:2[sp])");
+    },
+    s9442s_1: function (s, m) {
+        return suggVerb(m[1], ":1p");
+    },
+    c9442s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":", ":V|>chez ");
+    },
+    s9442s_2: function (s, m) {
+        return suggSimil(m[1], ":1p");
+    },
+    c9451s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":2p");
+    },
+    s9451s_1: function (s, m) {
+        return suggVerb(m[1], ":2p");
+    },
+    c9451s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return ! morph(dDA, [m.start[1], m[1]], ":V|>chez ", false);
+    },
+    s9451s_2: function (s, m) {
+        return suggSimil(m[1], ":2p");
+    },
+    c9461s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[1], m[1]], ":V", ":3p") && _oDict.isValid(m[1]);
+    },
+    s9461s_1: function (s, m) {
+        return suggVerb(m[1], ":3p");
+    },
+    c9461s_2: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return m[1] != "t" && ! morph(dDA, [m.start[1], m[1]], ":V", false) && _oDict.isValid(m[1]);
+    },
+    s9461s_2: function (s, m) {
+        return suggSimil(m[1], ":3p");
+    },
+    c9475s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morph(dDA, [m.start[2], m[2]], ":V.......e_.*:Q", false);
     },
-    c6471s_1: function (s, sx, m, dDA, sCountry) {
+    c9478s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ">avoir ", false) && morph(dDA, [m.start[2], m[2]], ":V.......e_.*:Q", false);
     },
-    c6483s_1: function (s, sx, m, dDA, sCountry) {
+    c9492s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morphex(dDA, [m.start[2], m[2]], ":[YX]|>y ", "R");
+    },
+    c9508s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
+        return morph(dDA, [m.start[2], m[2]], ":[YX]", false);
+    },
+    c9522s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ":(?:Os|M)", false) && morphex(dDA, [m.start[2], m[2]], ":[SK]", ":(?:G|V0|I)") && ! prevword1(s, m.index);
     },
-    c6486s_1: function (s, sx, m, dDA, sCountry) {
+    c9526s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morphex(dDA, [m.start[1], m[1]], ":[SK]", ":(?:G|V0|I)") && ! prevword1(s, m.index);
     },
-    c6492s_1: function (s, sx, m, dDA, sCountry) {
+    c9536s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ":(?:Os|M)", false) && morphex(dDA, [m.start[2], m[2]], ":S", ":[IG]");
     },
-    s6492s_1: function (s, m) {
+    s9536s_1: function (s, m) {
         return suggVerbMode(m[2], ":I", m[1]);
     },
-    c6492s_2: function (s, sx, m, dDA, sCountry) {
-        return morph(dDA, [m.start[1], m[1]], ":(?:Os|M)", false) && morph(dDA, [m.start[2], m[2]], ":K", false);
-    },
-    s6492s_2: function (s, m) {
-        return suggVerbMode(m[2], ":If", m[1]);
-    },
-    c6503s_1: function (s, sx, m, dDA, sCountry) {
+    c9547s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ">(?:afin|pour|quoi|permettre|falloir|vouloir|ordonner|exiger|désirer|douter|préférer|suffire) ", false) && morph(dDA, [m.start[2], m[2]], ":(?:Os|M)", false) && ! morph(dDA, [m.start[3], m[3]], ":[GYS]", false) && ! (morph(dDA, [m.start[1], m[1]], ">douter ", false) && morph(dDA, [m.start[3], m[3]], ":(?:If|K)", false));
     },
-    s6503s_1: function (s, m) {
+    s9547s_1: function (s, m) {
         return suggVerbMode(m[3], ":S", m[2]);
     },
-    c6518s_1: function (s, sx, m, dDA, sCountry) {
+    c9564s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ":(?:Os|M)", false) && ! morph(dDA, [m.start[2], m[2]], ":[GYS]", false);
     },
-    s6518s_1: function (s, m) {
+    s9564s_1: function (s, m) {
         return suggVerbMode(m[2], ":S", m[1]);
     },
-    c6526s_1: function (s, sx, m, dDA, sCountry) {
+    c9572s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morphex(dDA, [m.start[2], m[2]], ":S", ":[GIK]") && ! (m[2].search(/^e(?:usse|û[mt]es|ût)/) >= 0);
     },
-    s6526s_1: function (s, m) {
+    s9572s_1: function (s, m) {
         return suggVerbMode(m[2], ":I", m[1]);
     },
-    c6529s_1: function (s, sx, m, dDA, sCountry) {
+    c9576s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morphex(dDA, [m.start[1], m[1]], ":S", ":[GIK]") && m[1] != "eusse";
     },
-    s6529s_1: function (s, m) {
+    s9576s_1: function (s, m) {
         return suggVerbMode(m[1], ":I", "je");
     },
-    c6539s_1: function (s, sx, m, dDA, sCountry) {
+    c9587s_1: function (s, sx, m, dDA, sCountry, bCondMemo) {
         return morph(dDA, [m.start[1], m[1]], ":(?:Os|M)", false) && (morph(dDA, [m.start[2], m[2]], ":V.*:S") || morph(dDA, [m.start[2], m[2]], ":V0e.*:S", false));
     },
-    s6539s_1: function (s, m) {
+    s9587s_1: function (s, m) {
         return suggVerbMode(m[2], ":I", m[1]);
     },
 }

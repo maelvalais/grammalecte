@@ -6,6 +6,7 @@ header {
     background-color: hsl(0, 0%, 94%);
     padding: 10px 20px;
     border-bottom: 1px solid hsl(0, 0%, 90%);
+    color: hsl(0, 0%, 0%);
 }
 
 
@@ -13,6 +14,7 @@ body {
     background-color: hsl(120, 10%, 92%);
     font-family: "Trebuchet MS", sans-serif;
     overflow-x: hidden;
+    color: hsl(0, 0%, 0%);
 }
 
 #options {
@@ -66,6 +68,7 @@ legend .option {
 
 fieldset .opt_lbl {
     display: inline-block;
+    color: hsl(0, 0%, 20%);
 }
 
 

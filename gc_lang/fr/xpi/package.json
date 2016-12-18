@@ -2,7 +2,7 @@
   "name": "grammalecte-fr",
   "title": "Grammalecte [fr]",
   "id": "French-GC@grammalecte.net",
-  "version": "0.5.8",
+  "version": "0.5.14",
   "description": "Correcteur grammatical pour le français",
   "homepage": "http://www.dicollecte.org/grammalecte",
   "main": "ui.js",
@@ -69,7 +69,7 @@
       "title": "*",
       "hidden": true,
       "type": "integer",
-      "value": 500
+      "value": 600
     },
     {
       "name": "nLxgPanelWidth",

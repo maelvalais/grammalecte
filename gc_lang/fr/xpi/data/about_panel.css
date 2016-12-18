@@ -7,12 +7,14 @@ header {
     border-bottom: 1px solid hsl(0, 0%, 90%);
     padding: 10px 0;
     font-family: "Verdana", sans-serif;
+    color: hsl(0, 0%, 0%);
 }
 
 body {
 	background-color: hsl(0, 0%, 86%);
 	font-family: "Trebuchet MS", sans-serif;
 	overflow-x: hidden;
+    color: hsl(0, 0%, 0%);
 }
 
 h1 {
@@ -24,7 +26,8 @@ h1 {
 p.underline {
     padding: 5px 0;
     background-color: hsl(210, 5%, 92%);
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    color: hsl(0, 0%, 0%);
 }
 
 #links {
@@ -60,6 +63,7 @@ a.link:hover {
 }
 .dict_description {
     padding: 5px 0 0 20px;
+    color: hsl(0, 0%, 0%);
 }
 
 #help_section {

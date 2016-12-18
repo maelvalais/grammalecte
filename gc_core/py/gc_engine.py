@@ -1,9 +1,11 @@
-# -*- encoding: UTF-8 -*-
+# Grammalecte
+# Grammar checker engine
 
 import re
 import sys
 import os
 import traceback
+from itertools import chain
 
 from ..ibdawg import IBDAWG
 from ..echo import echo
@@ -12,25 +14,25 @@ from . import gc_options
 
 __all__ = [ "lang", "locales", "pkg", "name", "version", "author", \
             "load", "parse", "getDictionary", \
-            "setOptions", "getOptions", "getOptionsLabels", "resetOptions", \
-            "ignoreRule", "resetIgnoreRules" ]
+            "setOption", "setOptions", "getOptions", "getOptionsLabels", "resetOptions", "displayOptions", \
+            "ignoreRule", "resetIgnoreRules", "reactivateRule", "listRules", "displayRules" ]
 
-__version__ = u"${version}"
+__version__ = "${version}"
 
 
-lang = u"${lang}"
+lang = "${lang}"
 locales = ${loc}
-pkg = u"${implname}"
-name = u"${name}"
-version = u"${version}"
-author = u"${author}"
+pkg = "${implname}"
+name = "${name}"
+version = "${version}"
+author = "${author}"
 
 # commons regexes
-_zEndOfSentence = re.compile(u'([.?!:;…][ .?!… »”")]*|.$)')
-_zBeginOfParagraph = re.compile(u"^\W*")
-_zEndOfParagraph = re.compile(u"\W*$")
-_zNextWord = re.compile(u" +(\w[\w-]*)")
-_zPrevWord = re.compile(u"(\w[\w-]*) +$")
+_zEndOfSentence = re.compile('([.?!:;…][ .?!… »”")]*|.$)')
+_zBeginOfParagraph = re.compile("^\W*")
+_zEndOfParagraph = re.compile("\W*$")
+_zNextWord = re.compile(" +(\w[\w-]*)")
+_zPrevWord = re.compile("(\w[\w-]*) +$")
 
 # grammar rules and dictionary
 _rules = None
@@ -44,7 +46,7 @@ _GLOBALS = globals()
 
 #### Parsing
 
-def parse (sText, sCountry="${country_default}", bDebug=False, dOptions=None):
+def parse (sText, sCountry="${country_default}", bDebug=False, dOptions=None, bContext=False):
     "analyses the paragraph sText and returns list of errors"
     aErrors = None
     sAlt = sText
@@ -53,18 +55,28 @@ def parse (sText, sCountry="${country_default}", bDebug=False, dOptions=None):
 
     # parse paragraph
     try:
-        sNew, aErrors = _proofread(sText, sAlt, 0, True, dDA, sCountry, dOpt, bDebug)
+        sNew, aErrors = _proofread(sText, sAlt, 0, True, dDA, sCountry, dOpt, bDebug, bContext)
         if sNew:
             sText = sNew
     except:
         raise
+
+    # cleanup
+    if " " in sText:
+        sText = sText.replace(" ", ' ') # nbsp
+    if " " in sText:
+        sText = sText.replace(" ", ' ') # nnbsp
+    if "'" in sText:
+        sText = sText.replace("'", "’")
+    if "‑" in sText:
+        sText = sText.replace("‑", "-") # nobreakdash
 
     # parse sentences
     for iStart, iEnd in _getSentenceBoundaries(sText):
         if 4 < (iEnd - iStart) < 2000:
             dDA.clear()
             try:
-                _, errs = _proofread(sText[iStart:iEnd], sAlt[iStart:iEnd], iStart, False, dDA, sCountry, dOpt, bDebug)
+                _, errs = _proofread(sText[iStart:iEnd], sAlt[iStart:iEnd], iStart, False, dDA, sCountry, dOpt, bDebug, bContext)
                 aErrors.extend(errs)
             except:
                 raise
@@ -78,71 +90,59 @@ def _getSentenceBoundaries (sText):
         iStart = m.end()
 
 
-def _proofread (s, sx, nOffset, bParagraph, dDA, sCountry, dOptions, bDebug):
+def _proofread (s, sx, nOffset, bParagraph, dDA, sCountry, dOptions, bDebug, bContext):
     aErrs = []
     bChange = False
-    
-    if not bParagraph:
-        # after the first pass, we modify automatically some characters
-        if u" " in s:
-            s = s.replace(u" ", u' ') # nbsp
-            bChange = True
-        if u" " in s:
-            s = s.replace(u" ", u' ') # nnbsp
-            bChange = True
-        if u"@" in s:
-            s = s.replace(u"@", u' ')
-            bChange = True
-        if u"'" in s:
-            s = s.replace(u"'", u"’")
-            bChange = True
-        if u"‑" in s:
-            s = s.replace(u"‑", u"-") # nobreakdash
-            bChange = True
-
     bIdRule = option('idrule')
 
     for sOption, lRuleGroup in _getRules(bParagraph):
         if not sOption or dOptions.get(sOption, False):
-            for zRegex, bUppercase, sRuleId, lActions in lRuleGroup:
+            for zRegex, bUppercase, sLineId, sRuleId, lActions in lRuleGroup:
                 if sRuleId not in _aIgnoredRules:
                     for m in zRegex.finditer(s):
+                        bCondMemo = None
                         for sFuncCond, cActionType, sWhat, *eAct in lActions:
                             # action in lActions: [ condition, action type, replacement/suggestion/action[, iGroup[, message, URL]] ]
                             try:
-                                if not sFuncCond or _GLOBALS[sFuncCond](s, sx, m, dDA, sCountry):
+                                bCondMemo = not sFuncCond or _GLOBALS[sFuncCond](s, sx, m, dDA, sCountry, bCondMemo)
+                                if bCondMemo:
                                     if cActionType == "-":
                                         # grammar error
                                         # (text, replacement, nOffset, m, iGroup, sId, bUppercase, sURL, bIdRule)
-                                        aErrs.append(_createError(s, sWhat, nOffset, m, eAct[0], sRuleId, bUppercase, eAct[1], eAct[2], bIdRule, sOption))
+                                        aErrs.append(_createError(s, sx, sWhat, nOffset, m, eAct[0], sLineId, sRuleId, bUppercase, eAct[1], eAct[2], bIdRule, sOption, bContext))
                                     elif cActionType == "~":
                                         # text processor
                                         s = _rewrite(s, sWhat, eAct[0], m, bUppercase)
                                         bChange = True
                                         if bDebug:
-                                            echo(u"~ " + s + "  -- " + m.group(eAct[0]) + "  # " + sRuleId)
+                                            echo("~ " + s + "  -- " + m.group(eAct[0]) + "  # " + sLineId)
                                     elif cActionType == "=":
                                         # disambiguation
                                         _GLOBALS[sWhat](s, m, dDA)
                                         if bDebug:
-                                            echo(u"= " + m.group(0) + "  # " + sRuleId + "\nDA: " + str(dDA))
+                                            echo("= " + m.group(0) + "  # " + sLineId + "\nDA: " + str(dDA))
+                                    elif cActionType == ">":
+                                        # we do nothing, this test is just a condition to apply all following actions
+                                        pass
                                     else:
-                                        echo("# error: unknown action at " + sRuleId)
+                                        echo("# error: unknown action at " + sLineId)
+                                elif cActionType == ">":
+                                    break
                             except Exception as e:
-                                raise Exception(str(e), sRuleId)
+                                raise Exception(str(e), sLineId)
     if bChange:
         return (s, aErrs)
     return (False, aErrs)
 
 
-def _createWriterError (s, sRepl, nOffset, m, iGroup, sId, bUppercase, sMsg, sURL, bIdRule, sOption):
+def _createWriterError (s, sx, sRepl, nOffset, m, iGroup, sLineId, sRuleId, bUppercase, sMsg, sURL, bIdRule, sOption, bContext):
     "error for Writer (LO/OO)"
     xErr = SingleProofreadingError()
     #xErr = uno.createUnoStruct( "com.sun.star.linguistic2.SingleProofreadingError" )
-    xErr.nErrorStart        = nOffset + m.start(iGroup)
-    xErr.nErrorLength       = m.end(iGroup) - m.start(iGroup)
-    xErr.nErrorType         = PROOFREADING
-    xErr.aRuleIdentifier    = sId
+    xErr.nErrorStart = nOffset + m.start(iGroup)
+    xErr.nErrorLength = m.end(iGroup) - m.start(iGroup)
+    xErr.nErrorType = PROOFREADING
+    xErr.aRuleIdentifier = sRuleId
     # suggestions
     if sRepl[0:1] == "=":
         sugg = _GLOBALS[sRepl[1:]](s, m)
@@ -165,28 +165,29 @@ def _createWriterError (s, sRepl, nOffset, m, iGroup, sId, bUppercase, sMsg, sUR
         sMessage = _GLOBALS[sMsg[1:]](s, m)
     else:
         sMessage = m.expand(sMsg)
-    xErr.aShortComment      = sMessage   # sMessage.split("|")[0]     # in context menu
-    xErr.aFullComment       = sMessage   # sMessage.split("|")[-1]    # in dialog
+    xErr.aShortComment = sMessage   # sMessage.split("|")[0]     # in context menu
+    xErr.aFullComment = sMessage   # sMessage.split("|")[-1]    # in dialog
     if bIdRule:
-        xErr.aShortComment += "  # " + sId
+        xErr.aShortComment += "  # " + sLineId + " # " + sRuleId
     # URL
     if sURL:
         p = PropertyValue()
         p.Name = "FullCommentURL"
         p.Value = sURL
-        xErr.aProperties    = (p,)
+        xErr.aProperties = (p,)
     else:
-        xErr.aProperties    = ()
+        xErr.aProperties = ()
     return xErr
 
 
-def _createDictError (s, sRepl, nOffset, m, iGroup, sId, bUppercase, sMsg, sURL, bIdRule, sOption):
+def _createDictError (s, sx, sRepl, nOffset, m, iGroup, sLineId, sRuleId, bUppercase, sMsg, sURL, bIdRule, sOption, bContext):
     "error as a dictionary"
     dErr = {}
-    dErr["nStart"]          = nOffset + m.start(iGroup)
-    dErr["nEnd"]            = nOffset + m.end(iGroup)
-    dErr["sRuleId"]         = sId
-    dErr["sType"]           = sOption  if sOption  else "notype"
+    dErr["nStart"] = nOffset + m.start(iGroup)
+    dErr["nEnd"] = nOffset + m.end(iGroup)
+    dErr["sLineId"] = sLineId
+    dErr["sRuleId"] = sRuleId
+    dErr["sType"] = sOption  if sOption  else "notype"
     # suggestions
     if sRepl[0:1] == "=":
         sugg = _GLOBALS[sRepl[1:]](s, m)
@@ -209,44 +210,69 @@ def _createDictError (s, sRepl, nOffset, m, iGroup, sId, bUppercase, sMsg, sURL,
         sMessage = _GLOBALS[sMsg[1:]](s, m)
     else:
         sMessage = m.expand(sMsg)
-    dErr["sMessage"]      = sMessage
+    dErr["sMessage"] = sMessage
     if bIdRule:
-        dErr["sMessage"] += "  # " + sId
+        dErr["sMessage"] += "  # " + sLineId + " # " + sRuleId
     # URL
     dErr["URL"] = sURL  if sURL  else ""
+    # Context
+    if bContext:
+        dErr['sUnderlined'] = sx[m.start(iGroup):m.end(iGroup)]
+        dErr['sBefore'] = sx[max(0,m.start(iGroup)-80):m.start(iGroup)]
+        dErr['sAfter'] = sx[m.end(iGroup):m.end(iGroup)+80]
     return dErr
 
 
 def _rewrite (s, sRepl, iGroup, m, bUppercase):
     "text processor: write sRepl in s at iGroup position"
-    ln = m.end(iGroup) - m.start(iGroup)
+    nLen = m.end(iGroup) - m.start(iGroup)
     if sRepl == "*":
-        sNew = " " * ln
-    elif sRepl == ">" or sRepl == "_" or sRepl == u"~":
-        sNew = sRepl + " " * (ln-1)
+        sNew = " " * nLen
+    elif sRepl == ">" or sRepl == "_" or sRepl == "~":
+        sNew = sRepl + " " * (nLen-1)
     elif sRepl == "@":
-        sNew = "@" * ln
+        sNew = "@" * nLen
     elif sRepl[0:1] == "=":
-        if sRepl[1:2] != "@":
-            sNew = _GLOBALS[sRepl[1:]](s, m)
-            sNew = sNew + " " * (ln-len(sNew))
-        else:
-            sNew = _GLOBALS[sRepl[2:]](s, m)
-            sNew = sNew + "@" * (ln-len(sNew))
+        sNew = _GLOBALS[sRepl[1:]](s, m)
+        sNew = sNew + " " * (nLen-len(sNew))
         if bUppercase and m.group(iGroup)[0:1].isupper():
             sNew = sNew.capitalize()
     else:
         sNew = m.expand(sRepl)
-        sNew = sNew + " " * (ln-len(sNew))
+        sNew = sNew + " " * (nLen-len(sNew))
     return s[0:m.start(iGroup)] + sNew + s[m.end(iGroup):]
 
 
-def ignoreRule (sId):
-    _aIgnoredRules.add(sId)
+def ignoreRule (sRuleId):
+    _aIgnoredRules.add(sRuleId)
 
 
 def resetIgnoreRules ():
     _aIgnoredRules.clear()
+
+
+def reactivateRule (sRuleId):
+    _aIgnoredRules.discard(sRuleId)
+
+
+def listRules (sFilter=None):
+    "generator: returns typle (sOption, sLineId, sRuleId)"
+    if sFilter:
+        try:
+            zFilter = re.compile(sFilter)
+        except:
+            echo("# Error. List rules: wrong regex.")
+            sFilter = None
+    for sOption, lRuleGroup in chain(_getRules(True), _getRules(False)):
+        for _, _, sLineId, sRuleId, _ in lRuleGroup:
+            if not sFilter or zFilter.search(sRuleId):
+                yield (sOption, sLineId, sRuleId)
+
+
+def displayRules (sFilter=None):
+    echo("List of rules. Filter: << " + str(sFilter) + " >>")
+    for sOption, sLineId, sRuleId in listRules(sFilter):
+        echo("{:<10} {:<10} {}".format(sOption, sLineId, sRuleId))
 
 
 #### init
@@ -270,6 +296,11 @@ def load ():
         traceback.print_exc()
 
 
+def setOption (sOpt, bVal):
+    if sOpt in _dOptions:
+        _dOptions[sOpt] = bVal
+
+
 def setOptions (dOpt):
     _dOptions.update(dOpt)
 
@@ -280,6 +311,12 @@ def getOptions ():
 
 def getOptionsLabels (sLang):
     return gc_options.getUI(sLang)
+
+
+def displayOptions (sLang):
+    echo("List of options")
+    echo("\n".join( [ k+":\t"+str(v)+"\t"+gc_options.getUI(sLang).get(k, ("?", ""))[0]  for k, v  in sorted(_dOptions.items()) ] ))
+    echo("")
 
 
 def resetOptions ():
@@ -303,28 +340,13 @@ def _getRules (bParagraph):
     return _rules.lParagraphRules
 
 
-def _loadRules2 ():
-    from itertools import chain
-    from . import gc_rules
-    global _rules
-    _rules = gc_rules
-    # compile rules regex
-    for rule in chain(_rules.lParagraphRules, _rules.lSentenceRules):
-        try:
-            rule[1] = re.compile(rule[1])
-        except:
-            echo("Bad regular expression in # " + str(rule[3]))
-            rule[1] = "(?i)<Grammalecte>"
-
-
 def _loadRules ():
-    from itertools import chain
     from . import gc_rules
     global _rules
     _rules = gc_rules
     # compile rules regex
-    for rulegroup in chain(_rules.lParagraphRules, _rules.lSentenceRules):
-        for rule in rulegroup[1]:
+    for lRuleGroup in chain(_rules.lParagraphRules, _rules.lSentenceRules):
+        for rule in lRuleGroup[1]:
             try:
                 rule[0] = re.compile(rule[0])
             except:
@@ -436,7 +458,7 @@ def stem (sWord):
 
 def nextword (s, iStart, n):
     "get the nth word of the input string or empty string"
-    m = re.match(u"( +[\\w%-]+){" + str(n-1) + u"} +([\\w%-]+)", s[iStart:])
+    m = re.match("( +[\\w%-]+){" + str(n-1) + "} +([\\w%-]+)", s[iStart:])
     if not m:
         return None
     return (iStart+m.start(2), m.group(2))
@@ -444,7 +466,7 @@ def nextword (s, iStart, n):
 
 def prevword (s, iEnd, n):
     "get the (-)nth word of the input string or empty string"
-    m = re.search(u"([\\w%-]+) +([\\w%-]+ +){" + str(n-1) + u"}$", s[:iEnd])
+    m = re.search("([\\w%-]+) +([\\w%-]+ +){" + str(n-1) + "}$", s[:iEnd])
     if not m:
         return None
     return (m.start(1), m.group(1))
@@ -484,7 +506,6 @@ def look_chk1 (dDA, s, nOffset, sPattern, sPatternGroup1, sNegPatternGroup1=None
         sWord = m.group(1)
         nPos = m.start(1) + nOffset
     except:
-        #print("Missing group 1")
         return False
     if sNegPatternGroup1:
         return morphex(dDA, (nPos, sWord), sPatternGroup1, sNegPatternGroup1)

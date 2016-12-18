@@ -100,8 +100,8 @@ function suggVerbPpas (sFlex, sWhat=null) {
 function suggVerbTense (sFlex, sTense, sWho) {
     let aSugg = new Set();
     for (let sStem of stem(sFlex)) {
-        if (conj.hasConj(sStem, ":E", sWho)) {
-            aSugg.add(conj.getConj(sStem, ":E", sWho));
+        if (conj.hasConj(sStem, sTense, sWho)) {
+            aSugg.add(conj.getConj(sStem, sTense, sWho));
         }
     }
     if (aSugg.size > 0) {
@@ -245,7 +245,7 @@ function suggSing (sFlex) {
     return "";
 }
 
-function suggMasSing (sFlex) {
+function suggMasSing (sFlex, bSuggSimil=false) {
     // returns masculine singular forms
     // we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     let aSugg = new Set();
@@ -263,9 +263,16 @@ function suggMasSing (sFlex) {
         } else {
             // a verb
             let sVerb = cr.getLemmaOfMorph(sMorph);
-            if (conj.hasConj(sVerb, ":PQ", ":Q1")) {
+            if (conj.hasConj(sVerb, ":PQ", ":Q1") && conj.hasConj(sVerb, ":PQ", ":Q3")) {
+                // We also check if the verb has a feminine form.
+                // If not, we consider it’s better to not suggest the masculine one, as it can be considered invariable.
                 aSugg.add(conj.getConj(sVerb, ":PQ", ":Q1"));
             }
+        }
+    }
+    if (bSuggSimil) {
+        for (let e of phonet.selectSimil(sFlex, ":m:[si]")) {
+            aSugg.add(e);
         }
     }
     if (aSugg.size > 0) {
@@ -274,7 +281,7 @@ function suggMasSing (sFlex) {
     return "";
 }
 
-function suggMasPlur (sFlex) {
+function suggMasPlur (sFlex, bSuggSimil=false) {
     // returns masculine plural forms
     // we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     let aSugg = new Set();
@@ -295,8 +302,17 @@ function suggMasPlur (sFlex) {
             if (conj.hasConj(sVerb, ":PQ", ":Q2")) {
                 aSugg.add(conj.getConj(sVerb, ":PQ", ":Q2"));
             } else if (conj.hasConj(sVerb, ":PQ", ":Q1")) {
-                aSugg.add(conj.getConj(sVerb, ":PQ", ":Q1"));
+                let sSugg = conj.getConj(sVerb, ":PQ", ":Q1");
+                // it is necessary to filter these flexions, like “succédé” or “agi” that are not masculine plural
+                if (sSugg.endsWith("s")) {
+                    aSugg.add(sSugg);
+                }
             }
+        }
+    }
+    if (bSuggSimil) {
+        for (let e of phonet.selectSimil(sFlex, ":m:[pi]")) {
+            aSugg.add(e);
         }
     }
     if (aSugg.size > 0) {
@@ -305,7 +321,8 @@ function suggMasPlur (sFlex) {
     return "";
 }
 
-function suggFemSing (sFlex) {
+
+function suggFemSing (sFlex, bSuggSimil=false) {
     // returns feminine singular forms
     // we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     let aSugg = new Set();
@@ -328,13 +345,18 @@ function suggFemSing (sFlex) {
             }
         }
     }
+    if (bSuggSimil) {
+        for (let e of phonet.selectSimil(sFlex, ":f:[si]")) {
+            aSugg.add(e);
+        }
+    }
     if (aSugg.size > 0) {
         return Array.from(aSugg).join("|");
     }
     return "";
 }
 
-function suggFemPlur (sFlex) {
+function suggFemPlur (sFlex, bSuggSimil=false) {
     // returns feminine plural forms
     // we don’t check if word exists in _dAnalyses, for it is assumed it has been done before
     let aSugg = new Set();
@@ -357,10 +379,40 @@ function suggFemPlur (sFlex) {
             }
         }
     }
+    if (bSuggSimil) {
+        for (let e of phonet.selectSimil(sFlex, ":f:[pi]")) {
+            aSugg.add(e);
+        }
+    }
     if (aSugg.size > 0) {
         return Array.from(aSugg).join("|");
     }
     return "";
+}
+
+function hasFemForm (sFlex) {
+    for (let sStem of stem(sFlex)) {
+        if (mfsp.isFemForm(sStem) || conj.hasConj(sStem, ":PQ", ":Q3")) {
+            return true;
+        }
+    }
+    if (phonet.hasSimil(sFlex, ":f")) {
+        return true;
+    }
+    return false;
+}
+
+function hasMasForm (sFlex) {
+    for (let sStem of stem(sFlex)) {
+        if (mfsp.isFemForm(sStem) || conj.hasConj(sStem, ":PQ", ":Q1")) {
+            // what has a feminine form also has a masculine form
+            return true;
+        }
+    }
+    if (phonet.hasSimil(sFlex, ":m")) {
+        return true;
+    }
+    return false;
 }
 
 function switchGender (sFlex, bPlur=null) {
@@ -423,25 +475,16 @@ function switchPlural (sFlex) {
     return "";
 }
 
-function hasSimil (sWord) {
-    return phonet.hasSimil(sWord);
+function hasSimil (sWord, sPattern=null) {
+    return phonet.hasSimil(sWord, sPattern);
 }
 
 function suggSimil (sWord, sPattern) {
     // return list of words phonetically similar to sWord and whom POS is matching sPattern
-    let lSet = phonet.getSimil(sWord);
-    if (lSet.length == 0) {
-        return "";
-    }
-    let aSugg = new Set();
-    for (let sSimil of lSet) {
-        if (!_dAnalyses.has(sSimil)) {
-            _storeMorphFromFSA(sSimil);
-        }
-        for (let sMorph of _dAnalyses._get(sSimil, [])) {
-            if (sMorph.search(sPattern) >= 0) {
-                aSugg.add(sSimil);
-            }
+    let aSugg = phonet.selectSimil(sWord, sPattern);
+    for (let sMorph of _dAnalyses._get(sWord, [])) {
+        for (let e of conj.getSimil(sWord, sMorph)) {
+            aSugg.add(e); 
         }
     }
     if (aSugg.size > 0) {
